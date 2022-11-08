@@ -1,0 +1,189 @@
+#+AUTHOR: phdenzel
+#+TITLE: A short introduction of the SKAO
+#+DATE: <2022-10-11 Tue>
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+
+# #+REVEAL_TITLE_SLIDE: <div style="padding: 0px 30px 250px 30px"> <a href='https://www.uzh.ch/de.html'> <img src='./assets/images/uzh_logo_d_neg_retina.png' alt='UZH logo' width='294px' height='100px' style="float: left"> </a> </div> 
+#+REVEAL_TITLE_SLIDE: <h1>%t</h1>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+
+#+BEGIN_NOTES
+Title slide
+#+END_NOTES
+
+
+# # * Slides on my website
+#
+# # https://phdenzel.github.io/2022/16/06/recent-developments-in-high-resolution-image-synthesis/
+# [[https://phdenzel.github.io/#lab][https://phdenzel.github.io/]]
+#
+# #+ATTR_HTML: :height 300px :style float: center;
+# [[./assets/images/talk_qr.png]]
+#
+# Link/QR code to the slides for later or to follow along
+
+
+
+* My position at ZHAW
+
+- machine learning engineer & astrophysicist by training
+- main role: work on the SKA project
+- deep learning research @@html:&#x27F6;@@ SKA astrophysics
+
+#+BEGIN_NOTES
+ZHAW
+#+END_NOTES
+
+* My previous work
+
+#+ATTR_HTML: :height 200px :align center :style float: right; padding-right: 100px;
+[[./assets/images/talk_qr.png]]
+
+# #+ATTR_REVEAL: :frag (appear)
+- PhD in Physics from UZH @ ICS
+- gravitational lens modelling
+- "relativistic/astrophysical" raytracing
+- Bayesian technique based on image synthesis & reconstruction (see [[https://doi.org/10.48550/arXiv.2102.10114][Denzel et al. 2021a]])
+
+
+# #+ATTR_REVEAL: :frag (appear)
+#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
+input data {{{NL}}}
+[[./assets/images/gl/my-work_composite_SW05.png]]
+
+#+ATTR_HTML: :height 350px :align left :style float: left; padding: 300px 0 0 0;
+➝
+
+# #+ATTR_REVEAL: :frag (appear)
+#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
+latent representation {{{NL}}}
+[[./assets/images/gl/my-work_kappa_SW05.png]]
+
+#+ATTR_HTML: :height 350px :align center :style float: left; padding: 300px 0 0 0;
+➝
+
+# #+ATTR_REVEAL: :frag (appear)
+#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
+reconstruction {{{NL}}}
+[[./assets/images/gl/my-work_composite_SW05_synth.png]]
+
+[[https://doi.org/10.48550/arXiv.2104.03324][Denzel et al. 2021b]]
+
+#+BEGIN_NOTES
+Introduce yourself
+#+END_NOTES
+
+* The Square Kilometer Array
+
+- intergovernmental radio telescope
+  - South Africa: Meerkat National Park
+  - Western Australia: Murchison Radio-astronomy Observatory
+
+- only better place to build: the dark side of the Moon
+
+#+BEGIN_NOTES
+SKAO
+#+END_NOTES

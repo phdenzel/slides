@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>A few notes on the SKA project</title>
+<meta name="author" content="phdenzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1>A few notes on the SKA project</h1>
+<h3></h3>
+<div style="padding-top: 50px">2022-08-03 Wed</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> phdenzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+
+<section>
+<section id="slide-orgd8683c9">
+<h2 id="orgd8683c9">Slides on my website</h2>
+<p>
+<a href="https://phdenzel.github.io/#lab">https://phdenzel.github.io/</a>
+</p>
+
+
+<div id="org9db3424" class="figure">
+<p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" height="300px" style="float: center;" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+Link/QR code to the slides for later or to follow along
+</p>
+
+</aside>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org9881151">
+<h2 id="org9881151">Basics</h2>
+<div class="outline-text-2" id="text-org9881151">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org92dcb15">
+<h3 id="org92dcb15">Typical numbers (for SKA1 MID)</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">Dish diameter</td>
+<td class="org-left">15 m</td>
+</tr>
+
+<tr>
+<td class="org-left">System temp</td>
+<td class="org-left">23 K</td>
+</tr>
+
+<tr>
+<td class="org-left">Total bandwidth</td>
+<td class="org-left">700 MHz</td>
+</tr>
+
+<tr>
+<td class="org-left">Observing freq</td>
+<td class="org-left">350-1050 MHz</td>
+</tr>
+
+<tr>
+<td class="org-left">Freq channels</td>
+<td class="org-left">choose (typically 10 kHz)</td>
+</tr>
+
+<tr>
+<td class="org-left">Observing time</td>
+<td class="org-left">choose (say ~1h)</td>
+</tr>
+</tbody>
+</table>
+
+<div>
+\begin{equation}
+  \theta \approx O(1) \times (\lambda / D_\text{dish}) \sim 1.1\,\text{degrees} \quad\text{at}\, 1000\,\text{MHz}
+\end{equation}
+
+</div>
+
+<div>
+\begin{equation}
+  A_{eff} \approx 0.7\pi (D_\text{dish}/2)^2 \sim 124\,{m}^2
+\end{equation}
+
+</div>
+
+<div>
+\begin{equation}
+  \sigma_T \approx \frac{T_{sys}}{\sqrt{\delta\nu t_{obs}}} \sim 3.8\,\text{mK}
+\end{equation}
+
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org932864c">
+<h3 id="org932864c">Radiometer equation</h3>
+<ul>
+<li>radio waves induce voltages in the receiver electronics which are amplified to be made measureable</li>
+
+</ul>
+
+<p>
+The flux sensitivity, i.e. thermal noise level, is
+</p>
+<div>
+\begin{equation}
+  \sigma_S \approx \frac{2k_{B}T_{sys}}{A_{eff}\sqrt{\delta\nu t_{obs}}}
+\end{equation}
+
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org538baac">
+<h3 id="org538baac">Radiometer equation</h3>
+<ul>
+<li>the telescope measures the total amount of radiation coming from the direction it is pointing in:
+<ul>
+<li>the targeted source</li>
+<li>confusion: emissions other galaxies</li>
+<li>foregrounds: emissions from our Galaxy</li>
+<li>interference: emissions from satellites or mobile phones</li>
+<li>statistical fluctuations: random noise fluctuations</li>
+
+</ul></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org18df933">
+<h3 id="org18df933">Multi-part interferometer</h3>
+<p>
+Plane waves enters each receiver with a phase/delay which depends on their separation
+</p>
+
+<div>
+\begin{equation}
+  \Delta\phi = 2\pi\frac{d\sin{\theta}}{\lambda}
+\end{equation}
+
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org83328af">
+<h3 id="org83328af">Multi-part interferometer</h3>
+<p>
+The electric field of the wave \(E\) induces a voltage in both
+receivers. The voltages also depend on the antenna pattern of the
+receiver, the attenuation \(A\)
+</p>
+
+<div>
+\begin{equation}
+  v_2(t) = \int_{-\pi}^{+\pi}A(\theta)E(\theta)e^{i\omega t}\,d\theta
+\end{equation}
+
+</div>
+
+<div>
+\begin{equation}
+  v_1(t) = \int_{-\pi}^{+\pi}A(\theta)E(\theta)e^{i(\omega t + \Delta\phi)}\,d\theta
+\end{equation}
+
+</div>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orga8060ea">
+<h3 id="orga8060ea">Multi-part interferometer</h3>
+<p>
+The voltages from the receivers are then correlated (multiplied) and
+the resulting signal is averaged over time. This ensures that only
+coherent signals are measured (van Cittert-Zernike theorem), and other
+signals are averaged out. This results in a Fourier integral
+</p>
+
+<div>
+\begin{equation}
+  \langle v_1(t)\cdot v_2^\ast (t) \rangle = \int_{-\pi}^{+\pi} |A(\theta)|^2|E(\theta)|^2 e^{i\Delta\phi(\theta)}d\theta
+\end{equation}
+
+</div>
+
+<p>
+where \(I'(\theta) = |A(\theta)|^2|E(\theta)|^2\) is often called
+<i>primary beam</i>, and \(I(\theta) = |E(\theta)|^2\) the <i>intensity distribution</i>.
+</p>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org0c0f18f">
+<h3 id="org0c0f18f">Multi-part interferometer</h3>
+<p>
+This means interferometers actually simply measure Fourier modes on
+the sky which depends on the baseline length \(d\) and the wavelength
+\(\lambda\). The more receivers are included the more Fourier modes can
+be measured in one snapshot.
+</p>
+
+<p>
+Arrays usually consist of many different baselines:
+</p>
+<ul>
+<li>short baselines: measure large scales</li>
+<li>long baselines: high resolution</li>
+<li>number density of long vs. short baselines: higher density means
+higher sensitivity per mode</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org7172141">
+<h3 id="org7172141">Multi-part interferometer</h3>
+<p>
+The Fourier coefficients are measured visibilities and can be used to
+reconstruct the intesity distribution via inverse FT.
+Problems:
+</p>
+<ul>
+<li>some baselines are poorly sampled: noise</li>
+<li>some baselines are missing: missing flux</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orgd332f73">
+<h2 id="orgd332f73">Simulations</h2>
+<div class="outline-text-2" id="text-orgd332f73">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org95eb716">
+<h3 id="org95eb716">Testing data</h3>
+<div class="outline-text-3" id="text-org95eb716">
+</div>
+</section>
+<section id="slide-org084d462">
+<h4 id="org084d462">isolated SPH simulations</h4>
+<ul>
+<li>Capelo et al. 2018:
+<ul>
+<li>paper(s): <a href="https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.3283C/abstract">https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.3283C/abstract</a></li>
+<li>code: <a href="https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.2357W/abstract">gasoline2</a> (SPH)</li>
+<li>redshift: 3</li>
+<li>gas: elec, HI, HII, HM, H2I, H2II, HeI, HeII, HeIII, metals (CI, CII, OI, OII, SiI, SiII, and SiIII)</li>
+<li>dust, optically thin equilibrium metal cooling (no UV shielding, strong cooling above \(T=10^4 K\))</li>
+<li>CS09 model of H2I formation on dust (with clumping)</li>
+
+</ul></li>
+
+</ul>
+
+
+</section>
+<section id="slide-orgaeaaf7d">
+<h4 id="orgaeaaf7d">zoom-in AREPO simulations (mesh-particle hybrid)</h4>
+<ul>
+<li>Gensior et al. 2020:
+<ul>
+<li>paper(s): <a href="https://arxiv.org/abs/2002.01484">https://arxiv.org/abs/2002.01484</a> &amp; <a href="https://arxiv.org/abs/2011.01235">https://arxiv.org/abs/2011.01235</a></li>
+<li>code: <a href="https://arepo-code.org/">Arepo</a> (hybrid)</li>
+<li>redshift: &lt;= 0.1</li>
+<li>gas: atomic H, D, He, H2, HD, H2I (grackle)</li>
+<li>H2I formation on dust grains</li>
+
+</ul></li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-orge3cc291">
+<h3 id="orge3cc291">Pinocchio</h3>
+<p>
+Details:
+</p>
+<ul>
+<li>Lagrangian particle-based code</li>
+<li>analytic/semi-analytic approximation of gravitational clustering</li>
+<li>fast calculation of end positions from ICs</li>
+<li>many boxes -&gt; slices of lightcone</li>
+<li>catalog output: group ID, group mass, ini pos, fin pos, vel, N<sub>particles</sub></li>
+<li>PLC output (min of 10 particles): group ID, true z, comov pos, vel, group mass, theta, phi, los vel, obs z</li>
+
+</ul>
+
+<p>
+Adoption for Karabo:
+</p>
+<ul>
+<li>using PLC to translate all halo positions from the near to far
+place (euclid distance; by default from 0 Mpc/h to 100 Mpc/h) into
+RA, Dec format</li>
+<li>defaults for other Karabo parameters: I=1,Q=U=V=0,refHz=1e8</li>
+
+</ul>
+
+
+</section>
+</section>
+<section>
+<section id="slide-org262290c">
+<h3 id="org262290c">Our Options</h3>
+<p>
+ordered in difficulty from high-to-low:
+</p>
+
+<ul>
+<li>use <b>isolated galaxies</b> and figure out the projections ourselves:
+<ul>
+<li>starting with atomic H -&gt; 21cm lines</li>
+<li>building intensity projections species by species</li>
+<li>column density of the SPH particles using kernel widths</li>
+
+</ul></li>
+<li>use <b>cosmological</b> simulations and make similar approximations as
+the Pinocchio team
+<ul>
+<li>whole galaxies as point sources</li>
+<li>question of usefulness</li>
+
+</ul></li>
+<li>use proper <b>MHD</b> simulations with proper synchrotron radiation
+<ul>
+<li>computationally super expensive</li>
+<li>no experts (at least not in Switzerland)</li>
+
+</ul></li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>

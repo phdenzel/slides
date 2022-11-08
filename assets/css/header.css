@@ -1,0 +1,14 @@
+.slide-header {
+    position: fixed;
+    text-align: center;
+    width: 95%;
+    height: 10%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    background-image:
+        url(../../assets/images/logos/logo-zhaw.svg);
+    background-repeat: no-repeat;
+    background-size: 90px;
+    background-position: 100%;
+}

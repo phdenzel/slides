@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Deep Learning in Astrophysics</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6"><h2>Deep Learning in Astrophysics<h2>
+<h3>The SKA project at ZHAW</h3>
+<div style="padding-top: 50px">2022/10/11 Tue</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+
+
+<section>
+<section id="slide-org786b38d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org786b38d">About myself</h2>
+<ul>
+<li>PhD in Physics from UZH @ ICS</li>
+<li><b>computational scientist/astrophysicist</b> by training, <b>machine learning</b> enthusiast
+<ul>
+<li>high-performance computing: dark-matter detection, star formation, etc.</li>
+<li>gravitational lens modelling with machine learning</li>
+
+</ul></li>
+<li>machine learning engineer @ CAI
+<ul>
+<li>main focus: <b>SKA project</b></li>
+<li>deep learning &#x27F6; SKA science</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3e7fc98">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3e7fc98">The Cosmic Microwave Background</h3>
+
+<div id="orgb63ddf4" class="figure">
+<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png" alt="ESA_Planck_CMB2018_smooth.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+<p style="font-size: 28px;">
+2018, Credit: ESA/Planck
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org86e9cbb">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org86e9cbb">The Cosmic Microwave Background</h3>
+
+<div id="org29c2dec" class="figure">
+<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018.png" alt="ESA_Planck_CMB2018.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+<p style="font-size: 28px;">
+2018, Credit: ESA/Planck
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge51800a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orge51800a">Flagship cosmological particle simulations</h3>
+
+<div id="orgaa3f719" class="figure">
+<p><img src="./assets/images/cosmo/pkdgrav3_full_sky.png" alt="pkdgrav3_full_sky.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="font-size: 28px;">
+2016, Credit: D. Potter, J. Stadel, R. Teyssier
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgea3e0ad" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgea3e0ad">SPH simulations: "zoom-ins"</h3>
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+B-field (TNG100), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7e104ec">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7e104ec">SPH simulations: isolated galaxies</h3>
+<video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+<source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
+</video>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+g1 (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgbf0f768">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgbf0f768">SPH simulations: realistic galaxies</h3>
+
+<div id="orga9b205e" class="figure">
+<p><img src="./assets/images/illustris/TNG50_M104_composite_image.jpg" alt="TNG50_M104_composite_image.jpg" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+M104 &amp; analogs (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3d00c3a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3d00c3a">SPH simulations: galaxy catalogue</h3>
+
+<div id="orgcfa9b7e" class="figure">
+<p><img src="./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png" alt="TNG50_galaxies_Halpha_starlight_z2.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+H&alpha; &amp; stars (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6dfd2b8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org6dfd2b8">SKA project @ ZHAW</h3>
+<ul>
+<li>train deep-learning model
+<ul>
+<li>cosmological simulations &#10231; (synthetic) observations</li>
+
+</ul></li>
+<li>problem:
+<ul>
+<li>deep learning needs a lot of data</li>
+<li>SPH simulations are expensive</li>
+
+</ul></li>
+<li>repurpose existing simulations
+<ul>
+<li>in contact with UZH (Lucio Mayer, Darren Reed, Robert Feldmann, et al.)</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org92350f9">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org92350f9">AI models</h3>
+<ul>
+<li>recently many text-to-image AI models were released
+<ul>
+<li>DALLE-2, BLOOM, stable-diffusion, etc.</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="orgdf57d41" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_001.jpeg" alt="A_distant_galaxy_001.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org2fd8c0f" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_002.jpeg" alt="A_distant_galaxy_002.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org39c2ada" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_003.jpeg" alt="A_distant_galaxy_003.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="orgd357aed" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_004.jpeg" alt="A_distant_galaxy_004.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org71e4e92" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_005.jpeg" alt="A_distant_galaxy_005.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org69d8038" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_006.jpeg" alt="A_distant_galaxy_006.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="orgdbacaee" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_007.jpeg" alt="A_distant_galaxy_007.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org1228091" class="figure">
+<p><img src="./assets/images/stable-diffusion/A_distant_galaxy_008.jpeg" alt="A_distant_galaxy_008.jpeg" height="33%" width="20%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org2dadfd5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org2dadfd5">Dataset: simulation - projection pairs</h3>
+
+<div id="org3a1f8a7" class="figure">
+<p><img src="./assets/images/skasky_schematic.png" alt="skasky_schematic.png" height="2000px" align="center" style="max-height: 90vh; position: relative;" />
+</p>
+</div>
+
+</section>
+<section id="slide-org2dadfd5-split">
+
+<h3>Dataset: simulation - projection pairs</h3>
+
+<ul>
+<li>utilize Karabo pipeline to simulate the SKA telescope signal
+<ul>
+<li>in contact with FHNW (Rohit Sharma, Simon Felix, Vincenzo Timmel, et al.)</li>
+
+</ul></li>
+<li>current status:
+<ul>
+<li>roughly 100 galaxies (multiple snapshots) already stored</li>
+<li>collecting galaxies from UZH and other publicly available sources (IllustrisTNG)</li>
+<li>optimizing interface/projection routines for ~ 10<sup>6</sup> galaxies</li>
+
+</ul></li>
+<li>perhaps join the SKA Data Challenge 3</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true, margin: 0.05,
+minScale: 0.2, maxScale: 4.5,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>

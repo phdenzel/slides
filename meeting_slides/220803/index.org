@@ -1,0 +1,277 @@
+#+AUTHOR: phdenzel
+#+TITLE: A few notes on the SKA project
+#+DATE: 2022-08-03 Wed
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: date:nil
+#+OPTIONS: timestamp:nil
+
+#+PROPERTY: eval no
+
+# Use Macros with e.g. {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@@@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+
+
+# infos @ https://revealjs.com/config/
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+#+REVEAL_PLUGINS: ( markdown math zoom )
+#+REVEAL_HLEVEL: 2
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+
+# ##############################################################################
+
+# #+REVEAL_TITLE_SLIDE: <div style="padding: 0px 30px 250px 30px"> <a href='https://www.uzh.ch/de.html'> <img src='./assets/images/uzh_logo_d_neg_retina.png' alt='UZH logo' width='294px' height='100px' style="float: left"> </a> </div> 
+#+REVEAL_TITLE_SLIDE: <h1>%t</h1>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+
+#+BEGIN_NOTES
+Title slide
+#+END_NOTES
+
+
+* Slides on my website
+
+# https://phdenzel.github.io/2022/16/06/recent-developments-in-high-resolution-image-synthesis/
+[[https://phdenzel.github.io/#lab][https://phdenzel.github.io/]]
+
+#+ATTR_HTML: :height 300px :style float: center;
+[[./assets/images/talk_qr.png]]
+
+#+BEGIN_NOTES
+Link/QR code to the slides for later or to follow along
+#+END_NOTES
+
+
+* Basics
+
+
+** Typical numbers (for SKA1 MID)
+
+| Dish diameter   | 15 m                      |
+| System temp     | 23 K                      |
+| Total bandwidth | 700 MHz                   |
+| Observing freq  | 350-1050 MHz              |
+| Freq channels   | choose (typically 10 kHz) |
+| Observing time  | choose (say ~1h)          |
+
+\begin{equation}
+  \theta \approx O(1) \times (\lambda / D_\text{dish}) \sim 1.1\,\text{degrees} \quad\text{at}\, 1000\,\text{MHz}
+\end{equation}
+
+\begin{equation}
+  A_{eff} \approx 0.7\pi (D_\text{dish}/2)^2 \sim 124\,{m}^2
+\end{equation}
+
+\begin{equation}
+  \sigma_T \approx \frac{T_{sys}}{\sqrt{\delta\nu t_{obs}}} \sim 3.8\,\text{mK}
+\end{equation}
+
+
+** Radiometer equation
+
+- radio waves induce voltages in the receiver electronics which are amplified to be made measureable
+
+The flux sensitivity, i.e. thermal noise level, is
+\begin{equation}
+  \sigma_S \approx \frac{2k_{B}T_{sys}}{A_{eff}\sqrt{\delta\nu t_{obs}}}
+\end{equation}
+
+
+** Radiometer equation
+
+- the telescope measures the total amount of radiation coming from the direction it is pointing in:
+  - the targeted source
+  - confusion: emissions other galaxies
+  - foregrounds: emissions from our Galaxy
+  - interference: emissions from satellites or mobile phones
+  - statistical fluctuations: random noise fluctuations
+
+
+** Multi-part interferometer
+
+Plane waves enters each receiver with a phase/delay which depends on their separation
+
+\begin{equation}
+  \Delta\phi = 2\pi\frac{d\sin{\theta}}{\lambda}
+\end{equation}
+
+
+** Multi-part interferometer
+    
+The electric field of the wave $E$ induces a voltage in both
+receivers. The voltages also depend on the antenna pattern of the
+receiver, the attenuation $A$
+
+\begin{equation}
+  v_2(t) = \int_{-\pi}^{+\pi}A(\theta)E(\theta)e^{i\omega t}\,d\theta
+\end{equation}
+
+\begin{equation}
+  v_1(t) = \int_{-\pi}^{+\pi}A(\theta)E(\theta)e^{i(\omega t + \Delta\phi)}\,d\theta
+\end{equation}
+
+
+** Multi-part interferometer
+
+The voltages from the receivers are then correlated (multiplied) and
+the resulting signal is averaged over time. This ensures that only
+coherent signals are measured (van Cittert-Zernike theorem), and other
+signals are averaged out. This results in a Fourier integral
+
+\begin{equation}
+  \langle v_1(t)\cdot v_2^\ast (t) \rangle = \int_{-\pi}^{+\pi} |A(\theta)|^2|E(\theta)|^2 e^{i\Delta\phi(\theta)}d\theta
+\end{equation}
+
+where $I'(\theta) = |A(\theta)|^2|E(\theta)|^2$ is often called
+/primary beam/, and $I(\theta) = |E(\theta)|^2$ the /intensity distribution/.
+
+
+** Multi-part interferometer
+
+This means interferometers actually simply measure Fourier modes on
+the sky which depends on the baseline length $d$ and the wavelength
+$\lambda$. The more receivers are included the more Fourier modes can
+be measured in one snapshot.
+
+Arrays usually consist of many different baselines:
+- short baselines: measure large scales
+- long baselines: high resolution
+- number density of long vs. short baselines: higher density means
+  higher sensitivity per mode
+
+
+** Multi-part interferometer
+
+The Fourier coefficients are measured visibilities and can be used to
+reconstruct the intesity distribution via inverse FT.
+Problems:
+- some baselines are poorly sampled: noise
+- some baselines are missing: missing flux
+
+
+* Simulations
+
+
+** Testing data
+
+
+*** isolated SPH simulations
+
+- Capelo et al. 2018:
+  - paper(s): [[https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.3283C/abstract]]
+  - code: [[https://ui.adsabs.harvard.edu/abs/2017MNRAS.471.2357W/abstract][gasoline2]] (SPH)
+  - redshift: 3
+  - gas: elec, HI, HII, HM, H2I, H2II, HeI, HeII, HeIII, metals (CI, CII, OI, OII, SiI, SiII, and SiIII)
+  - dust, optically thin equilibrium metal cooling (no UV shielding, strong cooling above $T=10^4 K$)
+  - CS09 model of H2I formation on dust (with clumping)
+
+
+*** zoom-in AREPO simulations (mesh-particle hybrid)
+
+- Gensior et al. 2020:
+  - paper(s): https://arxiv.org/abs/2002.01484 & [[https://arxiv.org/abs/2011.01235]]
+  - code: [[https://arepo-code.org/][Arepo]] (hybrid)
+  - redshift: <= 0.1
+  - gas: atomic H, D, He, H2, HD, H2I (grackle)
+  - H2I formation on dust grains
+
+
+** Pinocchio
+
+Details:
+- Lagrangian particle-based code
+- analytic/semi-analytic approximation of gravitational clustering
+- fast calculation of end positions from ICs
+- many boxes -> slices of lightcone
+- catalog output: group ID, group mass, ini pos, fin pos, vel, N_particles
+- PLC output (min of 10 particles): group ID, true z, comov pos, vel, group mass, theta, phi, los vel, obs z
+
+Adoption for Karabo:
+- using PLC to translate all halo positions from the near to far
+  place (euclid distance; by default from 0 Mpc/h to 100 Mpc/h) into
+  RA, Dec format
+- defaults for other Karabo parameters: I=1,Q=U=V=0,refHz=1e8
+
+
+** Our Options
+
+ordered in difficulty from high-to-low:
+
+- use *isolated galaxies* and figure out the projections ourselves:
+  - starting with atomic H -> 21cm lines
+  - building intensity projections species by species
+  - column density of the SPH particles using kernel widths
+- use *cosmological* simulations and make similar approximations as
+  the Pinocchio team
+  - whole galaxies as point sources
+  - question of usefulness
+- use proper *MHD* simulations with proper synchrotron radiation
+  - computationally super expensive
+  - no experts (at least not in Switzerland)

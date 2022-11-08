@@ -1,0 +1,379 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Deep Learning in Astrophysics
+#+SUBTITLE: The SKA project at ZHAW
+#+DATE: 2022/10/11 Tue
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+
+#+REVEAL_TITLE_SLIDE: <h2>%t<h2>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+#+BEGIN_NOTES
+Title slide
+#+END_NOTES
+
+
+# * Slides on my website
+# 
+# # Link @ https://phdenzel.github.io/...
+# https://phdenzel.github.io/
+# 
+# #+ATTR_HTML: :height 300px :style float: center;
+# - TODO: change qr to the actual link
+# [[./assets/images/talk_qr.png]]
+# 
+# Link/QR code to the slides for later or to follow along
+
+
+
+* About myself
+
+- PhD in Physics from UZH @ ICS
+- *computational scientist/astrophysicist* by training, *machine learning* enthusiast
+  - high-performance computing: dark-matter detection, star formation, etc.
+  - gravitational lens modelling with machine learning
+- machine learning engineer @ CAI
+  - main focus: *SKA project*
+  - deep learning @@html:&#x27F6;@@ SKA science
+
+
+# * Gravitational lensing
+# :PROPERTIES:
+# :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/gl/quasar_lensing_RAS.mp4" data-background-video-muted data-background-size="contain"
+# :END:
+# #+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+# RAS PR 17/4, Credit: ESA/Hubble, NASA
+
+
+# ** Zurich lensed
+# :PROPERTIES:
+# :REVEAL_EXTRA_ATTR: class="upperlefth" data-background-iframe="https://phdenzel.github.io/zurich-lens/" data-background-interactive;
+# :END:
+
+
+# ** Gravitational lens modelling
+# 
+# #+ATTR_HTML: :height 150px :align center :style float: right; padding-right: 100px;
+# [[./assets/images/talk_qr.png]]
+# 
+# # #+ATTR_REVEAL: :frag (appear)
+# 
+# # #+ATTR_REVEAL: :frag (appear)
+# #+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
+# input data {{{NL}}}
+# [[./assets/images/gl/my-work_composite_SW05.png]]
+# 
+# #+ATTR_HTML: :height 325px :align left :style float: left; padding: 300px 0 0 0;
+# ➝
+# 
+# # #+ATTR_REVEAL: :frag (appear)
+# #+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
+# latent representation {{{NL}}}
+# [[./assets/images/gl/my-work_kappa_SW05.png]]
+# 
+# #+ATTR_HTML: :height 325px :align center :style float: left; padding: 300px 0 0 0;
+# ➝
+# 
+# # #+ATTR_REVEAL: :frag (appear)
+# #+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
+# reconstruction {{{NL}}}
+# [[./assets/images/gl/my-work_composite_SW05_synth.png]]
+# 
+# #+ATTR_HTML: :style font-size: 28px;
+# [[https://doi.org/10.48550/arXiv.2104.03324][Denzel et al. (2021b, arXiv.2104.03324)]]
+
+
+# ** Measuring the Age of the Universe
+
+# #+ATTR_HTML: :height 810px :style float:right
+# \begin{equation}
+#   H_0 = 71.8^{+3.9}_{-3.3} \,\mathrm{km/s/Mpc}
+# \end{equation}
+# #+ATTR_HTML: :height 810px :style float:left
+# [[./assets/images/gl/H0_filtered.png]]
+# 
+# #+ATTR_HTML: :style width: 100%; position: fixed; left:0; bottom: 50px; text-align: center; font-size: 28px;
+# [[https://arxiv.org/abs/2007.14398][Denzel et al. (2021c, arxiv:2007.14398)]]
+
+
+# * An (abbreviated) History of the Universe
+# - *Cosmology*: study of the observable Universe's
+#   - origins and evolution
+#   - large-scale structure
+#   - physical laws
+# #+REVEAL: split:t
+# - The *Big Bang theory* @@html:&#x27F6;@@ the Cosmological Standard Model ($\Lambda$CDM)
+#   - Einstein's theory of *General Relativity*
+#   - *Astrophysics*: galactic dynamics, stellar physics, etc.
+#   - *Particle physics*: primordial nucleosynthesis
+
+
+# ** The Big Bang
+# - expansion of the Universe from an initial state (not from a singularity!)
+#   - at 10^{-43} sec: Planck epoch (high density/energy state), size ~ 10^{-35} m
+#   - at 10^{-37} sec: the gravitational force decouples, the Universe expands
+#     - Inflation: exponential expansion and cooling
+#   - at 10^{-32} sec: quark-gluon plasma, size ~ 10^{43} m
+#     - symmetry-breaking phase transitions cause other forces to separate
+#   - at 10^{-6} sec: baryons form, expansion and cooling continues
+#   - at 379'000 years: Universe becomes opaque @@html:&#x27F6;@@ CMB
+
+
+** The Cosmic Microwave Background
+#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+[[./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png]]
+#+ATTR_HTML: :style font-size: 28px;
+2018, Credit: ESA/Planck
+
+
+** The Cosmic Microwave Background
+#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+[[./assets/images/cosmo/ESA_Planck_CMB2018.png]]
+#+ATTR_HTML: :style font-size: 28px;
+2018, Credit: ESA/Planck
+
+
+** Flagship cosmological particle simulations
+#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+[[./assets/images/cosmo/pkdgrav3_full_sky.png]]
+
+#+ATTR_HTML: :style font-size: 28px;
+2016, Credit: D. Potter, J. Stadel, R. Teyssier
+
+
+# ** Cosmological simulations using hydrodynamics
+# 
+# Fluids
+# \begin{align}
+#   \frac{\partial \rho}{\partial t} &+ \nabla\cdot (\rho\textbf{v})= 0 \label{eq:EulerMass} \\
+#   \frac{\partial (\rho\textbf{v})}{\partial t} &+ \nabla\cdot (\rho(\textbf{v} \otimes \textbf{v}) + \mathbb{P}) = \rho \textbf{a} \label{eq:EulerMomentum}\\
+#   \frac{\partial E}{\partial t} &+ \nabla \cdot (E + \mathbb{P}) \textbf{v} = \rho \textbf{a} \textbf{v} \label{eq:EulerEnergy}
+# \end{align}
+# 
+# Radiation
+# \begin{align}
+#   \frac{1}{c}\frac{\partial I_{\nu}}{\partial t} + \hat{\textbf{n}}\cdot\nabla I_{\nu} &= j_{\nu} - \alpha_{\nu}I_{\nu} \label{eq:Radiative_transfer} \\
+#   \frac{1}{c^{2}}\frac{\partial\textbf{F}_{\nu}}{\partial t} \,+\, \nabla\cdot\mathbb{P}_{\nu} &= - \frac{\alpha_{\nu}\textbf{F}_{\nu}}{c} \label{eq:Radiative_flux_moment} \\
+#   \frac{\partial E_{\nu}}{\partial t} \,+\, \nabla\cdot\textbf{F}_{\nu} &= 4\pi j_{\nu}\,-\, \alpha_{\nu}cE_{\nu} \label{eq:Radiative_energy_moment}
+# \end{align}
+
+
+** SPH simulations: "zoom-ins"
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8"
+:END:
+# #+REVEAL_HTML: <video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+# #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" type="video/mp4" />
+# #+REVEAL_HTML: </video>
+
+#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+B-field (TNG100), Credit: IllustrisTNG
+
+
+** SPH simulations: isolated galaxies
+#+REVEAL_HTML: <video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+#+REVEAL_HTML:   <source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
+#+REVEAL_HTML: </video>
+
+#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+g1 (TNG50), Credit: IllustrisTNG
+
+
+** SPH simulations: realistic galaxies
+
+#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+[[./assets/images/illustris/TNG50_M104_composite_image.jpg]]
+
+#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+M104 & analogs (TNG50), Credit: IllustrisTNG
+
+
+** SPH simulations: galaxy catalogue
+
+#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+[[./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png]]
+
+#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+H\alpha & stars (TNG50), Credit: IllustrisTNG
+
+
+# * The Square Kilometer Array
+# :PROPERTIES:
+# :REVEAL_EXTRA_ATTR: data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="0.7"
+# :END:
+# 
+# - intergovernmental radio telescope (in process of being built)
+#   - South Africa: Meerkat National Park
+#   - Western Australia: Murchison Radio-astronomy Observatory
+#
+# - only better place to build: the dark side of the Moon
+# - construction started late 2021, fully operational by the end of the decade
+# - expected to produce vast amounts of data ~ 650 PBytes/year
+
+
+# ** SKACH
+# :PROPERTIES:
+# :REVEAL_EXTRA_ATTR: data-background-video="./assets/movies/skach_video.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6"
+# :END:
+# 
+# - Switzerland officially joined the SKAO in January 19, 2022
+#   - leverage industry and technical partners
+#   - providing expertise in
+#     - the development of advanced receivers for dish antennas
+#     - precision timing and automation
+#     - signal processing
+#     - Big Data
+#   - contribute to the development of European SKA Regional Centre (SRC)
+
+
+** SKA project @ ZHAW
+
+- train deep-learning model
+  - cosmological simulations @@html:&#10231;@@ (synthetic) observations
+- problem:
+  - deep learning needs a lot of data
+  - SPH simulations are expensive
+- repurpose existing simulations
+  - in contact with UZH (Lucio Mayer, Darren Reed, Robert Feldmann, et al.)
+
+
+** AI models
+
+- recently many text-to-image AI models were released
+  - DALLE-2, BLOOM, stable-diffusion, etc.
+
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_001.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_002.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_003.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_004.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_005.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_006.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_007.jpeg]]
+#+ATTR_HTML: :height 33% :width 20% :align left :style float:left :style margin:2px;
+[[./assets/images/stable-diffusion/A_distant_galaxy_008.jpeg]]
+
+
+** Dataset: simulation - projection pairs
+
+#+ATTR_HTML: :height 2000px :align center :style max-height: 90vh; position: relative;
+[[./assets/images/skasky_schematic.png]]
+
+#+REVEAL: split:t
+
+- utilize Karabo pipeline to simulate the SKA telescope signal
+  - in contact with FHNW (Rohit Sharma, Simon Felix, Vincenzo Timmel, et al.)
+- current status:
+  - roughly 100 galaxies (multiple snapshots) already stored
+  - collecting galaxies from UZH and other publicly available sources (IllustrisTNG)
+  - optimizing interface/projection routines for ~ 10^6 galaxies
+- perhaps join the SKA Data Challenge 3

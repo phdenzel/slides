@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Deep Learning in Astrophysics</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6"><h2>Deep Learning in Astrophysics<h2>
+<h3>The Square Kilometer Array project</h3>
+<div style="padding-top: 50px">2022/10/11 Tue</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+
+<section>
+<section id="slide-org8cce573">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org8cce573">Slides on my website</h2>
+<p>
+<a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
+</p>
+
+<ul height="300px" style="float: center;">
+<li>TODO: change qr to the actual link</li>
+
+</ul>
+
+<div id="org11d1a0b" class="figure">
+<p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" />
+</p>
+</div>
+
+<p>
+Link/QR code to the slides for later or to follow along
+</p>
+
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org16b2911">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org16b2911">About myself</h2>
+<ul>
+<li>PhD in Physics from UZH @ ICS</li>
+<li><b>computational scientist/astrophysicist</b> by training, <b>machine learning</b> enthusiast
+<ul>
+<li>high-performance computing: dark-matter detection, star formation, etc.</li>
+<li>gravitational lens modelling (subcategory of galaxy modelling)</li>
+<li>"relativistic" raytracing (like <i>normal</i> raytracing, but no straight lines&#x2026; and much farther)</li>
+<li>Bayesian technique based on image synthesis &amp; reconstruction (see <a href="https://doi.org/10.48550/arXiv.2102.10114">Denzel et al. 2021a</a>)</li>
+
+</ul></li>
+<li>machine learning engineer @ CAI
+<ul>
+<li>main focus: <b>SKA project</b></li>
+<li>deep learning &#x27F6; SKA astrophysics</li>
+
+</ul></li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Introduce yourself and your research
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf8d0333" class="upperh" data-background-video="./assets/movies/gl/quasar_lensing_RAS.mp4" data-background-video-muted data-background-size="contain">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf8d0333">Gravitational lensing</h2>
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+RAS PR 17/4, Credit: ESA/Hubble, NASA
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org135fd09" class="upperlefth" data-background-iframe="https://phdenzel.github.io/zurich-lens/" data-background-interactive;>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org135fd09">Zurich lensed</h3>
+<aside class="notes">
+<p>
+TODO
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org534293d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org534293d">Gravitational lens modelling</h3>
+
+<div id="orga6c5dc9" class="figure">
+<p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" height="150px" align="center" style="float: right; padding-right: 100px;" />
+</p>
+</div>
+
+<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
+input data  <br> 
+<img src="./assets/images/gl/my-work_composite_SW05.png" alt="my-work_composite_SW05.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
+</p>
+
+<p height="325px" align="left" style="float: left; padding: 300px 0 0 0;">
+➝
+</p>
+
+<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
+latent representation  <br> 
+<img src="./assets/images/gl/my-work_kappa_SW05.png" alt="my-work_kappa_SW05.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
+</p>
+
+<p height="325px" align="center" style="float: left; padding: 300px 0 0 0;">
+➝
+</p>
+
+<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
+reconstruction  <br> 
+<img src="./assets/images/gl/my-work_composite_SW05_synth.png" alt="my-work_composite_SW05_synth.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
+</p>
+
+<p style="font-size: 28px;">
+<a href="https://doi.org/10.48550/arXiv.2104.03324" style="font-size: 28px;">Denzel et al. (2021b, arXiv.2104.03324)</a>
+</p>
+
+<aside class="notes">
+<p>
+TODO
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9956126">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9956126">Measuring the Age of the Universe</h3>
+<div height="810px" style="float:right">
+\begin{equation}
+  H_0 = 71.8^{+3.9}_{-3.3} \,\mathrm{km/s/Mpc}
+\end{equation}
+
+</div>
+
+<div id="orgdf487eb" class="figure">
+<p><img src="./assets/images/gl/H0_filtered.png" alt="H0_filtered.png" height="810px" style="float:left" />
+</p>
+</div>
+
+<p style="width: 100%; position: fixed; left:0; bottom: 50px; text-align: center; font-size: 28px;">
+<a href="https://arxiv.org/abs/2007.14398" style="width: 100%; position: fixed; left:0; bottom: 50px; text-align: center; font-size: 28px;">Denzel et al. (2021c, arxiv:2007.14398)</a>
+</p>
+
+<aside class="notes">
+<p>
+TODO
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc7be7dc">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgc7be7dc">An (abbreviated) History of the Universe</h2>
+<ul>
+<li><b>Cosmology</b>: study of the observable Universe's
+<ul>
+<li>origins and evolution</li>
+<li>large-scale structure</li>
+<li>physical laws</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-orgc7be7dc-split">
+
+<h2>An (abbreviated) History of the Universe</h2>
+<ul>
+<li>The <b>Big Bang theory</b> &#x27F6; the Cosmological Standard Model ($&Lambda;$CDM)
+<ul>
+<li>Einstein's theory of <b>General Relativity</b></li>
+<li><b>Astrophysics</b>: galactic dynamics, stellar physics, etc.</li>
+<li><b>Particle physics</b>: primordial nucleosynthesis</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org490fdf1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org490fdf1">The Big Bang</h3>
+<ul>
+<li>expansion of the Universe from an initial state (not from a singularity!)
+<ul>
+<li>at 10<sup>-43</sup> sec: Planck epoch (high density/energy state), size ~ 10<sup>-35</sup> m</li>
+<li>at 10<sup>-37</sup> sec: the gravitational force decouples, the Universe expands
+<ul>
+<li>Inflation: exponential expansion and cooling</li>
+
+</ul></li>
+<li>at 10<sup>-32</sup> sec: quark-gluon plasma, size ~ 10<sup>43</sup> m
+<ul>
+<li>symmetry-breaking phase transitions cause other forces to separate</li>
+
+</ul></li>
+<li>at 10<sup>-6</sup> sec: baryons form, expansion and cooling continues</li>
+<li>at 379'000 years: Universe becomes opaque &#x27F6; CMB</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4b2d8ba">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org4b2d8ba">The Cosmic Microwave Background</h3>
+
+<div id="orga7c2c0f" class="figure">
+<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png" alt="ESA_Planck_CMB2018_smooth.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="font-size: 28px;">
+2018, Credit: ESA/Planck
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgbbca788">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgbbca788">The Cosmic Microwave Background</h3>
+
+<div id="orgae2bd4c" class="figure">
+<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018.png" alt="ESA_Planck_CMB2018.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="font-size: 28px;">
+2018, Credit: ESA/Planck
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf0d5459">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf0d5459">Flagship cosmological particle simulations</h3>
+
+<div id="org87f5f1c" class="figure">
+<p><img src="./assets/images/cosmo/pkdgrav3_full_sky.png" alt="pkdgrav3_full_sky.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="font-size: 28px;">
+2016, Credit: D. Potter, J. Stadel, R. Teyssier
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1a88cc5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1a88cc5">Cosmological simulations using hydrodynamics</h3>
+<p>
+Fluids
+</p>
+<div>
+\begin{align}
+  \frac{\partial \rho}{\partial t} &+ \nabla\cdot (\rho\textbf{v})= 0 \label{eq:EulerMass} \\
+  \frac{\partial (\rho\textbf{v})}{\partial t} &+ \nabla\cdot (\rho(\textbf{v} \otimes \textbf{v}) + \mathbb{P}) = \rho \textbf{a} \label{eq:EulerMomentum}\\
+  \frac{\partial E}{\partial t} &+ \nabla \cdot (E + \mathbb{P}) \textbf{v} = \rho \textbf{a} \textbf{v} \label{eq:EulerEnergy}
+\end{align}
+
+</div>
+
+<p>
+Radiation
+</p>
+<div>
+\begin{align}
+  \frac{1}{c}\frac{\partial I_{\nu}}{\partial t} + \hat{\textbf{n}}\cdot\nabla I_{\nu} &= j_{\nu} - \alpha_{\nu}I_{\nu} \label{eq:Radiative_transfer} \\
+  \frac{1}{c^{2}}\frac{\partial\textbf{F}_{\nu}}{\partial t} \,+\, \nabla\cdot\mathbb{P}_{\nu} &= - \frac{\alpha_{\nu}\textbf{F}_{\nu}}{c} \label{eq:Radiative_flux_moment} \\
+  \frac{\partial E_{\nu}}{\partial t} \,+\, \nabla\cdot\textbf{F}_{\nu} &= 4\pi j_{\nu}\,-\, \alpha_{\nu}cE_{\nu} \label{eq:Radiative_energy_moment}
+\end{align}
+
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org473ac7a" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org473ac7a">SPH simulations: "zoom-ins"</h3>
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+B-field (TNG100), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf46e46d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf46e46d">SPH simulations: isolated galaxies</h3>
+<video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+<source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
+</video>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+g1 (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org48a2cb2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org48a2cb2">SPH simulations: realistic galaxies</h3>
+
+<div id="org4e1056c" class="figure">
+<p><img src="./assets/images/illustris/TNG50_M104_composite_image.jpg" alt="TNG50_M104_composite_image.jpg" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+M104 &amp; analogs (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orga99492a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orga99492a">SPH simulations: galaxy catalogue</h3>
+
+<div id="orgee9f28f" class="figure">
+<p><img src="./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png" alt="TNG50_galaxies_Halpha_starlight_z2.png" height="2000px" align="center" style="max-height: 80vh; position: relative;" />
+</p>
+</div>
+
+<p style="width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;">
+H&alpha; &amp; stars (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8b07ded" data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="0.7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org8b07ded">The Square Kilometer Array</h2>
+<ul>
+<li>intergovernmental radio telescope (in process of being built)
+<ul>
+<li>South Africa: Meerkat National Park</li>
+<li>Western Australia: Murchison Radio-astronomy Observatory</li>
+
+</ul></li>
+
+<li>only better place to build: the dark side of the Moon</li>
+<li>construction started late 2021, fully operational by the end of the decade</li>
+<li>expected to produce vast amounts of data ~ 650 PBytes/year</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+SKAO
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9561cf7" data-background-video="./assets/movies/skach_video.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9561cf7">SKACH</h3>
+<ul>
+<li>Switzerland officially joined the SKAO in January 19, 2022
+<ul>
+<li>leverage industry and technical partners</li>
+<li>providing expertise in
+<ul>
+<li>the development of advanced receivers for dish antennas</li>
+<li>precision timing and automation</li>
+<li>signal processing</li>
+<li>Big Data</li>
+
+</ul></li>
+<li>contribute to the development of European SKA Regional Centre (SRC)</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6127f71">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org6127f71">SKA project @ ZHAW</h3>
+<ul>
+<li>train deep-learning mapping
+<ul>
+<li>SPH simulations &#10231; (synthetic) observations</li>
+
+</ul></li>
+<li>problem:
+<ul>
+<li>deep learning needs a lot of data</li>
+<li>SPH simulations are expensive</li>
+
+</ul></li>
+<li>repurpose existing simulations
+<ul>
+<li>in contact with UZH (Lucio Mayer, Darren Reed, Robert Feldmann, et al.)</li>
+
+</ul></li>
+<li>utilize Karabo pipeline to simulate the SKA telescope signal
+<ul>
+<li>in contact with FHNW (Rohit Sharma, Simon Felix, Vincenzo Timmel, et al.)</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7b135dd">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7b135dd">Dataset: simulation - projection pairs</h3>
+
+<div id="org432bd1b" class="figure">
+<p><img src="./assets/images/skasky_schematic.png" alt="skasky_schematic.png" height="2000px" align="center" style="max-height: 90vh; position: relative;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true, margin: 0.05,
+minScale: 0.2, maxScale: 4.5,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>
