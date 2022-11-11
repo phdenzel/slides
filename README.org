@@ -1,0 +1,31 @@
+#+AUTHOR: phdenzel
+#+TITLE: Presentation slides for the SKA project
+#+DATE: 2022-11-11 Fri
+#+OPTIONS: author:nil title:t date:nil timestamp:nil toc:nil num:nil \n:nil
+
+This is my archive of presentations related to the SKA project at
+ZHAW.  The presentation source files are written in Emacs' ~org-mode~
+and exported to HTML using ~org-reveal~ (using the ~reveal.js~ library
+and my customized CSS style sheets, see
+[[https://github.com/phdenzel/reveal.js][https://github.com/phdenzel/reveal.js]]).
+
+
+* Presentations [2/3]
+
+- [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
+  Astrophysics, Machine Learning, and the Square Kilometer Array
+- [X] ~meeting_slides/221028~: Meeting with Carolyn Crichton
+- [X] ~meeting_slides/220803~: Initial SKA meeting @ ZHAW
+
+
+* Assets
+
+To conserve storage and centralize resources such as images, videos,
+or pdfs, each presentation folder has it's own assets folder
+consisting of symlinks to the main ~./assets~ folder.
+
+
+** TODO Movies
+
+Movies will be stored in the cloud and can be pulled using ~make
+assets/movies~.

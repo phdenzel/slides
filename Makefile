@@ -12,6 +12,9 @@ export: emacs-compile
 emacs-compile:
 	@emacsclient --alternate-editor='' -e '(progn (find-file "index.org") (org-reveal-export-to-html))'
 
+assets/movies:
+	@echo "Not yet implemented!"
+
 install: export
 	cp slides.html $(PREFIX)/slides.html
 
