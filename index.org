@@ -1,13 +1,13 @@
 #+AUTHOR: phdenzel
-#+TITLE: A short introduction of the SKAO
-#+DATE: <2022-10-11 Tue>
+#+TITLE: The SKAO Science Data Challenge 3
+#+DATE: 2022/11/16 Wed - ZHAW
 
 # #+OPTIONS: author:nil
 # #+OPTIONS: email:nil
 # #+OPTIONS: \n:t
 # #+OPTIONS: date:nil
 #+OPTIONS: num:nil
-#+OPTIONS: toc:nil
+#+OPTIONS: toc:2
 #+OPTIONS: timestamp:nil
 #+PROPERTY: eval no
 
@@ -114,76 +114,108 @@ to
 Title slide
 #+END_NOTES
 
+#+REVEAL_TOC_SLIDE_BACKGROUND_SIZE: 500px
 
-# # * Slides on my website
-#
-# # https://phdenzel.github.io/2022/16/06/recent-developments-in-high-resolution-image-synthesis/
-# [[https://phdenzel.github.io/#lab][https://phdenzel.github.io/]]
-#
-# #+ATTR_HTML: :height 300px :style float: center;
-# [[./assets/images/talk_qr.png]]
-#
-# Link/QR code to the slides for later or to follow along
+* Overview of the SDC3 goal & score
 
+- Goal:
+  - remove foreground contamination ➝ recover the 21-cm signal
+- How ?:
+  - From image cubes (3D tomographic data) and calibrated visibilities (measurement set)
+- Additional features:
+  - Direction-dependent (DD) and -independent (DI) gain error
+- Score:
+  - cylindrically-averaged power spectra of the EoR signal for specified frequency ranges of the dataset
 
+** Datasets, Data Format and Features for SDC3
 
-* My position at ZHAW
+- The complete SDC3a dataset consists of a visibility measurement set
+  (MS) and image derived from the MS, as well as ancillary data.
+- Teams can decide whether they want to analyse the MS (~1 TB, data in
+  1400 timesteps) or the image cube (~3 GB, data integrated over
+  time).
 
-- machine learning engineer & astrophysicist by training
-- main role: work on the SKA project
-- deep learning research @@html:&#x27F6;@@ SKA astrophysics
-
-#+BEGIN_NOTES
-ZHAW
-#+END_NOTES
-
-* My previous work
-
-#+ATTR_HTML: :height 200px :align center :style float: right; padding-right: 100px;
-[[./assets/images/talk_qr.png]]
-
-# #+ATTR_REVEAL: :frag (appear)
-- PhD in Physics from UZH @ ICS
-- gravitational lens modelling
-- "relativistic/astrophysical" raytracing
-- Bayesian technique based on image synthesis & reconstruction (see [[https://doi.org/10.48550/arXiv.2102.10114][Denzel et al. 2021a]])
+#+ATTR_HTML: :height 33% :width 35% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_general.png]]
+#+ATTR_HTML: :height 33% :width 35% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_image_cube.png]]
+#+ATTR_HTML: :height 33% :width 25% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_measurement_sets.png]]
 
 
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
-input data {{{NL}}}
-[[./assets/images/gl/my-work_composite_SW05.png]]
+* A Brief Overview of the Epoch of Reionisation
 
-#+ATTR_HTML: :height 350px :align left :style float: left; padding: 300px 0 0 0;
-➝
+- *Big Bang*, *Inflation*, and *Primordial Nucleosynthesis*: plasma of ionized hydrogen (HII)
+- *CMB* (h\nu \propto k_{B}T ➝ 2.725 K): the Universe cooled to 3000 K and changed from opaque to transparent at redshift $z = \frac{3000\,\text{K}}{2.725\,\text{K}} \sim 1100$
+- the *Dark Ages* followed: no light-producing structures such as stars and galaxies, only neutral hydrogen (HI)
+  - finally at z ~ 30: gas begins to clump, forming stars and galaxies
+#+REVEAL: split
+- *Epoch of Reionization* (z ~ 16-6):
+  - intense stellar radiation (re)ionizes HI
+    - 21-cm signal: differences in energy between H's spin triplet and spin singlet states of the electron and proton
+  - bubbles of ionized hydrogen (HII) begin to form
 
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
-latent representation {{{NL}}}
-[[./assets/images/gl/my-work_kappa_SW05.png]]
+#+ATTR_HTML: :width 70% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/EoR_skao.webp]]
 
-#+ATTR_HTML: :height 350px :align center :style float: left; padding: 300px 0 0 0;
-➝
 
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 350px :align left :style float: left; padding: 50px 50px 0 50px;
-reconstruction {{{NL}}}
-[[./assets/images/gl/my-work_composite_SW05_synth.png]]
+** Tomographic imaging of the 21-cm signal
 
-[[https://doi.org/10.48550/arXiv.2104.03324][Denzel et al. 2021b]]
+- Probe reionization process by observing the redshifted 21-cm signal $\delta T_{b} \approx n_{\text{HI}}(\theta,z)$
+- Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies
+- 3D tomographic dataset a.k.a /21-cm lightcones/
 
-#+BEGIN_NOTES
-Introduce yourself
-#+END_NOTES
+#+ATTR_HTML: :height 400px :align left :style float:left :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone.png]]
+#+ATTR_HTML: :height 400px :align left :style float:right :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone_slice.png]]
 
-* The Square Kilometer Array
 
-- intergovernmental radio telescope
-  - South Africa: Meerkat National Park
-  - Western Australia: Murchison Radio-astronomy Observatory
+* SDC3a: Scoring
 
-- only better place to build: the dark side of the Moon
+Score will be based on the ability of recover the 21-cm cylindrical (2D) power spectra
+- k_{⊥} limited by angular resolution (high) and samples variance (low).
+- k_{‖} limited by frequency resolution and foreground
 
-#+BEGIN_NOTES
-SKAO
-#+END_NOTES
+  
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/EoR_wedge.png]]
+
+
+* SERENEt
+
+*SE* gmentation and *RE* gression *NEt* work
+- Combine the predicted binary maps of SegU-Net as additional input of
+  Rec-Unet training step in order to include prior in the network
+  training.
+
+#+ATTR_HTML: :height 600px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/SERENEt.png]]
+
+
+** Architecture: strategies
+
+1. Train SegU-Net and Rec-Unet separately (Hadamard product of inputs)
+2. Train SegU-Net first, then RecU-Net with interception layers
+3. Combine SegU-Net and RecU-net together (SERENEt)
+
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/Unet_schematics.png]]
+
+
+* Tasks for the Team
+
+#+ATTR_HTML: :height 800px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/team_tasks.png]]
+
+
+** We're officially registered
+
+- Team lead: Michele Bianco (EPFL)
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/team_registered.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/tasks_gannt.png]]
