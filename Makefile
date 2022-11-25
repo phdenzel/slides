@@ -1,4 +1,5 @@
 PREFIX ?= $(HOME)/phdenzel.github.io/assets/blog-assets/xyz-blog-title
+ROOT_DIR := $(shell git rev-parse --show-toplevel)
 
 .PHONY: export
 export: emacs-compile
@@ -21,6 +22,27 @@ assets/movies:
 .PHONY: export
 install: export
 	cp slides.html $(PREFIX)/slides.html
+
+assets:
+	mkdir -p assets/{css,images,movies}
+	@for dpath in $(ROOT_DIR)/assets/*; do \
+		echo -n "Copy(y)/walk(w) $${dpath##*/}? [y/N/w] " && \
+		read ans && \
+		if [ $${ans:-'N'} = 'y' ]; then \
+			cp -r "$${dpath}"/* "assets/$${dpath##*/}/"; \
+		elif [ $${ans:-'N'} = 'w' ]; then \
+			for ipath in $${dpath}/*; do \
+				echo -n "Copy(y)/link(l) $${ipath##*/}? [y/N/l] " && \
+				read ians && \
+				if [ $${ians:-'N'} = 'y' ]; then \
+					cp -r "$${dpath}/$${ipath##*/}" "$(PWD)/assets/$${dpath##*/}/$${ipath##*/}"; \
+				elif [ $${ians:-'N'} = 'l' ]; then \
+					realpath --relative-to="assets/$${dpath##*/}" "$${dpath}" > rpath; \
+					ln -s "$$(cat rpath)/$${ipath##*/}" "$(PWD)/assets/$${dpath##*/}/$${ipath##*/}"; rm -f rpath; \
+				fi; \
+			done; \
+		fi; \
+	done
 
 .PHONY: clean
 clean:
