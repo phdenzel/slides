@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>The SKAO Science Data Challenge 3</title>
+<meta name="author" content="phdenzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'file:///home/phdenzel/local/reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-opacity="0.6"><h1>The SKAO Science Data Challenge 3</h1>
+<h3></h3>
+<div style="padding-top: 50px">2022/11/16 Wed - ZHAW</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> phdenzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<section id="sec-table-of-contents" data-background-size="500px"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-org05c73f5">Overview of the SDC3 goal &amp; score</a>
+<ul>
+<li><a href="#/slide-org7654e37">Datasets, Data Format and Features for SDC3</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org430f53e">A Brief Overview of the Epoch of Reionisation</a>
+<ul>
+<li><a href="#/slide-org0453167">Tomographic imaging of the 21-cm signal</a></li>
+</ul>
+</li>
+<li><a href="#/slide-orgc18ca4c">SDC3a: Scoring</a></li>
+<li><a href="#/slide-org499d27c">SERENEt</a>
+<ul>
+<li><a href="#/slide-orgb4fdc32">Architecture: strategies</a></li>
+</ul>
+</li>
+<li><a href="#/slide-org63452b4">Tasks for the Team</a>
+<ul>
+<li><a href="#/slide-org858bf6d">We're officially registered</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+<section>
+<section id="slide-org05c73f5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org05c73f5">Overview of the SDC3 goal &amp; score</h2>
+<ul>
+<li>Goal:
+<ul>
+<li>remove foreground contamination ➝ recover the 21-cm signal</li>
+
+</ul></li>
+<li>How ?:
+<ul>
+<li>From image cubes (3D tomographic data) and calibrated visibilities (measurement set)</li>
+
+</ul></li>
+<li>Additional features:
+<ul>
+<li>Direction-dependent (DD) and -independent (DI) gain error</li>
+
+</ul></li>
+<li>Score:
+<ul>
+<li>cylindrically-averaged power spectra of the EoR signal for specified frequency ranges of the dataset</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7654e37">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7654e37">Datasets, Data Format and Features for SDC3</h3>
+<ul>
+<li>The complete SDC3a dataset consists of a visibility measurement set
+(MS) and image derived from the MS, as well as ancillary data.</li>
+<li>Teams can decide whether they want to analyse the MS (~1 TB, data in
+1400 timesteps) or the image cube (~3 GB, data integrated over
+time).</li>
+
+</ul>
+
+
+<div id="orgcd8865b" class="figure">
+<p><img src="./assets/images/sdc3a/sdc3a_data_general.png" alt="sdc3a_data_general.png" height="33%" width="35%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org79b186d" class="figure">
+<p><img src="./assets/images/sdc3a/sdc3a_data_image_cube.png" alt="sdc3a_data_image_cube.png" height="33%" width="35%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+<div id="org2def500" class="figure">
+<p><img src="./assets/images/sdc3a/sdc3a_data_measurement_sets.png" alt="sdc3a_data_measurement_sets.png" height="33%" width="25%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org430f53e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org430f53e">A Brief Overview of the Epoch of Reionisation</h2>
+<ul>
+<li><b>Big Bang</b>, <b>Inflation</b>, and <b>Primordial Nucleosynthesis</b>: plasma of ionized hydrogen (HII)</li>
+<li><b>CMB</b> (h&nu; &prop; k<sub>B</sub>T ➝ 2.725 K): the Universe cooled to 3000 K and changed from opaque to transparent at redshift \(z = \frac{3000\,\text{K}}{2.725\,\text{K}} \sim 1100\)</li>
+<li>the <b>Dark Ages</b> followed: no light-producing structures such as stars and galaxies, only neutral hydrogen (HI)
+<ul>
+<li>finally at z ~ 30: gas begins to clump, forming stars and galaxies</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org430f53e-split">
+<ul>
+<li><b>Epoch of Reionization</b> (z ~ 16-6):
+<ul>
+<li>intense stellar radiation (re)ionizes HI
+<ul>
+<li>21-cm signal: differences in energy between H's spin triplet and spin singlet states of the electron and proton</li>
+
+</ul></li>
+<li>bubbles of ionized hydrogen (HII) begin to form</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="org180306a" class="figure">
+<p><img src="./assets/images/sdc3a/EoR_skao.webp" alt="EoR_skao.webp" width="70%" align="left" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0453167">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org0453167">Tomographic imaging of the 21-cm signal</h3>
+<ul>
+<li>Probe reionization process by observing the redshifted 21-cm signal \(\delta T_{b} \approx n_{\text{HI}}(\theta,z)\)</li>
+<li>Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies</li>
+<li>3D tomographic dataset a.k.a <i>21-cm lightcones</i></li>
+
+</ul>
+
+
+<div id="orgfb6513a" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone.png" alt="21cm_lightcone.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+<div id="org9325058" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone_slice.png" alt="21cm_lightcone_slice.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc18ca4c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgc18ca4c">SDC3a: Scoring</h2>
+<p>
+Score will be based on the ability of recover the 21-cm cylindrical (2D) power spectra
+</p>
+<ul>
+<li>k<sub>⊥</sub> limited by angular resolution (high) and samples variance (low).</li>
+<li>k<sub>‖</sub> limited by frequency resolution and foreground</li>
+
+</ul>
+
+
+
+<div id="orgafc777c" class="figure">
+<p><img src="./assets/images/sdc3a/EoR_wedge.png" alt="EoR_wedge.png" height="500px" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org499d27c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org499d27c">SERENEt</h2>
+<p>
+<b>SE</b> gmentation and <b>RE</b> gression <b>NEt</b> work
+</p>
+<ul>
+<li>Combine the predicted binary maps of SegU-Net as additional input of
+Rec-Unet training step in order to include prior in the network
+training.</li>
+
+</ul>
+
+
+<div id="org7ee81cc" class="figure">
+<p><img src="./assets/images/sdc3a/SERENEt.png" alt="SERENEt.png" height="600px" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb4fdc32">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb4fdc32">Architecture: strategies</h3>
+<ol>
+<li>Train SegU-Net and Rec-Unet separately (Hadamard product of inputs)</li>
+<li>Train SegU-Net first, then RecU-Net with interception layers</li>
+<li>Combine SegU-Net and RecU-net together (SERENEt)</li>
+
+</ol>
+
+
+<div id="org4c6bdc1" class="figure">
+<p><img src="./assets/images/sdc3a/Unet_schematics.png" alt="Unet_schematics.png" height="500px" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org63452b4">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org63452b4">Tasks for the Team</h2>
+
+<div id="org7f37680" class="figure">
+<p><img src="./assets/images/sdc3a/team_tasks.png" alt="team_tasks.png" height="800px" style="margin:2px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org858bf6d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org858bf6d">We're officially registered</h3>
+<ul>
+<li>Team lead: Michele Bianco (EPFL)</li>
+
+</ul>
+
+<div id="org5b468bf" class="figure">
+<p><img src="./assets/images/sdc3a/team_registered.png" alt="team_registered.png" height="500px" style="margin:2px;" />
+</p>
+</div>
+
+</section>
+<section id="slide-org858bf6d-split">
+
+
+<div id="orga2aa3a1" class="figure">
+<p><img src="./assets/images/sdc3a/tasks_gannt.png" alt="tasks_gannt.png" height="800px" style="margin:2px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true, margin: 0.05,
+minScale: 0.2, maxScale: 4.5,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>

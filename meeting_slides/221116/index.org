@@ -1,0 +1,221 @@
+#+AUTHOR: phdenzel
+#+TITLE: The SKAO Science Data Challenge 3
+#+DATE: 2022/11/16 Wed - ZHAW
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:2
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+
+# #+REVEAL_TITLE_SLIDE: <div style="padding: 0px 30px 250px 30px"> <a href='https://www.uzh.ch/de.html'> <img src='./assets/images/uzh_logo_d_neg_retina.png' alt='UZH logo' width='294px' height='100px' style="float: left"> </a> </div> 
+#+REVEAL_TITLE_SLIDE: <h1>%t</h1>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+
+#+BEGIN_NOTES
+Title slide
+#+END_NOTES
+
+#+REVEAL_TOC_SLIDE_BACKGROUND_SIZE: 500px
+
+* Overview of the SDC3 goal & score
+
+- Goal:
+  - remove foreground contamination ➝ recover the 21-cm signal
+- How ?:
+  - From image cubes (3D tomographic data) and calibrated visibilities (measurement set)
+- Additional features:
+  - Direction-dependent (DD) and -independent (DI) gain error
+- Score:
+  - cylindrically-averaged power spectra of the EoR signal for specified frequency ranges of the dataset
+
+** Datasets, Data Format and Features for SDC3
+
+- The complete SDC3a dataset consists of a visibility measurement set
+  (MS) and image derived from the MS, as well as ancillary data.
+- Teams can decide whether they want to analyse the MS (~1 TB, data in
+  1400 timesteps) or the image cube (~3 GB, data integrated over
+  time).
+
+#+ATTR_HTML: :height 33% :width 35% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_general.png]]
+#+ATTR_HTML: :height 33% :width 35% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_image_cube.png]]
+#+ATTR_HTML: :height 33% :width 25% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/sdc3a_data_measurement_sets.png]]
+
+
+* A Brief Overview of the Epoch of Reionisation
+
+- *Big Bang*, *Inflation*, and *Primordial Nucleosynthesis*: plasma of ionized hydrogen (HII)
+- *CMB* (h\nu \propto k_{B}T ➝ 2.725 K): the Universe cooled to 3000 K and changed from opaque to transparent at redshift $z = \frac{3000\,\text{K}}{2.725\,\text{K}} \sim 1100$
+- the *Dark Ages* followed: no light-producing structures such as stars and galaxies, only neutral hydrogen (HI)
+  - finally at z ~ 30: gas begins to clump, forming stars and galaxies
+#+REVEAL: split
+- *Epoch of Reionization* (z ~ 16-6):
+  - intense stellar radiation (re)ionizes HI
+    - 21-cm signal: differences in energy between H's spin triplet and spin singlet states of the electron and proton
+  - bubbles of ionized hydrogen (HII) begin to form
+
+#+ATTR_HTML: :width 70% :align left :style float:left :style margin:2px;
+[[./assets/images/sdc3a/EoR_skao.webp]]
+
+
+** Tomographic imaging of the 21-cm signal
+
+- Probe reionization process by observing the redshifted 21-cm signal $\delta T_{b} \approx n_{\text{HI}}(\theta,z)$
+- Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies
+- 3D tomographic dataset a.k.a /21-cm lightcones/
+
+#+ATTR_HTML: :height 400px :align left :style float:left :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone.png]]
+#+ATTR_HTML: :height 400px :align left :style float:right :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone_slice.png]]
+
+
+* SDC3a: Scoring
+
+Score will be based on the ability of recover the 21-cm cylindrical (2D) power spectra
+- k_{⊥} limited by angular resolution (high) and samples variance (low).
+- k_{‖} limited by frequency resolution and foreground
+
+  
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/EoR_wedge.png]]
+
+
+* SERENEt
+
+*SE* gmentation and *RE* gression *NEt* work
+- Combine the predicted binary maps of SegU-Net as additional input of
+  Rec-Unet training step in order to include prior in the network
+  training.
+
+#+ATTR_HTML: :height 600px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/SERENEt.png]]
+
+
+** Architecture: strategies
+
+1. Train SegU-Net and Rec-Unet separately (Hadamard product of inputs)
+2. Train SegU-Net first, then RecU-Net with interception layers
+3. Combine SegU-Net and RecU-net together (SERENEt)
+
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/Unet_schematics.png]]
+
+
+* Tasks for the Team
+
+#+ATTR_HTML: :height 800px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/team_tasks.png]]
+
+
+** We're officially registered
+
+- Team lead: Michele Bianco (EPFL)
+#+ATTR_HTML: :height 500px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/team_registered.png]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style float:left :style margin:2px;
+[[./assets/images/sdc3a/tasks_gannt.png]]

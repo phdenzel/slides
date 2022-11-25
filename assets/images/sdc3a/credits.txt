@@ -1,0 +1,4 @@
+EoR_skao.png: Robertson et al. (2010)
+sdc3a_data_general.png: https://sdc3.skao.int/challenges/foregrounds/data
+sdc3a_data_image_cube.png: https://sdc3.skao.int/challenges/foregrounds/data
+sdc3a_data_measurement_sets.png: https://sdc3.skao.int/challenges/foregrounds/data
