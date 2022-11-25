@@ -10,10 +10,11 @@ and my customized CSS style sheets, see
 [[https://github.com/phdenzel/reveal.js][https://github.com/phdenzel/reveal.js]]).
 
 
-* Presentations [2/3]
+* Presentations [3/4]
 
 - [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
   Astrophysics, Machine Learning, and the Square Kilometer Array
+- [X] ~meeting_slides/221028~: SDC3 introduction
 - [X] ~meeting_slides/221028~: Meeting with Carolyn Crichton
 - [X] ~meeting_slides/220803~: Initial SKA meeting @ ZHAW
 
