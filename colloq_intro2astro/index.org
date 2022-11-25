@@ -150,7 +150,8 @@ Introduce yourself and your research
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/gl/quasar_lensing_RAS.mp4" data-background-video-muted data-background-size="contain"
 :END:
-#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+
+#+ATTR_HTML: :class footer-item
 RAS PR 17/4, Credit: ESA/Hubble, NASA
 
 
@@ -166,7 +167,8 @@ TODO
 
 ** Gravitational lens modelling
 
-#+ATTR_HTML: :height 150px :align center :style float: right; padding-right: 100px;
+#+ATTR_HTML: :height 150px :style position: absolute; right: 5%; margin: 50px 5px 5px 5px;
+#+CAPTION: @@html: <a href="https://doi.org/10.48550/arXiv.2104.03324" width="100px" style="position: absolute; right: 5%;">@@Denzel et al. (2021b, arXiv.2104.03324)@@html:</a>@@
 [[./assets/images/talk_qr.png]]
 
 # #+ATTR_REVEAL: :frag (appear)
@@ -192,9 +194,6 @@ latent representation {{{NL}}}
 reconstruction {{{NL}}}
 [[./assets/images/gl/my-work_composite_SW05_synth.png]]
 
-#+ATTR_HTML: :style font-size: 28px;
-[[https://doi.org/10.48550/arXiv.2104.03324][Denzel et al. (2021b, arXiv.2104.03324)]]
-
 #+BEGIN_NOTES
 TODO
 #+END_NOTES
@@ -202,15 +201,16 @@ TODO
 
 ** Measuring the Age of the Universe
 
-#+ATTR_HTML: :height 810px :style float:right
+#+ATTR_HTML: :height 810px :style position: absolute; right: 20%; margin: 200px 5px 5px 5px
 \begin{equation}
-  H_0 = 71.8^{+3.9}_{-3.3} \,\mathrm{km/s/Mpc}
+  H_0 = 71.8^{+3.9}_{-3.3}
 \end{equation}
-#+ATTR_HTML: :height 810px :style float:left
+# \,\mathrm{km/s/Mpc}
+
+#+ATTR_HTML: :height 810px
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2007.14398">@@Denzel et al. (2021c, arxiv:2007.14398)@@html:</a>@@
 [[./assets/images/gl/H0_filtered.png]]
 
-#+ATTR_HTML: :style width: 100%; position: fixed; left:0; bottom: 50px; text-align: center; font-size: 28px;
-[[https://arxiv.org/abs/2007.14398][Denzel et al. (2021c, arxiv:2007.14398)]]
 
 #+BEGIN_NOTES
 TODO
@@ -243,27 +243,22 @@ TODO
 
 
 ** The Cosmic Microwave Background
-#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+#+ATTR_HTML: :height 830px
+#+CAPTION: 2018, Credit: ESA/Planck
 [[./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png]]
-
-#+ATTR_HTML: :style font-size: 28px;
-2018, Credit: ESA/Planck
 
 
 ** The Cosmic Microwave Background
-#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+#+ATTR_HTML: :height 830px
+#+CAPTION: 2018, Credit: ESA/Planck
 [[./assets/images/cosmo/ESA_Planck_CMB2018.png]]
-
-#+ATTR_HTML: :style font-size: 28px;
-2018, Credit: ESA/Planck
+# #+CAPTION: @@html:<a href="https://archlinux.org">@@2018, Credit: ESA/Planck @@html:</a>@@
 
 
 ** Flagship cosmological particle simulations
-#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+#+ATTR_HTML: :height 830px
+#+CAPTION: 2016, Credit: D. Potter, J. Stadel, R. Teyssier
 [[./assets/images/cosmo/pkdgrav3_full_sky.png]]
-
-#+ATTR_HTML: :style font-size: 28px;
-2016, Credit: D. Potter, J. Stadel, R. Teyssier
 
 
 ** Cosmological simulations using hydrodynamics
@@ -274,7 +269,6 @@ Fluids
   \frac{\partial (\rho\textbf{v})}{\partial t} &+ \nabla\cdot (\rho(\textbf{v} \otimes \textbf{v}) + \mathbb{P}) = \rho \textbf{a} \label{eq:EulerMomentum}\\
   \frac{\partial E}{\partial t} &+ \nabla \cdot (E + \mathbb{P}) \textbf{v} = \rho \textbf{a} \textbf{v} \label{eq:EulerEnergy}
 \end{align}
-
 Radiation
 \begin{align}
   \frac{1}{c}\frac{\partial I_{\nu}}{\partial t} + \hat{\textbf{n}}\cdot\nabla I_{\nu} &= j_{\nu} - \alpha_{\nu}I_{\nu} \label{eq:Radiative_transfer} \\
@@ -287,39 +281,36 @@ Radiation
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8"
 :END:
-# #+REVEAL_HTML: <video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+# #+REVEAL_HTML: <video height="830" data-autoplay controls>
 # #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" type="video/mp4" />
 # #+REVEAL_HTML: </video>
 
-#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+#+ATTR_HTML: :class header-item
 B-field (TNG100), Credit: IllustrisTNG
 
 
 ** SPH simulations: isolated galaxies
-#+REVEAL_HTML: <video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+#+REVEAL_HTML: <video height="830" data-autoplay controls>
 #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
-#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
+#+ATTR_HTML: :class footer-item
 g1 (TNG50), Credit: IllustrisTNG
 
 
 ** SPH simulations: realistic galaxies
 
-#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+#+ATTR_HTML: :height 830px
+#+CAPTION: M104 & analogs (TNG50), Credit: IllustrisTNG
 [[./assets/images/illustris/TNG50_M104_composite_image.jpg]]
-
-#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
-M104 & analogs (TNG50), Credit: IllustrisTNG
 
 
 ** SPH simulations: galaxy catalogue
 
-#+ATTR_HTML: :height 2000px :align center :style max-height: 80vh; position: relative;
+#+ATTR_HTML: :height 830px
+#+CAPTION: H\alpha & stars (TNG50), Credit: IllustrisTNG
 [[./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png]]
 
-#+ATTR_HTML: :style width: 100%; position: fixed; bottom: 0; text-align: center; font-size: 28px;
-H\alpha & stars (TNG50), Credit: IllustrisTNG
 
 
 * The Square Kilometer Array
@@ -370,5 +361,5 @@ SKAO
 
 ** Dataset: simulation - projection pairs
 
-#+ATTR_HTML: :height 2000px :align center :style max-height: 90vh; position: relative;
+#+ATTR_HTML: :height 830px
 [[./assets/images/skasky_schematic.png]]

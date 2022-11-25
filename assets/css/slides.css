@@ -7,4 +7,28 @@
     background-position: bottom left/* , top left */;
     background-size: 100% 20px/* , 100% 20px */;
     background-repeat: no-repeat/* , no-repeat */;
-};
+}
+
+.figure p {
+    font-size: 28px;
+}
+
+.figure-number {
+    display: none;
+}
+
+.header-item {
+    width: 100%;
+    top: 0;
+    font-size: 28px;
+    text-align: center;
+}
+
+.footer-item {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    font-size: 28px;
+    text-align: center;
+    margin: 930px 0 0 0 !important;
+}
