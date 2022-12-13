@@ -9,9 +9,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
 
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<link rel="stylesheet" href="./assets/css/phdcolloq.css" id="theme"/>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <meta name="description" content="">
@@ -34,14 +34,14 @@ Title slide
 
 
 <section>
-<section id="slide-orgd8683c9">
-<h2 id="orgd8683c9">Slides on my website</h2>
+<section id="slide-org58c0d29">
+<h2 id="org58c0d29">Slides on my website</h2>
 <p>
 <a href="https://phdenzel.github.io/#lab">https://phdenzel.github.io/</a>
 </p>
 
 
-<div id="org9db3424" class="figure">
+<div id="orgbab9615" class="figure">
 <p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" height="300px" style="float: center;" />
 </p>
 </div>
@@ -57,15 +57,15 @@ Link/QR code to the slides for later or to follow along
 </section>
 </section>
 <section>
-<section id="slide-org9881151">
-<h2 id="org9881151">Basics</h2>
-<div class="outline-text-2" id="text-org9881151">
+<section id="slide-org2117c22">
+<h2 id="org2117c22">Basics</h2>
+<div class="outline-text-2" id="text-org2117c22">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org92dcb15">
-<h3 id="org92dcb15">Typical numbers (for SKA1 MID)</h3>
+<section id="slide-org9d5938f">
+<h3 id="org9d5938f">Typical numbers (for SKA1 MID)</h3>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -132,8 +132,8 @@ Link/QR code to the slides for later or to follow along
 </section>
 </section>
 <section>
-<section id="slide-org932864c">
-<h3 id="org932864c">Radiometer equation</h3>
+<section id="slide-org4fec377">
+<h3 id="org4fec377">Radiometer equation</h3>
 <ul>
 <li>radio waves induce voltages in the receiver electronics which are amplified to be made measureable</li>
 
@@ -153,8 +153,8 @@ The flux sensitivity, i.e. thermal noise level, is
 </section>
 </section>
 <section>
-<section id="slide-org538baac">
-<h3 id="org538baac">Radiometer equation</h3>
+<section id="slide-orgb6bf8ae">
+<h3 id="orgb6bf8ae">Radiometer equation</h3>
 <ul>
 <li>the telescope measures the total amount of radiation coming from the direction it is pointing in:
 <ul>
@@ -172,8 +172,8 @@ The flux sensitivity, i.e. thermal noise level, is
 </section>
 </section>
 <section>
-<section id="slide-org18df933">
-<h3 id="org18df933">Multi-part interferometer</h3>
+<section id="slide-org8bb73ca">
+<h3 id="org8bb73ca">Multi-part interferometer</h3>
 <p>
 Plane waves enters each receiver with a phase/delay which depends on their separation
 </p>
@@ -189,8 +189,8 @@ Plane waves enters each receiver with a phase/delay which depends on their separ
 </section>
 </section>
 <section>
-<section id="slide-org83328af">
-<h3 id="org83328af">Multi-part interferometer</h3>
+<section id="slide-orge81aa2e">
+<h3 id="orge81aa2e">Multi-part interferometer</h3>
 <p>
 The electric field of the wave \(E\) induces a voltage in both
 receivers. The voltages also depend on the antenna pattern of the
@@ -215,8 +215,8 @@ receiver, the attenuation \(A\)
 </section>
 </section>
 <section>
-<section id="slide-orga8060ea">
-<h3 id="orga8060ea">Multi-part interferometer</h3>
+<section id="slide-org2344ef0">
+<h3 id="org2344ef0">Multi-part interferometer</h3>
 <p>
 The voltages from the receivers are then correlated (multiplied) and
 the resulting signal is averaged over time. This ensures that only
@@ -240,8 +240,8 @@ where \(I'(\theta) = |A(\theta)|^2|E(\theta)|^2\) is often called
 </section>
 </section>
 <section>
-<section id="slide-org0c0f18f">
-<h3 id="org0c0f18f">Multi-part interferometer</h3>
+<section id="slide-org36156ca">
+<h3 id="org36156ca">Multi-part interferometer</h3>
 <p>
 This means interferometers actually simply measure Fourier modes on
 the sky which depends on the baseline length \(d\) and the wavelength
@@ -264,8 +264,8 @@ higher sensitivity per mode</li>
 </section>
 </section>
 <section>
-<section id="slide-org7172141">
-<h3 id="org7172141">Multi-part interferometer</h3>
+<section id="slide-orgd3905af">
+<h3 id="orgd3905af">Multi-part interferometer</h3>
 <p>
 The Fourier coefficients are measured visibilities and can be used to
 reconstruct the intesity distribution via inverse FT.
@@ -281,20 +281,20 @@ Problems:
 </section>
 </section>
 <section>
-<section id="slide-orgd332f73">
-<h2 id="orgd332f73">Simulations</h2>
-<div class="outline-text-2" id="text-orgd332f73">
+<section id="slide-orgad5064a">
+<h2 id="orgad5064a">Simulations</h2>
+<div class="outline-text-2" id="text-orgad5064a">
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org95eb716">
-<h3 id="org95eb716">Testing data</h3>
-<div class="outline-text-3" id="text-org95eb716">
+<section id="slide-orgb75c3e5">
+<h3 id="orgb75c3e5">Testing data</h3>
+<div class="outline-text-3" id="text-orgb75c3e5">
 </div>
 </section>
-<section id="slide-org084d462">
-<h4 id="org084d462">isolated SPH simulations</h4>
+<section id="slide-orgeceb4cf">
+<h4 id="orgeceb4cf">isolated SPH simulations</h4>
 <ul>
 <li>Capelo et al. 2018:
 <ul>
@@ -311,8 +311,8 @@ Problems:
 
 
 </section>
-<section id="slide-orgaeaaf7d">
-<h4 id="orgaeaaf7d">zoom-in AREPO simulations (mesh-particle hybrid)</h4>
+<section id="slide-org7e4947d">
+<h4 id="org7e4947d">zoom-in AREPO simulations (mesh-particle hybrid)</h4>
 <ul>
 <li>Gensior et al. 2020:
 <ul>
@@ -330,8 +330,8 @@ Problems:
 </section>
 </section>
 <section>
-<section id="slide-orge3cc291">
-<h3 id="orge3cc291">Pinocchio</h3>
+<section id="slide-org59e4ea1">
+<h3 id="org59e4ea1">Pinocchio</h3>
 <p>
 Details:
 </p>
@@ -360,8 +360,8 @@ RA, Dec format</li>
 </section>
 </section>
 <section>
-<section id="slide-org262290c">
-<h3 id="org262290c">Our Options</h3>
+<section id="slide-orgff2a90f">
+<h3 id="orgff2a90f">Our Options</h3>
 <p>
 ordered in difficulty from high-to-low:
 </p>
@@ -394,10 +394,10 @@ the Pinocchio team
 </div>
 </div>
 <p> Created by phdenzel. </p>
-<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
 
 
 <script>

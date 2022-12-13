@@ -9,26 +9,15 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
 
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<link rel="stylesheet" href="./assets/css/phdcolloq.css" id="theme"/>
 
 <link rel="stylesheet" href="./assets/css/slides.css"/>
 
 <link rel="stylesheet" href="./assets/css/header.css"/>
 
 <link rel="stylesheet" href="./assets/css/footer.css"/>
-
-<!-- If the query includes 'print-pdf', include the PDF print sheet -->
-<script>
-    if( window.location.search.match( /print-pdf/gi ) ) {
-        var link = document.createElement( 'link' );
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = 'file:///home/phdenzel/local/reveal.js/css/print/pdf.css';
-        document.getElementsByTagName( 'head' )[0].appendChild( link );
-    }
-</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <meta name="description" content="">
 </head>
@@ -45,25 +34,25 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org05c73f5">Overview of the SDC3 goal &amp; score</a>
+<li><a href="#/slide-org2801b48">Overview of the SDC3 goal &amp; score</a>
 <ul>
-<li><a href="#/slide-org7654e37">Datasets, Data Format and Features for SDC3</a></li>
+<li><a href="#/slide-orge43a1f6">Datasets, Data Format and Features for SDC3</a></li>
 </ul>
 </li>
-<li><a href="#/slide-org430f53e">A Brief Overview of the Epoch of Reionisation</a>
+<li><a href="#/slide-orgaf96b81">A Brief Overview of the Epoch of Reionisation</a>
 <ul>
-<li><a href="#/slide-org0453167">Tomographic imaging of the 21-cm signal</a></li>
+<li><a href="#/slide-orgea590bd">Tomographic imaging of the 21-cm signal</a></li>
 </ul>
 </li>
-<li><a href="#/slide-orgc18ca4c">SDC3a: Scoring</a></li>
-<li><a href="#/slide-org499d27c">SERENEt</a>
+<li><a href="#/slide-org833c112">SDC3a: Scoring</a></li>
+<li><a href="#/slide-org193ef95">SERENEt</a>
 <ul>
-<li><a href="#/slide-orgb4fdc32">Architecture: strategies</a></li>
+<li><a href="#/slide-org7d5907c">Architecture: strategies</a></li>
 </ul>
 </li>
-<li><a href="#/slide-org63452b4">Tasks for the Team</a>
+<li><a href="#/slide-orga396e12">Tasks for the Team</a>
 <ul>
-<li><a href="#/slide-org858bf6d">We're officially registered</a></li>
+<li><a href="#/slide-org5888dda">We're officially registered</a></li>
 </ul>
 </li>
 </ul>
@@ -78,9 +67,9 @@ Title slide
 </aside>
 
 <section>
-<section id="slide-org05c73f5">
+<section id="slide-org2801b48">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org05c73f5">Overview of the SDC3 goal &amp; score</h2>
+<h2 id="org2801b48">Overview of the SDC3 goal &amp; score</h2>
 <ul>
 <li>Goal:
 <ul>
@@ -109,9 +98,9 @@ Title slide
 </section>
 </section>
 <section>
-<section id="slide-org7654e37">
+<section id="slide-orge43a1f6">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org7654e37">Datasets, Data Format and Features for SDC3</h3>
+<h3 id="orge43a1f6">Datasets, Data Format and Features for SDC3</h3>
 <ul>
 <li>The complete SDC3a dataset consists of a visibility measurement set
 (MS) and image derived from the MS, as well as ancillary data.</li>
@@ -122,17 +111,17 @@ time).</li>
 </ul>
 
 
-<div id="orgcd8865b" class="figure">
+<div id="orgb9af49b" class="figure">
 <p><img src="./assets/images/sdc3a/sdc3a_data_general.png" alt="sdc3a_data_general.png" height="33%" width="35%" align="left" style="margin:2px;" />
 </p>
 </div>
 
-<div id="org79b186d" class="figure">
+<div id="org09376d4" class="figure">
 <p><img src="./assets/images/sdc3a/sdc3a_data_image_cube.png" alt="sdc3a_data_image_cube.png" height="33%" width="35%" align="left" style="margin:2px;" />
 </p>
 </div>
 
-<div id="org2def500" class="figure">
+<div id="org395967f" class="figure">
 <p><img src="./assets/images/sdc3a/sdc3a_data_measurement_sets.png" alt="sdc3a_data_measurement_sets.png" height="33%" width="25%" align="left" style="margin:2px;" />
 </p>
 </div>
@@ -142,9 +131,9 @@ time).</li>
 </section>
 </section>
 <section>
-<section id="slide-org430f53e">
+<section id="slide-orgaf96b81">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org430f53e">A Brief Overview of the Epoch of Reionisation</h2>
+<h2 id="orgaf96b81">A Brief Overview of the Epoch of Reionisation</h2>
 <ul>
 <li><b>Big Bang</b>, <b>Inflation</b>, and <b>Primordial Nucleosynthesis</b>: plasma of ionized hydrogen (HII)</li>
 <li><b>CMB</b> (h&nu; &prop; k<sub>B</sub>T ➝ 2.725 K): the Universe cooled to 3000 K and changed from opaque to transparent at redshift \(z = \frac{3000\,\text{K}}{2.725\,\text{K}} \sim 1100\)</li>
@@ -156,7 +145,7 @@ time).</li>
 
 </ul>
 </section>
-<section id="slide-org430f53e-split">
+<section id="slide-orgaf96b81-split">
 <ul>
 <li><b>Epoch of Reionization</b> (z ~ 16-6):
 <ul>
@@ -172,7 +161,7 @@ time).</li>
 </ul>
 
 
-<div id="org180306a" class="figure">
+<div id="org708fafc" class="figure">
 <p><img src="./assets/images/sdc3a/EoR_skao.webp" alt="EoR_skao.webp" width="70%" align="left" style="margin:2px;" />
 </p>
 </div>
@@ -182,9 +171,9 @@ time).</li>
 </section>
 </section>
 <section>
-<section id="slide-org0453167">
+<section id="slide-orgea590bd">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org0453167">Tomographic imaging of the 21-cm signal</h3>
+<h3 id="orgea590bd">Tomographic imaging of the 21-cm signal</h3>
 <ul>
 <li>Probe reionization process by observing the redshifted 21-cm signal \(\delta T_{b} \approx n_{\text{HI}}(\theta,z)\)</li>
 <li>Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies</li>
@@ -193,12 +182,12 @@ time).</li>
 </ul>
 
 
-<div id="orgfb6513a" class="figure">
+<div id="org050d89b" class="figure">
 <p><img src="./assets/images/sdc3a/21cm_lightcone.png" alt="21cm_lightcone.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
 </p>
 </div>
 
-<div id="org9325058" class="figure">
+<div id="org218e75a" class="figure">
 <p><img src="./assets/images/sdc3a/21cm_lightcone_slice.png" alt="21cm_lightcone_slice.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
 </p>
 </div>
@@ -208,9 +197,9 @@ time).</li>
 </section>
 </section>
 <section>
-<section id="slide-orgc18ca4c">
+<section id="slide-org833c112">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgc18ca4c">SDC3a: Scoring</h2>
+<h2 id="org833c112">SDC3a: Scoring</h2>
 <p>
 Score will be based on the ability of recover the 21-cm cylindrical (2D) power spectra
 </p>
@@ -222,7 +211,7 @@ Score will be based on the ability of recover the 21-cm cylindrical (2D) power s
 
 
 
-<div id="orgafc777c" class="figure">
+<div id="org2e23e9f" class="figure">
 <p><img src="./assets/images/sdc3a/EoR_wedge.png" alt="EoR_wedge.png" height="500px" style="margin:2px;" />
 </p>
 </div>
@@ -232,9 +221,9 @@ Score will be based on the ability of recover the 21-cm cylindrical (2D) power s
 </section>
 </section>
 <section>
-<section id="slide-org499d27c">
+<section id="slide-org193ef95">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org499d27c">SERENEt</h2>
+<h2 id="org193ef95">SERENEt</h2>
 <p>
 <b>SE</b> gmentation and <b>RE</b> gression <b>NEt</b> work
 </p>
@@ -246,7 +235,7 @@ training.</li>
 </ul>
 
 
-<div id="org7ee81cc" class="figure">
+<div id="orgfa6f408" class="figure">
 <p><img src="./assets/images/sdc3a/SERENEt.png" alt="SERENEt.png" height="600px" style="margin:2px;" />
 </p>
 </div>
@@ -256,9 +245,9 @@ training.</li>
 </section>
 </section>
 <section>
-<section id="slide-orgb4fdc32">
+<section id="slide-org7d5907c">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgb4fdc32">Architecture: strategies</h3>
+<h3 id="org7d5907c">Architecture: strategies</h3>
 <ol>
 <li>Train SegU-Net and Rec-Unet separately (Hadamard product of inputs)</li>
 <li>Train SegU-Net first, then RecU-Net with interception layers</li>
@@ -267,7 +256,7 @@ training.</li>
 </ol>
 
 
-<div id="org4c6bdc1" class="figure">
+<div id="org9f12c13" class="figure">
 <p><img src="./assets/images/sdc3a/Unet_schematics.png" alt="Unet_schematics.png" height="500px" style="margin:2px;" />
 </p>
 </div>
@@ -277,11 +266,11 @@ training.</li>
 </section>
 </section>
 <section>
-<section id="slide-org63452b4">
+<section id="slide-orga396e12">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org63452b4">Tasks for the Team</h2>
+<h2 id="orga396e12">Tasks for the Team</h2>
 
-<div id="org7f37680" class="figure">
+<div id="org82bce2d" class="figure">
 <p><img src="./assets/images/sdc3a/team_tasks.png" alt="team_tasks.png" height="800px" style="margin:2px;" />
 </p>
 </div>
@@ -291,24 +280,24 @@ training.</li>
 </section>
 </section>
 <section>
-<section id="slide-org858bf6d">
+<section id="slide-org5888dda">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org858bf6d">We're officially registered</h3>
+<h3 id="org5888dda">We're officially registered</h3>
 <ul>
 <li>Team lead: Michele Bianco (EPFL)</li>
 
 </ul>
 
-<div id="org5b468bf" class="figure">
+<div id="orgff03d76" class="figure">
 <p><img src="./assets/images/sdc3a/team_registered.png" alt="team_registered.png" height="500px" style="margin:2px;" />
 </p>
 </div>
 
 </section>
-<section id="slide-org858bf6d-split">
+<section id="slide-org5888dda-split">
 
 
-<div id="orga2aa3a1" class="figure">
+<div id="org9e30e96" class="figure">
 <p><img src="./assets/images/sdc3a/tasks_gannt.png" alt="tasks_gannt.png" height="800px" style="margin:2px;" />
 </p>
 </div>
@@ -318,10 +307,10 @@ training.</li>
 </div>
 </div>
 <p> Created by phdenzel. </p>
-<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
 
 
 <script>
