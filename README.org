@@ -14,7 +14,7 @@ and my customized CSS style sheets, see
 
 - [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
   Astrophysics, Machine Learning, and the Square Kilometer Array
-- [X] ~meeting_slides/221028~: SDC3 introduction
+- [X] ~meeting_slides/221116~: SDC3 introduction
 - [X] ~meeting_slides/221028~: Meeting with Carolyn Crichton
 - [X] ~meeting_slides/220803~: Initial SKA meeting @ ZHAW
 
