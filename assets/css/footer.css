@@ -1,9 +1,11 @@
-.slide-footer {
-    position: fixed;
-    text-align: center;
+.reveal .slide-footer {
+    /* position: absolute; */
+    /* text-align: center; */
+    position: absolute;
     width: 100%;
     bottom: 0;
     left: 0;
+    padding: 0;
     margin: 0;
     background-image:
         /* url(../../assets/images/logos/logo-skao-color.svg); */
@@ -12,5 +14,5 @@
         url(../../assets/images/logos/logo-skach-white.svg);
     background-repeat: no-repeat no-repeat;
     background-size: 90px, 90px;
-    background-position: left, 96%;
+    background-position: left, 95%;
 }
