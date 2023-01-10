@@ -10,8 +10,9 @@ and my customized CSS style sheets, see
 [[https://github.com/phdenzel/reveal.js][https://github.com/phdenzel/reveal.js]]).
 
 
-* Presentations [3/4]
+* Presentations [4/5]
 
+- [X] ~skach_winter_230111~: The presentation for the SKACH winter meeting
 - [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
   Astrophysics, Machine Learning, and the Square Kilometer Array
 - [X] ~meeting_slides/221116~: SDC3 introduction
