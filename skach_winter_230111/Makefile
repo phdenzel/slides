@@ -21,7 +21,7 @@ assets/movies:
 
 .PHONY: export
 install: export
-	cp slides.html $(PREFIX)/slides.html
+	cp index.html $(PREFIX)/slides.html
 
 assets:
 	mkdir -p assets/{css,images,movies}

@@ -111,7 +111,7 @@ to
 #+REVEAL_TITLE_SLIDE: <h3>%s</h3>
 #+REVEAL_TITLE_SLIDE: <div style="padding-top: 100px">%d</div>
 #+REVEAL_TITLE_SLIDE: <div style="padding-top: 25px">by</div>
-#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 25px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 25px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <span>, Elena Gavagnin, Frank-Peter Schilling </span> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
 #+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
