@@ -12,6 +12,8 @@ and my customized CSS style sheets, see
 
 * Presentations [4/5]
 
+- [ ] ~ivs_slides/230322~: A few slides on the SKACH project @ ZHAW
+  for the IVS group meeting
 - [X] ~skach_winter_230111~: The presentation for the SKACH winter meeting
 - [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
   Astrophysics, Machine Learning, and the Square Kilometer Array
