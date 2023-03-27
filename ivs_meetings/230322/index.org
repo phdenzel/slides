@@ -168,10 +168,10 @@ Credit: E. Tolley (EPFL)
 Ground truth: galaxy model
 
 1) simulate source, i.e. galaxies and their matter content
-2) project source light spectra (realistically) on the sky
+2) project source light spectra (realistically) onto the sky
 3) use the "digital twin" pipeline to generate images
   - OSKAR: simulate the telescope's instruments @@html:&#x27F6;@@ visibilities
-  - Imagers (e.g. RASCIL): visibilities @@html:&#x27F6;@@ dirty images
+  - Imagers (RASCIL, bluebild, WSCLEAN): visibilities @@html:&#x27F6;@@ dirty images
 
 
 * An (abbreviated) History of the Universe
@@ -221,7 +221,7 @@ Ground truth: galaxy model
 [[./assets/images/cosmo/pkdgrav3_full_sky.png]]
 
 
-* Cosmological simulations
+** Cosmological simulations
 
 - Smooth Particle Hydrodynamics (SPH) simulations
 - dynamically evolve initial conditions (t=0) to today (redshift z=0)
@@ -231,7 +231,7 @@ Ground truth: galaxy model
   - supernovae, black hole emissions, interstellar winds (REM pressure stripping)
 
 
-** Large-scale boxes
+*** Large-scale boxes
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng300_100_layers_dm_gastemp_bfield.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8"
 :END:
@@ -240,7 +240,7 @@ Ground truth: galaxy model
 TNG100, Credit: IllustrisTNG Collaboration
 
 
-** Intergalactic web
+*** Intergalactic web
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4#t=18.5" data-background-video-muted data-background-size="fill" data-background-opacity="0.8"
 :END:
@@ -252,7 +252,7 @@ TNG100, Credit: IllustrisTNG Collaboration
 TNG100, Credit: IllustrisTNG Collaboration
 
 
-** Cosmological "zoom-ins"
+*** Cosmological "zoom-ins"
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8"
 :END:
@@ -272,14 +272,46 @@ g1 (TNG50), Credit: IllustrisTNG
 - visibilities (telescope data cubes)
 - images (3D projections)
 
-** Deep learning methods
+
+** Lightcones
+
+#+ATTR_HTML: :width 600px :align right :style float:left :style padding: 0px 25px 10px 200px;
+[[./assets/images/lightcone/cornerCone.png ]] {{{NL}}}
+Credit: arXiv:1906.08355
+#+ATTR_HTML: :width 800px :align center :style float:right :style padding: 0px 200px 10px 25px;
+[[./assets/images/lightcone/cubegridFinal.png]] {{{NL}}}
+
+
+* Ongoing work
+
 - Adversarial models:
   - CycleGAN
   - Pix2pix
 - Flow-based generative models
 - Diffusion models
 
-* The SKA Data Challenge
+  
+** CycleGAN test
+
+#+ATTR_HTML: :height 800px
+[[./assets/images/cycle-gan/cycle-gan_scheme.png]]
+
+
+** Deep Lake datasets
+
+#+ATTR_HTML: :height 100px :align left :style float:left :style padding: 0px 25px 10px 200px;
+[[./assets/images/dvc/deep_lake_logo.svg]] {{{NL}}}
+- save format as tensors
+- data versioning
+- but:
+  - no performance gain with numpy saves!
+  - maybe look at ~dvc~, ~lakeFS~, or ~oxen~ for VC?
+  
+#+ATTR_HTML: :width 1500px :align center :style float:right :style padding: 0px 200px 10px 25px;
+[[./assets/images/dvc/deep_lake_benchmarks.png]] {{{NL}}}
+
+
+** The SKA Data Challenge
 {{{h3(Tomographic imaging of the 21-cm signal)}}}
 
 - Probe reionization process by observing the redshifted 21-cm signal $\delta T_{b} \approx n_{\text{HI}}(\theta,z)$
