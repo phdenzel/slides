@@ -26,7 +26,7 @@
 <div class="slides">
 <section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-opacity="0.6"><h1>The SKACH project</h1>
 <h3></h3>
-<div style="padding-top: 50px">2023/03/22 Wed - ZHAW</div>
+<div style="padding-top: 50px">2023/04/05 Wed - ZHAW</div>
 <div style="padding-top: 50px">by</div>
 <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
 </section>
@@ -34,10 +34,11 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#/slide-org877332f">Getting started with radio astronomy</a></li>
-<li><a href="#/slide-orgbd50f9c">An (abbreviated) History of the Universe</a></li>
-<li><a href="#/slide-org9302e96">Data formats</a></li>
-<li><a href="#/slide-org779a0a2">Ongoing work</a></li>
+<li><a href="#/slide-org85a3525">Some aspects we haven't talk about yet</a></li>
+<li><a href="#/slide-org0be63b7">The data</a></li>
+<li><a href="#/slide-org7a3256a">Data processing</a></li>
+<li><a href="#/slide-orga89c185">Ongoing work</a></li>
+<li><a href="#/slide-org16ae6eb">My development process</a></li>
 </ul>
 </div>
 </div>
@@ -51,9 +52,31 @@ Title slide
 
 
 <section>
-<section id="slide-org877332f" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<section id="slide-org85a3525">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org877332f">Getting started with radio astronomy</h2>
+<h2 id="org85a3525">Some aspects we haven't talk about yet</h2>
+<ul>
+<li>many (important) steps before training a model</li>
+<li>data engineering
+<ul>
+<li>procedure for obtaining &amp; storing data</li>
+<li>preprocessing (initial compression)</li>
+<li>data versioning and logging</li>
+
+</ul></li>
+<li>problem definition: what, where, why&#x2026;?</li>
+<li>adjusting model (architecture) to the problem: how?</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0be63b7" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0be63b7">The data</h2>
 <p>
  <br> 
  <br> 
@@ -81,9 +104,9 @@ Title slide
 </section>
 </section>
 <section>
-<section id="slide-org7cf3771">
+<section id="slide-org845b371">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org7cf3771">The infamous visibilities and "uv" plane</h3>
+<h3 id="org845b371">The infamous visibilities and "uv" plane</h3>
 <ul>
 <li>As an inverse problem:
 <ul>
@@ -113,11 +136,11 @@ Credit: E. Tolley (EPFL)
 </section>
 </section>
 <section>
-<section id="slide-orgbecc32f">
+<section id="slide-org0f32dfc">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgbecc32f">Dirty images</h3>
+<h3 id="org0f32dfc">Dirty images</h3>
 
-<div id="orgf650f06" class="figure">
+<div id="org58d2506" class="figure">
 <p><img src="./assets/images/radio_schematics/dirty_image.png" alt="dirty_image.png" width="800px" align="center" style="padding: 0px 10px 10px 0px;" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Credit: E. Tolley (EPFL)</p>
@@ -128,34 +151,39 @@ Credit: E. Tolley (EPFL)
 </section>
 </section>
 <section>
-<section id="slide-org2f33672">
+<section id="slide-org878f13e">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org2f33672">Construction of the dataset</h3>
+<h3 id="org878f13e">Construction of the dataset</h3>
 <p>
  <br> 
 Ground truth: galaxy model
 </p>
 
-<ol>
-<li>simulate source, i.e. galaxies and their matter content</li>
-<li>project source light spectra (realistically) onto the sky</li>
-<li>use the "digital twin" pipeline to generate images
 <ul>
-<li>OSKAR: simulate the telescope's instruments &#x27F6; visibilities</li>
-<li>Imagers (RASCIL, bluebild, WSCLEAN): visibilities &#x27F6; dirty images</li>
+<li class="on"><code>[X]</code> simulate source, i.e. galaxies and their matter content</li>
+<li class="on"><code>[X]</code> project source light spectra (realistically) onto the sky
+<ul>
+<li class="on"><code>[X]</code> raytrace light from a set point in spacetime onto the observable sky</li>
+<li class="off"><code>[&#xa0;]</code> translate full light spectra (astro-chemistry) to observable frequencies</li>
+
+</ul></li>
+<li class="trans"><code>[-]</code> use the Karabo "digital twin" pipeline to generate images
+<ul>
+<li class="on"><code>[X]</code> OSKAR: simulate the telescope's instruments &#x27F6; visibilities</li>
+<li class="off"><code>[&#xa0;]</code> Imagers (RASCIL, bluebild, WSCLEAN): visibilities &#x27F6; dirty images</li>
 
 </ul></li>
 
-</ol>
+</ul>
 
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgbd50f9c">
+<section id="slide-org8231e27">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgbd50f9c">An (abbreviated) History of the Universe</h2>
+<h3 id="org8231e27">An (abbreviated) History of the Universe</h3>
 <ul>
 <li><b>Cosmology</b>: study of the observable Universe's
 <ul>
@@ -172,9 +200,9 @@ Ground truth: galaxy model
 </section>
 </section>
 <section>
-<section id="slide-org8cc6345">
+<section id="slide-org847973f">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org8cc6345">The Big Bang</h3>
+<h3 id="org847973f">The Big Bang</h3>
 <ul>
 <li>expansion of the Universe from an initial "high density/energy" state</li>
 <li>~ 10<sup>-35</sup> m: tiny, but not necessarily a singularity!</li>
@@ -186,7 +214,7 @@ Ground truth: galaxy model
 
 
 
-<div id="org3d8513f" class="figure">
+<div id="org1d34863" class="figure">
 <p><img src="./assets/images/sdc3a/EoR_skao.webp" alt="EoR_skao.webp" width="70%" align="center" style="margin:2px;" />  
 </p>
 <p><span class="figure-number">Figure 2: </span>Credit: Robertson et al. (2010) <a href="https://doi.org/10.1038/nature09527">Nature 468, 49–55</a></p>
@@ -197,11 +225,11 @@ Ground truth: galaxy model
 </section>
 </section>
 <section>
-<section id="slide-org20236b7">
+<section id="slide-org093e2f5">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org20236b7">The sky is isotropic</h3>
+<h3 id="org093e2f5">The sky is isotropic</h3>
 
-<div id="org37e1c1d" class="figure">
+<div id="org4e97b75" class="figure">
 <p><img src="./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png" alt="ESA_Planck_CMB2018_smooth.png" height="830px" />
 </p>
 <p><span class="figure-number">Figure 3: </span>2018, Credit: ESA/Planck</p>
@@ -212,11 +240,11 @@ Ground truth: galaxy model
 </section>
 </section>
 <section>
-<section id="slide-org9401e5f">
+<section id="slide-org4a435f3">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org9401e5f">Mollweide projection</h3>
+<h3 id="org4a435f3">Mollweide projection</h3>
 
-<div id="org9e65464" class="figure">
+<div id="orgad9b692" class="figure">
 <p><img src="./assets/images/cosmo/mollweide.jpg" alt="mollweide.jpg" height="830px" />
 </p>
 <p><span class="figure-number">Figure 4: </span>Credit: NASA</p>
@@ -227,11 +255,11 @@ Ground truth: galaxy model
 </section>
 </section>
 <section>
-<section id="slide-org850a981">
+<section id="slide-org21530a6">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org850a981">The Cosmic Microwave Background</h3>
+<h3 id="org21530a6">The Cosmic Microwave Background</h3>
 
-<div id="org3972650" class="figure">
+<div id="orgcad7dbb" class="figure">
 <p><img src="./assets/images/cosmo/ESA_Planck_CMB2018.png" alt="ESA_Planck_CMB2018.png" height="830px" />
 </p>
 <p><span class="figure-number">Figure 5: </span>2018, Credit: ESA/Planck</p>
@@ -242,24 +270,25 @@ Ground truth: galaxy model
 </section>
 </section>
 <section>
-<section id="slide-orgcedf279">
+<section id="slide-org91f7e36">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgcedf279">Flagship cosmological particle simulations</h3>
+<h3 id="org91f7e36">Flagship cosmological particle simulations</h3>
 
-<div id="org2dd8f50" class="figure">
+<div id="orgf400b84" class="figure">
 <p><img src="./assets/images/cosmo/pkdgrav3_full_sky.png" alt="pkdgrav3_full_sky.png" height="830px" />
 </p>
 <p><span class="figure-number">Figure 6: </span>2016, Credit: D. Potter, J. Stadel, R. Teyssier</p>
 </div>
 
 
+
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org7a3ca66">
+<section id="slide-org23b0e12">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org7a3ca66">Cosmological simulations</h3>
+<h3 id="org23b0e12">Cosmological simulations</h3>
 <ul>
 <li>Smooth Particle Hydrodynamics (SPH) simulations</li>
 <li>dynamically evolve initial conditions (t=0) to today (redshift z=0)
@@ -279,9 +308,9 @@ Ground truth: galaxy model
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
-<section id="slide-org5c06a5c" class="upperh" data-background-video="./assets/movies/illustris/tng300_100_layers_dm_gastemp_bfield.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
+<section id="slide-orge2a223e" class="upperh" data-background-video="./assets/movies/illustris/tng300_100_layers_dm_gastemp_bfield.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org5c06a5c">Large-scale boxes</h4>
+<h4 id="orge2a223e">Large-scale boxes</h4>
 <p class="footer-item">
 TNG100, Credit: IllustrisTNG Collaboration
 </p>
@@ -289,9 +318,9 @@ TNG100, Credit: IllustrisTNG Collaboration
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
-<section id="slide-org47cffc2" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4#t=18.5" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
+<section id="slide-org5320b7a" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4#t=18.5" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org47cffc2">Intergalactic web</h4>
+<h4 id="org5320b7a">Intergalactic web</h4>
 <p class="header-item">
 TNG100, Credit: IllustrisTNG Collaboration
 </p>
@@ -299,9 +328,9 @@ TNG100, Credit: IllustrisTNG Collaboration
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
-<section id="slide-org02f3cdc" class="upperh" data-background-video="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
+<section id="slide-orgbc45e16" class="upperh" data-background-video="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org02f3cdc">Cosmological "zoom-ins"</h4>
+<h4 id="orgbc45e16">Cosmological "zoom-ins"</h4>
 <p class="footer-item">
 g1 (TNG50), Credit: IllustrisTNG
 </p>
@@ -311,11 +340,11 @@ g1 (TNG50), Credit: IllustrisTNG
 </section>
 </section>
 <section>
-<section id="slide-org9302e96">
+<section id="slide-org7a3256a">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org9302e96">Data formats</h2>
+<h2 id="org7a3256a">Data processing</h2>
 <ul>
-<li>point clouds (3D coordinates)</li>
+<li>point clouds (3D coordinates, snapshot at a given time)</li>
 <li>lightcones (2D images + 1D time)</li>
 <li>visibilities (telescope data cubes)</li>
 <li>images (3D projections)</li>
@@ -327,9 +356,9 @@ g1 (TNG50), Credit: IllustrisTNG
 </section>
 </section>
 <section>
-<section id="slide-org6bd7cea">
+<section id="slide-org4bd7115">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org6bd7cea">Lightcones</h3>
+<h3 id="org4bd7115">Lightcones</h3>
 <p width="600px" align="right" style="float:left" style="padding: 0px 25px 10px 200px;">
 <img src="./assets/images/lightcone/cornerCone.png " alt="cornerCone.png " width="600px" align="right" style="padding: 0px 25px 10px 200px;" />  <br> 
 Credit: arXiv:1906.08355
@@ -343,43 +372,9 @@ Credit: arXiv:1906.08355
 </section>
 </section>
 <section>
-<section id="slide-org779a0a2">
+<section id="slide-org30bb559">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org779a0a2">Ongoing work</h2>
-<ul>
-<li>Adversarial models:
-<ul>
-<li>CycleGAN</li>
-<li>Pix2pix</li>
-
-</ul></li>
-<li>Flow-based generative models</li>
-<li>Diffusion models</li>
-
-</ul>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgcc8e968">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgcc8e968">CycleGAN test</h3>
-
-<div id="org7f56b44" class="figure">
-<p><img src="./assets/images/cycle-gan/cycle-gan_scheme.png" alt="cycle-gan_scheme.png" height="800px" />
-</p>
-</div>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgf0869f7">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgf0869f7">Deep Lake datasets</h3>
+<h3 id="org30bb559">Deep Lake datasets</h3>
 <p height="100px" align="left" style="float:left" style="padding: 0px 25px 10px 200px;">
 <img src="./assets/images/dvc/deep_lake_logo.svg" alt="deep_lake_logo.svg" class="org-svg" height="100px" align="left" style="padding: 0px 25px 10px 200px;" />  <br> 
 </p>
@@ -404,9 +399,106 @@ Credit: arXiv:1906.08355
 </section>
 </section>
 <section>
-<section id="slide-org639da6a">
+<section id="slide-orga89c185">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org639da6a">The SKA Data Challenge</h3>
+<h2 id="orga89c185">Ongoing work</h2>
+<ul>
+<li>Adversarial models:
+<ul>
+<li>CycleGAN</li>
+<li>Pix2pix</li>
+
+</ul></li>
+<li>Flow-based generative models</li>
+<li>Diffusion models</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8c9b354">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org8c9b354">CycleGAN test</h3>
+
+<div id="org9747794" class="figure">
+<p><img src="./assets/images/cycle-gan/cycle-gan_scheme.png" alt="cycle-gan_scheme.png" height="800px" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orga7455ee">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orga7455ee">Pix2Pix</h3>
+<ul>
+<li><a href="https://github.com/phillipi/pix2pix">pix2pix by I. Phillipi</a> (in lua torch)
+<ul>
+<li>difference: W-GAN penalty (replace KL divergence with Wasserstein metric)
+<ul>
+<li>limit discriminator to 1-Lipschitz function (learned)</li>
+
+</ul></li>
+
+</ul></li>
+<li><a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pix2pix+cycleGAN by J.-Y. Zhu</a> (in pytorch)</li>
+<li><a href="https://affinelayer.com/pix2pix/">blog post by Ch. Hesse</a> (pix2pix vs. CycleGAN)</li>
+
+</ul>
+
+</section>
+<section id="slide-orga7455ee-split">
+
+
+<div id="org797347c" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_generator_training.webp" alt="pix2pix_generator_training.webp" height="800px" style="background-color: #888888;" />
+</p>
+</div>
+
+</section>
+<section id="slide-orga7455ee-split">
+
+
+<div id="orgd4883fd" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_discriminator_training.webp" alt="pix2pix_discriminator_training.webp" height="800px" style="background-color: #888888;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org16ae6eb">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org16ae6eb">My development process</h2>
+<ul>
+<li>Prepare the dataset</li>
+<li>Test driven development:
+<ul>
+<li>first write tests</li>
+<li>then implement</li>
+<li>mantra: "Guilty until proven innocent!"</li>
+
+</ul></li>
+<li>UNet generators vs. ResNet generators</li>
+<li>PixelGAN vs. PatchGAN</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4c098d4">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org4c098d4">The SKA Data Challenge</h3>
 <p>
 <h3>Tomographic imaging of the 21-cm signal</h3>
 </p>
@@ -419,12 +511,12 @@ Credit: arXiv:1906.08355
 </ul>
 
 
-<div id="org460b2a3" class="figure">
+<div id="org68d8210" class="figure">
 <p><img src="./assets/images/sdc3a/21cm_lightcone.png" alt="21cm_lightcone.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
 </p>
 </div>
 
-<div id="org0fd463b" class="figure">
+<div id="orgfc2725e" class="figure">
 <p><img src="./assets/images/sdc3a/21cm_lightcone_slice.png" alt="21cm_lightcone_slice.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
 </p>
 </div>

@@ -1,6 +1,6 @@
 #+AUTHOR: Philipp Denzel
 #+TITLE: The SKACH project
-#+DATE: 2023/03/22 Wed - ZHAW
+#+DATE: 2023/04/05 Wed - ZHAW
 
 # #+OPTIONS: author:nil
 # #+OPTIONS: email:nil
@@ -118,7 +118,18 @@ Title slide
 #+REVEAL_TOC_SLIDE_BACKGROUND_SIZE: 500px
 
 
-* Getting started with radio astronomy
+* Some aspects we haven't talk about yet
+
+- many (important) steps before training a model
+- data engineering
+  - procedure for obtaining & storing data
+  - preprocessing (initial compression)
+  - data versioning and logging
+- problem definition: what, where, why...?
+- adjusting model (architecture) to the problem: how?
+
+
+* The data
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
 :END:
@@ -167,14 +178,16 @@ Credit: E. Tolley (EPFL)
 {{{NL}}}
 Ground truth: galaxy model
 
-1) simulate source, i.e. galaxies and their matter content
-2) project source light spectra (realistically) onto the sky
-3) use the "digital twin" pipeline to generate images
-  - OSKAR: simulate the telescope's instruments @@html:&#x27F6;@@ visibilities
-  - Imagers (RASCIL, bluebild, WSCLEAN): visibilities @@html:&#x27F6;@@ dirty images
+- [X] simulate source, i.e. galaxies and their matter content
+- [X] project source light spectra (realistically) onto the sky
+  - [X] raytrace light from a set point in spacetime onto the observable sky
+  - [ ] translate full light spectra (astro-chemistry) to observable frequencies
+- [-] use the Karabo "digital twin" pipeline to generate images
+  - [X] OSKAR: simulate the telescope's instruments @@html:&#x27F6;@@ visibilities
+  - [ ] Imagers (RASCIL, bluebild, WSCLEAN): visibilities @@html:&#x27F6;@@ dirty images
 
 
-* An (abbreviated) History of the Universe
+** An (abbreviated) History of the Universe
 
 - *Cosmology*: study of the observable Universe's
   - origins and evolution
@@ -221,6 +234,7 @@ Ground truth: galaxy model
 [[./assets/images/cosmo/pkdgrav3_full_sky.png]]
 
 
+
 ** Cosmological simulations
 
 - Smooth Particle Hydrodynamics (SPH) simulations
@@ -265,9 +279,9 @@ TNG100, Credit: IllustrisTNG Collaboration
 g1 (TNG50), Credit: IllustrisTNG
 
 
-* Data formats
+* Data processing
 
-- point clouds (3D coordinates)
+- point clouds (3D coordinates, snapshot at a given time)
 - lightcones (2D images + 1D time)
 - visibilities (telescope data cubes)
 - images (3D projections)
@@ -280,6 +294,20 @@ g1 (TNG50), Credit: IllustrisTNG
 Credit: arXiv:1906.08355
 #+ATTR_HTML: :width 800px :align center :style float:right :style padding: 0px 200px 10px 25px;
 [[./assets/images/lightcone/cubegridFinal.png]] {{{NL}}}
+
+
+** Deep Lake datasets
+
+#+ATTR_HTML: :height 100px :align left :style float:left :style padding: 0px 25px 10px 200px;
+[[./assets/images/dvc/deep_lake_logo.svg]] {{{NL}}}
+- save format as tensors
+- data versioning
+- but:
+  - no performance gain with numpy saves!
+  - maybe look at ~dvc~, ~lakeFS~, or ~oxen~ for VC?
+  
+#+ATTR_HTML: :width 1500px :align center :style float:right :style padding: 0px 200px 10px 25px;
+[[./assets/images/dvc/deep_lake_benchmarks.png]] {{{NL}}}
 
 
 * Ongoing work
@@ -297,18 +325,34 @@ Credit: arXiv:1906.08355
 [[./assets/images/cycle-gan/cycle-gan_scheme.png]]
 
 
-** Deep Lake datasets
+** Pix2Pix
 
-#+ATTR_HTML: :height 100px :align left :style float:left :style padding: 0px 25px 10px 200px;
-[[./assets/images/dvc/deep_lake_logo.svg]] {{{NL}}}
-- save format as tensors
-- data versioning
-- but:
-  - no performance gain with numpy saves!
-  - maybe look at ~dvc~, ~lakeFS~, or ~oxen~ for VC?
+- [[https://github.com/phillipi/pix2pix][pix2pix by I. Phillipi]] (in lua torch)
+  - difference: W-GAN penalty (replace KL divergence with Wasserstein metric)
+    - limit discriminator to 1-Lipschitz function (learned)
+- [[https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix][pix2pix+cycleGAN by J.-Y. Zhu]] (in pytorch)
+- [[https://affinelayer.com/pix2pix/][blog post by Ch. Hesse]] (pix2pix vs. CycleGAN)
+
+#+REVEAL: split
   
-#+ATTR_HTML: :width 1500px :align center :style float:right :style padding: 0px 200px 10px 25px;
-[[./assets/images/dvc/deep_lake_benchmarks.png]] {{{NL}}}
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+[[./assets/images/pix2pix/pix2pix_generator_training.webp]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+[[./assets/images/pix2pix/pix2pix_discriminator_training.webp]]
+
+
+* My development process
+
+- Prepare the dataset
+- Test driven development:
+  - first write tests
+  - then implement
+  - mantra: "Guilty until proven innocent!"
+- UNet generators vs. ResNet generators
+- PixelGAN vs. PatchGAN
 
 
 ** The SKA Data Challenge
