@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>IVS group meeting</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-opacity="0.6"><h1>IVS group meeting</h1>
+<h3>on my SKACH project(s)</h3>
+<h3></h3>
+<div style="padding-top: 50px">2023/04/19 Wed - ZHAW</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<section id="sec-table-of-contents" data-background-size="500px"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-org0c63c66">Recap</a></li>
+<li><a href="#/slide-org544bd50">Ongoing work</a></li>
+<li><a href="#/slide-org39c14c6">The SKA Data Challenge</a></li>
+<li><a href="#/slide-orgf94cef8">ML4GLEAM project</a></li>
+</ul>
+</div>
+</div>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+
+<section>
+<section id="slide-org0c63c66" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0c63c66">Recap</h2>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+<div>
+\begin{equation}
+  V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+\end{equation}
+
+</div>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc4e2ff7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgc4e2ff7">The infamous visibilities and "uv" plane</h3>
+<ul>
+<li>As an inverse problem:
+<ul>
+<li>\[V = \Psi^{\ast} B \Psi\]</li>
+<li>\[\tilde{B} = \tilde{\Psi} V \tilde{\Psi}^{\ast}\]</li>
+
+</ul></li>
+<li>Eigenvalue decomposition:
+<ul>
+<li>\[\tilde{B} = \sum_{i} \lambda_{i} ||\Psi v_{i}||^{2}\]</li>
+
+</ul></li>
+
+</ul>
+
+<p width="510px" align="left" style="float:right" style="padding: 0px 100px 10px 0px;">
+<img src="./assets/images/ska/Mid_layout.png" alt="Mid_layout.png" width="510px" align="left" style="padding: 0px 100px 10px 0px;" />  <br> 
+</p>
+
+<p width="500px" align="left" style="float:right" style="padding: 0px 10px 10px 0px;">
+<img src="./assets/images/radio_schematics/uv_matrix_bluebild.png" alt="uv_matrix_bluebild.png" width="500px" align="left" style="padding: 0px 10px 10px 0px;" />  <br> 
+Credit: E. Tolley (EPFL)
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3278336">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3278336">Dirty images</h3>
+
+<div id="orgf8cdd35" class="figure">
+<p><img src="./assets/images/radio_schematics/dirty_image.png" alt="dirty_image.png" width="800px" align="center" style="padding: 0px 10px 10px 0px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Credit: E. Tolley (EPFL)</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf6ae64c" class="upperh" data-background-video="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf6ae64c">Training data from simulations</h3>
+<p class="footer-item">
+g1 (TNG50), Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9b7756a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9b7756a">Data formats</h3>
+<ul>
+<li>point clouds (3D coordinates: x, y, z)</li>
+<li>lightcones (2D images + 1D time: &theta;, &phi;, frequency)</li>
+<li>visibilities (telescope data cubes using OSKAR)</li>
+<li>images (3D projections from visibilities and/or simulations)</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org544bd50">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org544bd50">Ongoing work</h2>
+<ul>
+<li class="on"><input type='checkbox' checked='checked' /> Adversarial models: 
+<ul>
+<li class="on"><input type='checkbox' checked='checked' /> CycleGAN</li>
+<li class="on"><input type='checkbox' checked='checked' /> Pix2pix</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> Flow-based generative models</li>
+<li class="off"><input type='checkbox' /> Diffusion models</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org38e7b4b">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org38e7b4b">Pix2Pix</h3>
+<ul>
+<li><a href="https://github.com/phillipi/pix2pix">pix2pix by I. Phillipi</a> (in lua torch)
+<ul>
+<li>difference: W-GAN penalty (replace KL divergence with Wasserstein metric)
+<ul>
+<li>limit discriminator to 1-Lipschitz function (learned)</li>
+
+</ul></li>
+
+</ul></li>
+<li><a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix">pix2pix+cycleGAN by J.-Y. Zhu</a> (in pytorch)</li>
+<li><a href="https://affinelayer.com/pix2pix/">blog post by Ch. Hesse</a> (pix2pix vs. CycleGAN)</li>
+
+</ul>
+
+</section>
+<section id="slide-org38e7b4b-split">
+
+
+<div id="org36c7fff" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_generator_training.webp" alt="pix2pix_generator_training.webp" height="800px" style="background-color: #888888;" />
+</p>
+</div>
+
+</section>
+<section id="slide-org38e7b4b-split">
+
+
+<div id="org1dd15d4" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_discriminator_training.webp" alt="pix2pix_discriminator_training.webp" height="800px" style="background-color: #888888;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1ba9b71">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1ba9b71">My development process</h3>
+<ul>
+<li>Prepare the dataset &amp; dataloader</li>
+<li>Test driven development (mantra: "Guilty until proven innocent!"):
+<ul>
+<li>first write tests, then implement accordingly</li>
+<li>for existing code: write tests for modules, in order to understand</li>
+
+</ul></li>
+<li>UNet generators vs. ResNet generators</li>
+<li>PixelGAN vs. PatchGAN</li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgede15a5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgede15a5">Data versioning: testing <code>oxen</code> against <code>dvc</code></h3>
+<ul>
+<li>on dataset: <b>ImageNet</b> (Winter 2021) with <code>zsh</code>'s <code>time</code> macro</li>
+<li>on archlinux 6.2.10-arch1-1 / Intel i7-7700K / 64 GB DDR3 / ext4 / SATA: 6GB/s &amp; 256 MB Cache</li>
+
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" align="center" style="border:0.1px solid; margin-top: 30px;">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">dvc / time [s]</th>
+<th scope="col" class="org-left">oxen / time [s]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">init /</td>
+<td class="org-left">init /</td>
+</tr>
+
+<tr>
+<td class="org-left">add /</td>
+<td class="org-left">add /</td>
+</tr>
+
+<tr>
+<td class="org-left">commit /</td>
+<td class="org-left">commit /</td>
+</tr>
+
+<tr>
+<td class="org-left">push / nil</td>
+<td class="org-left">push / nil</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>My opinion: <code>oxen</code> is simple, and all I am looking for
+<ul>
+<li><code>oxen</code> is faster, but only marginally in practice</li>
+<li><code>dvc</code> integrates more features (but mostly useless)</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org39c14c6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org39c14c6">The SKA Data Challenge</h2>
+<p>
+<h3>Tomographic imaging of the 21-cm signal</h3>
+</p>
+
+<ul>
+<li>Probe reionization process by observing the redshifted 21-cm signal \(\delta T_{b} \approx n_{\text{HI}}(\theta,z)\)</li>
+<li>Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies</li>
+<li>3D tomographic dataset a.k.a <i>21-cm lightcones</i>: 2D angles + 1D frequencies</li>
+
+</ul>
+
+
+<div id="org9b4d926" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone.png" alt="21cm_lightcone.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+<div id="org3823d96" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone_slice.png" alt="21cm_lightcone_slice.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf94cef8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf94cef8">ML4GLEAM project</h2>
+<ul>
+<li>project idea by Michele Bianco (EPFL) &amp; Philipp Denzel (ZHAW):
+<ul>
+<li>classification engine for extragalactic sources, tested on the GLEAM survey</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-orgf94cef8-split">
+
+
+<div id="orgb6b235e" class="figure">
+<p><img src="./assets/images/sdc3a/sources_wang+.png" alt="sources_wang+.png" height="1000px" style="margin:2px 2px 2px 200px;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Credit: <a href="https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620">Wang et al. (2010)</a></p>
+</div>
+
+</section>
+<section id="slide-orgf94cef8-split">
+
+<ul>
+<li>find help:
+<ul>
+<li>Elena found an interested person, Michele still searching for EPFL student</li>
+<li>assists for paper: Mark Sargent (ISSI, Bern) &amp; Anna Bonaldi (SKAO, Manchester)</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1f7cd68" class="upperlefth" data-background-iframe="https://gleamoscope.icrar.org/gleamoscope/trunk/src/" data-background-interactive;>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1f7cd68">GLEAM</h3>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfc9c38d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgfc9c38d">test dataset</h3>
+<ol>
+<li class="on"><input type='checkbox' checked='checked' /> image downloader: FITS files for each frequency band</li>
+<li class="off"><input type='checkbox' /> convert coordinate system of FITS files ZEA &#x27F6; ICRS</li>
+<li class="on"><input type='checkbox' checked='checked' /> get catalog for extragalactic source positions</li>
+
+</ol>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org151e447">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org151e447">training dataset</h3>
+<ol>
+<li class="trans"><input type='checkbox' /> check literature (more recent papers not yet found)
+<ul>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620">Wang et al. (2010)</a> section 2.3</li>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://academic.oup.com/mnras/article/389/3/1319/1019026?login=true">Jélic et al. (2008)</a> section 4</li>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://academic.oup.com/mnras/article/391/1/383/1125147?login=true">Gleser et al. (2008)</a> section 4.2</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> meeting with Mark Sargent (ISSI) &amp; Anna Bonaldi (SKAO)</li>
+<li class="off"><input type='checkbox' /> get USHUU halo catalog (relevant redshifts?)</li>
+<li class="off"><input type='checkbox' /> apply models to halo catalog</li>
+<li class="off"><input type='checkbox' /> create lightcone (frequency evolution of radio sources)
+<ul>
+<li>&#x27F6; target catalog (positions)</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> use OSKAR/Karabo for mock observation and systematics</li>
+
+</ol>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb712f6e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb712f6e">ML setup</h3>
+<ol>
+<li class="off"><input type='checkbox' /> decide on task (classification, classification+localization)</li>
+<li class="off"><input type='checkbox' /> find architecture: any ideas?</li>
+<li class="off"><input type='checkbox' /> possibility of cross-referencing with other surveys
+<ul>
+<li>i.e. include priors &#x27F6; Bayesian CNNs?</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> explainability of the model is important (audience: astronomers)</li>
+
+</ol>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true, margin: 0.05,
+minScale: 0.2, maxScale: 4.5,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>
