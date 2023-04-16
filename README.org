@@ -10,9 +10,11 @@ and my customized CSS style sheets, see
 [[https://github.com/phdenzel/reveal.js][https://github.com/phdenzel/reveal.js]]).
 
 
-* Presentations [4/5]
+* Presentations [6/7]
 
-- [ ] ~ivs_slides/230322~: A few slides on the SKACH project @ ZHAW
+
+- [X] ~ivs_meetings/230419~: A few slides on the SKACH project(s) @ ZHAW
+- [X] ~ivs_meetings/230322~: A few slides on the SKACH project @ ZHAW
   for the IVS group meeting
 - [X] ~skach_winter_230111~: The presentation for the SKACH winter meeting
 - [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
