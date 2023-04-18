@@ -232,15 +232,15 @@ g1 (TNG50), Credit: IllustrisTNG
 - on archlinux 6.2.10-arch1-1 / Intel i7-7700K / 64 GB DDR3 / ext4 / SATA: 6GB/s & 256 MB Cache
 
 #+attr_html: :align center :style border:0.1px solid; margin-top: 30px;
-|---+------------------------+-------------------------|
-|   | dvc / time [s]         | oxen / time [s]         |
-|---+------------------------+-------------------------|
-| ! | >                      | >                       |
-|   | init / 1.843 @ 68% CPU | init / 3.5888 @ 12% CPU |
-|   | add /                  | add /                   |
-|   | commit /               | commit /                |
-|   | push / nil             | push / nil              |
-|---+------------------------+-------------------------|
+|---+------------------------------+-----------------------------|
+|   | dvc / time [s] ()            | oxen / time [s]             |
+|---+------------------------------+-----------------------------|
+| ! | >                            | >                           |
+|   | init / 1.843 @ 68% CPU       | init / 3.5888 @ 12% CPU     |
+|   | add / 98384.03 @ 48% CPU     | add / 35331.82 @ 50% CPU    |
+|   | commit / 81091.10 @ 27% CPU  | commit / 58425.70 @ 16% CPU |
+|   | push / nil                   | push / nil                  |
+|---+------------------------------+-----------------------------|
 
 - My opinion: ~oxen~ is simple, and all I am looking for
   - ~oxen~ is faster, but only marginally in practice
