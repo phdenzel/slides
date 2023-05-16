@@ -1,6 +1,6 @@
 #+AUTHOR: Philipp Denzel
 #+TITLE: IVS group meeting
-#+DATE: 2023/04/19 Wed - ZHAW
+#+DATE: 2023/05/17 Wed - ZHAW
 
 # #+OPTIONS: author:nil
 # #+OPTIONS: email:nil
@@ -121,7 +121,7 @@ Title slide
 #+REVEAL_TOC_SLIDE_BACKGROUND_SIZE: 500px
 
 
-* Recap
+* (Recap)
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
 :END:
@@ -186,19 +186,6 @@ g1 (TNG50), Credit: IllustrisTNG
 - images (3D projections from visibilities and/or simulations)
 
 
-* Ongoing work
-
-#+begin_src emacs-lisp :exports none :results none
-  (setq org-html-checkbox-type 'html)
-#+end_src
-
-- [X] Adversarial models: 
-  - [X] CycleGAN
-  - [X] Pix2pix
-- [ ] Flow-based generative models
-- [ ] Diffusion models
-
-
 ** Pix2Pix
 
 - [[https://github.com/phillipi/pix2pix][pix2pix by I. Phillipi]] (in lua torch)
@@ -228,41 +215,7 @@ g1 (TNG50), Credit: IllustrisTNG
 - PixelGAN vs. PatchGAN
 
 
-** Data versioning: testing ~oxen~ against ~dvc~
-
-- on dataset: *ImageNet* (Winter 2021) with ~zsh~'s ~time~ macro
-- on archlinux 6.2.10-arch1-1 / Intel i7-7700K / 64 GB DDR3 / ext4 / SATA: 6GB/s & 256 MB Cache
-
-#+attr_html: :style border:0.1px solid; margin-top: 30px; text-align: right;
-|---+--------+----------------------+-----------------------|
-|   |  cmd   | dvc timing [s] @ CPU | oxen timing [s] @ CPU |
-|---+--------+----------------------+-----------------------|
-| ! |  <c>   |                  <r> |                   <r> |
-|   |  init  |            1.8 @ 68% |             3.6 @ 12% |
-|   |  add   |        98384.0 @ 48% |         35331.8 @ 50% |
-|   | commit |        81091.1 @ 27% |         58425.7 @ 16% |
-|   |  push  |                  nil |                   nil |
-|---+--------+----------------------+-----------------------|
-
-- My opinion: ~oxen~ is simple, and all I am looking for
-  - ~oxen~ is faster, but only marginally in practice
-  - ~dvc~ integrates more features (but mostly useless)
-
-
-* The SKA Data Challenge
-{{{h3(Tomographic imaging of the 21-cm signal)}}}
-
-- Probe reionization process by observing the redshifted 21-cm signal $\delta T_{b} \approx n_{\text{HI}}(\theta,z)$
-- Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies
-- 3D tomographic dataset a.k.a /21-cm lightcones/: 2D angles + 1D frequencies
-
-#+ATTR_HTML: :height 400px :align left :style float:left :style margin:2px 2px 2px 200px;
-[[./assets/images/sdc3a/21cm_lightcone.png]]
-#+ATTR_HTML: :height 400px :align left :style float:right :style margin:2px 2px 2px 200px;
-[[./assets/images/sdc3a/21cm_lightcone_slice.png]]
-
-
-* ML4GLEAM project
+** ML4GLEAM project
 
 - project idea by Michele Bianco (EPFL) & Philipp Denzel (ZHAW):
   - classification engine for extragalactic sources, tested on the GLEAM survey
@@ -280,20 +233,20 @@ g1 (TNG50), Credit: IllustrisTNG
   - assists for paper: Mark Sargent (ISSI, Bern) & Anna Bonaldi (SKAO, Manchester)
 
 
-** GLEAM
+*** GLEAM
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperlefth" data-background-iframe="https://gleamoscope.icrar.org/gleamoscope/trunk/src/" data-background-interactive;
 :END:
 
 
-** test dataset
+*** test dataset
 
 1) [X] image downloader: FITS files for each frequency band
 2) [ ] convert coordinate system of FITS files ZEA @@html:&#x27F6;@@ ICRS
 3) [X] get catalog for extragalactic source positions
 
 
-** training dataset
+*** training dataset
 
 1) [-] check literature (more recent papers not yet found)
    - [X] [[https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620][Wang et al. (2010)]] section 2.3
@@ -307,7 +260,7 @@ g1 (TNG50), Credit: IllustrisTNG
 6) [ ] use OSKAR/Karabo for mock observation and systematics
 
 
-** ML setup
+*** ML setup
 
 1) [ ] decide on task (classification, classification+localization)
 2) [ ] find architecture: any ideas?
@@ -316,7 +269,7 @@ g1 (TNG50), Credit: IllustrisTNG
 4) [ ] explainability of the model is important (audience: astronomers)
 
 
-** Bayesian neural nets
+*** Bayesian neural nets
 
 {{{h4(Classically discrete)}}}
 
@@ -470,3 +423,197 @@ g1 (TNG50), Credit: IllustrisTNG
 
 #+RESULTS:
 [[file:assets/images/bayesian_nn_scheme.png]]
+
+
+
+
+* Ongoing work for SKA
+
+#+begin_src emacs-lisp :exports none :results none
+  (setq org-html-checkbox-type 'html)
+#+end_src
+
+Testing generative models for the SKA project:
+
+- [X] Adversarial models: 
+  - [X] CycleGAN
+  - [X] Pix2pix
+- [ ] Flow-based generative models
+- [ ] Diffusion models
+
+
+** Data versioning: testing ~oxen~ against ~dvc~
+
+- on dataset: *ImageNet* (Winter 2021) with ~zsh~'s ~time~ macro
+- on archlinux 6.2.10-arch1-1 / Intel i7-7700K / 64 GB DDR3 / ext4 / SATA: 6GB/s & 256 MB Cache
+
+#+attr_html: :style border:0.1px solid; margin-top: 30px; text-align: right;
+|---+--------+----------------------+-----------------------|
+|   |  cmd   | dvc timing [s] @ CPU | oxen timing [s] @ CPU |
+|---+--------+----------------------+-----------------------|
+| ! |  <c>   |                  <r> |                   <r> |
+|   |  init  |            1.8 @ 68% |             3.6 @ 12% |
+|   |  add   |        98384.0 @ 48% |         35331.8 @ 50% |
+|   | commit |        81091.1 @ 27% |         58425.7 @ 16% |
+|   |  push  |                  nil |                   nil |
+|---+--------+----------------------+-----------------------|
+
+- My opinion: ~oxen~ is simple, and all I am looking for
+  - ~oxen~ is faster, but only marginally in practice
+  - ~dvc~ integrates more features (but mostly useless)
+
+
+** Update: data versioning
+
+- Experiment
+  1) changing individual images
+     - 200 random samples
+     - blacking out 8x8 patch at the top left corner
+  2) adding & commiting the changes
+     - ~dvc~: roughly 20 hours / ~oxen~: roughly 15 hours
+- I can't recommend any tool for truly large datasets (-> 1B samples/~1TB)
+  - ~status~ check takes roughly 4-6 hours for either tool (~oxen~, ~dvc~)
+
+
+** BTW...! archlinux adopted Python 3.11 two weeks ago
+
+- consistent speed-up between 20%-80%
+
+#+ATTR_HTML: :height 800px :align center :style float:center
+[[./assets/images/python/python_3.11.png]]
+
+
+** HDF5/h5py for pytorch datasets
+
+#+ATTR_HTML: :height 300px :align left :style float:left :style padding: 0px 50px 10px 250px;
+[[./assets/images/hdf5/HDF_logo.png]]
+#+ATTR_HTML: :height 100px :align left :style float:left :style padding: 75px 10px 10px 10px;
+[[./assets/images/hdf5/ampersand.png]]
+#+ATTR_HTML: :height 350px :align left :style float:right :style padding: 0px 0px 10px 50px;
+[[./assets/images/python/Python_logo.png]]
+#+ATTR_HTML: :height 300px :align left :style float:right :style padding: 0px 0px 10px 50px;
+[[./assets/images/python/pytorch_icon.png]]
+
+
+*** HDF5: filesystem analogue
+
+#+ATTR_HTML: :height 800px :align center :style float:center
+[[./assets/images/hdf5/like_a_filesystem.png]]
+
+
+*** HDF5 scheme
+
+- Groups:
+  - provide structure
+  - POSIX like paths, e.g. ~/simulations/0001/images~, etc.
+- Datasets
+  - arrays of many data types, e.g. i32, f64, byte strings, etc.
+  - storage layouts: contiguous or chunked
+  - optimization filters, e.g. compression, shuffling, or checksums
+- Attributes
+  - metadata (hash map)
+  - arbitrary types, up to 64KB
+
+
+*** HDF5 chunking
+
+#+ATTR_HTML: :height 800px :align center :style float:center
+[[./assets/images/hdf5/storage_layouts.png]]
+
+
+*** h5py
+
+#+begin_src python
+  # write HDF5 dataset
+  with h5py.File(filename, mode='w',
+                 rdcc_nbytes=(1<<30),  # 1<<20 = 1MB, 1<<30 = 1GB
+                 rdcc_w0=1,            # FIFO=0, FIFO+complete=1
+                 rdcc_nslots=10111     # prime, 10-100 times number of chunks
+                 ) as h5:
+      h5.create_group('/domainA')
+      # add dataset at /domainA/images
+      h5.create_dataset('images', data=domainA_array, chunks=(64, 512, 512),
+                        compression='lzf', shuffle=True))
+      h5.create_group('/domainB')
+      # add dataset at /domainB/images
+      h5.create_dataset('images', data=domainB_array, chunks=(64, 512, 512),
+                        compression='lzf', shuffle=True))
+#+end_src
+
+*** Problem: Dataloaders don't like h5py.Files
+
+- ~Dataset~ instances are passed to ~DataLoader~
+- ~DataLoader~ need ~Dataset~ instances to be serializeable for that
+- Problem: open ~h5py.Files~ can't be pickled, i.e. no serialization
+- Solution: lazy-loading the ~h5py.File~ in ~Dataset~ instance
+
+
+*** h5py + torch.utils.data.Dataset
+
+#+begin_src python
+  class H5Dataset(Dataset):
+      def __init__(self, h5_path, group):
+          self.h5_path = h5_path
+          self.group = group
+          self._h5 = None
+          self.length = self.h5[f"/{self.group}/dataset"].shape[0]
+          self._h5 = None  # GC will take care of it...
+
+      @property
+      def h5(self):
+          if self._h5 is None:  # lazy loading here!
+              self._h5 = h5py.File(self.h5_path, "r")
+          return self._h5
+
+      def __getitem__(self, index):
+          dataset = self.h5[f"/{self.group}/images"]
+          data = torch.from_numpy(dataset[index, ...])
+          metadata = self.h5[f"/{self.group}/metadata/labels"]
+          label = torch.from_numpy(metadata[index, ...])
+          return (data, label)
+
+      def __len__(self):
+          return self.length
+
+#+end_src
+
+
+* SDC3: my contribution finished -> consultant
+{{{h3(Tomographic imaging of the 21-cm signal)}}}
+
+- Probe reionization process by observing the redshifted 21-cm signal $\delta T_{b} \approx n_{\text{HI}}(\theta,z)$
+- Square Kilometre Array (SKA1-Low): Image sequence of the redshifted 21-cm signals at different observed frequencies
+- 3D tomographic dataset a.k.a /21-cm lightcones/: 2D angles + 1D frequencies
+
+#+ATTR_HTML: :height 400px :align left :style float:left :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone.png]]
+#+ATTR_HTML: :height 400px :align left :style float:right :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone_slice.png]]
+
+
+* ML4GLEAM: update
+
+- first candidate was not free for the anticipated workload
+- meeting with new candidate (Manuel Weiss) on 23 May
+
+
+* GL3DGen
+
+- proposal submitted to SNF Spark
+  - passed pre-screening
+  - awaiting response
+- possible extension with MT
+  - in contact with Rafael (embe)
+  - may start late summer
+
+
+* DL4IceH
+
+- I was approach by a friend @ ERNI (ML consultancy) & coach from ZSC Lions
+  - deep learning to improve training sessions
+  - advanced sensors & expensive camera equipment
+  - no idea how to use the data
+- databooster proposal discussion on Mon 22 May
+  - surveying literature
+    - not much on work on ice hockey
+    - pose tracking including hockey stick (Canadian universities)
