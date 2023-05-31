@@ -1,0 +1,348 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Image-to-image translation between{{{NL}}}SPH simulations and SKA mocks
+#+SUBTITLE: SKA research{{{NL}}}at the Centre for Artificial Intelligence (CAI){{{NL}}}Zurich University of Applied Sciences (ZHAW)
+#+DATE: 02/06/2023
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<span style="color:$1">$2</span>@@
+#+MACRO: fgbgcolor @@html:<span style="color:$1; background-color:$2">$3</span>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+# --- Useful org snippets
+# #+REVEAL_HTML: <div style="font-size: 80%;">
+# Some content with lower font size...
+# #+REVEAL_HTML: </div>
+#
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+# ------------------------------------------------------------------------------
+
+#+REVEAL_TITLE_SLIDE: <h2 style="padding-top: 150px">%t<h2>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px">%s</h4>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 70px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 25px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 25px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com">%a</a><span>, Frank-Peter Schilling, Elena Gavagnin </span> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* Slides on my website
+
+# Link @ https://phdenzel.github.io/...
+[[https://phdenzel.github.io/]]
+
+#+ATTR_HTML: :height 500px :style float: center; :style background-color: #FFFFFF;
+[[./assets/images/talk_qr.svg]]
+
+Link/QR code to the slides for later or to follow along
+
+
+* Current status
+
+- ZHAW still only has 1 SKACH project: *deep learning for SKA* [[https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5744/][@@html:&#x1f517;@@]]
+  - hydrodynamical simulations \nbsp @@html:&#x21FF;@@ \nbsp SKA mock observations
+  - more projects to come...
+
+#+BEGIN_NOTES
+- Today,  o give you an update about our current efforts at the Zurich
+  University of Applied Sciences
+- we're still a pretty small team at the Zurich University of Applied
+  Sciences
+- and have only 1 ongoing project in SKACH
+- but there's a lot to do, and we have a lot of ideas for projects, so
+  stay tuned...
+- maybe next time already, you'll see more presentations on how we use
+  AI in SKACH-related research
+#+END_NOTES
+
+
+* Goal
+
+- compress the knowledge from hydrodynamical and mock simulations to {{{NL}}}
+  - map properties from simulations to mock observations
+  - infer (hidden) astrophysical properties from observables
+- explore the usability of various deep learning techniques {{{NL}}}
+  for scientific (high-precision) data
+
+#+BEGIN_NOTES
+- our main goal, is not to produce SKA mocks from simulations...
+- but rather combine the knowledge from both domains and use it to
+  infer astrophysical properties from things that we can observe
+- and... obviously, we're interested in AI, and want to test how we
+  can use techniques which were trained on natrual images, and harness
+  them for scientific (high-precision) data analysis
+#+END_NOTES
+
+
+* Hydrodynamical simulations
+
+- cosmological & astrophysical processes from first principle
+- latest simulations reach (almost) petabyte sizes \nbsp @@html:&#x21FE;@@ \nbsp ideal for deep learning
+  - [[https://www.tng-project.org/][IllustrisTNG]], [[http://simba.roe.ac.uk/][Simba]], [[https://fire.northwestern.edu/][FIRE]], [[https://eagle.strw.leidenuniv.nl/][EAGLE]], Phoebos, and others
+
+#+BEGIN_NOTES
+- So... why am I talking about hydrodynamical simulations so much...
+- why are they so interesting?
+- well, as you all know... the Universe is big, and old
+- and most things about the Universe, we cannot observe directly (even
+  with a powerful telescope such as SKA)
+- but we know the basic laws of physics and have good theoretical
+  understanding about astrophysical and cosmological effects
+- if we run these in simulations, we can generate galaxy models from *first principle*!
+#+END_NOTES
+
+#+REVEAL: split
+#+ATTR_HTML: :style float: left; padding-left: 100px;
+- dark matter
+- gas (HI, HII, H_{2}, He, etc.)
+- velocities
+- stars
+- temperature
+- metallicity
+- turbulence
+- magnetic field strength
+- X-ray luminosity
+- Credit: [[https://www.tng-project.org/][IllustrisTNG Collaboration]]
+
+#+ATTR_HTML: :height 1000px :style float: right; padding-right: 200px;
+[[./assets/images/illustris/composite_TNG100-1.png]]
+
+#+BEGIN_NOTES
+- assuming our assumptions about the physical laws are correct,
+  simulations should produce realistic galaxies... which they do...
+- taking the IllustrisTNG simulations for instance, we can simulate
+  all these properties, of which most of them are not directly
+  observable with SKA
+- but we can use the data in these simulations and transfer it to mock
+  observations
+- or even better, use real observations and infer (hidden) properties
+  of the Universe as they are modelled by simulations (the dark matter
+  distribution for instance)
+- and this methodology was mainly inspired by the modelling of strong
+  gravitational lenses, where just by observing how light bends, we
+  can predict the dark matter surface density distribution of the
+  lensing galaxy.
+#+END_NOTES
+
+
+* Last time: CycleGAN
+[[https://arxiv.org/abs/1703.10593][Zhu et al. (2017)]]
+
+- two generator - discriminator pairs
+- learn the mapping from domain A \nbsp @@html:&#x21FF;@@ \nbsp B and vice versa
+
+#+ATTR_HTML: :height 300px
+[[./assets/images/cycle-gan/doge_starrynight.jpg]]
+
+#+BEGIN_NOTES
+- Already last time, I talked about the CycleGAN model which was
+  designed to translate images from one domain into another and vice
+  versa.
+- You've heard it yesterday already...
+- These models work great when trained on natural images with a much
+  smaller dynamic range as to what we encounter in astrophysical data
+- But for scientific "high-precision" data, there has been
+  exponentially less work done so far...
+#+END_NOTES
+
+
+* CycleGAN experiments
+
+- dataset: roughly 10'000 galaxies from Illustris TNG50-1
+- brightness temperature of the gas \nbsp $T_b(\mathbf{x}) = 189 h \frac{H_0}{a^2H(a)} \frac{\rho_{\text{HI}}(\mathbf{x})}{\rho_c}\,\text{mK}$
+
+#+ATTR_HTML: :height 700px
+[[./assets/images/cycle-gan/cycle-gan_scheme.png]]
+
+#+BEGIN_NOTES
+- We tried to apply these models anyways...
+- Here is the main slide of last meeting's presentation
+#+END_NOTES
+
+
+* Problem with training GANs
+
+- GANs: $\quad \mathbb{E}_{x\sim p_\text{data}}[\log{D_\theta(x)}] + \mathbb{E}_{z\sim q(z)}[1-\log{D_\theta(G_\theta(z))}]$
+  #+ATTR_HTML: :style font-size: 80%;
+  - {{{color(#00AF87, fast inference)}}} and {{{color(#00AF87, high quality results)}}}
+  - {{{color(#D7005F, implicit density)}}} and {{{color(#D7005F, difficult to diagnose)}}}
+  - {{{color(#D7005F, mode collapse)}}} @@html:&#x21FE;@@ not so much an issue for conditional GANs (such as Pix2Pix)
+  - {{{color(#D7005F, vanishing gradients)}}} @@html:&#x21FE;@@ regularization (trades quality for stability)
+
+
+** Failure mode
+
+#+ATTR_HTML: :height 700px
+#+CAPTION: Example discriminator loss ending in failure mode
+[[./assets/images/skais/wand_Dloss_f97416b9fe57.png]]
+
+
+* Pile of data @@html:&#x21FE;@@ AI system
+
+#+ATTR_HTML: :height 700px
+#+CAPTION: @@html:<a href="https://xkcd.com/1838/">https://xkcd.com/1838/</a>@@
+[[./assets/images/xkcd/xkcd_1838.png]]
+
+
+* More parameters, better models?
+
+- hype over generative models: GPT-4, Vicuna, Stable Diffusion, etc.
+  - larger, more complex \nbsp @@html:&#x21FE;@@ \nbsp better
+  - sidenote: No Moat ([[https://www.semianalysis.com/p/google-we-have-no-moat-and-neither][interesting article on this topic]])
+- better: adjust the complexity of your model{{{NL}}}to the size of your dataset and task at hand
+
+
+# * Generative deep learning
+# #+ATTR_REVEAL: :frag (none appear)
+# - find parameters $\theta$ to approximate a data density{{{NL}}}
+#   (optionally conditioned on some information $c$)
+#   $$ P_\theta(x|c) \sim P_\text{data}(x|c) $$
+# - in contrast to discriminative deep learning:
+#   - pattern recognition
+# - (inspired) creativity \nbsp @@html:&#x21FE;@@ \nbsp much more ambitious
+
+
+* Pix2Pix
+
+- [[https://github.com/phillipi/pix2pix][pix2pix by I. Phillipi]] (originally in lua torch)
+- [[https://affinelayer.com/pix2pix/][blog post by Ch. Hesse]] (difference: Pix2Pix & CycleGAN)
+
+#+REVEAL: split
+  
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+#+CAPTION: Credit: Ch. Hesse
+[[./assets/images/pix2pix/pix2pix_generator_training.webp]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+#+CAPTION: Credit: Ch. Hesse
+[[./assets/images/pix2pix/pix2pix_discriminator_training.webp]]
+
+
+* Domains
+
+#+ATTR_HTML: :height 800px
+#+CAPTION: current status of our pix2pix network
+[[./assets/images/skais/skais_pix2pix.png]]
+
+
+* Pix2Pix vs. CycleGAN
+
+- tested on a set of 500 TNG50-1 galaxies
+  - evaluation metric: $\chi_{\nu}^{2} = \frac{(D_{i,\text{model}} - D_{i,\text{data}})^{2}}{N\sigma_{i}^{2}}${{{NL}}}
+    (L2 loss normalized with Poisson noise)
+
+#+ATTR_HTML: :style margin-top: 75px;
+|   | domain A | domain B | CycleGAN | Pix2Pix          |
+| ! |          |          |        / |                  |
+|---+----------+----------+----------+------------------|
+|   | gas      | HI       |    24.47 | 12.82            |
+|   | HI       | gas      |    26.51 | 13.60            |
+|   | gas      | 21cm     |    36.29 | (still training) |
+|   | 21cm     | gas      |    48.10 | (still training) |
+
+#+BEGIN_NOTES
+- we pitched CycleGAN against Pix2Pix models
+- caveat: these models were trained using different techniques
+#+END_NOTES
+
+
+* Future plans
+
+- better systematics with Karabo
+- compare with actual strong gravitational lensing results
+- integrate normalizing flow and diffusion networks
+- expand from 2D to 3D (point cloud networks)
