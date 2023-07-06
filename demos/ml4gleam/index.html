@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>ML4GLEAM</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<meta name="description" content="">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-opacity="0.6"><h1>ML4GLEAM</h1>
+<h3>VT project proposal</h3>
+<h3></h3>
+<div style="padding-top: 50px">2023/07/05 Wed - ZHAW</div>
+<div style="padding-top: 50px">by</div>
+<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+</section>
+<section id="sec-table-of-contents" data-background-size="500px"><div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#/slide-orga63ed48">SKA project - CAI &amp; IWI</a></li>
+<li><a href="#/slide-orgdfa1ae8">Background</a></li>
+<li><a href="#/slide-org9e980ee">ML4GLEAM project</a></li>
+<li><a href="#/slide-org89bf2a8">Summary</a></li>
+</ul>
+</div>
+</div>
+</section>
+<aside class="notes">
+<p>
+Title slide
+</p>
+
+</aside>
+
+<section>
+<section id="slide-orga63ed48">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orga63ed48">SKA project - CAI &amp; IWI</h2>
+<ul>
+<li>members of the Swiss SKA consortium (aka SKACH)</li>
+
+</ul>
+
+
+<div id="org5db7977" class="figure">
+<p><img src="./assets/images/zhaw_ska_team.jpeg" alt="zhaw_ska_team.jpeg" height="830px" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Elena (gava), Philipp (denp), and Frank (scik)</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgdfa1ae8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgdfa1ae8">Background</h2>
+<div class="outline-text-2" id="text-orgdfa1ae8">
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7617571">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7617571">Some terminology</h3>
+<ul>
+<li><b>Cosmology</b>: study of the observable Universe's
+<ul>
+<li>origins and evolution</li>
+<li>large-scale structure</li>
+<li>physical laws</li>
+
+</ul></li>
+
+</ul>
+</section>
+<section id="slide-org7617571-split">
+
+<h3>Some terminology</h3>
+<ul>
+<li>The <b>Big Bang theory</b> &#x27F6; the Cosmological Standard Model ($&Lambda;$CDM)
+<ul>
+<li>Einstein's theory of <b>General Relativity</b></li>
+<li><b>Astrophysics</b>: galactic dynamics, stellar physics, etc.</li>
+<li><b>Particle physics</b>: primordial nucleosynthesis</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5085b2e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5085b2e">An (abbreviated) History of the Universe</h3>
+<ul>
+<li>expansion of the Universe from an initial state (not from a singularity!)
+<ul>
+<li>at 10<sup>-43</sup> sec: Planck epoch (high density/energy state), size ~ 10<sup>-35</sup> m</li>
+<li>at 10<sup>-37</sup> sec: the gravitational force decouples, the Universe expands
+<ul>
+<li>Inflation: exponential expansion and cooling</li>
+
+</ul></li>
+<li>at 10<sup>-32</sup> sec: quark-gluon plasma, size ~ 10<sup>43</sup> m
+<ul>
+<li>symmetry-breaking phase transitions cause other forces to separate</li>
+
+</ul></li>
+<li>at 10<sup>-6</sup> sec: baryons form, expansion and cooling continues</li>
+<li>at 379'000 years: Universe becomes less opaque &#x27F6; CMB</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org991356f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org991356f">The Cosmic Microwave Background</h4>
+
+<div id="org7801204" class="figure">
+<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018.png" alt="ESA_Planck_CMB2018.png" height="830px" />
+</p>
+<p><span class="figure-number">Figure 2: </span>2018, Credit: ESA/Planck</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-orgebf2d81">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="orgebf2d81">Cosmic Evolution</h4>
+
+<div id="orgea7076f" class="figure">
+<p><img src="./assets/images/cosmo/cosmic-epochs.jpeg" alt="cosmic-epochs.jpeg" height="830px" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Credit: NASA/ESA/A. Felid (STScI)</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org58b626b" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org58b626b">Radio telescopes</h3>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org16318fa">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org16318fa">Dirty images</h3>
+
+<div id="orgcff7104" class="figure">
+<p><img src="./assets/images/radio_schematics/dirty_image.png" alt="dirty_image.png" width="1200px" align="center" style="padding: 0px 10px 10px 0px;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>Credit: E. Tolley (EPFL)</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org30bd538" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org30bd538">Training data from simulations</h3>
+<p class="footer-item">
+TNG100, Credit: IllustrisTNG
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3fb8b6a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3fb8b6a">Data formats</h3>
+<ul>
+<li>point clouds (3D coordinates: x, y, z)</li>
+<li>lightcones (2D images + 1D time: &theta;, &phi;, frequency)</li>
+<li>visibilities (telescope data cubes using OSKAR)</li>
+<li>images (3D projections from simulations or "iFFTs" of visibilities)</li>
+
+</ul>
+
+
+<div id="orgffe07e5" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone.png" alt="21cm_lightcone.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+<div id="org418aff4" class="figure">
+<p><img src="./assets/images/sdc3a/21cm_lightcone_slice.png" alt="21cm_lightcone_slice.png" height="400px" align="left" style="margin:2px 2px 2px 200px;" />
+</p>
+</div>
+
+
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9e980ee">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org9e980ee">ML4GLEAM project</h2>
+<ul>
+<li>project idea by Michele Bianco (EPFL) &amp; Philipp Denzel (ZHAW):
+<ul>
+<li>classification model for extragalactic sources, tested on the GLEAM survey</li>
+
+</ul></li>
+
+</ul>
+
+</section>
+<section id="slide-org9e980ee-split">
+
+
+<div id="orgd0fdd1e" class="figure">
+<p><img src="./assets/images/sdc3a/sources_wang+.png" alt="sources_wang+.png" height="1000px" style="margin:2px 2px 2px 200px;" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Credit: <a href="https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620">Wang et al. (2010)</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9cfc7f9" class="upperlefth" data-background-iframe="https://gleamoscope.icrar.org/gleamoscope/trunk/src/" data-background-interactive;>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9cfc7f9">GLEAM</h3>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org68153d6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org68153d6">test dataset</h3>
+<ol>
+<li class="on"><input type='checkbox' checked='checked' /> image downloader: FITS files for each frequency band</li>
+<li class="off"><input type='checkbox' /> convert coordinate system of FITS files ZEA &#x27F6; ICRS</li>
+<li class="on"><input type='checkbox' checked='checked' /> get catalog for extragalactic source positions
+<ul>
+<li>contains the coordinates of all sources, their brightness, and shapes</li>
+
+</ul></li>
+
+</ol>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4e941cf">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org4e941cf">training dataset</h3>
+<ol>
+<li class="trans"><input type='checkbox' /> check literature
+<ul>
+<li class="off"><input type='checkbox' /> <a href="https://arxiv.org/abs/2212.02538">Riggi et al. (2022)</a></li>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620">Wang et al. (2010)</a> section 2.3</li>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://academic.oup.com/mnras/article/389/3/1319/1019026?login=true">Jélic et al. (2008)</a> section 4</li>
+<li class="on"><input type='checkbox' checked='checked' /> <a href="https://academic.oup.com/mnras/article/391/1/383/1125147?login=true">Gleser et al. (2008)</a> section 4.2</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> get USHUU halo catalog (relevant redshifts?)</li>
+<li class="off"><input type='checkbox' /> apply models to halo catalog</li>
+<li class="off"><input type='checkbox' /> create lightcone (frequency evolution of radio sources) &#x27F6; target catalog (positions)</li>
+<li class="off"><input type='checkbox' /> use OSKAR/Karabo for mock observation and systematics</li>
+
+</ol>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0cf9441">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org0cf9441">ML setup</h3>
+<ol>
+<li class="off"><input type='checkbox' /> decide on task (classification, classification+localization)</li>
+<li class="off"><input type='checkbox' /> find architecture: any ideas? if not try them all e.g. (<a href="https://github.com/open-mmlab/mmdetection">mmdetection</a>)</li>
+<li class="off"><input type='checkbox' /> possibility of cross-referencing with other surveys
+<ul>
+<li>i.e. include priors &#x27F6; Bayesian CNNs?</li>
+
+</ul></li>
+<li class="off"><input type='checkbox' /> explainability of the model is important (audience: astronomers)
+<ul>
+<li>uncertainty estimation method</li>
+
+</ul></li>
+
+</ol>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org89bf2a8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org89bf2a8">Summary</h2>
+<ul>
+<li>main goal: classification of the GLEAM catalog</li>
+<li>challenge: adjust conventional methods to scientific, astrophysical data</li>
+<li>collaboration between EPFL &amp; ZHAW
+<ul>
+<li>some communication needed</li>
+<li>CSCS allocation: Piz Daint supercomputer</li>
+<li>EPFL: simulation of the training dataset
+<ul>
+<li>first data samples by end of July</li>
+
+</ul></li>
+<li>ZHAW: development of the classification model</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4a34739">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org4a34739">What this project does for you&#x2026;</h3>
+<ul>
+<li>you will:
+<ul>
+<li>work on complex, astronomical data</li>
+<li>work on Piz Daint supercomputer (small CSCS allocation will be requested)</li>
+<li>learn about the latest classification/detection models</li>
+<li>use XAI methods for uncertainty estimation</li>
+<li>adopt the scientific methodology</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org55473f8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org55473f8">Questions?</h3>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<p> Created by phdenzel. </p>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealMath, RevealZoom],
+width: 1920, height: 1080, center: true, margin: 0.05,
+minScale: 0.2, maxScale: 4.5,
+progress: true, history: false, slideNumber: false,
+controls: true, keyboard: true, previewLinks: true,
+mathjax: true,
+transition: 'fade',
+navigationMode: 'default'
+});
+
+</script>
+</body>
+</html>

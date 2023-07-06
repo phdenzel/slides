@@ -1,0 +1,302 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: ML4GLEAM
+#+DATE: 2023/07/05 Wed - ZHAW
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: toc:1
+#+OPTIONS: num:nil
+# #+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# #+OPTIONS: reveal_single_file: t
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+
+# #+REVEAL_TITLE_SLIDE: <div style="padding: 0px 30px 250px 30px"> <a href='https://www.uzh.ch/de.html'> <img src='./assets/images/uzh_logo_d_neg_retina.png' alt='UZH logo' width='294px' height='100px' style="float: left"> </a> </div>
+#+REVEAL_TITLE_SLIDE: <h1>%t</h1>
+#+REVEAL_TITLE_SLIDE: <h3>VT project proposal</h3>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+
+#+BEGIN_NOTES
+Title slide
+#+END_NOTES
+
+#+REVEAL_TOC_SLIDE_BACKGROUND_SIZE: 500px
+
+* SKA project - CAI & IWI
+
+- members of the Swiss SKA consortium (aka SKACH)
+
+#+ATTR_HTML: :height 830px
+#+CAPTION: Elena (gava), Philipp (denp), and Frank (scik)
+[[./assets/images/zhaw_ska_team.jpeg]]
+
+
+* Background
+
+
+** Some terminology
+
+- *Cosmology*: study of the observable Universe's
+  - origins and evolution
+  - large-scale structure
+  - physical laws
+#+REVEAL: split:t
+- The *Big Bang theory* @@html:&#x27F6;@@ the Cosmological Standard Model ($\Lambda$CDM)
+  - Einstein's theory of *General Relativity*
+  - *Astrophysics*: galactic dynamics, stellar physics, etc.
+  - *Particle physics*: primordial nucleosynthesis
+
+
+** An (abbreviated) History of the Universe
+
+- expansion of the Universe from an initial state (not from a singularity!)
+  - at 10^{-43} sec: Planck epoch (high density/energy state), size ~ 10^{-35} m
+  - at 10^{-37} sec: the gravitational force decouples, the Universe expands
+    - Inflation: exponential expansion and cooling
+  - at 10^{-32} sec: quark-gluon plasma, size ~ 10^{43} m
+    - symmetry-breaking phase transitions cause other forces to separate
+  - at 10^{-6} sec: baryons form, expansion and cooling continues
+  - at 379'000 years: Universe becomes less opaque @@html:&#x27F6;@@ CMB
+
+
+*** The Cosmic Microwave Background
+#+ATTR_HTML: :height 830px
+#+CAPTION: 2018, Credit: ESA/Planck
+[[./assets/images/cosmo/ESA_Planck_CMB2018.png]]
+# #+CAPTION: @@html:<a href="https://archlinux.org">@@2018, Credit: ESA/Planck @@html:</a>@@
+
+
+*** Cosmic Evolution
+#+ATTR_HTML: :height 830px
+#+CAPTION: Credit: NASA/ESA/A. Felid (STScI)
+[[./assets/images/cosmo/cosmic-epochs.jpeg]]
+
+
+** Radio telescopes
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# \begin{equation}
+#   V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+# \end{equation}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+# {{{NL}}}
+
+
+** Dirty images
+
+#+ATTR_HTML: :width 1200px :align center :style float:center :style padding: 0px 10px 10px 0px;
+#+CAPTION: Credit: E. Tolley (EPFL)
+[[./assets/images/radio_schematics/dirty_image.png]]
+
+
+** Training data from simulations
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4#t=18.5" data-background-video-muted data-background-size="contain" data-background-opacity="0.8"
+:END:
+
+# #+REVEAL_HTML: <video width="1920" height="auto" style="max-height:75vh" data-autoplay controls>
+# #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4#t=18.5" type="video/mp4" />
+# #+REVEAL_HTML: </video>
+
+#+ATTR_HTML: :class footer-item
+TNG100, Credit: IllustrisTNG
+
+
+** Data formats
+
+- point clouds (3D coordinates: x, y, z)
+- lightcones (2D images + 1D time: \theta, \phi, frequency)
+- visibilities (telescope data cubes using OSKAR)
+- images (3D projections from simulations or "iFFTs" of visibilities)
+
+#+ATTR_HTML: :height 400px :align left :style float:left :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone.png]]
+#+ATTR_HTML: :height 400px :align left :style float:right :style margin:2px 2px 2px 200px;
+[[./assets/images/sdc3a/21cm_lightcone_slice.png]]
+
+
+
+
+* ML4GLEAM project
+
+- project idea by Michele Bianco (EPFL) & Philipp Denzel (ZHAW):
+  - classification model for extragalactic sources, tested on the GLEAM survey
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 1000px :style float:left :style margin:2px 2px 2px 200px;
+#+CAPTION: Credit: @@html:<a href="https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620">Wang et al. (2010)</a>@@
+[[./assets/images/sdc3a/sources_wang+.png]]
+
+
+** GLEAM
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperlefth" data-background-iframe="https://gleamoscope.icrar.org/gleamoscope/trunk/src/" data-background-interactive;
+:END:
+
+
+** test dataset
+
+#+begin_src emacs-lisp :exports none :results none
+  (setq org-html-checkbox-type 'html)
+#+end_src
+
+
+1) [X] image downloader: FITS files for each frequency band
+2) [ ] convert coordinate system of FITS files ZEA @@html:&#x27F6;@@ ICRS
+3) [X] get catalog for extragalactic source positions
+   - contains the coordinates of all sources, their brightness, and shapes
+
+
+** training dataset
+
+1) [-] check literature
+   - [ ] [[https://arxiv.org/abs/2212.02538][Riggi et al. (2022)]]
+   - [X] [[https://iopscience.iop.org/article/10.1088/0004-637X/723/1/620][Wang et al. (2010)]] section 2.3
+   - [X] [[https://academic.oup.com/mnras/article/389/3/1319/1019026?login=true][Jélic et al. (2008)]] section 4
+   - [X] [[https://academic.oup.com/mnras/article/391/1/383/1125147?login=true][Gleser et al. (2008)]] section 4.2
+3) [ ] get USHUU halo catalog (relevant redshifts?)
+4) [ ] apply models to halo catalog
+5) [ ] create lightcone (frequency evolution of radio sources) @@html:&#x27F6;@@ target catalog (positions)
+6) [ ] use OSKAR/Karabo for mock observation and systematics
+
+
+** ML setup
+
+1) [ ] decide on task (classification, classification+localization)
+2) [ ] find architecture: any ideas? if not try them all e.g. ([[https://github.com/open-mmlab/mmdetection][mmdetection]])
+3) [ ] possibility of cross-referencing with other surveys
+   - i.e. include priors @@html:&#x27F6;@@ Bayesian CNNs?
+4) [ ] explainability of the model is important (audience: astronomers)
+   - uncertainty estimation method
+
+
+* Summary
+
+- main goal: classification of the GLEAM catalog
+- challenge: adjust conventional methods to scientific, astrophysical data
+- collaboration between EPFL & ZHAW
+  - some communication needed
+  - CSCS allocation: Piz Daint supercomputer
+  - EPFL: simulation of the training dataset
+    - first data samples by end of July
+  - ZHAW: development of the classification model
+
+** What this project does for you...
+- you will:
+  - work on complex, astronomical data
+  - work on Piz Daint supercomputer (small CSCS allocation will be requested)
+  - learn about the latest classification/detection models
+  - use XAI methods for uncertainty estimation
+  - adopt the scientific methodology
+    
+** Questions?
