@@ -1,6 +1,6 @@
 #+AUTHOR: Philipp Denzel
 #+TITLE: Image-to-image translation between{{{NL}}}SPH simulations and SKA mocks
-#+SUBTITLE: SKA research{{{NL}}}at the Centre for Artificial Intelligence (CAI){{{NL}}}Zurich University of Applied Sciences (ZHAW)
+#+SUBTITLE: SKA research at{{{NL}}}Zurich University of Applied Sciences (ZHAW){{{NL}}}@@html:<h5>@@Centre for Artificial Intelligence (CAI){{{NL}}}Institute for Business Information Technology@@html:</h5>@@
 #+DATE: 02/06/2023
 
 # #+OPTIONS: author:nil
@@ -11,6 +11,8 @@
 #+OPTIONS: toc:nil
 #+OPTIONS: timestamp:nil
 #+PROPERTY: eval no
+
+# #+OPTIONS: reveal_single_file:t
 
 # --- Configuration - more infos @ https://revealjs.com/config/
 # --- General behaviour
@@ -118,16 +120,27 @@ to
 #+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
 
 
+#+BEGIN_NOTES :export none
+- Today, I give you an update on our current efforts at the Zurich
+  University of Applied Sciences of our still pretty small team
+#+END_NOTES
+
 * Slides on my website
 
 # Link @ https://phdenzel.github.io/...
-[[https://phdenzel.github.io/]]
+[[https://phdenzel.github.io/assets/blog-assets/017-skach-spring-meeting/slides.html][https://phdenzel.github.io/]]
 
 #+ATTR_HTML: :height 500px :style float: center; :style background-color: #FFFFFF;
 [[./assets/images/talk_qr.svg]]
 
 Link/QR code to the slides for later or to follow along
 
+#+BEGIN_NOTES
+- As always, my slides are also available online... I posted the link
+  on the indico website if anybody is interested in jumping back, or
+  skipping the boring parts
+- And you can also follow the embedded links to the references
+#+END_NOTES
 
 * Current status
 
@@ -136,9 +149,7 @@ Link/QR code to the slides for later or to follow along
   - more projects to come...
 
 #+BEGIN_NOTES
-- Today,  o give you an update about our current efforts at the Zurich
-  University of Applied Sciences
-- we're still a pretty small team at the Zurich University of Applied
+- as I said... we're still a pretty small team at the Zurich University of Applied
   Sciences
 - and have only 1 ongoing project in SKACH
 - but there's a lot to do, and we have a lot of ideas for projects, so
@@ -261,12 +272,20 @@ Link/QR code to the slides for later or to follow along
   - {{{color(#D7005F, mode collapse)}}} @@html:&#x21FE;@@ not so much an issue for conditional GANs (such as Pix2Pix)
   - {{{color(#D7005F, vanishing gradients)}}} @@html:&#x21FE;@@ regularization (trades quality for stability)
 
+#+BEGIN_NOTES
+
+#+END_NOTES
+
 
 ** Failure mode
 
 #+ATTR_HTML: :height 700px
 #+CAPTION: Example discriminator loss ending in failure mode
 [[./assets/images/skais/wand_Dloss_f97416b9fe57.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
 
 
 * Pile of data @@html:&#x21FE;@@ AI system
@@ -275,6 +294,10 @@ Link/QR code to the slides for later or to follow along
 #+CAPTION: @@html:<a href="https://xkcd.com/1838/">https://xkcd.com/1838/</a>@@
 [[./assets/images/xkcd/xkcd_1838.png]]
 
+#+BEGIN_NOTES
+
+#+END_NOTES
+
 
 * More parameters, better models?
 
@@ -282,6 +305,10 @@ Link/QR code to the slides for later or to follow along
   - larger, more complex \nbsp @@html:&#x21FE;@@ \nbsp better
   - sidenote: No Moat ([[https://www.semianalysis.com/p/google-we-have-no-moat-and-neither][interesting article on this topic]])
 - better: adjust the complexity of your model{{{NL}}}to the size of your dataset and task at hand
+
+#+BEGIN_NOTES
+
+#+END_NOTES
 
 
 # * Generative deep learning
@@ -345,4 +372,3 @@ Link/QR code to the slides for later or to follow along
 - better systematics with Karabo
 - compare with actual strong gravitational lensing results
 - integrate normalizing flow and diffusion networks
-- expand from 2D to 3D (point cloud networks)
