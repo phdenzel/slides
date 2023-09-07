@@ -1,0 +1,339 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Deep learning domain translation {{{NL}}}between mock observations and hydrodynamical simulations
+#+SUBTITLE: SKA research at{{{NL}}}Zurich University of Applied Sciences (ZHAW){{{NL}}}@@html:<h5>@@Centre for Artificial Intelligence (CAI){{{NL}}}Institute for Business Information Technology{{{NL}}}University of Geneva@@html:</h5>@@
+#+DATE: 08/09/2023
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+# #+OPTIONS: reveal_single_file:t
+
+# --- Configuration - more infos @ https://revealjs.com/config/
+# --- General behaviour
+#+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+#+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
+#+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
+#+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
+#+REVEAL_INIT_OPTIONS: mathjax: true,
+#+REVEAL_INIT_OPTIONS: transition: 'fade',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
+
+# --- Javascript
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+
+# --- Theming
+#+REVEAL_THEME: phdcolloq
+# #+REVEAL_THEME: white
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+# --- Macros
+# --- example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<span style="color:$1">$2</span>@@
+#+MACRO: fgbgcolor @@html:<span style="color:$1; background-color:$2">$3</span>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+# --- Useful org snippets
+# #+REVEAL_HTML: <div style="font-size: 80%;">
+# Some content with lower font size...
+# #+REVEAL_HTML: </div>
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown/markdown.js"></script>
+<script src="./assets/js/math/math.js"></script>
+<script src="./assets/js/zoom/zoom.js"></script>
+#+end_comment
+
+
+# ------------------------------------------------------------------------------
+
+#+REVEAL_TITLE_SLIDE: <h2 style="padding-top: 125px">%t<h2>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 30px">%s</h4>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 20px; font-size: 36px">%d</div>
+#+REVEAL_TITLE_SLIDE: <h5 style="padding-top: 0px; padding-left: 200px;"> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"> <a href="mailto:phdenzel@gmail.com">%a</a> <span>, Mariia Drozdova, Vitaliy Kinakh,<br> Slava Voloshynovskiy, Frank-Peter Schilling, Elena Gavagnin </span> </h5>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* Slides on my website
+
+# Link @ https://phdenzel.github.io/...
+[[https://phdenzel.github.io/assets/blog-assets/018-swiss-ska-days-2023/slides.html][https://phdenzel.github.io/]]
+
+#+ATTR_HTML: :height 500px :style float: center; :style background-color: #FFFFFF;
+[[./assets/images/talk_qr.svg]]
+
+Link/QR code to the slides for later or to follow along
+
+
+* Deep learning from scientific data
+#+ATTR_REVEAL: :frag (none appear)
+- deep learning: skepticism in scientific community
+- why bother with deep learning models?
+- generalisation and knowledge compression
+  - mathematical equations, e.g.
+    $$ R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = 8 \pi T_{\mu\nu} $$
+- "hyper"-parametrized models
+
+
+** Model complexity
+[[https://arxiv.org/abs/1903.08560][Hastie et al. (2019)]], [[https://arxiv.org/abs/1812.11118][Belkin et al. (2018)]], Breiman (1995) and many more...
+#+ATTR_HTML: :height 700px :style float: center; padding-right: 400px; padding-left: 100px
+[[./assets/images/ml/model_complexity.webp]]
+Credit: J. Capehart (2022)
+
+
+** Black-box models
+#+ATTR_REVEAL: :frag (none appear)
+- deep neural networks are generally black-box models
+- still, can be supplemented with explainability techniques
+  - identifying data or model weaknesses
+  - verify results
+  - optimize model performance
+- [[https://arxiv.org/abs/1705.07874][SHAP (Lundberg and Lee 2017)]], [[https://arxiv.org/abs/1602.04938][LIME (Ribeiro et al. 2016)]], {{{NL}}}[[https://arxiv.org/abs/1312.6034][saliency maps (Simonyan et al. 2013)]], etc.
+
+
+** Generative deep learning
+#+ATTR_REVEAL: :frag (none appear)
+- find parameters $\theta$ to approximate a true data density{{{NL}}}
+  $$ P_\theta(x) \sim P_\text{data}(x) $$
+- condition the generative process with additional information $c$:
+  $$ P_\theta(x|c) \sim P_\text{data}(x|c) $$
+  - image-to-image translation
+
+
+*** Image-to-image translation
+#+ATTR_HTML: :height 400px
+#+CAPTION: Credit: @@html:<a href="https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/tree/master">Jun-Yan Zhu</a>@@
+[[./assets/images/cycle-gan/horse2zebra.gif]]
+
+
+*** Approaches and objectives
+#+ATTR_REVEAL: :frag (none appear)
+- GANs (pix2pix, CycleGAN, SRGAN, ...): $\quad \mathbb{E}_{x\sim p_\text{data}}[\log{D_\theta(x)}] + \mathbb{E}_{z\sim q(z)}[1-\log{D_\theta(G_\theta(z))}]$
+  #+ATTR_HTML: :style font-size: 80%;
+  - {{{color(#00AF87, fast)}}}, {{{color(#00AF87, high quality)}}}, {{{color(#D7005F, implicit density)}}}, {{{color(#D7005F, mode collapse)}}}
+- Diffusion Models (see Mariia's talk): $\quad -\log{p(x)} \le \mathbb{E}_{q}[\log{\frac{q(x_{1:T}\vert x_0)}{p_\theta(x_{0:T})}}]$
+  #+ATTR_HTML: :style font-size: 80%;
+  - {{{color(#00AF87, flexible)}}}, {{{color(#00AF87, high fidelity)}}}, {{{color(#D7005F, lower bound to LL)}}}, {{{color(#D7005F, slow inference)}}}
+- VAEs: $\quad \log{p(x)} \ge \mathbb{E}_{z\sim q_{\theta}(z\vert x)}[\log{p_\theta(x\vert z)}] - D_{KL}\left(q_\theta(z\vert x) \vert\vert p(z)\right)$
+  #+ATTR_HTML: :style font-size: 80%;
+  - {{{color(#00AF87, fast)}}}, {{{color(#00AF87, regularized latent space)}}}, {{{color(#D7005F, lower bound to LL)}}}, {{{color(#D7005F, trade-offs: reconstruction ⇿ regularization)}}}
+- Normalizing flows: $\quad p_{\theta}(x) = p(f_{\theta}(x)) \cdot J_{f_{\theta}^{-1}}(x)$
+  #+ATTR_HTML: :style font-size: 80%;
+  - {{{color(#00AF87, invertible)}}}, {{{color(#00AF87, latent variable)}}}, {{{color(#00AF87, exact likelihood)}}}, {{{color(#D7005F, expensive in high-dimensional spaces)}}}
+
+
+* Our goal
+#+ATTR_REVEAL: :frag (none appear)
+- compress the knowledge from hydrodynamical and mock simulations to {{{NL}}}
+  - map properties from simulations to mock observations
+  - infer (hidden) astrophysical properties from observables
+- computational:
+  - explore the usability of various deep learning techniques {{{NL}}}
+    for scientific data
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+* Hydrodynamical simulations
+#+ATTR_REVEAL: :frag (none appear)
+- cosmological & astrophysical processes from first principle
+- latest simulations reach (almost) petabyte sizes \nbsp @@html:&#x21FE;@@ \nbsp ideal for deep learning
+  - [[https://www.tng-project.org/][IllustrisTNG]], [[http://simba.roe.ac.uk/][Simba]], [[https://fire.northwestern.edu/][FIRE]], [[https://eagle.strw.leidenuniv.nl/][EAGLE]], Phoebos, and others
+  - [[https://camels.readthedocs.io/en/latest/index.html][CAMELS]] btw.
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+#+REVEAL: split
+#+ATTR_HTML: :style float: left; padding-left: 100px;
+- dark matter
+- gas (HI, HII, H_{2}, He, etc.)
+- velocities
+- stars
+- temperature
+- metallicity
+- turbulence
+- magnetic field strength
+- X-ray luminosity
+- Credit: [[https://www.tng-project.org/][IllustrisTNG Collaboration]]
+
+#+ATTR_HTML: :height 1000px :style float: right; padding-right: 200px;
+[[./assets/images/illustris/composite_TNG100-1.png]]
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+* The dataset
+#+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 100px;
+- projected IllustrisTNG galaxies
+- 6 domains
+- \sim 3000 galaxies
+- \sim 10000 images / domain
+- augmented:
+  - up to 5x randomly rotated
+- scale: 2 half-mass radii
+#+ATTR_HTML: :height 800px :style float: right;
+[[./assets/images/skais/domains_directions.png]]
+
+
+* Initial experiments with CycleGAN
+[[https://arxiv.org/abs/1703.10593][CycleGAN: Zhu et al. (2017)]]
+#+ATTR_HTML: :style float: left;
+- learn the mapping from domain A \nbsp @@html:&#x21FF;@@ \nbsp B
+- domain A: gas
+-  domain B: HI brightness temperature \nbsp
+  $$T_b(\mathbf{x}) = 189 h \frac{H_0}{a^2H(a)} \frac{\rho_{\text{HI}}(\mathbf{x})}{\rho_c}\,\text{mK}$$
+  see [[https://arxiv.org/pdf/1804.09180.pdf][Villaescusa-Navarro et al. (2018)]]
+
+#+ATTR_HTML: :height 800px :style float: right; padding-right: 200px;
+[[./assets/images/cycle-gan/cycle-gan_scheme2.png]]
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+* Paired dataset: pix2pix
+- [[https://github.com/phillipi/pix2pix][pix2pix by I. Phillipi]] (originally in lua torch)
+- [[https://affinelayer.com/pix2pix/][blog post by Ch. Hesse]] (difference: Pix2Pix & CycleGAN)
+
+#+REVEAL: split
+  
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+#+CAPTION: Credit: Ch. Hesse
+[[./assets/images/pix2pix/pix2pix_generator_training.webp]]
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style background-color: #888888;
+#+CAPTION: Credit: Ch. Hesse
+[[./assets/images/pix2pix/pix2pix_discriminator_training.webp]]
+
+
+* Problem with training GANs
+#+ATTR_HTML: :style font-size: 80%;
+- {{{color(#00AF87, fast inference)}}} and {{{color(#00AF87, high quality results)}}}
+- {{{color(#D7005F, difficult to diagnose)}}}
+  - losses not informative
+- {{{color(#D7005F, mode collapse)}}} @@html:&#x21FE;@@ not so much an issue for conditional GANs (such as Pix2Pix)
+- {{{color(#D7005F, vanishing gradients)}}} @@html:&#x21FE;@@ regularization (trades quality for stability)
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+* Pile of data @@html:&#x21FE;@@ AI system
+
+#+ATTR_HTML: :height 700px
+#+CAPTION: @@html:<a href="https://xkcd.com/1838/">https://xkcd.com/1838/</a>@@
+[[./assets/images/xkcd/xkcd_1838.png]]
+
+#+BEGIN_NOTES
+#+END_NOTES
+
+
+* Explainability techniques: SHAP
+- [[https://github.com/shap/shap][SHAP]] - SHapley Additive exPlanations
+- Shapely values: approach from cooperative game theory
+- average marginal contribution of a feature value across all possible coalitions
+- for images: pixels = features
+
+
+** SHAP explanations for PatchGAN discriminator
+- Explanation for ground truth: gas
+#+ATTR_HTML: :height 800px
+[[./assets/images/skais/shap_overlay_tng50-1.gas.2002.png]]
+
+#+REVEAL: split
+
+- Testing for fakes: gas
+#+ATTR_HTML: :height 800px
+[[./assets/images/skais/shap_overlay2_tng50-1.gas.2002.png]]
+
+#+REVEAL: split
+
+- Testing for ground truth: dark matter
+#+ATTR_HTML: :height 800px
+[[./assets/images/skais/shap_tng50-1.dm.2002.png]]
+
+#+REVEAL: split
+
+- Testing for ground truth: stars
+#+ATTR_HTML: :height 800px
+[[./assets/images/skais/shap_tng50-1.star.2002.png]]
+
+
+* Future plans
+
+- deal with edge artifacts
+- in contact with the Karabo team: SPH simulations @@html:&#x21FE;@@ Skymodel
+- diffusion models in collaboration with the Geneva team
+- compare with actual strong gravitational lensing results
+- explore other models, e.g. normalizing flow, or InDI
