@@ -10,15 +10,18 @@ and my customized CSS style sheets, see
 [[https://github.com/phdenzel/reveal.js][https://github.com/phdenzel/reveal.js]]).
 
 
-* Presentations [6/7]
+* Presentations [9/10]
 
 
+- [ ] ~skach_winter_240122~: The presentation for the SKACH winter meeting 24 in Neuchatel
+- [X] ~colloq_intro2astro~: An introductory talk (from 2023 Dec) for peers @ ZHAW
+  about ML in Astrophysics, the Square Kilometer Array, and certification of trustworthy AI
+- [X] ~swissska_days_23~: The presentation for the Swiss SKA Days 2023 in Zurich
+- [X] ~skach_spring_230602~: The presentation for the SKACH spring meeting 23 in Versoix
 - [X] ~ivs_meetings/230419~: A few slides on the SKACH project(s) @ ZHAW
 - [X] ~ivs_meetings/230322~: A few slides on the SKACH project @ ZHAW
   for the IVS group meeting
-- [X] ~skach_winter_230111~: The presentation for the SKACH winter meeting
-- [ ] ~colloq_intro2astro~: An introductory talk for peers @ ZHAW about
-  Astrophysics, Machine Learning, and the Square Kilometer Array
+- [X] ~skach_winter_230111~: The presentation for the SKACH winter meeting 23 in Basel
 - [X] ~meeting_slides/221116~: SDC3 introduction
 - [X] ~meeting_slides/221028~: Meeting with Carolyn Crichton
 - [X] ~meeting_slides/220803~: Initial SKA meeting @ ZHAW
