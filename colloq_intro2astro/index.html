@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
-<title>Deep Learning in Astrophysics</title>
+<title>Explaining (with) AI:</title>
 <meta name="author" content="Philipp Denzel"/>
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="./assets/css/phdcolloq.css" id="theme"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
 
 <link rel="stylesheet" href="./assets/css/slides.css"/>
 
@@ -20,39 +20,46 @@
 <link rel="stylesheet" href="./assets/css/footer.css"/>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
-<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6"><h2>Deep Learning in Astrophysics<h2>
-<h3>The Square Kilometer Array project</h3>
-<div style="padding-top: 50px">2022/10/11 Tue</div>
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6"><div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<h2>Explaining (with) AI:<h2>
+<h3>the Universe and other stuff</h3>
+<div style="padding-top: 50px">2023/12/06 Wed</div>
 <div style="padding-top: 50px">by</div>
-<h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+<h4 style="padding-top: 50px; padding-left: 300px;"><a href="mailto:phdenzel@gmail.com"> Philipp Denzel </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 150px;"></h4>
 </section>
 <aside class="notes">
-<p>
-Title slide
-</p>
+<ul>
+<li>I will try to present both project I am working on</li>
+<li>I have never actually combined both in a single talk</li>
+<li>and might have, will have, too many slides&#x2026;a</li>
+<li>which means I will have to skip some</li>
+
+</ul>
 
 </aside>
 
 
 <section>
-<section id="slide-org1268555">
+<section id="slide-org5ecd3b4">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org1268555">Slides on my website</h2>
+<h2 id="org5ecd3b4">Slides on my website</h2>
 <p>
 <a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
 </p>
 
-<ul height="300px" style="float: center;">
-<li>TODO: change qr to the actual link</li>
 
-</ul>
-
-<div id="orgc2bc285" class="figure">
-<p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" />
+<div id="orgecce470" class="figure">
+<p><img src="./assets/images/talk_qr.svg" alt="talk_qr.svg" class="org-svg" height="300px" style="float: center;" />
 </p>
 </div>
 
@@ -60,29 +67,113 @@ Title slide
 Link/QR code to the slides for later or to follow along
 </p>
 
+<aside class="notes">
+<ul>
+<li>That's why I will upload the slides on my website,</li>
+<li>so feel free to bookmark it for later</li>
+
+</ul>
+
+</aside>
 
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orga2178ec">
+<section id="slide-org6d028eb">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orga2178ec">About myself</h2>
+<h2 id="org6d028eb">Projects at CAI</h2>
+<ul style="float: left;">
+<li><a href="https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5744/">SKA project</a> (<i>funding</i>: SERI/SKACH, <i>collab</i>: IVS &amp; IWI):
 <ul>
-<li>PhD in Physics from UZH @ ICS</li>
-<li><b>computational scientist/astrophysicist</b> by training, <b>machine learning</b> enthusiast
+<li><b>Square Kilometer Array</b> observatory &amp; SKACH</li>
+<li><b>generative modelling</b> of sky simulations ("mocks")</li>
+<li>my interests:
 <ul>
-<li>high-performance computing: dark-matter detection, star formation, etc.</li>
-<li>gravitational lens modelling (subcategory of galaxy modelling)</li>
-<li>"relativistic" raytracing (like <i>normal</i> raytracing, but no straight lines&#x2026; and much farther)</li>
-<li>Bayesian technique based on image synthesis &amp; reconstruction (see <a href="https://doi.org/10.48550/arXiv.2102.10114">Denzel et al. 2021a</a>)</li>
+<li><i>generative deep learning,</i></li>
+<li><i>galactic evolution, dark matter&#x2026;</i></li>
 
 </ul></li>
-<li>machine learning engineer @ CAI
+
+</ul></li>
+
+</ul>
+
+<div id="orgb3f736e" class="figure">
+<p><img src="./assets/images/zhaw_ska_team.jpeg" alt="zhaw_ska_team.jpeg" height="600px" style="position: absolute; right: 1%; margin: 50px 5px 5px 5px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>ZHAW's SKACH team at CSCS in Lugano</p>
+</div>
+
+</section>
+<section id="slide-org6d028eb-split">
+
+<h2>Projects at CAI</h2>
+<ul style="float: left;">
+<li><a href="https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5900/">certAInty project</a> (<i>funding</i>: Innosuisse, <i>collab</i>: RAI/IVS, IAMP &amp; certX):
 <ul>
-<li>main focus: <b>SKA project</b></li>
-<li>deep learning &#x27F6; SKA astrophysics</li>
+<li><b>Certification</b> scheme for AI systems</li>
+<li><b>transparency</b> of AI systems, <b>regulations</b> for AI systems</li>
+<li>my interests:
+<ul>
+<li><i>XAI (in medicine), expanding my toolbox,</i></li>
+<li><i>the "politics" of AI&#x2026;</i></li>
+
+</ul></li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="org0647b49" class="figure">
+<p><img src="./assets/images/certAInty/certAInty_collab.png" alt="certAInty_collab.png" height="400px" style="backdrop-filter: brightness(150%); z-index: -100; background: radial-gradient(ellipse, rgba(25, 25, 25, 0) 35%, rgba(25, 25, 25, 1) 65%); position: absolute; right: 6%; margin: 50px; padding: 50px;a" />
+</p>
+</div>
+
+<aside class="notes">
+<p>
+SKA
+</p>
+<ul>
+<li>close to my heart</li>
+<li>explore generative models for SBI of galactic properties</li>
+
+</ul>
+<p>
+certAInty
+</p>
+<ul>
+<li>certification scheme for AI systems</li>
+<li>was topic in an MDQ talk already</li>
+<li>so I spare this for the end</li>
+<li>and hope get through it</li>
+
+</ul>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5a2bca6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org5a2bca6">Outlook</h2>
+<ul>
+<li>SKA
+<ul>
+<li><a href="#/slide-orgfc4279a">How to build a universe&#x2026;</a></li>
+<li><a href="#/slide-orgba7b399">The SKA Observatory &amp; SKACH</a></li>
+<li><a href="#/slide-orge1cb23f">Simulation-based inference of the "invisible"</a></li>
+
+</ul></li>
+<li>certAInty
+<ul>
+<li><a href="#/slide-org2e07080">From outer space, down to Earth&#x2026;</a></li>
+<li><a href="#/slide-org465f782">Explainability in real-world  cases?</a></li>
 
 </ul></li>
 
@@ -90,8 +181,17 @@ Link/QR code to the slides for later or to follow along
 
 <aside class="notes">
 <p>
-Introduce yourself and your research
+TOC
 </p>
+<ul>
+<li>so that you understand what we're doing is actually interesting I take a detour</li>
+<li>and explain to you how to build a Universe</li>
+<li>then we move on to the main attraction of the project the SKA telescope</li>
+<li>and then I talk about how we use machine learning with the SKA</li>
+<li>then we'll come back down to Earth and talk a bit about explainability of AI components</li>
+<li>which is the segue into the certAInty project</li>
+
+</ul>
 
 </aside>
 
@@ -100,111 +200,9 @@ Introduce yourself and your research
 </section>
 </section>
 <section>
-<section id="slide-orgc2c2ff0" class="upperh" data-background-video="./assets/movies/gl/quasar_lensing_RAS.mp4" data-background-video-muted data-background-size="contain">
+<section id="slide-orgfc4279a">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgc2c2ff0">Gravitational lensing</h2>
-<p class="footer-item">
-RAS PR 17/4, Credit: ESA/Hubble, NASA
-</p>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org535e6cb" class="upperlefth" data-background-iframe="https://phdenzel.github.io/zurich-lens/" data-background-interactive;>
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org535e6cb">Zurich lensed</h3>
-<aside class="notes">
-<p>
-TODO
-</p>
-
-</aside>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org28512c1">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org28512c1">Gravitational lens modelling</h3>
-
-<div id="org561c5a4" class="figure">
-<p><img src="./assets/images/talk_qr.png" alt="talk_qr.png" height="150px" style="position: absolute; right: 5%; margin: 50px 5px 5px 5px;" />
-</p>
-<p><span class="figure-number">Figure 1: </span> <a href="https://doi.org/10.48550/arXiv.2104.03324" width="100px" style="position: absolute; right: 5%;">Denzel et al. (2021b, arXiv.2104.03324)</a></p>
-</div>
-
-<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
-input data  <br> 
-<img src="./assets/images/gl/my-work_composite_SW05.png" alt="my-work_composite_SW05.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
-</p>
-
-<p height="325px" align="left" style="float: left; padding: 300px 0 0 0;">
-➝
-</p>
-
-<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
-latent representation  <br> 
-<img src="./assets/images/gl/my-work_kappa_SW05.png" alt="my-work_kappa_SW05.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
-</p>
-
-<p height="325px" align="center" style="float: left; padding: 300px 0 0 0;">
-➝
-</p>
-
-<p height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;">
-reconstruction  <br> 
-<img src="./assets/images/gl/my-work_composite_SW05_synth.png" alt="my-work_composite_SW05_synth.png" height="325px" align="left" style="float: left; padding: 50px 50px 0 50px;" />
-</p>
-
-<aside class="notes">
-<p>
-TODO
-</p>
-
-</aside>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org998e059">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org998e059">Measuring the Age of the Universe</h3>
-<div height="810px" style="position: absolute; right: 20%; margin: 200px 5px 5px 5px">
-\begin{equation}
-  H_0 = 71.8^{+3.9}_{-3.3}
-\end{equation}
-
-</div>
-
-
-<div id="orgec86e65" class="figure">
-<p><img src="./assets/images/gl/H0_filtered.png" alt="H0_filtered.png" height="810px" />
-</p>
-<p><span class="figure-number">Figure 2: </span><a href="https://arxiv.org/abs/2007.14398">Denzel et al. (2021c, arxiv:2007.14398)</a></p>
-</div>
-
-
-<aside class="notes">
-<p>
-TODO
-</p>
-
-</aside>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org78c7cbb">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org78c7cbb">An (abbreviated) History of the Universe</h2>
+<h2 id="orgfc4279a">How to build a universe</h2>
 <ul>
 <li><b>Cosmology</b>: study of the observable Universe's
 <ul>
@@ -216,102 +214,229 @@ TODO
 
 </ul>
 </section>
-<section id="slide-org78c7cbb-split">
+<section id="slide-orgfc4279a-split">
 
-<h2>An (abbreviated) History of the Universe</h2>
+<h2>How to build a universe</h2>
 <ul>
-<li>The <b>Big Bang theory</b> &#x27F6; the Cosmological Standard Model ($&Lambda;$CDM)
+<li><b>Astrophysics</b>: ascertain the nature and dynamics of celestial bodies
 <ul>
-<li>Einstein's theory of <b>General Relativity</b></li>
-<li><b>Astrophysics</b>: galactic dynamics, stellar physics, etc.</li>
-<li><b>Particle physics</b>: primordial nucleosynthesis</li>
+<li>galactic dynamics (most common light sources in the sky)</li>
+<li>baryonic matter (stuff that interacts with light)</li>
+<li>radiation (aka light)</li>
+<li>dark matter (stuff that doesn't interact with light)</li>
 
 </ul></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>the scientific domains which the SKA project covers</li>
+<li>are Astrophysics &amp; Cosmology</li>
+<li>in short Cosmology study large structures of the Universe</li>
+<li>whereas Astrophysics covers small structures</li>
+
+</ul>
+
+</aside>
+
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgcef2f06">
+<section id="slide-org1ebde4c">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgcef2f06">The Big Bang</h3>
+<h3 id="org1ebde4c">Unique scientific disciplines</h3>
 <ul>
-<li>expansion of the Universe from an initial state (not from a singularity!)
+<li class="fragment appear">problem with the <b>scientific method</b>
+<ol>
+<li>phenomenon &#x27F6; question</li>
+<li>theory/hypothesis &#x27F6; predictions</li>
+<li>test in <b>experiment?</b></li>
+<li>analysis &#x27F6; conclusion
 <ul>
-<li>at 10<sup>-43</sup> sec: Planck epoch (high density/energy state), size ~ 10<sup>-35</sup> m</li>
-<li>at 10<sup>-37</sup> sec: the gravitational force decouples, the Universe expands
-<ul>
-<li>Inflation: exponential expansion and cooling</li>
+<li>publish &amp; retest</li>
 
 </ul></li>
-<li>at 10<sup>-32</sup> sec: quark-gluon plasma, size ~ 10<sup>43</sup> m
-<ul>
-<li>symmetry-breaking phase transitions cause other forces to separate</li>
 
-</ul></li>
-<li>at 10<sup>-6</sup> sec: baryons form, expansion and cooling continues</li>
-<li>at 379'000 years: Universe becomes opaque &#x27F6; CMB</li>
+</ol></li>
+<li class="fragment appear">computational simulations replace experiments
+<ul>
+<li>simulate the Universe&#x2026;</li>
+<li>what are the initial conditions?</li>
 
 </ul></li>
 
 </ul>
 
+<aside class="notes">
+<ul>
+<li>both are very unique disciplines</li>
+<li>because they can't strictly follow the scientific method</li>
+<li>especially with the experimental part, these disciplines have problems</li>
+<li>thus we have to resort to other means of testing our theories&#x2026;</li>
+<li>and one major component of this are simulations</li>
+<li>simulations of large parts of the Universe&#x2026;</li>
+<li>but how do we start such as simulation?</li>
+<li>what are the initial conditions?</li>
+<li>we have to start with a very early version of the Universe in order to evolve it in time</li>
+<li>luckily we observe our World not in 3D, but actually in 2D surfaces as temporal slices</li>
+<li>for instance&#x2026;</li>
+
+</ul>
+
+</aside>
+
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org332ef4c">
+<section id="slide-orgb8951f1" class="upperh" data-background-video="./assets/movies/scales/lamp_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org332ef4c">The Cosmic Microwave Background</h3>
+<h3 id="orgb8951f1">Astronomical scales</h3>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org35c7a9a" class="upperh" data-background-video="./assets/movies/scales/sun_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org35c7a9a">Sun light</h4>
 
-<div id="orgfc65a06" class="figure">
-<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png" alt="ESA_Planck_CMB2018_smooth.png" height="830px" />
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org46acfe1" class="upperh" data-background-video="./assets/movies/scales/alpha_centauri_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org46acfe1">Alpha Centauri</h4>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org900ab38" class="upperlefth" data-background-image="./assets/images/scales/early_galaxies.png" data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org900ab38">Young galaxies</h4>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org5b40bc4" class="upperh" data-background-video="./assets/movies/scales/dyna_u.mp4" data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org5b40bc4">Cosmic epochs</h4>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf69764c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf69764c">The Cosmic Microwave Background</h3>
+
+<div id="org6314d69" class="figure">
+<p><img src="./assets/images/cosmo/cmb3D_1e0.png" alt="cmb3D_1e0.png" style="position: absolute; max-height: 4000px; top: -300px; left: 0; right: 0; margin: 0 auto;" />
 </p>
-<p><span class="figure-number">Figure 3: </span>2018, Credit: ESA/Planck</p>
+<p><span class="figure-number">Figure 2: </span>2006, Credit: <a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a></p>
 </div>
 
+</section>
+<section id="slide-orgf69764c-split">
+
+<h3>The Cosmic Microwave Background</h3>
+
+<video style="position: absolute; max-height: 2400px; top: -300px; left: 0; right: 0; margin: 0 auto;" data-autoplay loop>
+<source src="./assets/movies/cosmo/cmb3D.webm"/>
+</video>
+
+<aside class="notes">
+<ul>
+<li>there is a limit how far away we can see&#x2026; beyond that the Universe is just fire&#x2026; an opaque medium that shines very bright</li>
+<li>if we detect this light&#x2026; and subtract everything else, we see this on the spherical sky&#x2026;</li>
+<li>something very uniform, homogeneous, and isotropic</li>
+<li>but if we up the sensitivity of our detectors, we see this&#x2026;</li>
+
+</ul>
+
+</aside>
+
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org6e38213">
+<section id="slide-orgcab196d">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org6e38213">The Cosmic Microwave Background</h3>
+<h3 id="orgcab196d">Mollweide projection</h3>
 
-<div id="org3fae0d8" class="figure">
-<p><img src="./assets/images/cosmo/ESA_Planck_CMB2018.png" alt="ESA_Planck_CMB2018.png" height="830px" />
+<div id="org8df84a3" class="figure">
+<p><img src="./assets/images/cosmo/mollweide.jpg" alt="mollweide.jpg" height="830px" style="border-radius: 12px;" />
 </p>
-<p><span class="figure-number">Figure 4: </span>2018, Credit: ESA/Planck</p>
+<p><span class="figure-number">Figure 3: </span>2006, Credit: <a href="https://en.wikipedia.org/wiki/File:Mollweide-projection.jpg">NASA</a></p>
 </div>
 
+<aside class="notes">
+<ul>
+<li>if I project this like a world map</li>
+
+</ul>
+
+</aside>
+
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgf7abfc2">
+<section id="slide-org9068c83">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgf7abfc2">Flagship cosmological particle simulations</h3>
+<h3 id="org9068c83">CMB anisotropies</h3>
 
-<div id="org6ec70d7" class="figure">
-<p><img src="./assets/images/cosmo/pkdgrav3_full_sky.png" alt="pkdgrav3_full_sky.png" height="830px" />
+<div id="org9dd751e" class="figure">
+<p><img src="./assets/images/cosmo/cmb2D_5e-4.png" alt="cmb2D_5e-4.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>2006, Credit: <a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a></p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>that turns into this&#x2026;</li>
+<li>very tiny temperature fluctuations&#x2026;</li>
+<li>and the theory is that these cold spots here&#x2026;</li>
+<li>will turn into large scale structures as the universe expands due to the heat&#x2026;</li>
+
+</ul>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb6cd934">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb6cd934">Flagship cosmological particle simulations</h3>
+
+<div id="orgfcffde6" class="figure">
+<p><img src="./assets/images/cosmo/pkdgrav3_full_sky.png" alt="pkdgrav3_full_sky.png" height="830px" style="border-radius: 12px;" />
 </p>
 <p><span class="figure-number">Figure 5: </span>2016, Credit: D. Potter, J. Stadel, R. Teyssier</p>
 </div>
 
+<aside class="notes">
+<p>
+and these are the initial conditions of our simulations
+</p>
+
+</aside>
+
 
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org41fded2">
+<section id="slide-orgf3df587">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org41fded2">Cosmological simulations using hydrodynamics</h3>
+<h3 id="orgf3df587">Cosmological simulations using hydrodynamics</h3>
 <p>
 Fluids
 </p>
@@ -335,90 +460,9 @@ Radiation
 
 </div>
 
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgc1ee1f4" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgc1ee1f4">SPH simulations: "zoom-ins"</h3>
-<p class="header-item">
-B-field (TNG100), Credit: IllustrisTNG
-</p>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org2c39eae">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org2c39eae">SPH simulations: isolated galaxies</h3>
-<video height="830" data-autoplay controls>
-<source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
-</video>
-
-<p class="footer-item">
-g1 (TNG50), Credit: IllustrisTNG
-</p>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgdb3bc3f">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgdb3bc3f">SPH simulations: realistic galaxies</h3>
-
-<div id="org6219d42" class="figure">
-<p><img src="./assets/images/illustris/TNG50_M104_composite_image.jpg" alt="TNG50_M104_composite_image.jpg" height="830px" />
-</p>
-<p><span class="figure-number">Figure 6: </span>M104 &amp; analogs (TNG50), Credit: IllustrisTNG</p>
-</div>
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgd07a72c">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgd07a72c">SPH simulations: galaxy catalogue</h3>
-
-<div id="org9289b6f" class="figure">
-<p><img src="./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png" alt="TNG50_galaxies_Halpha_starlight_z2.png" height="830px" />
-</p>
-<p><span class="figure-number">Figure 7: </span>H&alpha; &amp; stars (TNG50), Credit: IllustrisTNG</p>
-</div>
-
-
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org8d1d2fc" data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="0.7">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org8d1d2fc">The Square Kilometer Array</h2>
-<ul>
-<li>intergovernmental radio telescope (in process of being built)
-<ul>
-<li>South Africa: Meerkat National Park</li>
-<li>Western Australia: Murchison Radio-astronomy Observatory</li>
-
-</ul></li>
-
-<li>only better place to build: the dark side of the Moon</li>
-<li>construction started late 2021, fully operational by the end of the decade</li>
-<li>expected to produce vast amounts of data ~ 650 PBytes/year</li>
-
-</ul>
-
 <aside class="notes">
 <p>
-SKAO
+adding a bit of math&#x2026;
 </p>
 
 </aside>
@@ -428,11 +472,277 @@ SKAO
 </section>
 </section>
 <section>
-<section id="slide-org495b435" data-background-video="./assets/movies/skach_video.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6">
+<section id="slide-org77874b2" class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org495b435">SKACH</h3>
+<h3 id="org77874b2">SPH simulations: "zoom-ins"</h3>
+<p class="header-item">
+B-field (TNG100), Credit: IllustrisTNG
+</p>
+
+<aside class="notes">
+<p>
+the simulations turn into this&#x2026;
+filaments of dark matter, with knots where visible matter forms into galaxies&#x2026;
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb936ca7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb936ca7">SPH simulations: isolated galaxies</h3>
+<video height="830" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 4;">
+<source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
+</video>
+
+<p class="footer-item">
+g1 (TNG50), Credit: IllustrisTNG
+</p>
+
+<aside class="notes">
+<p>
+
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf5360f7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf5360f7">Theory &#x2194; Simulations &#x2194; Observations</h2>
+
+<div id="org4f9d59d" class="figure">
+<p><img src="./assets/images/ska/21st_century_instruments.png" alt="21st_century_instruments.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 6: </span>2023, Credit: <a href="https://www.skao.int/en/science-users/science-working-groups">SKAO</a></p>
+</div>
+
+<aside class="notes">
 <ul>
-<li>Switzerland officially joined the SKAO in January 19, 2022
+<li>We have figured out how to simulate galaxies&#x2026;</li>
+<li>Now, we have to look how this compares to observations&#x2026;</li>
+<li>and that's where telescopes like the SKA come into play&#x2026;</li>
+
+</ul>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4cb809c" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org4cb809c">Radio telescopes</h3>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+<div>
+\begin{equation}
+  V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+\end{equation}
+
+</div>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+
+<aside class="notes">
+<ul>
+<li>the SKA is a radio telescope which will become the largest observatory</li>
+
+</ul>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgba7b399" class="upperh" data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="1.0">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgba7b399">The Square Kilometer Array</h2>
+<aside class="notes">
+<p>
+
+</p>
+
+</aside>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1909e2f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1909e2f">Under construction</h3>
+
+<div id="orgbc75ecc" class="figure">
+<p><img src="./assets/images/ska/SKA-MPI-5.jpg" alt="SKA-MPI-5.jpg" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 7: </span>2023, Credit: <a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org58d8e11">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org58d8e11">Some numbers</h3>
+<div class="gframe_rows">
+<div class="gframe_row_col">
+<div class="gframe_2col">
+<p height="400px" style="border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;">
+on Proxima Centauri b  <br> 
+<img src="./assets/images/ska/amazing_fact_1.png" alt="amazing_fact_1.png" height="400px" style="border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;" />
+</p>
+</div>
+<div class="gframe_2col">
+<p height="400px" style="border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;">
+exascale supercomputers  <br> 
+<img src="./assets/images/ska/amazing_fact_2.png" alt="amazing_fact_2.png" height="400px" style="border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;" />
+</p>
+</div>
+</div>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+<p height="400px" style="border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;">
+<img src="./assets/images/ska/amazing_fact_3.png" alt="amazing_fact_3.png" height="400px" style="border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;" />
+ <br>  over 7 Pbps
+</p>
+</div>
+<div class="gframe_2col">
+<p height="400px" style="border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;">
+<img src="./assets/images/ska/amazing_fact_4.png" alt="amazing_fact_4.png" height="400px" style="border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;" />
+ <br>  storing 750 PB/yr
+</p>
+</div>
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org007420d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org007420d">Some facts</h3>
+
+<div id="org6946926" class="figure">
+<p><img src="./assets/images/ska/SKAO_fact_graphics.png" alt="SKAO_fact_graphics.png" style="border-radius: 12px; background-image: linear-gradient(72deg, rgb(228, 7, 105) 0%, rgb(130, 3, 104) 10%, rgb(60, 1, 104) 20%, rgb(18, 0, 104) 30%, rgb(7, 0, 103) 40%, rgb(7, 0, 103) 50%, rgb(7, 0, 103) 60%, rgb(7, 0, 103) 70%, rgb(7, 0, 103) 80%, rgb(7, 0, 103) 90%, rgb(7, 0, 103) 100%); margin: 50px; padding: 35px;" />
+</p>
+<p><span class="figure-number">Figure 8: </span>2023, Credit: <a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5fb7cbf">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5fb7cbf">Plans</h3>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+<p height="830px" style="margin-left: 70px; border-radius: 12px;">
+🇿🇦 Meerkat National Park (150km extent)  <br> 
+<img src="./assets/images/ska/ska_mid_map.png" alt="ska_mid_map.png" height="830px" style="margin-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+<div class="gframe_2col">
+<p height="830px" style="margin-right: 70px; border-radius: 12px;">
+🇦🇺 Murchison Observatory (75km extent)  <br> 
+<img src="./assets/images/ska/ska_low_map.png" alt="ska_low_map.png" height="830px" style="margin-right: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge932d6b">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orge932d6b">Indigenous communities</h3>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orgbdb6577" class="figure">
+<p><img src="./assets/images/ska/indigenous_people.png" alt="indigenous_people.png" height="830px" style="padding-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+<div class="gframe_2col">
+
+<div id="org8702f8d" class="figure">
+<p><img src="./assets/images/ska/indigenous_land_use_agreement.png" alt="indigenous_land_use_agreement.png" height="830px" style="padding-right: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org67e809f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org67e809f">Member nations</h3>
+
+<div id="org3c4d892" class="figure">
+<p><img src="./assets/images/ska/SKAO_Member_Map_2023.png" alt="SKAO_Member_Map_2023.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 9: </span>2023, Credit: <a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf33af0c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf33af0c">Switzerland joined in January 19 2022</h3>
+
+<div id="orge03b731" class="figure">
+<p><img src="./assets/images/skach/wef_2022.jpg" alt="wef_2022.jpg" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 10: </span>celebrating at the WEF 2022, Credit: <a href="https://skach.org/recent/past-events/">SKACH</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7560619" data-background-video="./assets/movies/skach_video.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org7560619">SKA in Switzerland</h2>
 <ul>
 <li>leverage industry and technical partners</li>
 <li>providing expertise in
@@ -445,6 +755,254 @@ SKAO
 </ul></li>
 <li>contribute to the development of European SKA Regional Centre (SRC)</li>
 
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1b4a43d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1b4a43d">SKACH</h3>
+
+<div id="orgfaed758" class="figure">
+<p><img src="./assets/images/skach/group_photo_basel_23.jpg" alt="group_photo_basel_23.jpg" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 11: </span>Credit: <a href="https://skach.org/recent/past-events/">SKACH</a></p>
+</div>
+
+</section>
+<section id="slide-org1b4a43d-split">
+
+<h3>SKACH</h3>
+
+
+<div id="org9cd7879" class="figure">
+<p><img src="./assets/images/skach/audience_basel_23.jpg" alt="audience_basel_23.jpg" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 12: </span>Credit: <a href="https://skach.org/recent/past-events/">SKACH</a></p>
+</div>
+
+</section>
+<section id="slide-org1b4a43d-split">
+
+<h3>SKACH</h3>
+
+
+<div id="org1c7becc" class="figure">
+<p><img src="./assets/images/logos/skach_school_logos.png" alt="skach_school_logos.png" height="830px" style="border-radius: 24px; padding: 20px 70px 100px 20px; backdrop-filter: brightness(150%); z-index: -100; background: radial-gradient(ellipse, rgba(80, 80, 80, 1) 0%, rgba(80, 80, 80, 0) 100%);" />
+</p>
+<p><span class="figure-number">Figure 13: </span>Credit: <a href="https://skach.org/recent/past-events/">SKACH</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-orgf812f7c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="orgf812f7c">SKACH organization</h4>
+
+<div id="org4ce5ac9" class="figure">
+<p><img src="./assets/images/skach/work_packages.png" alt="work_packages.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 14: </span>Credit: <a href="https://skach.org/recent/past-events/">SKACH</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge1cb23f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orge1cb23f">Deep learning sky simulations</h2>
+
+<div id="org6f17a69" class="figure">
+<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 15: </span>Dataset of over 30'000 x 6 galaxy maps</p>
+</div>
+
+</section>
+<section id="slide-orge1cb23f-split">
+
+<h2>Deep learning sky simulations</h2>
+
+
+<div id="orgbe232af" class="figure">
+<p><img src="./assets/images/skais/domains_directions.png" alt="domains_directions.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 16: </span>Use image domain translation models: observations (21cm) &#x2194; physical properties</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge533c7d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orge533c7d">cGANs (pix2pix or cycleGAN)</h3>
+<ul>
+<li>generator - discriminator pairs</li>
+<li>learn the mapping from domain A &nbsp; &#x21FF; &nbsp; B and vice versa</li>
+
+</ul>
+
+
+<div id="org5e487cd" class="figure">
+<p><img src="./assets/images/cycle-gan/doge_starrynight.jpg" alt="doge_starrynight.jpg" height="300px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org12d91ac">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org12d91ac">pix2pix schema</h3>
+
+<div id="orgc3ae703" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_schema.png" alt="pix2pix_schema.png" height="830px" />
+</p>
+<p><span class="figure-number">Figure 17: </span>Use pix2pix to generate dark matter maps from mock observations</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org3ba0d90">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org3ba0d90">Preliminary results</h4>
+<p>
+Ground truth  <br> 
+</p>
+<p height="830px">
+<img src="./assets/images/skais/dm_predictions.png" alt="dm_predictions.png" height="830px" />
+ <br>  Predictions from pix2pix
+</p>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org43f9790">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org43f9790">Future plans</h4>
+<p>
+Score-based generative modeling
+</p>
+
+<div id="orgb76d8f9" class="figure">
+<p><img src="./assets/images/diffusion/diffusion.png" alt="diffusion.png" height="530px" />
+</p>
+<p><span class="figure-number">Figure 18: </span>Score-based diffusion <a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a></p>
+</div>
+
+</section>
+<section id="slide-org43f9790-split">
+
+<p>
+Uncertainty quantification by sampling from posterior
+</p>
+<video height="530" style="border-radius: 12px;" data-autoplay loop>
+<source src="./assets/movies/diffusion/knee.mp4" type="video/mp4" />
+</video>
+<p>
+Credit: <a href="https://arxiv.org/abs/2011.08698">Ramzi et al. (2020)</a>
+</p>
+
+
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org2e07080">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org2e07080">Explanations are important</h2>
+
+<div id="org1db6e76" class="figure">
+<p><img src="./assets/images/certAInty/explanations_joke.png" alt="explanations_joke.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org90b8725">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org90b8725">There's an app for that</h3>
+
+<div id="org6ada9ba" class="figure">
+<p><img src="./assets/images/certAInty/handwriting_app.png" alt="handwriting_app.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0a90570">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org0a90570">Machine bias</h3>
+
+<div id="org7d1f44b" class="figure">
+<p><img src="./assets/images/certAInty/machine_bias.png" alt="machine_bias.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8d4855a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org8d4855a">People tend to anthropomorphize</h3>
+
+<div id="orgf0d7552" class="figure">
+<p><img src="./assets/images/certAInty/algorithm_vs_humans.png" alt="algorithm_vs_humans.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org886c551">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org886c551">Regulations are coming&#x2026;</h3>
+
+<div id="orga9c5b77" class="figure">
+<p><img src="./assets/images/certAInty/biden_safeguards_2023_10_30.png" alt="biden_safeguards_2023_10_30.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 19: </span><a href="https://www.nytimes.com/2023/10/30/us/politics/biden-ai-regulation.html">New York Times 10/30/2023</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge80da57">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orge80da57">Certification of AI systems</h3>
+<ul>
+<li><b>Objectives</b>:
+<ul>
+<li>Development of a certification scheme for AI systems with specific objectives and <b>means of compliance</b></li>
+<li>Suite of technical and <b>scientific methods</b> to verify relevant properties of the AI-based system as basis for the certification scheme</li>
+<li>Establish an explicit <b>link</b> between objectives from regulations and technical methods</li>
+<li>Combination of <b>processes and algorithmic methods</b></li>
+
 </ul></li>
 
 </ul>
@@ -454,29 +1012,161 @@ SKAO
 </section>
 </section>
 <section>
-<section id="slide-org8155536">
+<section id="slide-org298bcec">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org8155536">SKA project @ ZHAW</h3>
+<h3 id="org298bcec">Principle-based approach to Trustworthy AI</h3>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orgaa67f45" class="figure">
+<p><img src="./assets/images/certAInty/principles_trustworthy_ai.png" alt="principles_trustworthy_ai.png" height="830px" style="padding-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+<div class="gframe_2col">
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org510bc0a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org510bc0a">EU Artificial Intelligence Act</h3>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orgd2334ed" class="figure">
+<p><img src="./assets/images/certAInty/principles_trustworthy_ai.png" alt="principles_trustworthy_ai.png" height="830px" style="padding-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+<div class="gframe_2col">
+
+<div id="orgd7b5331" class="figure">
+<p><img src="./assets/images/certAInty/EU_AI_Act.png" alt="EU_AI_Act.png" height="830px" style="padding-right: 200px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgcf01014">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgcf01014">Risk-based approach</h3>
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orgc91c1b2" class="figure">
+<p><img src="./assets/images/certAInty/principles_trustworthy_ai.png" alt="principles_trustworthy_ai.png" height="830px" style="padding-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+<div class="gframe_2col">
+
+<div id="org4c17430" class="figure">
+<p><img src="./assets/images/certAInty/risk_levels.png" alt="risk_levels.png" height="830px" style="padding-right: 200px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd8fb84e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgd8fb84e">certAInty: a certification scheme for AI systems</h3>
+
+<div id="orgfeaac10" class="figure">
+<p><img src="./assets/images/certAInty/certification_scheme.png" alt="certification_scheme.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+</section>
+<section id="slide-orgd8fb84e-split">
+
+<h3>certAInty: a certification scheme for AI systems</h3>
+
+
+<div id="orgdb0527e" class="figure">
+<p><img src="./assets/images/certAInty/certification_scheme_2.png" alt="certification_scheme_2.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgd8fb84e-split">
+
+<h3>certAInty: a certification scheme for AI systems</h3>
+
+
+<div id="org4b2b888" class="figure">
+<p><img src="./assets/images/certAInty/certification_scheme_3.png" alt="certification_scheme_3.png" height="830px" style="border-radius: 12px;" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgd8fb84e-split">
+
+<h3>certAInty: a certification scheme for AI systems</h3>
+
+
+<div id="org266a87e" class="figure">
+<p><img src="./assets/images/certAInty/certification_scheme_4.png" alt="certification_scheme_4.png" height="730px" style="border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org465f782">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org465f782">Use case: skin lesion classification</h2>
+<div class="gframe_col_row">
+<div class="gframe_2row">
+
+<div id="orgbcd6af9" class="figure">
+<p><img src="./assets/images/certAInty/skin_lesions_benign_malignant.png" alt="skin_lesions_benign_malignant.png" height="330px" style="padding-left: 70px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+<div class="gframe_2row">
+
+<div id="orgd7a808e" class="figure">
+<p><img src="./assets/images/certAInty/skin_lesion_classifier_scheme.png" alt="skin_lesion_classifier_scheme.png" height="330px" style="padding-right: 200px; border-radius: 12px;" />
+</p>
+</div>
+</div>
+</div>
+
+</section>
+<section id="slide-org465f782-split">
+
+<h2>Use case: skin lesion classification</h2>
+
 <ul>
-<li>train deep-learning mapping
+<li class="fragment appear">ISO 23894 Artificial intelligence - Guidance on Risk management (4) + EASA Concept paper (2.2.1):
 <ul>
-<li>SPH simulations &#10231; (synthetic) observations</li>
+<li><i>Identify <b>stakeholders</b> which in turn identify <b>goals</b> and means of increasing Transparency &amp; Explainability</i></li>
+<li><span class="underline">Doctor</span>, patient, assessor, developer</li>
 
 </ul></li>
-<li>problem:
+<li class="fragment appear">ISO 24028:2020 WD Overview of trustworthiness in artificial intelligence (10.3.3):
 <ul>
-<li>deep learning needs a lot of data</li>
-<li>SPH simulations are expensive</li>
-
-</ul></li>
-<li>repurpose existing simulations
-<ul>
-<li>in contact with UZH (Lucio Mayer, Darren Reed, Robert Feldmann, et al.)</li>
-
-</ul></li>
-<li>utilize Karabo pipeline to simulate the SKA telescope signal
-<ul>
-<li>in contact with FHNW (Rohit Sharma, Simon Felix, Vincenzo Timmel, et al.)</li>
+<li><i>The AI system should provide <b>ex-ante and ex-post explanations</b>, both means of explanations should be considered.</i></li>
+<li><span class="underline">Local explanations</span> of the AI system’s decision for doctor → patient, through communication of relevant image features in images</li>
+<li><span class="underline">Global explanations</span> for developer and assessor</li>
 
 </ul></li>
 
@@ -487,12 +1177,147 @@ SKAO
 </section>
 </section>
 <section>
-<section id="slide-org63e1722">
+<section id="slide-orgf422754">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org63e1722">Dataset: simulation - projection pairs</h3>
+<h3 id="orgf422754">Scenario: Physician</h3>
 
-<div id="org34f00b5" class="figure">
-<p><img src="./assets/images/skasky_schematic.png" alt="skasky_schematic.png" height="830px" />
+<div id="org5151f4f" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_1.png" alt="taxonomy_transparency_1.png" height="830px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgf422754-split">
+
+<h3>Scenario: Physician</h3>
+
+
+<div id="org6c97a8d" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_2.png" alt="taxonomy_transparency_2.png" height="530px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgf422754-split">
+
+<h3>Scenario: Physician</h3>
+
+
+<div id="org3b1a51a" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_3.png" alt="taxonomy_transparency_3.png" height="630px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgf422754-split">
+
+<h3>Scenario: Physician</h3>
+
+
+<div id="orgc95b972" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_4.png" alt="taxonomy_transparency_4.png" height="730px" />
+</p>
+</div>
+
+</section>
+<section id="slide-orgf422754-split">
+
+<h3>Scenario: Physician</h3>
+
+
+<div id="org545ce56" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_5.png" alt="taxonomy_transparency_5.png" height="830px" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orga2fa062">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orga2fa062">SHAP/Gradient-based methods</h3>
+
+<div id="orgbe7d136" class="figure">
+<p><img src="./assets/images/certAInty/shap_saliency.png" alt="shap_saliency.png" height="830px" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5dc6d11">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5dc6d11">Scenario: Assessor</h3>
+
+<div id="orgd44297f" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_6.png" alt="taxonomy_transparency_6.png" height="730px" />
+</p>
+</div>
+
+</section>
+<section id="slide-org5dc6d11-split">
+
+<h3>Scenario: Assessor</h3>
+
+
+<div id="orga55fcbe" class="figure">
+<p><img src="./assets/images/certAInty/taxonomy_transparency_7.png" alt="taxonomy_transparency_7.png" height="830px" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5410d7d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5410d7d">Class maximization</h3>
+
+<div id="org14c14a9" class="figure">
+<p><img src="./assets/images/certAInty/class_maximization.png" alt="class_maximization.png" height="830px" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org89d195f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org89d195f">Take-home message</h3>
+<ul>
+<li>Assessment and certification of AI systems:
+<ul>
+<li>There is a gap between requirements and technical methods</li>
+<li>Need for innovation in linking means of compliance to processes and algorithmic methods</li>
+<li>Guidelines for developers and users</li>
+<li>Benchmarking of technical methods on real-world data</li>
+
+</ul></li>
+
+</ul>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1e9fd34">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org1e9fd34">Contact</h2>
+<p>
+<a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
+</p>
+
+
+<div id="orgc128054" class="figure">
+<p><img src="./assets/images/talk_qr.svg" alt="talk_qr.svg" class="org-svg" height="300px" style="float: center;" />
 </p>
 </div>
 <div class="slide-footer"><div style="height:100px"></div></div>
@@ -501,24 +1326,25 @@ SKAO
 </div>
 </div>
 <p> Created by phdenzel. </p>
-<script src="./assets/js/reveal.js"></script>
-<script src="./assets/js/markdown.js"></script>
-<script src="./assets/js/math.js"></script>
-<script src="./assets/js/zoom.js"></script>
+<script src="/Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
 
 
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
 Reveal.initialize({
-plugins: [RevealMarkdown, RevealMath, RevealZoom],
+plugins: [RevealMarkdown, RevealMath, RevealZoom, RevealNotes],
 width: 1920, height: 1080, center: true, margin: 0.05,
 minScale: 0.2, maxScale: 4.5,
 progress: true, history: false, slideNumber: false,
 controls: true, keyboard: true, previewLinks: true,
 mathjax: true,
 transition: 'fade',
-navigationMode: 'default'
+navigationMode: 'linear'
 });
 
 </script>

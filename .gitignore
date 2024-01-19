@@ -1,3 +1,8 @@
 .gitignore
 assets/movies
+assets/scripts/*.png
+assets/scripts/*.jpg
+assets/scripts/*.webm
+assets/scripts/*.fits
+assets/scripts/*.tar.gz
 pdfs

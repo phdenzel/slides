@@ -1,7 +1,7 @@
 #+AUTHOR: Philipp Denzel
-#+TITLE: Deep Learning in Astrophysics
-#+SUBTITLE: The Square Kilometer Array project
-#+DATE: 2022/10/11 Tue
+#+TITLE: Explaining (with) AI:
+#+SUBTITLE: the Universe and other stuff
+#+DATE: 2023/12/06 Wed
 
 # #+OPTIONS: author:nil
 # #+OPTIONS: email:nil
@@ -15,19 +15,22 @@
 # --- Configuration - more infos @ https://revealjs.com/config/
 # --- General behaviour
 #+REVEAL_INIT_OPTIONS: width: 1920, height: 1080, center: true, margin: 0.05,
+# #+REVEAL_INIT_OPTIONS: width: 2560, height: 1440, center: true, margin: 0.05,
 #+REVEAL_INIT_OPTIONS: minScale: 0.2, maxScale: 4.5,
 #+REVEAL_INIT_OPTIONS: progress: true, history: false, slideNumber: false,
 #+REVEAL_INIT_OPTIONS: controls: true, keyboard: true, previewLinks: true, 
 #+REVEAL_INIT_OPTIONS: mathjax: true,
 #+REVEAL_INIT_OPTIONS: transition: 'fade',
-#+REVEAL_INIT_OPTIONS: navigationMode: 'default'
-# #+REVEAL_INIT_OPTIONS: navigationMode: 'linear',
+# #+REVEAL_INIT_OPTIONS: view: 'scroll', scrollProgress: 'auto',
+#+REVEAL_INIT_OPTIONS: navigationMode: 'linear'
+# #+REVEAL_INIT_OPTIONS: navigationMode: 'default',
 #+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
 #+REVEAL_POSTAMBLE: <p> Created by phdenzel. </p>
 
 # --- Javascript
-#+REVEAL_PLUGINS: ( markdown math zoom )
-# #+REVEAL_EXTRA_JS: { src: 'vid.js', async: true, condition: function() { return !!document.body.classList; } }
+#+REVEAL_PLUGINS: ( markdown math zoom notes )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
 
 # --- Theming
 #+REVEAL_THEME: phdcolloq
@@ -92,27 +95,38 @@ to
 <link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
 
 <script src="./assets/js/reveal.js"></script>
-<script src="./assets/js/markdown/markdown.js"></script>
-<script src="./assets/js/math/math.js"></script>
-<script src="./assets/js/zoom/zoom.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
 #+end_comment
 
 
 
 # ------------------------------------------------------------------------------
-
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
 #+REVEAL_TITLE_SLIDE: <h2>%t<h2>
 #+REVEAL_TITLE_SLIDE: <h3>%s</h3>
 #+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
 #+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
-#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 200px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px;"></h4>
+#+REVEAL_TITLE_SLIDE: <h4 style="padding-top: 50px; padding-left: 300px;"><a href="mailto:phdenzel@gmail.com"> %a </a> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 150px;"></h4>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+
 #+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
 #+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
 #+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
 
 #+BEGIN_NOTES
-Title slide
+- I will try to present both project I am working on
+- I have never actually combined both in a single talk
+- and might have, will have, too many slides...a
+- which means I will have to skip some
 #+END_NOTES
 
 
@@ -122,143 +136,203 @@ Title slide
 https://phdenzel.github.io/
 
 #+ATTR_HTML: :height 300px :style float: center;
-- TODO: change qr to the actual link
-[[./assets/images/talk_qr.png]]
+[[./assets/images/talk_qr.svg]]
 
 Link/QR code to the slides for later or to follow along
 
-
-
-* About myself
-
-- PhD in Physics from UZH @ ICS
-- *computational scientist/astrophysicist* by training, *machine learning* enthusiast
-  - high-performance computing: dark-matter detection, star formation, etc.
-  - gravitational lens modelling (subcategory of galaxy modelling)
-  - "relativistic" raytracing (like /normal/ raytracing, but no straight lines... and much farther)
-  - Bayesian technique based on image synthesis & reconstruction (see [[https://doi.org/10.48550/arXiv.2102.10114][Denzel et al. 2021a]])
-- machine learning engineer @ CAI
-  - main focus: *SKA project*
-  - deep learning @@html:&#x27F6;@@ SKA astrophysics
-
 #+BEGIN_NOTES
-Introduce yourself and your research
+- That's why I will upload the slides on my website,
+- so feel free to bookmark it for later
 #+END_NOTES
 
 
-* Gravitational lensing
-:PROPERTIES:
-:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/gl/quasar_lensing_RAS.mp4" data-background-video-muted data-background-size="contain"
-:END:
+* Projects at CAI
 
-#+ATTR_HTML: :class footer-item
-RAS PR 17/4, Credit: ESA/Hubble, NASA
+#+ATTR_HTML: :style float: left;
+- [[https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5744/][SKA project]] (/funding/: SERI/SKACH, /collab/: IVS & IWI):
+  - *Square Kilometer Array* observatory & SKACH
+  - *generative modelling* of sky simulations ("mocks")
+  - my interests:
+    - /generative deep learning,/
+    - /galactic evolution, dark matter.../
+#+ATTR_HTML: :height 600px :style position: absolute; right: 1%; margin: 50px 5px 5px 5px; border-radius: 12px;
+#+CAPTION: ZHAW's SKACH team at CSCS in Lugano
+[[./assets/images/zhaw_ska_team.jpeg]]
 
+#+REVEAL: split:t
+#+ATTR_HTML: :style float: left;
+- [[https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5900/][certAInty project]] (/funding/: Innosuisse, /collab/: RAI/IVS, IAMP & certX):
+  - *Certification* scheme for AI systems
+  - *transparency* of AI systems, *regulations* for AI systems
+  - my interests:
+    - /XAI (in medicine), expanding my toolbox,/
+    - /the "politics" of AI.../
 
-** Zurich lensed
-:PROPERTIES:
-:REVEAL_EXTRA_ATTR: class="upperlefth" data-background-iframe="https://phdenzel.github.io/zurich-lens/" data-background-interactive;
-:END:
+#+ATTR_HTML: :height 400px :style backdrop-filter: brightness(150%); z-index: -100; background: radial-gradient(ellipse, rgba(25, 25, 25, 0) 35%, rgba(25, 25, 25, 1) 65%); position: absolute; right: 6%; margin: 50px; padding: 50px;a
+[[./assets/images/certAInty/certAInty_collab.png]]
 
 #+BEGIN_NOTES
-TODO
+SKA
+- close to my heart
+- explore generative models for SBI of galactic properties
+certAInty
+- certification scheme for AI systems
+- was topic in an MDQ talk already
+- so I spare this for the end
+- and hope get through it
 #+END_NOTES
 
 
-** Gravitational lens modelling
-
-#+ATTR_HTML: :height 150px :style position: absolute; right: 5%; margin: 50px 5px 5px 5px;
-#+CAPTION: @@html: <a href="https://doi.org/10.48550/arXiv.2104.03324" width="100px" style="position: absolute; right: 5%;">@@Denzel et al. (2021b, arXiv.2104.03324)@@html:</a>@@
-[[./assets/images/talk_qr.png]]
-
-# #+ATTR_REVEAL: :frag (appear)
-
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
-input data {{{NL}}}
-[[./assets/images/gl/my-work_composite_SW05.png]]
-
-#+ATTR_HTML: :height 325px :align left :style float: left; padding: 300px 0 0 0;
-➝
-
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
-latent representation {{{NL}}}
-[[./assets/images/gl/my-work_kappa_SW05.png]]
-
-#+ATTR_HTML: :height 325px :align center :style float: left; padding: 300px 0 0 0;
-➝
-
-# #+ATTR_REVEAL: :frag (appear)
-#+ATTR_HTML: :height 325px :align left :style float: left; padding: 50px 50px 0 50px;
-reconstruction {{{NL}}}
-[[./assets/images/gl/my-work_composite_SW05_synth.png]]
+* Outlook
+- SKA
+  - [[How to build a universe][How to build a universe...]]
+  - [[The Square Kilometer Array][The SKA Observatory & SKACH]]
+  - [[Deep learning sky simulations][Simulation-based inference of the "invisible"]]
+- certAInty
+  - [[Explanations are important][From outer space, down to Earth...]]
+  - [[Use case: skin lesion classification][Explainability in real-world  cases?]]
 
 #+BEGIN_NOTES
-TODO
+TOC
+- so that you understand what we're doing is actually interesting I take a detour
+- and explain to you how to build a Universe
+- then we move on to the main attraction of the project the SKA telescope
+- and then I talk about how we use machine learning with the SKA
+- then we'll come back down to Earth and talk a bit about explainability of AI components
+- which is the segue into the certAInty project
 #+END_NOTES
 
 
-** Measuring the Age of the Universe
-
-#+ATTR_HTML: :height 810px :style position: absolute; right: 20%; margin: 200px 5px 5px 5px
-\begin{equation}
-  H_0 = 71.8^{+3.9}_{-3.3}
-\end{equation}
-# \,\mathrm{km/s/Mpc}
-
-#+ATTR_HTML: :height 810px
-#+CAPTION: @@html:<a href="https://arxiv.org/abs/2007.14398">@@Denzel et al. (2021c, arxiv:2007.14398)@@html:</a>@@
-[[./assets/images/gl/H0_filtered.png]]
-
-
-#+BEGIN_NOTES
-TODO
-#+END_NOTES
-
-
-* An (abbreviated) History of the Universe
+* How to build a universe
 
 - *Cosmology*: study of the observable Universe's
   - origins and evolution
   - large-scale structure
   - physical laws
 #+REVEAL: split:t
-- The *Big Bang theory* @@html:&#x27F6;@@ the Cosmological Standard Model ($\Lambda$CDM)
-  - Einstein's theory of *General Relativity*
-  - *Astrophysics*: galactic dynamics, stellar physics, etc.
-  - *Particle physics*: primordial nucleosynthesis
+- *Astrophysics*: ascertain the nature and dynamics of celestial bodies
+  - galactic dynamics (most common light sources in the sky)
+  - baryonic matter (stuff that interacts with light)
+  - radiation (aka light)
+  - dark matter (stuff that doesn't interact with light)
+
+#+BEGIN_NOTES
+- the scientific domains which the SKA project covers
+- are Astrophysics & Cosmology
+- in short Cosmology study large structures of the Universe
+- whereas Astrophysics covers small structures
+#+END_NOTES
 
 
-** The Big Bang
+** Unique scientific disciplines
 
-- expansion of the Universe from an initial state (not from a singularity!)
-  - at 10^{-43} sec: Planck epoch (high density/energy state), size ~ 10^{-35} m
-  - at 10^{-37} sec: the gravitational force decouples, the Universe expands
-    - Inflation: exponential expansion and cooling
-  - at 10^{-32} sec: quark-gluon plasma, size ~ 10^{43} m
-    - symmetry-breaking phase transitions cause other forces to separate
-  - at 10^{-6} sec: baryons form, expansion and cooling continues
-  - at 379'000 years: Universe becomes opaque @@html:&#x27F6;@@ CMB
+#+ATTR_REVEAL: :frag (appear)
+- problem with the *scientific method*
+  1) phenomenon @@html:&#x27F6;@@ question
+  2) theory/hypothesis @@html:&#x27F6;@@ predictions
+  3) test in *experiment?*
+  4) analysis @@html:&#x27F6;@@ conclusion
+     - publish & retest
+- computational simulations replace experiments
+  - simulate the Universe...
+  - what are the initial conditions?
+
+#+BEGIN_NOTES
+- both are very unique disciplines
+- because they can't strictly follow the scientific method
+- especially with the experimental part, these disciplines have problems
+- thus we have to resort to other means of testing our theories...
+- and one major component of this are simulations
+- simulations of large parts of the Universe...
+- but how do we start such as simulation?
+- what are the initial conditions?
+- we have to start with a very early version of the Universe in order to evolve it in time
+- luckily we observe our World not in 3D, but actually in 2D surfaces as temporal slices
+- for instance...
+#+END_NOTES
+
+
+** Astronomical scales
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/scales/lamp_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+
+*** Sun light
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/scales/sun_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+
+*** Alpha Centauri
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/scales/alpha_centauri_u.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+
+*** Young galaxies
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperlefth" data-background-image="./assets/images/scales/early_galaxies.png" data-background-size="contain";
+:END:
+
+
+*** Cosmic epochs
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/scales/dyna_u.mp4" data-background-video-muted data-background-size="contain";
+:END:
 
 
 ** The Cosmic Microwave Background
-#+ATTR_HTML: :height 830px
-#+CAPTION: 2018, Credit: ESA/Planck
-[[./assets/images/cosmo/ESA_Planck_CMB2018_smooth.png]]
+#+CAPTION: 2006, Credit: @@html:<a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a>@@
+#+ATTR_HTML: :style position: absolute; max-height: 4000px; top: -300px; left: 0; right: 0; margin: 0 auto;
+[[./assets/images/cosmo/cmb3D_1e0.png]]
+
+#+REVEAL: split:t
+
+#+CAPTION: 2006, Credit: @@html:<a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a>@@
+#+REVEAL_HTML: <video style="position: absolute; max-height: 2400px; top: -300px; left: 0; right: 0; margin: 0 auto;" data-autoplay loop>
+#+REVEAL_HTML:   <source src="./assets/movies/cosmo/cmb3D.webm"/>
+#+REVEAL_HTML: </video>
+
+#+BEGIN_NOTES
+- there is a limit how far away we can see... beyond that the Universe is just fire... an opaque medium that shines very bright
+- if we detect this light... and subtract everything else, we see this on the spherical sky...
+- something very uniform, homogeneous, and isotropic
+- but if we up the sensitivity of our detectors, we see this...
+#+END_NOTES
 
 
-** The Cosmic Microwave Background
-#+ATTR_HTML: :height 830px
-#+CAPTION: 2018, Credit: ESA/Planck
-[[./assets/images/cosmo/ESA_Planck_CMB2018.png]]
-# #+CAPTION: @@html:<a href="https://archlinux.org">@@2018, Credit: ESA/Planck @@html:</a>@@
+** Mollweide projection
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: 2006, Credit: @@html:<a href="https://en.wikipedia.org/wiki/File:Mollweide-projection.jpg">NASA</a>@@
+[[./assets/images/cosmo/mollweide.jpg]]
+
+#+BEGIN_NOTES
+- if I project this like a world map
+#+END_NOTES
+
+ 
+** CMB anisotropies
+#+CAPTION: 2006, Credit: @@html:<a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/cosmo/cmb2D_5e-4.png]]
+
+#+BEGIN_NOTES
+- that turns into this...
+- very tiny temperature fluctuations...
+- and the theory is that these cold spots here...
+- will turn into large scale structures as the universe expands due to the heat...
+#+END_NOTES
 
 
 ** Flagship cosmological particle simulations
-#+ATTR_HTML: :height 830px
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
 #+CAPTION: 2016, Credit: D. Potter, J. Stadel, R. Teyssier
 [[./assets/images/cosmo/pkdgrav3_full_sky.png]]
+
+#+BEGIN_NOTES
+and these are the initial conditions of our simulations
+#+END_NOTES
 
 
 ** Cosmological simulations using hydrodynamics
@@ -276,90 +350,458 @@ Radiation
   \frac{\partial E_{\nu}}{\partial t} \,+\, \nabla\cdot\textbf{F}_{\nu} &= 4\pi j_{\nu}\,-\, \alpha_{\nu}cE_{\nu} \label{eq:Radiative_energy_moment}
 \end{align}
 
+#+BEGIN_NOTES
+adding a bit of math...
+#+END_NOTES
+
 
 ** SPH simulations: "zoom-ins"
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8"
 :END:
-# #+REVEAL_HTML: <video height="830" data-autoplay controls>
-# #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" type="video/mp4" />
-# #+REVEAL_HTML: </video>
 
 #+ATTR_HTML: :class header-item
 B-field (TNG100), Credit: IllustrisTNG
 
+#+BEGIN_NOTES
+the simulations turn into this...
+filaments of dark matter, with knots where visible matter forms into galaxies...
+#+END_NOTES
+
 
 ** SPH simulations: isolated galaxies
-#+REVEAL_HTML: <video height="830" data-autoplay controls>
+
+#+REVEAL_HTML: <video height="830" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 4;">
 #+REVEAL_HTML:   <source src="./assets/movies/illustris/tng50_single_galaxy_formation_g1_1080p.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
 #+ATTR_HTML: :class footer-item
 g1 (TNG50), Credit: IllustrisTNG
 
+#+BEGIN_NOTES
 
-** SPH simulations: realistic galaxies
-
-#+ATTR_HTML: :height 830px
-#+CAPTION: M104 & analogs (TNG50), Credit: IllustrisTNG
-[[./assets/images/illustris/TNG50_M104_composite_image.jpg]]
+#+END_NOTES
 
 
-** SPH simulations: galaxy catalogue
+* Theory @@html:&#x2194;@@ Simulations @@html:&#x2194;@@ Observations
 
-#+ATTR_HTML: :height 830px
-#+CAPTION: H\alpha & stars (TNG50), Credit: IllustrisTNG
-[[./assets/images/illustris/TNG50_galaxies_Halpha_starlight_z2.png]]
+#+CAPTION: 2023, Credit: @@html:<a href="https://www.skao.int/en/science-users/science-working-groups">SKAO</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/ska/21st_century_instruments.png]]
 
+#+BEGIN_NOTES
+- We have figured out how to simulate galaxies...
+- Now, we have to look how this compares to observations...
+- and that's where telescopes like the SKA come into play...
+#+END_NOTES
+
+
+** Radio telescopes
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+\begin{equation}
+  V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+\end{equation}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+
+#+BEGIN_NOTES
+- the SKA is a radio telescope which will become the largest observatory 
+#+END_NOTES
 
 
 * The Square Kilometer Array
 :PROPERTIES:
-:REVEAL_EXTRA_ATTR: data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="0.7"
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-image="./assets/images/ska/SKAO-scheme.jpg" data-background-video-muted data-background-size="fill" data-background-opacity="1.0"
 :END:
 
-- intergovernmental radio telescope (in process of being built)
-  - South Africa: Meerkat National Park
-  - Western Australia: Murchison Radio-astronomy Observatory
-
-- only better place to build: the dark side of the Moon
-- construction started late 2021, fully operational by the end of the decade
-- expected to produce vast amounts of data ~ 650 PBytes/year
-
 #+BEGIN_NOTES
-SKAO
+
 #+END_NOTES
 
 
-** SKACH
+** Under construction
+
+#+CAPTION: 2023, Credit: @@html:<a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/ska/SKA-MPI-5.jpg]]
+
+
+** Some numbers
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;
+on Proxima Centauri b {{{NL}}}
+[[./assets/images/ska/amazing_fact_1.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;
+exascale supercomputers {{{NL}}}
+[[./assets/images/ska/amazing_fact_2.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 150px; font-size: 32px;
+[[./assets/images/ska/amazing_fact_3.png]]
+{{{NL}}} over 7 Pbps
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 150px 0px 0px; font-size: 32px;
+[[./assets/images/ska/amazing_fact_4.png]]
+{{{NL}}} storing 750 PB/yr
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+CAPTION: 2023, Credit: @@html:<a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a>@@
+
+
+** Some facts
+
+#+ATTR_HTML: :style border-radius: 12px; background-image: linear-gradient(72deg, rgb(228, 7, 105) 0%, rgb(130, 3, 104) 10%, rgb(60, 1, 104) 20%, rgb(18, 0, 104) 30%, rgb(7, 0, 103) 40%, rgb(7, 0, 103) 50%, rgb(7, 0, 103) 60%, rgb(7, 0, 103) 70%, rgb(7, 0, 103) 80%, rgb(7, 0, 103) 90%, rgb(7, 0, 103) 100%); margin: 50px; padding: 35px;
+#+CAPTION: 2023, Credit: @@html:<a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a>@@
+[[./assets/images/ska/SKAO_fact_graphics.png]]
+
+
+** Plans
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style margin-left: 70px; border-radius: 12px;
+🇿🇦 Meerkat National Park (150km extent) {{{NL}}}
+[[./assets/images/ska/ska_mid_map.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style margin-right: 70px; border-radius: 12px;
+🇦🇺 Murchison Observatory (75km extent) {{{NL}}}
+[[./assets/images/ska/ska_low_map.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** Indigenous communities
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/ska/indigenous_people.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-right: 70px; border-radius: 12px;
+[[./assets/images/ska/indigenous_land_use_agreement.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** Member nations
+#+CAPTION: 2023, Credit: @@html:<a href="https://skao.canto.global/v/SKAOLibrary/landing?viewIndex=1">SKAO</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/ska/SKAO_Member_Map_2023.png]]
+
+
+** Switzerland joined in January 19 2022
+#+CAPTION: celebrating at the WEF 2022, Credit: @@html:<a href="https://skach.org/recent/past-events/">SKACH</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skach/wef_2022.jpg]]
+
+
+* SKA in Switzerland
 :PROPERTIES:
 :REVEAL_EXTRA_ATTR: data-background-video="./assets/movies/skach_video.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6"
 :END:
 
-- Switzerland officially joined the SKAO in January 19, 2022
-  - leverage industry and technical partners
-  - providing expertise in
-    - the development of advanced receivers for dish antennas
-    - precision timing and automation
-    - signal processing
-    - Big Data
-  - contribute to the development of European SKA Regional Centre (SRC)
+- leverage industry and technical partners
+- providing expertise in
+  - the development of advanced receivers for dish antennas
+  - precision timing and automation
+  - signal processing
+  - Big Data
+- contribute to the development of European SKA Regional Centre (SRC)
+
+  
+** SKACH
+#+CAPTION: Credit: @@html:<a href="https://skach.org/recent/past-events/">SKACH</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skach/group_photo_basel_23.jpg]]
+
+#+REVEAL: split:t
+
+#+CAPTION: Credit: @@html:<a href="https://skach.org/recent/past-events/">SKACH</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skach/audience_basel_23.jpg]]
+
+#+REVEAL: split:t
+
+#+CAPTION: Credit: @@html:<a href="https://skach.org/recent/past-events/">SKACH</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 24px; padding: 20px 70px 100px 20px; backdrop-filter: brightness(150%); z-index: -100; background: radial-gradient(ellipse, rgba(80, 80, 80, 1) 0%, rgba(80, 80, 80, 0) 100%);
+[[./assets/images/logos/skach_school_logos.png]]
 
 
-** SKA project @ ZHAW
+*** SKACH organization
 
-- train deep-learning mapping
-  - SPH simulations @@html:&#10231;@@ (synthetic) observations
-- problem:
-  - deep learning needs a lot of data
-  - SPH simulations are expensive
-- repurpose existing simulations
-  - in contact with UZH (Lucio Mayer, Darren Reed, Robert Feldmann, et al.)
-- utilize Karabo pipeline to simulate the SKA telescope signal
-  - in contact with FHNW (Rohit Sharma, Simon Felix, Vincenzo Timmel, et al.)
+#+CAPTION: Credit: @@html:<a href="https://skach.org/recent/past-events/">SKACH</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skach/work_packages.png]]
 
 
-** Dataset: simulation - projection pairs
+* Deep learning sky simulations
+
+#+CAPTION: Dataset of over 30'000 x 6 galaxy maps
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domains.png]]
+
+#+REVEAL: split:t
+
+#+CAPTION: Use image domain translation models: observations (21cm) @@html:&#x2194;@@ physical properties
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domains_directions.png]]
+
+
+** cGANs (pix2pix or cycleGAN)
+
+- generator - discriminator pairs
+- learn the mapping from domain A \nbsp @@html:&#x21FF;@@ \nbsp B and vice versa
+
+#+ATTR_HTML: :height 300px :style border-radius: 12px;
+[[./assets/images/cycle-gan/doge_starrynight.jpg]]
+
+
+** pix2pix schema
+
+#+CAPTION: Use pix2pix to generate dark matter maps from mock observations
+#+ATTR_HTML: :height 830px
+[[./assets/images/pix2pix/pix2pix_schema.png]]
+
+
+*** Preliminary results
+
+Ground truth {{{NL}}}
+#+ATTR_HTML: :height 830px
+[[./assets/images/skais/dm_predictions.png]]
+{{{NL}}} Predictions from pix2pix
+
+
+*** Future plans
+
+Score-based generative modeling
+#+CAPTION: Score-based diffusion @@html:<a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a>@@
+#+ATTR_HTML: :height 530px
+[[./assets/images/diffusion/diffusion.png]]
+
+#+REVEAL: split
+
+Uncertainty quantification by sampling from posterior
+#+REVEAL_HTML: <video height="530" style="border-radius: 12px;" data-autoplay loop>
+#+REVEAL_HTML:   <source src="./assets/movies/diffusion/knee.mp4" type="video/mp4" />
+#+REVEAL_HTML: </video>
+Credit: @@html:<a href="https://arxiv.org/abs/2011.08698">Ramzi et al. (2020)</a>@@
+
+
+
+
+* Explanations are important
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/explanations_joke.png]]
+
+
+** There's an app for that
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/handwriting_app.png]]
+
+
+** Machine bias
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/machine_bias.png]]
+
+
+** People tend to anthropomorphize
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/algorithm_vs_humans.png]]
+
+
+** Regulations are coming...
+
+#+CAPTION: @@html:<a href="https://www.nytimes.com/2023/10/30/us/politics/biden-ai-regulation.html">New York Times 10/30/2023</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/biden_safeguards_2023_10_30.png]]
+
+
+** Certification of AI systems
+
+- *Objectives*:
+  - Development of a certification scheme for AI systems with specific objectives and *means of compliance*
+  - Suite of technical and *scientific methods* to verify relevant properties of the AI-based system as basis for the certification scheme
+  - Establish an explicit *link* between objectives from regulations and technical methods
+  - Combination of *processes and algorithmic methods*
+
+
+** Principle-based approach to Trustworthy AI
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/certAInty/principles_trustworthy_ai.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-right: 200px; border-radius: 12px;
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** EU Artificial Intelligence Act
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/certAInty/principles_trustworthy_ai.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-right: 200px; border-radius: 12px;
+[[./assets/images/certAInty/EU_AI_Act.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** Risk-based approach
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/certAInty/principles_trustworthy_ai.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 830px :style padding-right: 200px; border-radius: 12px;
+[[./assets/images/certAInty/risk_levels.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** certAInty: a certification scheme for AI systems
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/certification_scheme.png]]
+
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/certification_scheme_2.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/certAInty/certification_scheme_3.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 730px :style border-radius: 12px;
+[[./assets/images/certAInty/certification_scheme_4.png]]
+
+
+* Use case: skin lesion classification
+
+#+REVEAL_HTML: <div class="gframe_col_row">
+#+REVEAL_HTML: <div class="gframe_2row">
+#+ATTR_HTML: :height 330px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/certAInty/skin_lesions_benign_malignant.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2row">
+#+ATTR_HTML: :height 330px :style padding-right: 200px; border-radius: 12px;
+[[./assets/images/certAInty/skin_lesion_classifier_scheme.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+#+REVEAL: split:t
+
+#+ATTR_REVEAL: :frag (appear)
+- ISO 23894 Artificial intelligence - Guidance on Risk management (4) + EASA Concept paper (2.2.1):
+  - /Identify *stakeholders* which in turn identify *goals* and means of increasing Transparency & Explainability/
+  - _Doctor_, patient, assessor, developer
+- ISO 24028:2020 WD Overview of trustworthiness in artificial intelligence (10.3.3):
+  - /The AI system should provide *ex-ante and ex-post explanations*, both means of explanations should be considered./
+  - _Local explanations_ of the AI system’s decision for doctor → patient, through communication of relevant image features in images
+  - _Global explanations_ for developer and assessor
+
+
+** Scenario: Physician
 
 #+ATTR_HTML: :height 830px
-[[./assets/images/skasky_schematic.png]]
+[[./assets/images/certAInty/taxonomy_transparency_1.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 530px
+[[./assets/images/certAInty/taxonomy_transparency_2.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 630px
+[[./assets/images/certAInty/taxonomy_transparency_3.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 730px
+[[./assets/images/certAInty/taxonomy_transparency_4.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 830px
+[[./assets/images/certAInty/taxonomy_transparency_5.png]]
+
+
+** SHAP/Gradient-based methods
+
+#+ATTR_HTML: :height 830px
+[[./assets/images/certAInty/shap_saliency.png]]
+
+
+** Scenario: Assessor
+
+#+ATTR_HTML: :height 730px
+[[./assets/images/certAInty/taxonomy_transparency_6.png]]
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 830px
+[[./assets/images/certAInty/taxonomy_transparency_7.png]]
+
+
+** Class maximization
+
+#+ATTR_HTML: :height 830px
+[[./assets/images/certAInty/class_maximization.png]]
+
+
+** Take-home message
+
+- Assessment and certification of AI systems:
+  - There is a gap between requirements and technical methods
+  - Need for innovation in linking means of compliance to processes and algorithmic methods
+  - Guidelines for developers and users
+  - Benchmarking of technical methods on real-world data
+
+
+* Contact
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+#+ATTR_HTML: :height 300px :style float: center;
+[[./assets/images/talk_qr.svg]]
