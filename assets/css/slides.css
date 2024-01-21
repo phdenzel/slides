@@ -78,3 +78,11 @@ input[type="checkbox"] {
 .gframe_2row {
     height: 50%;
 }
+
+table tr td {
+  border-right: 1px solid grey;
+}
+
+//table tr td:last-of-type {
+//  border: none;
+//}

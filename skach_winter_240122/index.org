@@ -1,0 +1,517 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Map-to-map translation {{{NL}}}  @@html:<h2>@@of simulated galaxies with conditional GANs@@html:</h2>@@
+#+SUBTITLE: @@html:<h4>@@SKA research at{{{NL}}}Zurich University of Applied Sciences (ZHAW)@@html:</h4>@@@@html:<h5>@@Centre for Artificial Intelligence (CAI){{{NL}}}Institute for Business Information Technology (IWI)@@html:</h5>@@
+#+DATE: Neuchâtel, 2024/01/22 Mon
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+#+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+OPTIONS: reveal_single_file:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:t
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom notes )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+#+end_comment
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <h2>%t<h2>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+# #+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h5 style="padding-top: 0px;"> <img src="%q" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">%a</a>, <span> Frank-Peter Schilling, Elena Gavagnin </span> </h5>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Slides on my website
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+#+ATTR_HTML: :height 300px :style float: center;
+[[./assets/images/talk_qr.svg]]
+
+Link/QR code to the slides for later or to follow along
+
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Projects at ZHAW
+
+#+ATTR_REVEAL: :frag (appear)
+#+ATTR_HTML: :style float: left;
+- [[https://www.zhaw.ch/en/research/research-database/project-detailview/projektid/5744/][SKA project]]:
+  - trained (astro)physicists, focused on ML research
+- our expertise:
+  - *deep generative modelling* of (sky) simulations
+  - CV, DL, XAI, MLOps, ...
+- recently expanded efforts
+  - two new projects
+#+ATTR_HTML: :height 600px :style position: absolute; right: 1%; margin: 50px 5px 5px 5px; border-radius: 12px;
+#+CAPTION: ZHAW's SKACH team at CSCS in Lugano
+[[./assets/images/zhaw_ska_team.jpeg]]
+
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Outlook
+
+- [[The times they are a-changin'][Map-to-map translation of simulations]]
+- [[Point-cloud experiments][Point-cloud experiments]]
+- [[Radio source classification][Radio source classification]]
+    
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* The times they are a-changin'
+#+ATTR_REVEAL: :frag (appear)
+- the /end of the analytic era/
+- modern surveys: galaxies are no longer blobs
+- rethink data analyses: analytic @@html:&#x27F6;@@ data-driven
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Deep Generative galaxy modelling
+
+- goal is to learn an *implicit* distribution $\mathbb{P}$ from which {{{NL}}} the training set $X = \{x_0, x_1, \ldots, x_n \}$ is drawn
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Analytic models $\mathbb{P}_\theta$
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: Credit: @@html:<a href="https://arxiv.org/abs/1308.4982">Mandelbaum et al. (2014)</a>@@
+[[./assets/images/gl/real_gal-inv.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Simulators $\mathbb{P}_\theta$
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: Credit: @@html:<a href="https://arxiv.org/abs/2306.04024">Schaye et al. (2023)</a>@@
+[[./assets/images/simulations/schaye_flamingo_box.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Implicit distributions
+
+#+ATTR_REVEAL: :frag (none none appear)
+- in both cases, we cannot
+  - sample from (the true) $\mathbb{P}$
+  - evaluate the likelihood $p_\theta(x)$
+- which means: we cannot generate new *plausible* galaxies
+- what for?
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** For instance: strong lensing
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: 2006, Credit: @@html:<a href="https://www.jpl.nasa.gov/news/cosmic-magnifying-glasses-find-dark-matter-in-small-clumps">NASA, ESA, D. Player (STScI)</a>@@
+[[./assets/images/gl/illustration_quasar_lensing_ska.jpg]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Strong lens modelling
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_3col">
+input data
+#+REVEAL_HTML: </div>
+@@html:&#x27F6;@@
+#+REVEAL_HTML: <div class="gframe_3col">
+latent representation
+#+REVEAL_HTML: </div>
+@@html:&#x27F6;@@
+#+REVEAL_HTML: <div class="gframe_3col">
+reconstruction
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_3col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/gl/my-work_composite_SW05.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 70px 0px 70px; font-size: 26px;
+[[./assets/images/gl/my-work_kappa_SW05.png]] {{{NL}}}
+@@html:<a href="https://doi.org/10.48550/arXiv.2104.03324">Denzel et al. (2021)</a>@@
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/gl/my-work_composite_SW05_synth.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Dataset: SPH simulations
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p_compressed.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.6"
+:END:
+
+#+ATTR_HTML: :class header-item :style: float:left;
+B-field (TNG100), Credit: IllustrisTNG
+
+#+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
+- projected IllustrisTNG galaxies
+- 6 domains:
+  - dark-matter, stars, gas, {{{NL}}}HI, temperature, magnetic field
+- \sim 3000 galaxies
+- \sim 10000 images / domain
+- augmented:
+  - up to 5x randomly rotated
+- scale: 2 dark-matter half-mass radii
+
+#+ATTR_HTML: :height 600px :style float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;
+[[./assets/images/skais/domains.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+#+REVEAL: split
+#+CAPTION: Use image domain translation models: observations (21cm) @@html:&#x2194;@@ physical properties
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domains_directions.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** cGANs: pix2pix schema
+
+#+CAPTION: Use pix2pix to generate dark matter maps from mock observations
+#+ATTR_HTML: :height 830px
+[[./assets/images/pix2pix/pix2pix_schema.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+*** Sampling from $\mathbb{P}_\theta$
+
+Ground truth {{{NL}}}
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/dm_predictions.png]]
+{{{NL}}} Predictions from pix2pix (from gas projections)
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+*** Evaluation
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/skais/skais_mse.png]]
+
+#+REVEAL: split
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/skais/skais_psnr.png]]
+
+#+REVEAL: split
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/skais/skais_ssim.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+*** Next steps
+
+- physical metrics: radial/elliptical (NFW) profiles
+- substructure just above the resolution limit
+- still not able to evaluate $p_\theta(x)$
+- GANs: average performance expected to be slightly worse compared {{{NL}}}to autoregressive and score-based methods
+
+
+* Point-cloud experiments
+
+- generative models for full 3D+ simulations
+{{{NL}}}
+| Property                      | SPH data         | Point clouds           |
+|-------------------------------+------------------+------------------------|
+| applications                  | hydrodynamics    | 3D scanning, CAD, etc. |
+| list of coordinates           | @@html:&#10003@@ | @@html:&#10003@@       |
+| unordered                     | @@html:&#10003@@ | @@html:&#10003@@       |
+| invariance: vector-row perm.  | @@html:&#10003@@ | @@html:&#10003@@       |
+| invariance: geometric transf. | @@html:&#10003@@ | @@html:&#10003@@       |
+| discrete                      | ~                | @@html:&#10003@@       |
+| smoothing kernel              | @@html:&#10003@@ | @@html:&#10007@@       |
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** AdaPoinTr
+
+- initial tests indicate feasibility
+- application: DM-only simulation, generate baryonic particle types (stars, gas, etc.)
+[[https://arxiv.org/abs/2301.04545][Yu et al. (2023)]]
+#+ATTR_HTML: :height 600px :style border-radius: 12px;
+[[./assets/images/pc/adapointr_scheme.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Radio source classification
+
+- idea developed with Michele Bianco (EPFL)
+- student Manuel Weiss: tested SOTA classification & detection architectures
+  - ResNet, EfficientNet, ViT, etc. / YOLOv8, DINO, etc. 
+- goal: testing on the GLEAM survey
+- Radio Galaxy Zoo Object Detection Data Set (11’836 labelled images)
+#+ATTR_HTML: :height 330px :style border-radius: 12px;
+[[./assets/images/radio_sources/rgz_classes.png]]
+#+CAPTION: Credit: Manuel Weiss
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Data preprocessing & augmentations
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_1col">
+#+ATTR_HTML: :height 300px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/radio_sources/scaling_z_scale_part1.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_1col">
+#+ATTR_HTML: :height 300px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/radio_sources/scaling_z_scale_part2.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Difficulties
+
+| Classes | 1_ 1 | 1_ 2 | 1_ 3 | 2_ 2 | 2_ 3 | 3_ 3 |
+| Samples | 5300 | 1331 | 1412 | 1251 | 1208 | 1334 |
+
+#+ATTR_HTML: :style float: left; margin-left: 200px;
+- unbalanced dataset
+- even humans have difficulties distinguishing
+  - 1_ 2 vs 1_ 3  @@html:&#x27F6;@@  FR1 vs FR2
+  - mislabelled samples?
+#+ATTR_HTML: :height 400px :style position: absolute; right: 5%; margin: 50px 150px 5px 5px; border-radius: 12px;
+#+CAPTION: Confusion matrix for the best ResNet model
+[[./assets/images/radio_sources/confusion_matrix_best_resnet.png]]
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+** Preliminary results
+
+- probably mislabelled data
+- best model: ResNet (small, not pretrained)
+{{{NL}}}
+| Model  | Top1 [%] | Top2 [%] | F1 [%] | Precision [%] | Recall [%] | ensemble \sigma |
+| ResNet |    89.36 |    97.57 |  86.24 |         87.40 |      85.44 | 4.7%            |
+| ViT    |    76.60 |    89.46 |  69.64 |         70.10 |      69.38 | -               |
+
+#+BEGIN_NOTES
+
+#+END_NOTES
+
+
+* Contact
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+@@html:<a href="https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html">@@
+#+ATTR_HTML: :height 400px :style float: left; margin-left: 150px;
+[[./assets/images/talk_qr.svg]]
+@@html:</a>@@
+
+
+#+ATTR_HTML: :style float: right; margin-right: 300px; font-size:32px;
+{{{NL}}}{{{NL}}}[[mailto:denp@zhaw.ch][philipp.denzel@zhaw.ch]]
+#+ATTR_HTML: :style float: right; margin-right: 300px; font-size:32px;
+[[mailto:scik@zhaw.ch][frank-peter.schilling@zhaw.ch]]
+#+ATTR_HTML: :style float: right; margin-right: 300px; font-size:32px;
+[[mailto:gava@zhaw.ch][elena.gavagnin@zhaw.ch]]
+
+
+#+BEGIN_NOTES
+
+#+END_NOTES
