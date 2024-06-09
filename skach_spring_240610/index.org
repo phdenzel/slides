@@ -154,16 +154,16 @@ to
 # Link @ https://phdenzel.github.io/...
 https://phdenzel.github.io/
 
-#+ATTR_HTML: :height 300px :style float: center;
-[[./assets/images/talk_qr.svg]]
+#+ATTR_HTML: :height 300px :style float: center; border-radius: 12px;
+[[./assets/images/talk_qr.png]]
 
 
 * Outlook
 
 - [[Dataset from IllustrisTNG][2D galaxy modelling]]
 - [[From 2D to 3D models][3D modelling using point clouds]]
-  - [[Point-cloud experiments][First experiments]]
-- [["Phase-space-point" models][6D phase-space modelling?]]
+  - [[Experiments using transformers][First experiments]]
+- [[Towards "Phase-space-point" models][6D phase-space modelling?]]
 
 
 * Recap: {{{NL}}} Generative models {{{NL}}} for map-to-map translation
@@ -246,7 +246,7 @@ Benchmark of generative models we're investigating and comparing:
 ** Inversion by Direct Iteration (InDI)
 
 #+ATTR_HTML: :height 500px; :style border-radius: 12px;
-#+CAPTION: InDI's iteration scheme: @@html:<a href="https://arxiv.org/abs/2303.11435">Delbracio & Milanfar (2023)</a>@@
+#+CAPTION: InDI's iteration scheme following @@html:<a href="https://arxiv.org/abs/2303.11435">Delbracio & Milanfar (2023)</a>@@
 [[./assets/images/indi/skais_indi_gas_dm.png]]
 
 
@@ -265,6 +265,7 @@ Benchmark of generative models we're investigating and comparing:
 - modelling difficulties:
   - inherent 3D features, different 2D perspectives
   - degeneracies
+  - computational costs, ...
 
 
 ** Inherent 3D shapes
@@ -293,14 +294,10 @@ Benchmark of generative models we're investigating and comparing:
 {{{NL}}}
 original image
 #+REVEAL_HTML: </div>
-{{{NL}}}
-@@html:&#x27F6;@@
 #+REVEAL_HTML: <div class="gframe_3col">
-#+ATTR_HTML: :height 250px :style border-radius: 12px; margin: 0px 70px 0px 70px; font-size: 26px;
-[[./assets/images/gl/J0753_kappa.png]]
+#+ATTR_HTML: :height 250px :style border-radius: 10px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/gl/J0753_kappa.png]] {{{NL}}}
 #+REVEAL_HTML: </div>
-{{{NL}}}
-@@html:&#x27F6;@@
 #+REVEAL_HTML: <div class="gframe_3col">
 {{{NL}}}
 reconstruction
@@ -308,13 +305,17 @@ reconstruction
 #+REVEAL_HTML: </div>
 #+REVEAL_HTML: <div class="gframe_row_col">
 #+REVEAL_HTML: <div class="gframe_3col">
-#+ATTR_HTML: :height 250px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+#+ATTR_HTML: :height 250px :style border-radius: 10px; margin: 0px 0px 0px 0px; font-size: 26px;
 [[./assets/images/gl/SDSSJ0753+3416.png]]
 #+REVEAL_HTML: </div>
+{{{NL}}}
+@@html:&#x27F6;@@
 #+REVEAL_HTML: <div class="gframe_3col">
-#+ATTR_HTML: :height 250px :style border-radius: 12px; margin: 0px 70px 0px 70px; font-size: 26px;
-[[./assets/images/gl/J0956_kappa.png]] {{{NL}}}
+#+ATTR_HTML: :height 250px :style border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;
+[[./assets/images/gl/J0956_kappa.png]]
 #+REVEAL_HTML: </div>
+{{{NL}}}
+@@html:&#x27F6;@@
 #+REVEAL_HTML: <div class="gframe_3col">
 #+ATTR_HTML: :height 250px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
 [[./assets/images/gl/SDSSJ0753+3416_recon.png]]
@@ -324,9 +325,9 @@ reconstruction
 #+REVEAL_HTML: <div class="gframe_3col">
 #+REVEAL_HTML: </div>
 #+REVEAL_HTML: <div class="gframe_3col">
-#+ATTR_HTML: :height 250px :style border-radius: 12px; margin: 0px 70px 0px 70px; font-size: 26px;
+#+ATTR_HTML: :height 250px :style border-radius: 10px; margin: 0px 70px 0px 80px; font-size: 26px;
 [[./assets/images/gl/J0029_kappa.png]] {{{NL}}}
-@@html:<a href="https://doi.org/10.1093/mnras/stab1716">Denzel et al. (2021)</a>@@
+All valid model solutions: @@html:<a href="https://doi.org/10.1093/mnras/stab1716">Denzel et al. (2021)</a>@@
 #+REVEAL_HTML: </div>
 #+REVEAL_HTML: <div class="gframe_3col">
 #+REVEAL_HTML: </div>
@@ -334,16 +335,129 @@ reconstruction
 #+REVEAL_HTML: </div>
 
 
-** Point-cloud models
+** Point-cloud models for 3D modelling
+
+{{{NL}}}
+Data type: point cloud
+{{{NL}}}
+
+|-----+-----+-----+--------+-----|
+|   x |   y |   z | [Mass] | [E] |
+|-----+-----+-----+--------+-----|
+|   4 |   8 |   1 |      - | -   |
+|   5 |   1 |   6 |      - |     |
+|   2 |   3 |   4 |      2 | -   |
+|   3 |   4 |   3 |      5 | -   |
+|   5 |   9 |   1 |      3 | -   |
+|   9 |   6 |   9 |      4 | -   |
+| ... | ... | ... |    ... | -   |
 
 
+*** For Cosmological Inference
 
-* Point-cloud experiments
+#+ATTR_HTML: :height 650px; :style border-radius: 12px;
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2211.12346">Anagnostidis et al. (2022)</a>@@
+[[./assets/images/pc/pointnext.png]]
 
 
+*** For Emulation of DM simulations (Quijote)
 
-* "Phase-space-point" models
+#+ATTR_HTML: :height 800px; :style border-radius: 12px;
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2311.17141">Cuesta-Lazaro & Mishra-Sharma (2023)</a>@@
+[[./assets/images/pc/diffusion_cuesta_lazaro.png]]
 
+
+* Experiments using transformers
+
+- AdaPoinTr architecture
+- Task: point cloud "completion"
+- Limitations:
+  - input: max. ~10'000 particles
+  - output: max. ~16'000 particles {{{NL}}}
+    @@html:&#x27F6;@@ Iterative generation {{{NL}}}
+    @@html:&#x27F6;@@ subsampling input
+- by Master student: Raphael Emberger
+
+
+** The "Good"
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: AdaPoinTr (@@html:<a href="https://arxiv.org/abs/2301.04545">Yu et al. 2023</a>@@) on TNG50 galaxies: DM @@html:&#x2192;@@ gas
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_1.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: Radial profiles of particle numbers
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_hist_1.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** The "Bad"
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: AdaPoinTr (@@html:<a href="https://arxiv.org/abs/2301.04545">Yu et al. 2023</a>@@) on TNG50 galaxies: DM @@html:&#x2192;@@ gas
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_2.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: Radial profiles of particle numbers
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_hist_2.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** The "Ugly"
+
+#+REVEAL_HTML: <div class="gframe_rows">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: AdaPoinTr (@@html:<a href="https://arxiv.org/abs/2301.04545">Yu et al. 2023</a>@@) on TNG50 galaxies: DM @@html:&#x2192;@@ gas
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_3.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+CAPTION: Radial profiles of particle numbers
+#+ATTR_HTML: #+ATTR_HTML: :height 600px; :style border-radius: 12px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/adapointr/adapointr_dm_gas_hist_3.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+* Towards "Phase-space-point" models
+
+- expand feature vector to: mass, momenta/velocities, potential, ...
+- problems:
+  - already barely computationally tractable 
+  - more particles needed for accuracy {{{NL}}}
+    #+ATTR_REVEAL: :frag (appear)
+    @@html:&#x27F6;@@ optimization: quantization, pruning, data parallelism, sharding, ... {{{NL}}}
+    @@html:&#x27F6;@@ better subsampling strategies {{{NL}}}
+    @@html:&#x27F6;@@ self-consistency checks? regularizations? {{{NL}}}
+  
+
+* Contact
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+@@html:<a href="https://phdenzel.github.io/assets/blog-assets/022-skach-spring-meeting/slides.html">@@
+#+ATTR_HTML: :height 400px :style float: left; margin-left: 150px;
+[[./assets/images/talk_qr.png]]
+@@html:</a>@@
+
+
+{{{NL}}}{{{NL}}}
+Email:  [[mailto:denp@zhaw.ch][philipp.denzel@zhaw.ch]]
 
 
 * References
@@ -353,4 +467,6 @@ reconstruction
 - DiM: [[https://arxiv.org/abs/2405.14224][Teng et al. (2024)]]
 - PointNet for summary statistics: [[https://arxiv.org/abs/2211.12346][Anagnostidis et al. (2022)]]
 - Point cloud generation for galaxy surveys: [[https://arxiv.org/abs/2311.17141][Cuesta-Lazaro & Mishra-Sharma (2023)]]
+- AdaPoinTr architecture: [[https://arxiv.org/abs/2301.04545][Yu et al. (2023)]]
 - Cosmology from point clouds: [[https://arxiv.org/abs/2405.13119v1][Chatterjee & Villaescusa-Navarro (2024)]]
+

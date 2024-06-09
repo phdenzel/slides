@@ -75,7 +75,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
  *********************************************/
 .reveal h1,
 .reveal h2 {
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .reveal h1,
@@ -226,7 +226,6 @@ section.has-light-background, section.has-light-background h1, section.has-light
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
-  margin: 5px 200px 5px 200px;
 }
 
 .reveal code {
@@ -236,9 +235,9 @@ section.has-light-background, section.has-light-background h1, section.has-light
 
 .reveal pre code {
   display: block;
-  padding: 5px 50px 5px 50px;
+  padding: 5px;
   overflow: auto;
-  max-height: 800px;
+  max-height: 400px;
   word-wrap: normal;
 }
 
@@ -264,18 +263,10 @@ section.has-light-background, section.has-light-background h1, section.has-light
   text-align: center;
 }
 
-.reveal table td .org-center {
-  text-align: center;
-}
-
 .reveal table th[align=right],
 .reveal table td[align=right] {
   text-align: right;
 }
-
-.reveal table td .org-right {
-  text-align: right;}
-
 
 .reveal table tbody tr:last-child th,
 .reveal table tbody tr:last-child td {
@@ -380,8 +371,8 @@ section.has-light-background, section.has-light-background h1, section.has-light
 }
 
 .reveal section.upperlefth {
-  margin: 0 0 20px 0;
-  top: 0px !important;
+    margin: 0 0 20px 0;
+    top: 0px !important;
 }
 
 .reveal section.upperlefth h2,
@@ -389,5 +380,7 @@ section.has-light-background, section.has-light-background h1, section.has-light
 .reveal section.upperlefth h4,
 .reveal section.upperlefth h5,
 .reveal section.upperlefth h6 {
-  text-align: left;
+    position: fixed;
+    left: 100px;
+    text-align: left;
 }

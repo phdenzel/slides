@@ -3,13 +3,14 @@ ROOT_DIR := $(shell git rev-parse --show-toplevel)
 
 .PHONY: export
 export: emacs-compile
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/dist/reveal.css#./assets/css/reveal.css#g' index.html
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css#./assets/css/phdcolloq.css#g' index.html
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/css/print/pdf.css#./assets/css/pdf.css#g' index.html
-	sed -i 's#/Users/phdenzel/local/reveal.js/dist/reveal.js#./assets/js/reveal.js#g' index.html
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js#./assets/js/markdown.js#g' index.html
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/plugin/math/math.js#./assets/js/math.js#g' index.html
-	sed -i 's#file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js#./assets/js/zoom.js#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/dist/reveal.css#./assets/css/reveal.css#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css#./assets/css/phdcolloq.css#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/css/print/pdf.css#./assets/css/pdf.css#g' index.html
+	sed -i 's#/home/phdenzel/local/reveal.js/dist/reveal.js#./assets/js/reveal.js#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js#./assets/js/markdown.js#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/plugin/math/math.js#./assets/js/math.js#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js#./assets/js/zoom.js#g' index.html
+	sed -i 's#file:///home/phdenzel/local/reveal.js/plugin/notes/notes.js#./assets/js/notes.js#g' index.html
 
 .PHONY: emacs-compile
 emacs-compile:
