@@ -1,0 +1,253 @@
+#+AUTHOR: phdenzel
+#+TITLE: InDI
+#+SUBTITLE: Inversion by Direct Iteration
+#+DATE: 2023-10-12 Thu
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:nil
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom notes )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
+#+REVEAL_TITLE_SLIDE: <h3>%t<h3>
+#+REVEAL_TITLE_SLIDE: <h4>%s</h4>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d </br> IVS group meeting</div>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+* 
+proposes a new formulation for solving /ill-posed/ *inverse problems*
+
+
+** Inverse problems
+
+Assume we have a process
+
+\begin{equation}
+  \mathbf{y} = \tilde{F}\;\mathbf{x}
+\end{equation}
+where
+- $\mathbf{x}$ is some true state, i.e. solution
+- $\mathbf{y}$ a measurement, i.e. perturbed state
+- $\tilde{F}$ some process, e.g. (non-linear) noise operator
+
+
+** Inverse problems
+
+The inverse problem then is
+
+\begin{equation}
+  \mathbf{x} = F\;\mathbf{y}
+\end{equation}
+
+- solution is guaranteed if the problem is /well-posed/.
+
+  
+** Well-posedness
+
+- $\mathbf{x} \in X$, $\mathbf{y} \in Y$ are defined on /Banach/ spaces.
+- /existance/: there is at least one $\mathbf{y}$ for which $\mathbf{x} = F\;\mathbf{y}$.
+- /uniqueness/: there is exactly one solution to $\mathbf{x} = F\;\mathbf{y}$.
+- /stability/: F is /Lipschitz continuous/ with a Lipschitz contant $K<\infty$
+  - i.e. the solution depends continuously on the data
+- Consequently: /ill-posed/ problems are not /well-posed/
+
+
+** Diffusion models
+
+Score-based models use a special form of inverse problem for generative modelling.
+
+- by matching a score function (parametrized as a neural network) to the Stein score
+  - i.e. $s_{\theta}(x) \approx \nabla_{x}\,\mathrm{log}\,p(x)$
+- once matched, use e.g. Langevin dynamics to draw samples
+  $$x_{i+1} \leftarrow x_{i} + \epsilon\nabla_{x}\mathrm{log}\,p(x) + \sqrt{2\epsilon}z_{i}$$
+
+  
+** Stochastic differential equation (SDE)
+
+- diffusion models use an SDE as the forward process
+  $$ \mathrm{d}\mathbf{x} = f(\mathbf{x}, t)\mathrm{d}t + g(t)\mathrm{d}\mathbf{w} $$
+- where for a state configuration $\mathbf{x}$ at time $t$
+  - $f(\cdot, t)$ is the /flow/ or /drift/
+  - $g(t)$ is /diffusion/ (as in noise coupling coefficient)
+  - $\mathbf{w}$ is Brownian motion, i.e. $\mathrm{d}\mathbf{w}$ is infinitesimal white noise
+- in physics this is called the /Langevin equation/
+- a general description of a dynamical system under influence of external noise
+- solutions to SDEs are continuous sets of random variables or random functions
+    
+    
+** Reverse SDE
+
+- For each SDE there exists a corresponding reverse SDE
+  $$ \mathrm{d}\mathbf{x} = [f(\mathbf{x}, t)\mathrm{d}t - g^{2}(t)\nabla_{x}\mathrm{log}\,p_{t}(x)]\mathrm{d}t + g(t)\mathrm{d}\mathbf{w} $$
+
+
+** Diffusion model schematic
+
+#+CAPTION: Credit: Yang et al. (2021)
+#+ATTR_HTML: :height 500px :align center :style float:center :style margin:2px;
+[[./assets/images/diffusion/sde_schematic.jpg]]
+
+
+** Diffusion models for inverse problems
+
+- for inverse problems, we want $x \sim p_t(\mathbf{x}|\mathbf{y})$ (instead of $p_t(\mathbf{x})$)
+- if the forward SDE is tractable, $p_t(\mathbf{y}|\mathbf{x}(t))$ is known
+- otherwise estimate it using e.g. /diffusion posterior sampling/:
+  - model the prior of the data distribution as the diffusion prior
+    $$ \nabla_{x_t}\mathrm{log}\,p(\mathbf{x}_t|\mathbf{y}) = \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\mathbf{x}_t) + \nabla_{x_t}\mathrm{log}\,p(\mathbf{x}_t) \\
+    \approx s_\theta(\mathbf{x}_t, t) + \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\hat{\mathbf{x}}_0) $$ \\
+    where
+    $$ \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\hat{\mathbf{x}}_0) \approx -\rho\nabla_{x_t}|| \mathbf{y} - F(\hat{\mathbf{x}}_0) || $$
+    with $F$ as Gaussian (or Poisson) noise.
+
+
+** Conditional generation
+
+#+CAPTION: Credit: Mariia Drozdova (2023)
+#+ATTR_HTML: :height 500px :align center :style float:center :style margin:2px;
+[[./assets/images/diffusion/cDDPMs.png]]
+
+
+* InDI
+
+Inversion by Direct Iteration
+
+{{{NL}}}
+@@html:<a href="file:///Users/phdenzel/org/group_meeting/assets/pdfs/2303.11435.pdf">https://arxiv.org/pdf/2303.11435.pdf</a>@@ 
+
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}

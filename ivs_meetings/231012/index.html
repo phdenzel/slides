@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>InDI</title>
+<meta name="author" content="phdenzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h3>InDI<h3>
+<h4>Inversion by Direct Iteration</h4>
+<div style="padding-top: 50px">2023-10-12 Thu </br> IVS group meeting</div>
+</section>
+<section>
+<section id="slide-orga2f3dda">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orga2f3dda"></h2>
+<p>
+proposes a new formulation for solving <i>ill-posed</i> <b>inverse problems</b>
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3724eea">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3724eea">Inverse problems</h3>
+<p>
+Assume we have a process
+</p>
+
+<div>
+\begin{equation}
+  \mathbf{y} = \tilde{F}\;\mathbf{x}
+\end{equation}
+
+</div>
+<p>
+where
+</p>
+<ul>
+<li>\(\mathbf{x}\) is some true state, i.e. solution</li>
+<li>\(\mathbf{y}\) a measurement, i.e. perturbed state</li>
+<li>\(\tilde{F}\) some process, e.g. (non-linear) noise operator</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3fffaa9">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3fffaa9">Inverse problems</h3>
+<p>
+The inverse problem then is
+</p>
+
+<div>
+\begin{equation}
+  \mathbf{x} = F\;\mathbf{y}
+\end{equation}
+
+</div>
+
+<ul>
+<li>solution is guaranteed if the problem is <i>well-posed</i>.</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgff0a793">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgff0a793">Well-posedness</h3>
+<ul>
+<li>\(\mathbf{x} \in X\), \(\mathbf{y} \in Y\) are defined on <i>Banach</i> spaces.</li>
+<li><i>existance</i>: there is at least one \(\mathbf{y}\) for which \(\mathbf{x} = F\;\mathbf{y}\).</li>
+<li><i>uniqueness</i>: there is exactly one solution to \(\mathbf{x} = F\;\mathbf{y}\).</li>
+<li><i>stability</i>: F is <i>Lipschitz continuous</i> with a Lipschitz contant \(K<\infty\)
+<ul>
+<li>i.e. the solution depends continuously on the data</li>
+
+</ul></li>
+<li>Consequently: <i>ill-posed</i> problems are not <i>well-posed</i></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org24ae8ce">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org24ae8ce">Diffusion models</h3>
+<p>
+Score-based models use a special form of inverse problem for generative modelling.
+</p>
+
+<ul>
+<li>by matching a score function (parametrized as a neural network) to the Stein score
+<ul>
+<li>i.e. \(s_{\theta}(x) \approx \nabla_{x}\,\mathrm{log}\,p(x)\)</li>
+
+</ul></li>
+<li>once matched, use e.g. Langevin dynamics to draw samples
+\[x_{i+1} \leftarrow x_{i} + \epsilon\nabla_{x}\mathrm{log}\,p(x) + \sqrt{2\epsilon}z_{i}\]</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9908fc4">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9908fc4">Stochastic differential equation (SDE)</h3>
+<ul>
+<li>diffusion models use an SDE as the forward process
+\[ \mathrm{d}\mathbf{x} = f(\mathbf{x}, t)\mathrm{d}t + g(t)\mathrm{d}\mathbf{w} \]</li>
+<li>where for a state configuration \(\mathbf{x}\) at time \(t\)
+<ul>
+<li>\(f(\cdot, t)\) is the <i>flow</i> or <i>drift</i></li>
+<li>\(g(t)\) is <i>diffusion</i> (as in noise coupling coefficient)</li>
+<li>\(\mathbf{w}\) is Brownian motion, i.e. \(\mathrm{d}\mathbf{w}\) is infinitesimal white noise</li>
+
+</ul></li>
+<li>in physics this is called the <i>Langevin equation</i></li>
+<li>a general description of a dynamical system under influence of external noise</li>
+<li>solutions to SDEs are continuous sets of random variables or random functions</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb926d63">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb926d63">Reverse SDE</h3>
+<ul>
+<li>For each SDE there exists a corresponding reverse SDE
+\[ \mathrm{d}\mathbf{x} = [f(\mathbf{x}, t)\mathrm{d}t - g^{2}(t)\nabla_{x}\mathrm{log}\,p_{t}(x)]\mathrm{d}t + g(t)\mathrm{d}\mathbf{w} \]</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org51e1b79">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org51e1b79">Diffusion model schematic</h3>
+
+<div id="org6e9bc91" class="figure">
+<p><img src="./assets/images/diffusion/sde_schematic.jpg" alt="sde_schematic.jpg" height="500px" align="center" style="margin:2px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Credit: Yang et al. (2021)</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc31cf2d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgc31cf2d">Diffusion models for inverse problems</h3>
+<ul>
+<li>for inverse problems, we want \(x \sim p_t(\mathbf{x}|\mathbf{y})\) (instead of \(p_t(\mathbf{x})\))</li>
+<li>if the forward SDE is tractable, \(p_t(\mathbf{y}|\mathbf{x}(t))\) is known</li>
+<li>otherwise estimate it using e.g. <i>diffusion posterior sampling</i>:
+<ul>
+<li>model the prior of the data distribution as the diffusion prior
+\[ \nabla_{x_t}\mathrm{log}\,p(\mathbf{x}_t|\mathbf{y}) = \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\mathbf{x}_t) + \nabla_{x_t}\mathrm{log}\,p(\mathbf{x}_t) \\
+    \approx s_\theta(\mathbf{x}_t, t) + \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\hat{\mathbf{x}}_0) \] <br />
+where
+\[ \nabla_{x_t}\mathrm{log}\,p(\mathbf{y}|\hat{\mathbf{x}}_0) \approx -\rho\nabla_{x_t}|| \mathbf{y} - F(\hat{\mathbf{x}}_0) || \]
+with \(F\) as Gaussian (or Poisson) noise.</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfc514a8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgfc514a8">Conditional generation</h3>
+
+<div id="org229c790" class="figure">
+<p><img src="./assets/images/diffusion/cDDPMs.png" alt="cDDPMs.png" height="500px" align="center" style="margin:2px;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Credit: Mariia Drozdova (2023)</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5322d6b">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org5322d6b">InDI</h2>
+<p>
+Inversion by Direct Iteration
+</p>
+
+<p>
+ <br> 
+<a href="file:///Users/phdenzel/org/group_meeting/assets/pdfs/2303.11435.pdf">https://arxiv.org/pdf/2303.11435.pdf</a> 
+</p>
+
+<p>
+ <br> 
+ <br> 
+ <br> 
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealZoom, RevealNotes ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
