@@ -1,0 +1,373 @@
+#+AUTHOR: phdenzel
+#+TITLE: SKACH group meeting
+#+DATE: 2024-05-06 Mon
+#+OPTIONS: author:nil title:t date:nil timestamp:nil toc:nil num:nil \n:nil
+
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:nil
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom notes )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
+#+REVEAL_TITLE_SLIDE: <h3>%t<h3>
+#+REVEAL_TITLE_SLIDE: <h4>%s</h4>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d </br> IVS group meeting</div>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* Update: gen4TNG
+
+** Paper draft
+- started writing paper (I'll share the draft once ready for reading)
+- Preliminary structure
+  1) Introduction: Simulations, SKA, ...
+  2) Data description: IllustrisTNG
+     - Projections
+     - Mocks
+  3) Related Work
+  4) pix2pix approach
+  5) ?diffusion approach?
+  6) Results
+  7) Discussion
+  8) Outlook
+
+
+** Hyperparameter tuning
+
+- Parameters (8):
+  - 'filters'     + 'filters_discriminator'
+  - 'n_blocks'    + 'n_blocks_discriminator'
+  - 'kernel_size' + 'kernel_size_discriminator'
+  - 'dropouts'
+  - 'no_batch_norm'
+- testing two directions (separately):
+  - gas -> dm
+    - still running, so far no conclusive results, only tendencies
+  - stars -> dm
+    - discrepancy greater, same tendencies
+
+Generator (UNet):
+#+begin_src python
+  {'filters': ray.tune.choice([
+      [64, 128, 256, 512],
+      [64, 128, 256, 512, 1024],
+      [64, 128, 256, 512, 1024, 2048],
+      [32, 64, 128, 256],
+      [32, 64, 128, 256, 512],
+      [32, 64, 128, 256, 512, 1024],
+      [16, 32, 64, 128],
+      [16, 32, 64, 128, 256],
+      [16, 32, 64, 128, 256, 512]
+  ],),
+   'n_blocks': ray.tune.choice([
+       [1, 1, 1, 1, 1, 1],
+       [1, 1, 1, 1, 1, 3], [1, 1, 1, 1, 3, 1], [1, 1, 1, 3, 1, 1],
+       [1, 1, 3, 1, 1, 1], [1, 3, 1, 1, 1, 1], [3, 1, 1, 1, 1, 1],
+       [1, 1, 1, 1, 2, 2], [1, 1, 1, 2, 2, 1], [1, 1, 2, 2, 1, 1],
+       [1, 2, 2, 1, 1, 1], [2, 2, 1, 1, 1, 1], [2, 1, 1, 1, 2, 1],
+       [1, 1, 1, 4, 1], [1, 1, 4, 1, 1], [1, 4, 1, 1, 1], [4, 1, 1, 1, 1],
+   ],),}
+#+end_src
+
+Discriminator (PathGAN):
+#+begin_src python
+  {'filters_discriminator': ray.tune.choice([
+      [16, 32, 64],
+      [16, 32, 64, 128],
+      [16, 32, 64, 128, 256],
+      [32, 64],
+      [32, 64, 128],
+      [32, 64, 128, 256],
+      [32, 64, 128, 256, 512],
+  ],),
+   'n_blocks_discriminator': ray.tune.choice([
+       [1, 1, 1, 1, 1],
+       [1, 1, 1, 1, 2], [1, 1, 1, 2, 2], [1, 1, 2, 2, 1], [1, 2, 2, 1, 1], [2, 2, 1, 1, 1],
+       [1, 2, 1, 1, 2], [2, 1, 1, 2, 1], [1, 1, 2, 1, 2], [1, 2, 1, 2, 1], [2, 1, 2, 1, 1],
+       [1, 1, 1, 1, 3], [1, 1, 1, 3, 1], [1, 1, 3, 1, 1], [1, 3, 1, 1, 1], [3, 1, 1, 1, 1]
+   ],)}
+#+end_src
+
+Combinations of feature depth and number of blocks determines the bottleneck size: between ~[1, 1, 1, max(filters)] to [1, 16, 16, max(filters)]~
+#+begin_src bash
+<<<  {'arch': 'UNetBU',
+<<<   'dropouts': [0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3, 0.3],
+<<<   'filters': [64, 128, 256, 512, 1024, 2048],
+<<<   'n_blocks': [1, 1, 1, 2, 2, 1]})
+=========================================================================================================
+Layer (type:depth-idx)                        Input Shape          Output Shape         Param #
+=========================================================================================================
+UNetModular                                   [12, 1, 512, 512]    [12, 1, 512, 512]    --
+├─UNetEncoder: 1-1                            [12, 1, 512, 512]    [12, 2048, 1, 1]     --
+│    └─ModuleList: 2-1                        --                   --                   --
+│    │    └─DownsampleConv: 3-1               [12, 1, 512, 512]    [12, 64, 256, 256]   --
+│    │    │    └─Conv2d: 4-1                  [12, 1, 512, 512]    [12, 64, 256, 256]   1,024
+│    │    │    └─Identity: 4-2                [12, 64, 256, 256]   [12, 64, 256, 256]   --
+│    │    │    └─LeakyReLU: 4-3               [12, 64, 256, 256]   [12, 64, 256, 256]   --
+│    │    └─DownsampleConv: 3-2               [12, 64, 256, 256]   [12, 128, 128, 128]  --
+│    │    │    └─Conv2d: 4-4                  [12, 64, 256, 256]   [12, 128, 128, 128]  131,072
+│    │    │    └─BatchNorm2d: 4-5             [12, 128, 128, 128]  [12, 128, 128, 128]  256
+│    │    │    └─LeakyReLU: 4-6               [12, 128, 128, 128]  [12, 128, 128, 128]  --
+│    │    └─DownsampleConv: 3-3               [12, 128, 128, 128]  [12, 256, 64, 64]    --
+│    │    │    └─Conv2d: 4-7                  [12, 128, 128, 128]  [12, 256, 64, 64]    524,288
+│    │    │    └─BatchNorm2d: 4-8             [12, 256, 64, 64]    [12, 256, 64, 64]    512
+│    │    │    └─LeakyReLU: 4-9               [12, 256, 64, 64]    [12, 256, 64, 64]    --
+│    │    └─DownsampleConv: 3-4               [12, 256, 64, 64]    [12, 512, 32, 32]    --
+│    │    │    └─Conv2d: 4-10                 [12, 256, 64, 64]    [12, 512, 32, 32]    2,097,152
+│    │    │    └─BatchNorm2d: 4-11            [12, 512, 32, 32]    [12, 512, 32, 32]    1,024
+│    │    │    └─LeakyReLU: 4-12              [12, 512, 32, 32]    [12, 512, 32, 32]    --
+│    │    └─DownsampleConv: 3-5               [12, 512, 32, 32]    [12, 512, 16, 16]    --
+│    │    │    └─Conv2d: 4-13                 [12, 512, 32, 32]    [12, 512, 16, 16]    4,194,304
+│    │    │    └─BatchNorm2d: 4-14            [12, 512, 16, 16]    [12, 512, 16, 16]    1,024
+│    │    │    └─LeakyReLU: 4-15              [12, 512, 16, 16]    [12, 512, 16, 16]    --
+│    │    └─DownsampleConv: 3-6               [12, 512, 16, 16]    [12, 1024, 8, 8]     --
+│    │    │    └─Conv2d: 4-16                 [12, 512, 16, 16]    [12, 1024, 8, 8]     8,388,608
+│    │    │    └─BatchNorm2d: 4-17            [12, 1024, 8, 8]     [12, 1024, 8, 8]     2,048
+│    │    │    └─LeakyReLU: 4-18              [12, 1024, 8, 8]     [12, 1024, 8, 8]     --
+│    │    └─DownsampleConv: 3-7               [12, 1024, 8, 8]     [12, 1024, 4, 4]     --
+│    │    │    └─Conv2d: 4-19                 [12, 1024, 8, 8]     [12, 1024, 4, 4]     16,777,216
+│    │    │    └─BatchNorm2d: 4-20            [12, 1024, 4, 4]     [12, 1024, 4, 4]     2,048
+│    │    │    └─LeakyReLU: 4-21              [12, 1024, 4, 4]     [12, 1024, 4, 4]     --
+│    │    └─DownsampleConv: 3-8               [12, 1024, 4, 4]     [12, 2048, 2, 2]     --
+│    │    │    └─Conv2d: 4-22                 [12, 1024, 4, 4]     [12, 2048, 2, 2]     33,554,432
+│    │    │    └─BatchNorm2d: 4-23            [12, 2048, 2, 2]     [12, 2048, 2, 2]     4,096
+│    │    │    └─LeakyReLU: 4-24              [12, 2048, 2, 2]     [12, 2048, 2, 2]     --
+│    │    └─DownsampleConv: 3-9               [12, 2048, 2, 2]     [12, 2048, 1, 1]     --
+│    │    │    └─Conv2d: 4-25                 [12, 2048, 2, 2]     [12, 2048, 1, 1]     67,108,864
+│    │    │    └─Identity: 4-26               [12, 2048, 1, 1]     [12, 2048, 1, 1]     --
+│    │    │    └─LeakyReLU: 4-27              [12, 2048, 1, 1]     [12, 2048, 1, 1]     --
+├─UNetDecoder: 1-2                            [12, 2048, 1, 1]     [12, 1, 512, 512]    --
+│    └─ModuleList: 2-2                        --                   --                   --
+│    │    └─UpsampleConv: 3-10                [12, 2048, 1, 1]     [12, 2048, 2, 2]     --
+│    │    │    └─ConvTranspose2d: 4-28        [12, 2048, 1, 1]     [12, 2048, 2, 2]     67,108,864
+│    │    │    └─BatchNorm2d: 4-29            [12, 2048, 2, 2]     [12, 2048, 2, 2]     4,096
+│    │    │    └─ReLU: 4-30                   [12, 2048, 2, 2]     [12, 2048, 2, 2]     --
+│    │    │    └─Dropout: 4-31                [12, 2048, 2, 2]     [12, 2048, 2, 2]     --
+│    │    └─UpsampleConv: 3-11                [12, 4096, 2, 2]     [12, 1024, 4, 4]     --
+│    │    │    └─ConvTranspose2d: 4-32        [12, 4096, 2, 2]     [12, 1024, 4, 4]     67,108,864
+│    │    │    └─BatchNorm2d: 4-33            [12, 1024, 4, 4]     [12, 1024, 4, 4]     2,048
+│    │    │    └─ReLU: 4-34                   [12, 1024, 4, 4]     [12, 1024, 4, 4]     --
+│    │    │    └─Dropout: 4-35                [12, 1024, 4, 4]     [12, 1024, 4, 4]     --
+│    │    └─UpsampleConv: 3-12                [12, 2048, 4, 4]     [12, 1024, 8, 8]     --
+│    │    │    └─ConvTranspose2d: 4-36        [12, 2048, 4, 4]     [12, 1024, 8, 8]     33,554,432
+│    │    │    └─BatchNorm2d: 4-37            [12, 1024, 8, 8]     [12, 1024, 8, 8]     2,048
+│    │    │    └─ReLU: 4-38                   [12, 1024, 8, 8]     [12, 1024, 8, 8]     --
+│    │    │    └─Dropout: 4-39                [12, 1024, 8, 8]     [12, 1024, 8, 8]     --
+│    │    └─UpsampleConv: 3-13                [12, 2048, 8, 8]     [12, 512, 16, 16]    --
+│    │    │    └─ConvTranspose2d: 4-40        [12, 2048, 8, 8]     [12, 512, 16, 16]    16,777,216
+│    │    │    └─BatchNorm2d: 4-41            [12, 512, 16, 16]    [12, 512, 16, 16]    1,024
+│    │    │    └─ReLU: 4-42                   [12, 512, 16, 16]    [12, 512, 16, 16]    --
+│    │    │    └─Dropout: 4-43                [12, 512, 16, 16]    [12, 512, 16, 16]    --
+│    │    └─UpsampleConv: 3-14                [12, 1024, 16, 16]   [12, 512, 32, 32]    --
+│    │    │    └─ConvTranspose2d: 4-44        [12, 1024, 16, 16]   [12, 512, 32, 32]    8,388,608
+│    │    │    └─BatchNorm2d: 4-45            [12, 512, 32, 32]    [12, 512, 32, 32]    1,024
+│    │    │    └─ReLU: 4-46                   [12, 512, 32, 32]    [12, 512, 32, 32]    --
+│    │    │    └─Dropout: 4-47                [12, 512, 32, 32]    [12, 512, 32, 32]    --
+│    │    └─UpsampleConv: 3-15                [12, 1024, 32, 32]   [12, 256, 64, 64]    --
+│    │    │    └─ConvTranspose2d: 4-48        [12, 1024, 32, 32]   [12, 256, 64, 64]    4,194,304
+│    │    │    └─BatchNorm2d: 4-49            [12, 256, 64, 64]    [12, 256, 64, 64]    512
+│    │    │    └─ReLU: 4-50                   [12, 256, 64, 64]    [12, 256, 64, 64]    --
+│    │    │    └─Dropout: 4-51                [12, 256, 64, 64]    [12, 256, 64, 64]    --
+│    │    └─UpsampleConv: 3-16                [12, 512, 64, 64]    [12, 128, 128, 128]  --
+│    │    │    └─ConvTranspose2d: 4-52        [12, 512, 64, 64]    [12, 128, 128, 128]  1,048,576
+│    │    │    └─BatchNorm2d: 4-53            [12, 128, 128, 128]  [12, 128, 128, 128]  256
+│    │    │    └─ReLU: 4-54                   [12, 128, 128, 128]  [12, 128, 128, 128]  --
+│    │    │    └─Dropout: 4-55                [12, 128, 128, 128]  [12, 128, 128, 128]  --
+│    │    └─UpsampleConv: 3-17                [12, 256, 128, 128]  [12, 64, 256, 256]   --
+│    │    │    └─ConvTranspose2d: 4-56        [12, 256, 128, 128]  [12, 64, 256, 256]   262,144
+│    │    │    └─BatchNorm2d: 4-57            [12, 64, 256, 256]   [12, 64, 256, 256]   128
+│    │    │    └─ReLU: 4-58                   [12, 64, 256, 256]   [12, 64, 256, 256]   --
+│    │    │    └─Dropout: 4-59                [12, 64, 256, 256]   [12, 64, 256, 256]   --
+│    │    └─UpsampleConv: 3-18                [12, 128, 256, 256]  [12, 1, 512, 512]    --
+│    │    │    └─ConvTranspose2d: 4-60        [12, 128, 256, 256]  [12, 1, 512, 512]    2,048
+│    │    │    └─Identity: 4-61               [12, 1, 512, 512]    [12, 1, 512, 512]    --
+│    │    │    └─Tanh: 4-62                   [12, 1, 512, 512]    [12, 1, 512, 512]    --
+=========================================================================================================
+Total params: 331,244,160
+Trainable params: 331,244,160
+Non-trainable params: 0
+Total mult-adds (Units.GIGABYTES): 924.49
+=========================================================================================================
+Input size (MB): 12.58
+Forward/backward pass size (MB): 2727.54
+Params size (MB): 1324.98
+Estimated Total Size (MB): 4065.10
+=========================================================================================================
+#+end_src
+
+
+* Abstract for SKACH spring meeting submitted
+
+** Generative AI for hydrodynamical simulations: 2D, 3D, or 6D galaxies?
+
+Cosmological simulations model galaxy formation and evolution as an ab
+initio problem, and produce the most realistic galaxy population
+models to date. However, while the simulations are ever increasing in
+detail and size, the extraction of models, their internal properties,
+and further sampling from the underlying posterior is not at all
+straightforward.
+
+On the other hand, deep learning, and in particular generative methods
+have been tremendously successful in the extraction of knowledge. More
+concretely, the ability of neural networks to beat the curse of
+dimensionality allows for extraction of information about the
+underlying model features without having to manually construct
+parametric models. However, the use of generative deep learning for
+galaxy simulations has so far essentially been limited to 2D
+pixel-based approaches.
+
+In this talk, we present our ongoing work on generative models for the
+IllustrisTNG simulations in 2D, and how one might adjust these models
+to generate 3D or even full 6D phase space galaxies.
+
+
+* PASC submitted
+
+- I made some last minute suggestions:
+  - add to PINNs other model types such as [[https://arxiv.org/abs/2402.06275v1][GNNs]] or [[https://arxiv.org/abs/2305.18415][GATr]].
+- Full proposal by 10 June:
+  - proposal narrative (2 pages summary, 15 pages propsal)
+  - budget forms
+  - CV of PI and co-PIs
+  - A list of five relevant publications in the domain of the PI and co-PIs
+- Final decision is expected in November 2024
+
+
+* Bachelor PA drafts pending
+
+- DG3NERATE project
+- ML4GLEAM project
