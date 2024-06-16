@@ -37,7 +37,7 @@
 #+REVEAL_TRANS: fade
 # #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade
 # #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade none slide
-# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+# #+REVEAL_EXPORT_NOTES_TO_PDF:nil
 #+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
 # controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
 
@@ -56,7 +56,7 @@
 
 
 # --- JAVASCRIPT
-#+REVEAL_PLUGINS: ( markdown math zoom notes )
+#+REVEAL_PLUGINS: ( markdown math zoom )
 # #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
 
 
