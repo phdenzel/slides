@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Intelligent Vision Systems</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/CAI_header.jpg" data-background-size="contain" data-background-position="block" data-background-opacity="0.4">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h1 style="text-shadow: 6px 6px 10px #000000;">Intelligent Vision Systems<h1>
+<h2 style="text-shadow: 6px 6px 10px #000000;">Group Meeting</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/04/22 </br> Winterthur</div>
+</section>
+<section>
+<section id="slide-org843d001">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org843d001">IVS Meeting Structure in 2024</h2>
+
+<div id="orge6ef9ab" class="figure">
+<p><img src="./assets/images/ivs/ivs_agenda_240617.png" alt="ivs_agenda_240617.png" height="800px;" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Group meeting agenda (<a href="https://zhaw.sharepoint.com/:x:/r/sites/CAIStaff-IVSGroupSchilling/Freigegebene%20Dokumente/IVS%20Group%20(Schilling)/Group%20Meeting%20Schedule.xlsx">MS Teams CAI-IVS files</a>)</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org79b5dee">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org79b5dee">Proposals (submitted)</h2>
+<ul class="slide_85">
+<li><b>3DDMMI</b> – 3D Diffusion Models for Medical Imaging
+<ul>
+<li><i>SNF Health &amp; Wellbeing</i> (scik)</li>
+
+</ul></li>
+<li><b>DG3NERATE</b> - Deep generative 3D point cloud modeling for galaxy simulations
+<ul>
+<li><i>SNF Project call</i> (denp, scik, gava)</li>
+
+</ul></li>
+<li><b>clAImate</b> – AI-driven Climate Data Platform for Evidence-based Decision Making with regards to Net Zero 2040
+<ul>
+<li><i>DIZH Structure</i> (scik, ciel, reno, INE, UZH)</li>
+
+</ul></li>
+<li><b>AI-BRIDGE</b> - A Think-and-Do-Tank for Responsible Development and Societal Alignment of Artificial Intelligence Systems
+<ul>
+<li><i>DIZH Structure</i> (char, stdm, scik, IDP, UZH, PHZH, ZHdK)</li>
+
+</ul></li>
+<li><b>D+Cosmos</b> - Decoding the Universe (SKA+LISA data, AI, HPC)
+<ul>
+<li><i>NCCR</i>, pre-proposal submitted, full proposal, deadline 3.2.25, (gava, scik, denp)</li>
+
+</ul></li>
+<li><b>RadNeurOps</b> - Accelerated RT for SKAO (Generative Neural Operators for ODEs)
+<ul>
+<li><i>PASC</i>, deadline 10.06. (denp, gava, ETH, UniBasel, EPFL)</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgbcffd88">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgbcffd88">Proposals (in work)</h2>
+<ul class="slide_95">
+<li><b>in writing</b>
+<ul>
+<li>Leg&amp;airy: AI driven Orthosis fitting
+<ul>
+<li><i>Innosuisse</i> (scik, char), submitted?</li>
+
+</ul></li>
+<li><b>Port of Gdynia/SeaData</b>: Multi-modal acoustic scene classification for noise prevention
+<ul>
+<li><i>NCBR Polish-Swiss programme</i>, deadline 01.07 (denp, stdm)</li>
+
+</ul></li>
+
+</ul></li>
+<li><b>in discussion</b>
+<ul>
+<li><b>Bystronic</b>, CV for pipe/tube ID/grabbing</li>
+<li><b>?</b> <i>SNF</i> (IMES rorr, USZ), MRIs of female pelvic floor (segmentation)</li>
+<li><b>Gravis Robotics</b> <i>Innosuisse</i> (char, scik, denp), Compliance-by-design people detection</li>
+<li><b>Aseptuva</b> <i>Innosuisse</i> (denp, char, IWI?), In-situ UV disinfection of catheters  <br> 
+AI-assisted (multi-modal) early detection of hospital-aquired infections</li>
+<li><i>FLARE</i> for SKACH: CAI+IWI for international software and MLOps development</li>
+<li><i>SNF</i> for MWA/SKACH: denp+gava (Signal processing?), GenAI for super-res-ing in Fourier mode space</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org27addd2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org27addd2">Students</h2>
+<ul style="float: left; margin-left: 100px;">
+<li><b>Nick Rascher</b></li>
+<li>BSc. Wirtschaftsinformatik ZHAW SML</li>
+<li>Project Manager at Zühlke Group</li>
+<li>NQ semester, starts HS24</li>
+<li>autonomous anonymization system  <br>  for League of Legends game footage</li>
+<li>talk to him about VT/MT projects&#x2026;</li>
+
+</ul>
+
+
+<div id="org5605b86" class="figure">
+<p><img src="./assets/images/ivs/nick_rascher.png" alt="nick_rascher.png" height="700px" style="float: right; margin-right: 250px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0de37d1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0de37d1">NCBR Polish-Swiss programme</h2>
+
+<div id="orgf89ba09" class="figure">
+<p><img src="./assets/images/ivs/gdynia_map.png" alt="gdynia_map.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org40b1684">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org40b1684">Port of Gdynia</h3>
+
+<div id="org6f21bb4" class="figure">
+<p><img src="./assets/images/ivs/port_of_gdynia.jpg" alt="port_of_gdynia.jpg" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7d259ff">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7d259ff">SeaData</h3>
+
+<div id="org4a0feaa" class="figure">
+<p><img src="./assets/images/ivs/seadata_gdynia_smartport.png" alt="seadata_gdynia_smartport.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org33a66e7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org33a66e7">Aseptuva</h2>
+
+<div id="orgd30b4f1" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_1.png" alt="aseptuva_2406_1.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgab667d4">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgab667d4">Start-up</h3>
+
+<div id="org47543e5" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_2.png" alt="aseptuva_2406_2.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3a55ffc">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org3a55ffc">Problem</h3>
+
+<div id="org49e9bf2" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_3.png" alt="aseptuva_2406_3.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org459a541">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org459a541">Solution</h3>
+
+<div id="orgf943af1" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_4.png" alt="aseptuva_2406_4.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9365230">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org9365230">Martin's discussion</h2>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealZoom, RevealNotes ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
