@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Radio point source detection</title>
+<meta name="author" content="Manuel Weiss"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h3>Radio point source detection<h3>
+<h4></h4>
+<div style="padding-top: 50px">2024/11/03 </br> IVS group meeting</div>
+</section>
+<section>
+<section id="slide-org6cfc1f2" class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org6cfc1f2">Radio sky</h2>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+<div>
+\begin{equation}
+  V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+\end{equation}
+
+</div>
+<p>
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+ <br> 
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1af2265">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org1af2265">SKA under construction</h2>
+
+<div id="org51005ad" class="figure">
+<p><img src="./assets/images/ska/ska_news_240311.png" alt="ska_news_240311.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Credits: SKAO</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgcaf4b01">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgcaf4b01">SKA-Mid status: Jan 2024</h3>
+
+<div id="orgf40e202" class="figure">
+<p><img src="./assets/images/ska/SKA_mid_status_2401.png" alt="SKA_mid_status_2401.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Credits: SKAO</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6baa6c5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org6baa6c5">SKA-Low status: Jan 2024</h3>
+
+<div id="org59b6d4b" class="figure">
+<p><img src="./assets/images/ska/SKA_low_status_2401.png" alt="SKA_low_status_2401.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Credits: SKAO</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1eb7731">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1eb7731">SKA-Low status: Jan 2024</h3>
+
+<div id="org0b93e13" class="figure">
+<p><img src="./assets/images/ska/SKA_low_status_2401_2.png" alt="SKA_low_status_2401_2.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>Credits: SKAO</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc5cc5d7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgc5cc5d7">Data challenges: SDC3a</h2>
+
+<div id="orgfc2b96e" class="figure">
+<p><img src="./assets/images/sdc3a/skach_sdc3a_news.png" alt="skach_sdc3a_news.png" height="830px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Credits: SKACH</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org30d0209">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org30d0209">Data</h3>
+<ul style="float: left;">
+<li>data cube: 7.5TB of a simulated observation</li>
+<li>sky pointing: 0 hrs right ascension,
+-30 deg declination</li>
+<li>FOV: 5 degrees (for comparison: Moon is 31 arcmin)</li>
+
+</ul>
+
+<div id="orgedeb16c" class="figure">
+<p><img src="./assets/images/sdc3a/sdc3a_summary.png" alt="sdc3a_summary.png" height="500px" style="position: absolute; right: 4%; margin: 50px 5px 5px 5px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 6: </span>Credits: SKAO</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd788e90">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgd788e90">EoR</h3>
+
+<div id="orgf14e12d" class="figure">
+<p><img src="./assets/images/sdc3a/EoR_skao.webp" alt="EoR_skao.webp" height="330px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 7: </span>Credits: Robertson et al. (2010)</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf5c8afb">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf5c8afb">Problem: Foreground cleaning</h3>
+<ul>
+<li>EoR signals ~ 10 to 10'000'000 smaller than foreground!</li>
+<li>filtering only possible if you know exactly what the source is&#x2026;</li>
+
+</ul>
+
+
+<div id="org980d505" class="figure">
+<p><img src="./assets/images/sdc3a/wangetal.png" alt="wangetal.png" height="600px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 8: </span>Credits: Wang et al. (2010)</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: true,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealZoom, RevealNotes ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

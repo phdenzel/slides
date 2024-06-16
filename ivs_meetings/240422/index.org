@@ -1,0 +1,2280 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: skais, SKACH & SKAO
+#+DATE: 2024/04/22
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:nil
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom notes )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
+#+REVEAL_TITLE_SLIDE: <h3>%t<h3>
+#+REVEAL_TITLE_SLIDE: <h4>%s</h4>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d </br> IVS group meeting</div>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* SKACH news
+
+- [[SKACH spring meeting][SKACH spring meeting]]
+- [[MWA membership][MWA members]]
+- [[SKACH at Fantasy Basel][SKACH at Fantasy Basel]]
+
+
+** SKACH spring meeting
+
+- Register (for free in case you're interested):
+  - [[https://indico.skatelescope.org/event/1160/][SKACH Spring Meeting 2024]]
+- @ ZHAW (Winterthur, TN): 10-11 June, 2024
+
+  
+** MWA membership
+- We're MWA members now! Access to embargoed raw data
+- First Swiss [[https://indico.mwatelescope.org/event/12/overview][MWA meeting @ EPFL]] (Lausanne): 28-30 August, 2024
+
+
+** SKACH at Fantasy Basel
+
+- Swiss ComicCon: [[https://fantasybasel.ch/en][Fantasy Basel]] on 9-11 May, 2024 
+- Science exhibition:
+  - James Webb replica
+  - astronaut Claude Nicollier
+  - ESA, Swiss space industry startups, ...
+  - and more
+ 
+
+* SKAO news
+
+{{{NL}}}
+Still in construction...
+
+FAQ: how can we estimate performance?
+
+- [[Prototype][Prototypes]]
+- [[Radio sky][Theoretical understanding & experience]]
+- [[Simulating observations: Karabo][Simulations]]
+
+
+** Prototype
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: Credits: SKAO, MPI
+[[./assets/images/ska/SKA_MPI_prototype.png]]
+
+
+** First light
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+#+CAPTION: Credits: SKAO, MPI
+[[./assets/images/ska/SKA_MPI_first_light.png]]
+
+
+** Radio sky
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+\begin{equation}
+  V_{pq} = \int_{4\pi} g_{p}(r)\ B(r)\ g^{\ast}_{q}(r) e^{-\frac{2\pi}{\lambda}\langle\vec{p}-\vec{q}, \vec{r}\rangle} \text{d}\Omega
+\end{equation}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+
+
+** Radio sky (tensorial form)
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+\begin{equation}
+  V = G^{\ast}\ B\ G
+\end{equation}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+
+
+** Radio sky (inverse problem)
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/radio_dish_scheme.mp4" data-background-video-loop data-background-video-muted data-background-size="contain";
+:END:
+
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+\begin{equation}
+  y = F_{\theta}\odot x \quad\quad \text{or} \quad\quad y = G_{\eta} \odot F_{\theta}\odot x
+\end{equation}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+{{{NL}}}
+
+
+** Simulating observations: Karabo
+
+#+ATTR_HTML: :height 700px :style border-radius: 12px;
+#+CAPTION: Credits: @@html:<a href="https://github.com/i4Ds/Karabo-Pipeline">Karabo</a>@@
+[[./assets/images/skach/Karabo_lego.png]]
+
+
+* Data, code, and stuff
+
+Simulating the sky: Hydrodynamical simulations
+- point clouds, aka smooth particles
+- gravity
+- hydrodyanmical friction (for visible matter, aka baryons)
+- "sub-grid models" for electro-weak force effects
+  - supernovae
+  - accreting black-holes
+  - neutrinos
+  - ...
+
+
+** Simulations
+:PROPERTIES:
+:REVEAL_EXTRA_ATTR: class="upperh" data-background-video="./assets/movies/illustris/tng100_sb0_inside_bfield_1080p.mp4" data-background-video-muted data-background-size="fill" data-background-opacity="0.8"
+:END:
+
+#+ATTR_HTML: :class header-item
+B-field (TNG100), Credit: IllustrisTNG
+
+
+** Projections
+
+Cython code
+
+
+#+begin_src python
+  """
+  skais.raytrace
+  """
+  from scipy.integrate import quad
+  import numpy as np
+  cimport numpy as np
+  cimport cython
+  from libc.math cimport sqrt, M_PI, sin, cos, floor, fabs
+  from libc.stdio cimport printf
+  from libc.time cimport time_t, time, difftime
+
+  np.import_array()
+
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cpdef void PCS(np.float32_t[:, :] pos, np.float32_t[:, :, :] number, float box_size):
+      """
+      Compute the density field of a cubic distribution of particles
+
+      Args:
+        pos (float[:, ::1]):
+          Particle 3D/2D position array (contiguous)
+        number (float[:, :, ::1]):
+          Density field array (contiguous)
+        box_size (float):
+          Size of the region (edge length)
+      """
+      cdef int axis, dims, minimum, j, l, m, n, coord
+      cdef long i, particles
+      cdef float inv_cell_size, dist, diff
+      cdef float C[3][4]
+      cdef int index[3][4]
+
+      # find number of particles, the inverse of the cell size and dims
+      particles = pos.shape[0]
+      coord = pos.shape[1]
+      dims = number.shape[0]
+      inv_cell_size = dims/box_size
+
+      # define arrays: for 2D set we have C[2, :] = 1.0 and index[2, :] = 0
+      for i in range(3):
+          for j in range(4):
+              C[i][j] = 1.0
+              index[i][j] = 0
+
+      # do a loop over all particles
+      for i in range(particles):
+          # do a loop over the three axes of the particle
+          for axis in range(coord):
+              dist = pos[i, axis] * inv_cell_size
+              minimum = <int>floor(dist - 2.0)
+              for j in range(4):  # only 4 cells/dimension can contribute
+                  index[axis][j] = (minimum + j + 1 + dims) % dims
+                  diff = fabs(minimum + j+1 - dist)
+                  if diff<1.0:
+                      C[axis][j] = (4.0 - 6.0*diff*diff + 3.0*diff*diff*diff)/6.0
+                  elif diff<2.0:
+                      C[axis][j] = (2.0 - diff)*(2.0 - diff)*(2.0 - diff)/6.0
+                  else:
+                      C[axis][j] = 0.0
+
+          for l in range(4):
+              for m in range(4):
+                  for n in range(4):
+                      number[index[0][l], index[1][m], index[2][n]] += C[0][l]*C[1][m]*C[2][n]
+
+
+  ###############################################################################
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cpdef void voronoi_NGP_2D(double[:, ::1] field,
+                            np.float32_t[:, :] pos,
+                            float[::1] mass,
+                            float[::1] radius,
+                            float x_min, float y_min,
+                            float box_size,
+                            long tracers, int r_divisions,
+                            bint periodic,
+                            bint verbose=1):
+      """
+      Compute the density field in a 2D region from a set of Voronoi
+      cells that have masses and radii. Each particle is assumed to be a
+      uniform sphere which is associated to the grid itself, divided
+      into shells that have the same area. Shells are then associated to
+      a number (particles-per-cell) of tracers equally distributed in
+      angle. Grid cells are then assigned subparticles according to the
+      NGP (nearest grid point) mass assignment scheme.
+
+      Args:
+        field (double[:, ::1]):
+          The column density field array (contiguous)
+        pos (float[:, ::1]):
+          Particle 3D/2D position array (contiguous)
+        mass (float[::1]):
+          Particle mass array (contiguous)
+        radius (float[::1]):
+          SPH particle radius array (contiguous)
+        x_min (float):
+          Minimum coordinate along the first axis
+        y_min (float):
+          Minimum coordinate along the second axis
+        box_size (float):
+          Size of the region (edge length)
+        tracers (long):
+          TODO
+        r_divisions (int):
+          TODO
+        periodic (bool):
+          If True, periodic boundary conditions are applied
+        verbose (bool):
+          Print debug info
+      """
+      cdef long i, j, k, particles, dims, count
+      cdef double dtheta, angle, R, R1, R2, area, length, V_sphere, norm
+      cdef double R_cell, W_cell, x_cell, y_cell
+      cdef np.float32_t[:, :] pos_tracer
+      cdef np.float32_t[:] w_tracer
+      cdef double x, y, w, inv_cell_size
+      cdef int index_x, index_y, index_xp, index_xm, index_yp, index_ym
+      cdef int theta_divisions
+      cdef time_t start
+      cdef double duration
+
+      # verbose
+      if verbose:
+          printf("Computing projected mass of the Voronoi tracers...\n")
+      start = time(NULL)
+      # find the number of particles, dimensions of the grid
+      particles     = pos.shape[0]
+      dims          = field.shape[0]
+      inv_cell_size = dims * 1.0 / box_size
+      # compute the number of particles in each shell and the angle between them
+      theta_divisions = tracers // r_divisions
+      dtheta          = 2.0 * M_PI / theta_divisions
+      V_sphere        = 4.0/3.0 * M_PI * 1.0**3
+      # define the arrays with the properties of the tracers; positions and weights
+      pos_tracer = np.zeros((tracers, 2), dtype=np.float32)
+      w_tracer   = np.zeros(tracers, dtype=np.float32)
+      # define and fill the array containing pos_tracer
+      count = 0
+      for i in range(r_divisions):
+          R1 = i * 1.0 / r_divisions
+          R2 = (i + 1.0) / r_divisions
+          R = 0.5 * (R1 + R2)
+          area = M_PI * (R2**2 - R1**2) / theta_divisions
+          length = 2.0 * sqrt(1.0**2 - R**2)
+          for j in range(theta_divisions):
+              angle = 2.0 * M_PI * (j + 0.5) / theta_divisions
+              pos_tracer[count, 0] = R * cos(angle)
+              pos_tracer[count, 1] = R * sin(angle)
+              w_tracer[count] = area * length / V_sphere
+              count += 1
+      # normalize weights of tracers
+      norm = np.sum(w_tracer, dtype=np.float64)
+      for i in range(tracers):
+          w_tracer[i] = w_tracer[i] / norm
+      if periodic:
+          for i in range(particles):
+              R_cell = radius[i]
+              W_cell = mass[i]
+              x_cell = pos[i, 0]
+              y_cell = pos[i, 1]
+              # see if we need to split the particle into tracers or not
+              index_xm = <int>((x_cell - R_cell - x_min) * inv_cell_size + 0.5)
+              index_xp = <int>((x_cell + R_cell - x_min) * inv_cell_size + 0.5)
+              index_ym = <int>((y_cell - R_cell - y_min) * inv_cell_size + 0.5)
+              index_yp = <int>((y_cell + R_cell - y_min) * inv_cell_size + 0.5)
+              if (index_xm == index_xp) and (index_ym == index_yp):
+                  index_x = (index_xm + dims) % dims
+                  index_y = (index_ym + dims) % dims
+                  field[index_x, index_y] += W_cell
+              else:
+                  for j in range(tracers):
+                      x = x_cell + R_cell * pos_tracer[j, 0]
+                      y = y_cell + R_cell * pos_tracer[j, 1]
+                      w = W_cell * w_tracer[j]
+                      index_x = <int>((x - x_min) * inv_cell_size + 0.5)
+                      index_y = <int>((y - y_min) * inv_cell_size + 0.5)
+                      index_x = (index_x + dims) % dims
+                      index_y = (index_y + dims) % dims
+                      field[index_x, index_y] += w
+      # no boundary conditions
+      else:
+          for i in range(particles):
+              R_cell = radius[i]
+              W_cell = mass[i]
+              x_cell = pos[i, 0]
+              y_cell = pos[i, 1]
+              for j in range(tracers):
+                  x = x_cell + R_cell * pos_tracer[j, 0]
+                  y = y_cell + R_cell * pos_tracer[j, 1]
+                  w = W_cell * w_tracer[j]
+                  index_x = <int>((x - x_min) * inv_cell_size + 0.5)
+                  index_y = <int>((y - y_min) * inv_cell_size + 0.5)
+                  if (index_x < 0) or (index_x >= dims):
+                      continue
+                  if (index_y < 0) or (index_y >= dims):
+                      continue
+                  field[index_x, index_y] += w
+      if verbose:
+          duration = difftime(time(NULL), start)
+          printf("Time taken = %.2f seconds\n", duration)
+
+
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cpdef void voronoi_RT_2D(double[:, ::1] density,
+                           float[:, ::1] pos,
+                           float[::1] mass,
+                           float[::1] radius,
+                           float x_min, float y_min,
+                           float box_size,
+                           int axis_x, int axis_y,
+                           bint periodic,
+                           bint verbose=1):
+      """
+      Compute the 2D density field from a set of Voronoi cells in 3D
+      that have masses and radii assuming they represent uniform
+      spheres.  A cell that intersects with a cell will increase its
+      value by the column density of the cell along the sphere. The
+      density array contains the column densities in M/(L/h)^2 units if
+      the quantities in mass units (M) are given in M/h and length units
+      (L) in L/h.
+
+      Args:
+        density (double[:, ::1]):
+          The column density field array (contiguous)
+        pos (float[:, ::1]):
+          Particle 3D/2D position array (contiguous)
+        mass (float[::1]):
+          Particle mass array (contiguous)
+        radius (float[::1]):
+          SPH particle radius array (contiguous)
+        x_min (float):
+          Minimum coordinate along the first axis
+        y_min (float):
+          Minimum coordinate along the second axis
+        box_size (float):
+          Size of the region (edge length)
+        axis_x (int):
+          Coordinate projected along the x-axis [x=0, y=1, z=2]
+        axis_x (int):
+          Coordinate projected along the y-axis [x=0, y=1, z=2]
+        periodic (bool):
+          If True, periodic boundary conditions are applied
+        verbose (bool):
+          Print debug info
+      """
+      cdef long particles, i
+      cdef int dims, index_x, index_y, index_R, ii, jj, i_cell, j_cell
+      cdef float x, y, rho, cell_size, inv_cell_size, radius2
+      cdef float dist2, dist2_x
+      cdef time_t start
+      cdef double duration
+      start = time(NULL)
+
+      if verbose:
+          printf("Computing column densities of the particles...\n")
+      # find the number of particles and the dimensions of the grid
+      particles = pos.shape[0]
+      dims      = density.shape[0]
+      # define cell size and the inverse of the cell size
+      cell_size     = box_size * 1.0 / dims
+      inv_cell_size = dims * 1.0 / box_size
+      if periodic:
+          for i in range(particles):
+              # find the density of the particle and the square of its radius
+              rho     = 3.0 * mass[i] / (4.0 * M_PI * radius[i]**3)  # h^2 M/L^3
+              radius2 = radius[i]**2  # (L/h)^2
+              # find cell where the particle center is and its radius in cell units
+              index_x = <int>((pos[i, axis_x] - x_min) * inv_cell_size)
+              index_y = <int>((pos[i, axis_y] - y_min) * inv_cell_size)
+              index_R = <int>(radius[i] * inv_cell_size) + 1
+              # loop over the cells that contribute in the x-direction
+              for ii in range(-index_R, index_R+1):
+                  x       = (index_x + ii) * cell_size + x_min
+                  i_cell  = ((index_x + ii + dims) % dims)
+                  dist2_x = (x - pos[i, axis_x])**2
+                  # loop over the cells that contribute in the y-direction
+                  for jj in range(-index_R, index_R+1):
+                      y      = (index_y + jj) * cell_size + y_min
+                      j_cell = ((index_y + jj + dims) % dims)
+                      dist2 = dist2_x + (y - pos[i, axis_y])**2
+                      if dist2 < radius2:
+                          density[i_cell, j_cell] += 2.0 * rho * sqrt(radius2 - dist2)
+      # no boundary conditions
+      else:
+          for i in range(particles):
+              # find the density of the particle and the square of its radius
+              rho     = 3.0 * mass[i] / (4.0 * M_PI * radius[i]**3)  # h^2 M/L^3
+              radius2 = radius[i]**2  # (L/h)^2
+              # find cell where the particle center is and its radius in cell units
+              index_x = <int>((pos[i, axis_x] - x_min) * inv_cell_size)
+              index_y = <int>((pos[i, axis_y] - y_min) * inv_cell_size)
+              index_R = <int>(radius[i] * inv_cell_size) + 1
+              # contribution in the x-direction
+              for ii in range(-index_R, index_R+1):
+                  i_cell = index_x + ii
+                  if i_cell >= 0 and i_cell < dims:
+                      x = i_cell * cell_size + x_min
+                      dist2_x = (x - pos[i, axis_x])**2 
+                  else:
+                      continue        
+                  # contribution in the y-direction
+                  for jj in range(-index_R, index_R+1):
+                      j_cell = index_y + jj
+                      if j_cell >= 0 and j_cell < dims:
+                          y = j_cell * cell_size + y_min
+                      else:
+                          continue
+                      dist2 = dist2_x + (y - pos[i, axis_y])**2
+                      if dist2 < radius2:
+                          density[i_cell, j_cell] += 2.0 * rho * sqrt(radius2 - dist2)
+
+      if verbose:
+          duration = difftime(time(NULL), start)
+          printf("Time taken = %.2f seconds\n", duration)
+
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cdef float kernel_SPH(float r, float R):
+      """
+      The SPH kernel function
+      """
+      cdef float u, prefact
+      u = r / R
+      prefact = 8.0 / (M_PI * R**3)
+      if u < 0.5:
+          return prefact * (1 + (6.0 * u - 6.0) * u**2)
+      elif u <= 1.0:
+          return prefact * 2.0 * (1.0 - u)**3
+      else:
+          return 0.0
+
+      
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  cpdef float integrand(float x, float b2):
+      """
+      Integral kernel for scipy.integrate.quad
+      """
+      cdef float r
+      r = sqrt(b2 + x**2)
+      return kernel_SPH(r, 1.0)
+
+
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cdef NHI_table(int bins):
+      """
+      Compute the integral of the SPH kernel
+      \int_{0}^{lmax} W(r) dl, where b^2 + l^2 = r^2 (b is the impact parameter).
+
+      Args:
+        bins (int):
+          bins
+      """
+      # arrays with impact parameter^2 and the column densities
+      cdef Py_ssize_t i
+      cdef float b2, lmax, I, dI
+      cdef np.ndarray[np.float64_t, ndim=1] b2s = np.linspace(0, 1, bins, dtype=np.float64)
+      cdef np.ndarray[np.float64_t, ndim=1] NHI = np.zeros(bins, dtype=np.float64)
+      for i in range(bins):
+          b2 = b2s[i]
+          if b2 == 1.0:
+              continue
+          lmax = sqrt(1.0 - b2)
+          I, dI = quad(integrand, 0.0, lmax, args=(b2,), epsabs=1e-12, epsrel=1e-12)
+          NHI[i] = 2.0 * I
+      return b2s, NHI
+
+
+  ###############################################################################
+  @cython.boundscheck(False)
+  @cython.wraparound(False)
+  @cython.cdivision(True)
+  cpdef void SPH_RT_2D(double[:,::1] density,
+                       float[:,::1] pos,
+                       float[::1] mass,
+                       float[::1] radius,
+                       float x_min, float y_min,
+                       int axis_x, int axis_y,
+                       float box_size,
+                       bint periodic,
+                       bint verbose=1):
+      """
+      Compute the 2D density field from a set of SPH particles that have
+      masses and radii assuming they represent uniform spheres.  A cell
+      that intersects with a cell will increase its value by the column
+      density of the cell along the sphere. The density array contains
+      the column densities in M/(L/h)^2 units if the quantities in mass
+      units (M) are given in M/h and length units (L) in L/h.
+
+      Args:
+        density (double[:, ::1]):
+          The column density field array (contiguous)
+        pos (float[:, ::1]):
+          Particle 3D/2D position array (contiguous)
+        mass (float[::1]):
+          Particle mass array (contiguous)
+        radius (float[::1]):
+          SPH particle radius array (contiguous)
+        x_min (float):
+          Minimum coordinate along the first axis
+        y_min (float):
+          Minimum coordinate along the second axis
+        axis_x (int):
+          Coordinate projected along the x-axis [x=0, y=1, z=2]
+        axis_x (int):
+          Coordinate projected along the y-axis [x=0, y=1, z=2]
+        box_size (float):
+          Size of the region (edge length)
+        periodic (bool):
+          If True, periodic boundary conditions are applied
+        verbose (bool):
+          Print debug info
+      """
+      cdef long particles, i, num, bins = 1000
+      cdef int dims, index_x, index_y, index_R, ii, jj, i_cell, j_cell
+      cdef float x, y, cell_size, inv_cell_size, radius2
+      cdef float dist2, dist2_x, mass_part
+      cdef double[::1] b2, NHI
+      cdef time_t start
+      cdef double duration
+      start = time(NULL)
+      if verbose:
+          printf("Computing column densities of the particles...\n")
+      # find the number of particles and the dimensions of the grid
+      particles = pos.shape[0]
+      dims      = density.shape[0]
+      # define cell size and the inverse of the cell size
+      cell_size     = box_size * 1.0 / dims
+      inv_cell_size = dims * 1.0 / box_size
+      # compute the normalized column density for normalized radii^2
+      b2, NHI = NHI_table(bins)
+      # periodic boundary conditions
+      if periodic:
+          for i in range(particles):
+              # find the particle mass and the square of its radius
+              radius2   = radius[i]**2  # (L/h)^2
+              mass_part = mass[i]
+              # find cell where the particle center is and its radius in cell units
+              index_x = <int>((pos[i, axis_x] - x_min) * inv_cell_size)
+              index_y = <int>((pos[i, axis_y] - y_min) * inv_cell_size)
+              index_R = <int>(radius[i] * inv_cell_size) + 1
+              # do a loop over the cells that contribute in the x-direction
+              for ii in range(-index_R, index_R+1):
+                  x       = (index_x + ii) * cell_size + x_min
+                  i_cell  = ((index_x + ii + dims) % dims)
+                  dist2_x = (x - pos[i, axis_x])**2
+                  # do a loop over the cells that contribute in the y-direction
+                  for jj in range(-index_R, index_R+1):
+                      y      = (index_y + jj) * cell_size + y_min
+                      j_cell = ((index_y + jj + dims) % dims)
+                      dist2 = dist2_x + (y - pos[i, axis_y])**2
+                      if dist2 < radius2:
+                          num = <int>(dist2 / radius2) * bins
+                          density[i_cell, j_cell] += (mass_part * NHI[num])
+      # no periodic boundary conditions
+      else:
+          for i in range(particles):
+              # find the particle mass and the square of its radius
+              radius2   = radius[i]**2  # (L/h)^2
+              mass_part = mass[i]
+              # find cell where the particle center is and its radius in cell units
+              index_x = <int>((pos[i, axis_x] - x_min) * inv_cell_size)
+              index_y = <int>((pos[i, axis_y] - y_min) * inv_cell_size)
+              index_R = <int>(radius[i] * inv_cell_size) + 1
+              # do a loop over the cells that contribute in the x-direction
+              for ii in range(-index_R, index_R+1):
+                  i_cell = index_x + ii
+                  if (i_cell >= 0) and (i_cell < dims):
+                      x = i_cell * cell_size + x_min
+                  else:
+                      continue
+                  dist2_x = (x - pos[i, axis_x])**2
+                  # do a loop over the cells that contribute in the y-direction
+                  for jj in range(-index_R, index_R+1):
+                      j_cell = index_y + jj
+                      if j_cell >= 0 and j_cell < dims:
+                          y = j_cell * cell_size + y_min
+                      else:
+                          continue
+                      dist2 = dist2_x + (y - pos[i, axis_y])**2
+                      if dist2 < radius2:
+                          num = <int>(dist2 / radius2) * bins
+                          density[i_cell, j_cell] += (mass_part * NHI[num])
+      if verbose:
+          duration = difftime(time(NULL), start)
+          printf('Time taken = %.2f seconds', duration)
+#+end_src
+
+
+** Cython integration
+
+- bottleneck: data loading
+  - search galaxies in data (simulation snapshots 3 TB each)
+  - +600 @ 4GB HDF5 files with particles per snapshot
+  - data of a single galaxy split over 1-4 files
+- CPU raytracing good enough (for now)
+- Cython only compatible with the ~setuptools~ build system
+
+  
+*** pyproject.toml
+
+#+begin_src conf
+  [build-system]
+  requires = ["setuptools", "cython", "numpy"]
+  build-backend = "setuptools.build_meta"
+
+  [project]
+  name = "skais"
+  version = "0.1.dev1"
+  description = "SKAIs: an AI framework for deep learning SKA radio telescope & cosmological hydrodynamical simulation data"
+  readme = {file = "README.org", content-type = "text/plain"}
+  requires-python = ">=3.6"
+  license = {file = "LICENSE"}
+  authors = [
+    {name = "Philipp Denzel", email = "phdenzel@gmail.com"},
+  ]
+  maintainers = [
+    {name = "Philipp Denzel", email = "phdenzel@gmail.com"},
+  ]
+  keywords = ["pix2pix", "deep learning", "cosmological simulations", "illustris-tng", "radio mocks"]
+  classifiers = [
+      "Programming Language :: Python :: 3",
+      "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+      "Operating System :: POSIX :: Linux",
+      "Operating System :: MacOS",
+      "Topic :: Security"]
+
+  dependencies = [
+      "numpy",
+      "scipy",
+      "tqdm",
+      "astropy",
+      "h5py",
+      "Pillow",
+      "matplotlib",
+      "torch",
+      "torchvision",
+      "ray[train,tune]",
+      "wandb",
+      "torchinfo",
+  ]
+
+  [project.optional-dependencies]
+  utils = ["jupyter"]
+  dev = ["build", "python-config"]
+  lsp = ["python-lsp-server[all]", "python-lsp-ruff", "pylsp-mypy", "pylsp-rope", "python-lsp-black"]
+  hyperopt = ["hyperopt"]
+  optuna = ["optuna"]
+  tune = ["skais[hyperopt,optuna]"]
+
+  [project.urls]
+  Homepage = "https://github.com/phdenzel/skais"
+  Repository = "https://github.com/phdenzel/skais.git"
+  Issues = "https://github.com/phdenzel/skais/issues"
+
+  [project.scripts]
+  skais = "skais.__main__:main"
+
+  [tool.setuptools.packages.find]
+  exclude = ["data", "notebooks", "scripts", "requirements", "conda", "docker", "checkpoints", "results", "wandb"]
+
+  #[tool.setuptools.package-data]
+  #data = ["*.hdf5"]
+
+#+end_src
+
+
+*** setup.py
+
+#+begin_src python
+  import sys
+  import argparse
+  from setuptools import Extension, setup
+  import numpy
+
+  parser = argparse.ArgumentParser(prog='python setup.py',
+                                   formatter_class=argparse.RawTextHelpFormatter,
+                                   description="Build skais extensions.\n"
+                                   "Use `python setup.py build_ext --inplace`\n"
+                                   "for building Cython extensions from their corresponding C files "
+                                   "or\n`python setup.py build_ext --inplace --use_cython`\nfor building extensions from the cython files directly.")
+  parser.add_argument('--use_cython', '--cython', action='store_true',
+                      help="Build extensions from their cython files "
+                      "instead of the C files.")
+  parser.add_argument('-a', '--report', action='store_true',
+                      help="Generate annotated HTML compilation report.")
+  parser.add_argument('build_c', nargs='?', default='',
+                      help="Compile cython files and exit.")
+
+  args, unk = parser.parse_known_args()
+  USE_CYTHON = args.use_cython
+  BUILD_C = args.build_c == 'build_c'
+
+  ext = '.pyx' if USE_CYTHON or BUILD_C else '.c'
+  extensions = [Extension(name="skais.raytrace", sources=["skais/raytrace"+ext],
+                          include_dirs=[numpy.get_include()],
+                          define_macros=[("NPY_NO_DEPRECATED_API", "NPY_1_7_API_VERSION")],
+                          )]
+
+  if USE_CYTHON or BUILD_C:
+      from Cython.Build import cythonize
+      extensions = cythonize(extensions, language_level=3, annotate=True)
+  if BUILD_C:
+      exit(0)
+
+  for c in ["--cython", "--use_cython", "-a", "--report", "build_c"]:
+      if c in sys.argv:
+          sys.argv.remove(c)
+
+  setup(ext_modules=extensions)
+#+end_src
+
+
+** generate-maps.py
+
+#+begin_src python
+#!/usr/bin/env python
+import gc
+import datetime
+import numpy as np
+from pathlib import Path
+from astropy import units as au
+from skais.read import TNGGalaxy
+from skais.cast import R
+from skais.raytrace import voronoi_RT_2D, voronoi_NGP_2D
+from skais.nn.options import UtilOptions
+from skais.nn.data import Img2H5Buffer
+
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+from matplotlib.image import AxesImage
+from skais.utils.colors import SKAIsCMaps
+
+
+
+def get_arrays(obj: TNGGalaxy,
+               keys: list[str] = None,
+               factors: list[float] = None,
+               verbose: bool = False
+               ) -> list:
+    """
+    Fetch data (arrays or scalars) from a TNGGalaxy object given keys.
+
+    Args:
+      obj (TNGGalaxy): Instance at a set snapshot, pointing at set subfind ID.
+      keys (list[str]): Keys to fetch data.
+      factors (list[float]): Factors for modifying the fetched data.
+      verbose (bool): If True, print status updates to command line.
+
+    Returns:
+      (list): List of fetched data arrays or scalars.
+    """
+    if keys is None:
+        keys = ['particle_positions', 'masses', 'radii']
+    if factors is None:
+        factors = [1, 1, 3]
+    vals = []
+    for key, f in zip(keys, factors):
+        if isinstance(key, (tuple, list)):
+            try:
+                v1 = getattr(obj, key[0])
+            except Exception as e:
+                v1 = obj.subhalo[key[0]]
+            try:
+                v2 = getattr(obj, key[1])
+            except Exception as e:
+                v2 = obj.subhalo[key[1]]
+            v = v1 * v2 * f
+        else:
+            try:
+                v = getattr(obj, key) * f
+            except Exception as e:
+                v = obj.subhalo[key] * f
+        vals.append(v)
+    if verbose:
+        print(f"Loading arrays: {keys}...")
+    return [*vals]
+
+
+def indices_within(pos: (np.ndarray | au.Quantity), center: (list | np.ndarray | au.Quantity),
+                   radius: (float | au.Quantity) = None,
+                   fraction: float = 0.2,
+                   verbose: bool = False
+                   ) -> (au.Quantity, list[au.Quantity]):
+    """
+    Get particle indices within a cube of given radius, e.g. half-mass radius.
+
+    Args:
+      pos (np.ndarray): Particle positions to be filtered.
+      center (list | np.ndarray): Center position of the cube.
+      radius (float): Radius, i.e. half-side of the cube.
+      fraction (float): Box fraction for the default radius if not given.
+      verbose (bool): If True, print status updates to command line.
+
+    Returns:
+      ((np.ndarray, list[float]) | (au.Quantity, list[au.Quantity])):
+        Indices of the filtered particle positions and their 3D extent.
+    """
+    pos_extent = \
+        pos[:, 0].max() - pos[:, 0].min(), \
+        pos[:, 1].max() - pos[:, 1].min(), \
+        pos[:, 2].max() - pos[:, 2].min()
+    w = max(pos_extent)
+    if verbose:
+        print(f"Box extent:  {pos_extent[0]}   {pos_extent[1]}   {pos_extent[2]}")
+    if radius is None:
+        radius = 0.5 * fraction * w
+    elif radius > (100 * au.kpc):
+        radius = 100 * au.kpc
+    if verbose:
+        print(f"Radius: {radius}")
+    xmin, xmax = center[0]-radius, center[0]+radius
+    ymin, ymax = center[1]-radius, center[1]+radius
+    zmin, zmax = center[2]-radius, center[2]+radius
+    if verbose:
+        print(f"Extent: {xmax-xmin}   {ymax-ymin}   {zmax-zmin}")
+    indices = np.where((pos[:, 0] > xmin) & (pos[:, 0] < xmax) &
+                       (pos[:, 1] > ymin) & (pos[:, 1] < ymax) &
+                       (pos[:, 2] > zmin) & (pos[:, 2] < zmax))[0]
+    if verbose:
+        print(f"Selected particles: {indices.shape[0]:,} / {pos.shape[0]:,}")
+    return indices, [xmin, ymin, zmin, xmax, ymax, zmax]
+
+
+def strip_units(*args: tuple[au.Quantity],
+                mask: list = None,
+                units: list[au.Unit] = None,
+                dtype: np.dtype = np.float32
+                ) -> tuple[np.ndarray]:
+    """
+    Remove astropy units from data arrays or scalars.
+
+    Args:
+      args (tuple[au.Quantity]): Data arrays or scalars with astropy units.
+      mask (np.ndarray): Mask for the data arrays.
+      units (au.Unit): Astropy units to be stripped.
+      dtype (np.dtype): Data type of the stripped data array.
+
+    Returns:
+      (tuple[np.ndarray]): Of astropy units stripped data arrays or scalars.
+    """
+    args = list(args)
+    for i, arg in enumerate(args):
+        if units is not None:
+            for u in units:
+                if args[i].unit.is_equivalent(u):
+                    args[i] = args[i].to(u)
+        args[i] = args[i].value
+        if isinstance(args[i], np.ndarray):
+            if mask is not None:
+                args[i] = args[i][mask].astype(dtype)
+    return args
+
+
+def generate_map(obj: TNGGalaxy,
+                 keys: list[str] = None,
+                 factors: list[float] = None,
+                 use_half_mass_rad: bool = True,
+                 fh: float = 3,
+                 grid_size: int = 512,
+                 xaxis: int = 0, yaxis: int = 1,
+                 periodic: bool = True,
+                 assignment_func: callable = voronoi_RT_2D,
+                 tracers: int = None, divisions: int = None,
+                 rot: (list[int, int] | list[float, float]) = None,
+                 verbose: bool = False
+                 ) -> (np.ndarray, np.ndarray, int):
+    """
+    Generate raytracing projection map.
+
+    Args:
+      obj (TNGGalaxy): Instance at a set snapshot, pointing at set subfind ID.
+      keys (list[str]): Keys to fetch data for projecting onto the map.
+      factors (list[float]): Factors for modifying the projection data.
+      use_half_mass_rad (bool):
+        If True, the SubhaloHalfmassRad from the subfind catalog is used for
+        selecting relevant particles. Otherwise, a fraction of the entire
+        particle extent is used.
+      fh (int | float): Expansion factor for the SPH particle radii.
+      grid_size (int): The size of the maps/images. Default: 512.
+      xaxis (int): Projection axis for x.
+      yaxis (int): Projection axis for y.
+      periodic (bool): Use periodic boundary conditions for the projection.
+      assignment_func (callable): Mass assignment algorithm.
+                                  Default: voronoi_RT_2D.
+      tracers (int):
+        Number of tracer particles to use for the Nearest Grid Point algorithm.
+      divisions (int):
+        Number of sphere divisions to use for the Nearest Grid Point algorithm.
+      rot (list[int, int] | list[float, float]):
+        Angles to rotate the particle positions.
+      verbose (bool): If True, print status updates to command line.
+
+    Returns:
+      (np.ndarray, np.ndarray, int):
+        The projected map, the map extent, and number of particles projected.
+    """
+    L, M, T = au.Mpc, au.Msun, au.K
+    cd = np.zeros((grid_size, grid_size), dtype=np.float64)
+    if keys is None:
+        keys = ['particle_positions', 'masses', 'radii', 'center']
+    if factors is None:
+        factors = [1, 1, fh, 1]
+    if use_half_mass_rad:
+        if 'SubhaloHalfmassRadType' not in keys:
+            keys += ['SubhaloHalfmassRadType']
+            factors += [obj.units('l/h')]
+        else:
+            factors.insert(keys.index('SubhaloHalfmassRadType'), obj.units('l/h'))
+    uarrs = get_arrays(obj, keys=keys, factors=factors, verbose=verbose)
+    if rot is not None:
+        rot_op = R.y(rot[1])*R.x(rot[0])
+        uarrs[0] = rot_op(uarrs[0]).astype(np.float32)
+        uarrs[3] = rot_op(uarrs[3]).astype(np.float32)
+    Ngids = uarrs[0].shape[0]
+    hmr = (uarrs[4][0] if use_half_mass_rad else None)  # always use gas (p_idx=0) hmr
+    #hmr = (uarrs[4][obj.p_idx] if use_half_mass_rad else None)
+    idcs, limits = indices_within(uarrs[0], uarrs[3], radius=hmr, verbose=verbose)
+    hmr2 = limits[3] - limits[0]
+    args = strip_units(*uarrs[:3], *limits[:2], hmr2, mask=idcs, units=[L, M, T*M])
+    if tracers is not None:
+        args.append(tracers)
+    else:
+        args.append(xaxis)
+    if divisions is not None:
+        args.append(divisions)
+    else:
+        args.append(yaxis)
+    if verbose:
+        print(f"Raytracing particles with <{assignment_func.__name__}>...")
+    try:
+        assignment_func(cd, *args, periodic, verbose=True)
+    except Exception as e:
+        print(e)
+        return cd * uarrs[1].unit / L**2
+    cd = cd * uarrs[1].unit / L**2
+    return cd, hmr2/2*np.array([-1, 1, -1, 1]), idcs.shape[0]
+
+
+def plot_map(cdmap: (np.ndarray | au.Quantity), extent: (np.ndarray | au.Quantity),
+             group: str = 'gas',
+             cmap: Colormap = SKAIsCMaps.gaseous,
+             interpolation: str = 'bicubic',
+             origin: str = 'lower',
+             out_path: (str | Path) = None,
+             basename: str = None,
+             cbar_label: str = None,
+             no_log: bool = False,
+             label: bool = True,
+             colorbar: bool = True,
+             savefig: bool = False,
+             show: bool = True,
+             close: bool = True,
+             verbose: bool = False
+             ) -> AxesImage:
+    """
+    Plot the map data with specific defaults suitable for projected maps
+    from IllustrisTNG.
+
+    Args:
+      cdmap (np.ndarray | au.Quantity): Image map data.
+      extent (np.ndarray | au.Quantity): Image map extent.
+      group (str): Galaxy property of the map, e.g. star, gas, or dm.
+      cmap (Colormap): Colormap for map plot.
+      interpolation (str): Alternative default for matplotlib.pyplot.imshow.
+      origin (str): Alternative default for matplotlib.pyplot.imshow.
+      out_path (str | Path): The root in which the plot is saved.
+      basename (str): Basname of the file to which the plot is written.
+      cbar_label (str): The colorbar label. Default: r"log $\Sigma$"
+      no_log (bool): If True, plot the data in linear scale.
+      label (bool): If True, include the x and y axis labels in the plot.
+      colorbar (bool): If True, include the colorbar in the plot.
+      savefig (bool): If True, save the plot to file.
+      show (bool): If True, show the plot.
+      close (bool): If True, close the figure after execution.
+      verbose (bool): If True, print status updates to command line.
+
+    Returns:
+      (matplotlib.image.AxesImage): Matplotlib image instance.
+    """
+    if hasattr(cdmap, 'value'):
+        cd = cdmap.value
+    else:
+        cd = cdmap
+    if hasattr(extent, 'value'):
+        ext = extent.value
+    else:
+        ext = extent
+    if hasattr(cdmap, 'unit') and cdmap.unit:
+        ucd = f"[{cdmap.unit}]"
+    else:
+        ucd = ""
+    if hasattr(extent, 'unit') and extent.unit:
+        uext = f"[{extent.unit}]"
+    else:
+        uext = ""
+    fig = plt.figure(dpi=100)
+    if no_log:
+        img = plt.imshow(cd, cmap=cmap, extent=ext,
+                         interpolation=interpolation, origin=origin)
+    else:
+        img = plt.imshow(np.log10(cd), cmap=cmap, extent=ext,
+                         interpolation=interpolation, origin=origin)
+    if label:
+        plt.xlabel(f"x {uext}")
+        plt.ylabel(f"y {uext}")
+    if colorbar:
+        lbl = cbar_label
+        if cbar_label is None:
+            lbl = "log "+u"\u03A3 "+ucd
+        if "[" not in lbl or "]" not in lbl:
+            lbl = cbar_label + ucd
+        lbl = lbl.replace("solMass", "M"+r"$_{\odot}$").replace("2", u"\u00B2")
+        eformat = ticker.ScalarFormatter()
+        eformat.set_powerlimits((-2, 2))
+        cbar = plt.colorbar(label=lbl, format=eformat)
+    if savefig:
+        if basename is None:
+            basename = 'gas_image'
+        if out_path is None:
+            out_path = Path('./data')
+        elif not isinstance(out_path, Path):
+            out_path = Path(out_path)
+        filename = out_path / group / (basename + '.png')
+        plt.savefig(filename, transparent=True, bbox_inches='tight')
+        if verbose:
+            print(f"Saving to [png]: {filename}")
+    if show:
+        plt.show()
+    if close:
+        plt.close()
+    return img
+
+
+def run_sample(obj: TNGGalaxy, gid: int,
+               group: str = 'gas',
+               cdunit: au.Unit = None,
+               cmap: Colormap = None,
+               out_path: (str | Path) = None,
+               hdf5_save: bool = True,
+               hdf5_name: (str | Path) = None,
+               npy_save: bool = False,
+               opt: UtilOptions = None,
+               grid_size: int = 512,
+               fh: float = 3,
+               rot: (list[float, float] | np.ndarray[float, float]) = None,
+               xaxis: int = 0,
+               yaxis: int = 1,
+               periodic: bool = False,
+               rng_seed: int = 42,
+               flag_lim: float = 0,
+               flag_N: int = 64,
+               verbose: bool = True):
+    """
+    Project a subfind ID from an IllstrisTNG snapshot.
+
+    Args:
+      obj (TNGGalaxy): Instance at a set snapshot, pointing at set subfind ID.
+      group (str): Galaxy property of the map, e.g. star, gas, or dm.
+      cdunit (au.Unit): Units in which the map is to be projected.
+      cmap (Colormap): Colormap for map plot.
+      out_path (str | Path): The root in which the plot is saved.
+      hdf5_save (bool): If True, save map to HDF5 file.
+      hdf5_name (str | Path): Basename of the HDF5 file.
+      npy_save (bool): If True, save map as numpy binary files.
+      opt (UtilOptions): Utility options containing further configurations.
+      grid_size (int): The size of the maps/images. Default: 512.
+      fh (int | float): Expansion factor for the SPH particle radii.
+      rot (list[int, int] | list[float, float]):
+        Angles to rotate the particle positions.
+      xaxis (int): Projection axis for x.
+      yaxis (int): Projection axis for y.
+      periodic (bool): Use periodic boundary conditions for the projection.
+      rng_seed (int): Seed for the random number generation.
+      flag_lim (float):
+        Flag the map in the metadata if N pixel values fall below the limit.
+      flag_N (int):
+        The number of pixels before an image is flagged.
+      verbose (bool): If True, print status updates to command line.
+    """
+    if out_path is None:
+        out_path = Path('./data')
+    # load data
+    if gid != obj.halo_index:
+        obj.halo_index = gid
+    kwargs = {'use_half_mass_rad': True, 'fh': fh, 'grid_size': grid_size,
+              'xaxis': xaxis, 'yaxis': yaxis, 'periodic': periodic, 'rot': rot,
+              'verbose': verbose}
+    no_log = False
+    post_hook = None
+    # set up configs for group
+    if group == 'gas':
+        kwargs['keys'] = ['particle_positions', 'masses', 'radii', 'center']
+        if cdunit is None: cdunit = au.Msun/au.kpc**2
+        if cmap is None: cmap = SKAIsCMaps.gaseous
+        cbar_label = "log "+u"\u03A3"+r"$_{\mathrm{gas}}$ "
+    elif group == 'hi':
+        kwargs['keys'] = ['particle_positions', 'm_HI', 'radii', 'center']
+        if cdunit is None: cdunit = au.Msun/au.kpc**2
+        if cmap is None: cmap = SKAIsCMaps.gaseous
+        cbar_label = "log "+u"\u03A3"+"$_{\mathrm{HI}}$ "
+    elif group == 'hi/21cm':
+        kwargs['keys'] = ['particle_positions', 'm_HI', 'radii', 'center']
+        kwargs['assignment_func'] = voronoi_NGP_2D
+        kwargs['tracers'] = 128
+        kwargs['divisions'] = 2
+        pixel_size = 1. / grid_size
+        z, h, H0, Hz = obj.cosmology.z, obj.cosmology.h, obj.cosmology.H0, obj.cosmology.H(obj.cosmology.a)
+        sigma_crit = obj.cosmology.rho_crit
+        post_hook = lambda x, y: (189 * au.mK * h * (1+z)**2 * (H0/Hz) * x/((y[1]-y[0])*pixel_size*sigma_crit))
+        if cdunit is None: cdunit = au.mK
+        if cmap is None: cmap = SKAIsCMaps.nava
+        cbar_label=r"T$_{\mathrm{b}}$ "
+        flag_lim, flag_N = 0, grid_size**2/10
+        no_log = True
+    elif group == 'temp':
+        kwargs['keys'] = ['particle_positions', ('masses', 'temperature'), 'radii', 'center']
+        if cdunit is None: cdunit = au.K
+        if cmap is None: cmap = SKAIsCMaps.phoenix
+        cbar_label="log T "
+    elif group == 'bfield':
+        kwargs['keys'] = ['particle_positions', ('masses', 'magnetic_field_strength'), 'radii', 'center']
+        if cdunit is None: cdunit = au.Gauss
+        if cmap is None: cmap = SKAIsCMaps.gravic
+        cbar_label="log |B| "
+    elif group == 'star':
+        kwargs['keys'] = ['particle_positions', 'masses', 'radii', 'center']
+        if cdunit is None: cdunit = au.Msun/au.kpc**2
+        if cmap is None: cmap = SKAIsCMaps.hertzsprung
+        cbar_label = "log "+u"\u03A3"+r"$_{\mathrm{star}}$ "
+    elif group == 'dm':
+        kwargs['keys'] = ['particle_positions', 'masses', 'radii', 'center']
+        if cdunit is None: cdunit = au.Msun/au.kpc**2
+        if cmap is None: cmap = SKAIsCMaps.obscura
+        cbar_label = "log "+u"\u03A3"+r"$_{\mathrm{dm}}$ "
+    # allocate arrays and raytrace
+    if isinstance(kwargs['keys'][1], (tuple, list)):
+        keys = kwargs.pop('keys')
+        cd1, extent, N = generate_map(obj, keys=keys, **kwargs)
+        keys[1] = keys[1][0]
+        cd0, _, _ = generate_map(obj, keys=keys, **kwargs)
+        cd = np.zeros_like(cd1.value)
+        np.place(cd, cd0.value != 0, cd1.value[cd0.value != 0]/cd0.value[cd0.value != 0])
+        cd *= (cd1.unit / cd0.unit)
+    else:
+        cd, extent, N = generate_map(obj, **kwargs)
+    if post_hook is not None:
+        cd = post_hook(cd, extent)
+    # convert to chosen units
+    cd = cd.to(cdunit)
+    cbar_label += f"[{cd.unit}]"
+    # check for potential problems
+    flag = 0
+    if np.sum(cd.value < flag_lim) > flag_N:
+        print("Bad projection, flagging image...")
+        flag = 1
+    # plot data
+    rot_str = f"_rotxy.{rot[0]}.{rot[1]}" if rot is not None else ""
+    bname = f"{str(Path(group).stem)}_tng50-1.{obj.snapshot:02d}.gid.{obj.halo_index:07d}{rot_str}"
+    plot_map(cd, extent, group=group, out_path=out_path, basename=bname,
+             cbar_label=cbar_label, cmap=cmap,
+             no_log=no_log, savefig=True, show=False, verbose=verbose)
+    # save data
+    if npy_save:
+        npname = f"{bname}_units.{cd.unit}_extent.{extent[1]-extent[0]:4.8f}.npy".replace(' ', '').replace('/', '_')
+        np.save(npname, cd)
+        if verbose:
+            print(f"Saving to [npy]: {npname}")
+    if hdf5_save and hdf5_name is not None:
+        opt = UtilOptions() if opt is None else opt
+        img2h5 = Img2H5Buffer(opt, find=False)
+        md = {'simulation': 'IllustrisTNG', 'box': 'tng50-1', 'class': group,
+              'gid': obj.halo_index, 'snapshot': obj.snapshot,
+              'units': f"{cd.unit}",
+              'extent': extent.value, 'units_extent': f"{extent.unit}",
+              'name': bname, 'num_particles': N,
+              'rotxy': rot if rot is not None else (0, 0),
+              'flagged': flag, 'rng_seed': rng_seed}
+        img2h5.inc_write(hdf5_name, cd.value, group, metadata=md)
+        if verbose:
+            print(f"Saving to [hdf5]: {hdf5_name}")
+
+
+def main(tng_ids: list[int], gids: list[int],
+         groups: list[str] = None,
+         sim_path: (str | Path) = './simulations',
+         tng_sim: str = 'tng50-1',
+         hdf5_file: str = None,
+         opt: UtilOptions = None,
+         grid_size: int = 512,
+         rotations: list[list[int, int]] = None,
+         random_rotations: bool = True,
+         rng_seed: int = 42,
+         verbose: bool = True):
+    """
+    Generate an arbitrary number of maps from an IllustrisTNG snapshot.
+
+    Args:
+      tng_ids (list[int]): Snapshots number of the IllustrisTNG run.
+      gids (list[int]): Subfind IDs, i.e. galaxies, from which to generate maps.
+      groups: (list[str]): Galaxy properties to map, e.g. star, gas, or dm.
+      sim_path (str | Path): Path to the root of the simulation snapshots.
+                             Default: ./simulations.
+      tng_sim (str): Simulation box name specification. Default: tng50-1.
+      hdf5_file (str):
+        HDF5 filename to which the maps are written. If None and the config
+        source parameter is also None, saving to HDF5 is disabled.
+      opt (Options): Options gathered from command-line and config files.
+      grid_size (int): The size of the maps/images. Default: 512.
+      rotations (list[list[int, int]]):
+        List of angle pairs (theta, phi) per rotation for each subfind ID; e.g.
+        for 4 separate rotations per subfind ID, its shape is (len(gids), 4, 2).
+      random_rotations (bool):
+        If True, use random rotations (2 per subfind ID) to augment the dataset.
+      verbose (bool): If True, print status updates to command line.
+    """
+    opt = UtilOptions() if opt is None else opt
+    tng_ids = list(tng_ids)
+    gids = list(gids)
+    Ng = len(gids)
+    generate_stars =  "star" in groups if groups is not None else False
+    generate_dm = "dm" in groups if groups is not None else False
+    if groups is None:
+        groups = ["gas", "hi", "hi/21cm", "temp", "bfield", "star", "dm"]
+    if "star" in groups:
+        groups.remove("star")
+        generate_stars = True
+    if "dm" in groups:
+        groups.remove("dm")
+        generate_dm = True
+    # gather paths
+    sim_path = Path(sim_path)
+    tng_path = sim_path / tng_sim
+    data_path = Path(opt.data_dir)
+    hdf5_save = True
+    if hdf5_file is None:
+        if opt.output is not None and Path(opt.output).exists():
+            hdf5_file = opt.output
+        elif opt.output is not None:
+            hdf5_file = str(Path(opt.data_dir) / opt.output)
+        elif opt.source is not None and Path(opt.source).exists():
+            hdf5_file = opt.source
+        elif opt.source is not None:
+            hdf5_file = str(Path(opt.data_dir) / opt.source)
+        else:
+            hdf5_save = False
+
+    print("Resolved paths:")
+    print("simulations:", sim_path.resolve())
+    print("data:       ", data_path.resolve())
+    print("tng50-1:    ", tng_path.resolve())
+    # verify existance
+    print(f"{sim_path.resolve()}: exists", sim_path.exists())
+    print(f"{tng_path.resolve()}: exists", tng_path.exists())
+
+    if random_rotations:
+        rotations = np.stack((np.random.randint(25, 180, size=Ng),
+                              np.random.randint(25, 90, size=Ng)))
+        rotations = np.vstack((rotations,
+                               rotations[0]+np.random.randint(20, 40, size=Ng),
+                               rotations[1]+np.random.randint(70, 110, size=Ng))
+                              ).T.reshape(Ng, 2, 2)
+    for tng_id in tng_ids:
+        h5fp = f"Snapshot_{tng_id:d}"
+        out_path = data_path / f"{tng_id:03d}"
+        # create directories if necessary
+        for key in groups:
+            d = out_path / key
+            if not d.exists():
+                d.mkdir(parents=True)
+                print(f"mkdir -p {d.resolve()}")
+        tng_src = TNGGalaxy(tng_path, tng_id, halo_index=gids[0], as_float32=True)
+        for i, gid in enumerate(gids):
+            angles = [] if rotations is None else rotations[i]
+            for group in groups:
+                print(f"\n# Snapshot {tng_id}, subhalo {gid}, {group}")
+                run_sample(tng_src, gid, group=group,
+                           out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                           grid_size=grid_size, fh=1, rng_seed=rng_seed, rot=None)
+                for (theta, phi) in angles:
+                    run_sample(tng_src, gid, group=group,
+                               out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                               grid_size=grid_size, fh=1, rng_seed=rng_seed,
+                               rot=(theta, phi))
+        gc.collect()
+        if generate_stars:
+            group = "star"
+            if not (out_path / group).exists():
+                (out_path / group).mkdir(parents=True)
+                print(f"mkdir -p {d.resolve()}")
+            tng_src_star = TNGGalaxy(tng_path, tng_id, halo_index=gids[0],
+                                     particle_type='star', as_float32=True)
+            for i, gid in enumerate(gids):
+                print(f"\n# Snapshot {tng_id}, subhalo {gid}, stars")
+                angles = [] if rotations is None else rotations[i]
+                run_sample(tng_src_star, gid, group=group,
+                           out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                           grid_size=grid_size, fh=2, rng_seed=rng_seed, rot=None)
+                for theta, phi in angles:
+                    run_sample(tng_src_star, gid, group=group,
+                               out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                               grid_size=grid_size, fh=2, rng_seed=rng_seed,
+                               rot=(theta, phi))
+            gc.collect()
+        if generate_dm:
+            group = "dm"
+            if not (out_path / group).exists():
+                (out_path / group).mkdir(parents=True)
+                print(f"mkdir -p {d.resolve()}")
+            tng_src_dm = TNGGalaxy(tng_path, tng_id, halo_index=gids[0],
+                                   particle_type='dm', as_float32=True)
+            for i, gid in enumerate(gids):
+                print(f"\n# Snapshot {tng_id}, subhalo {gid}, dark matter")
+                angles = [] if rotations is None else rotations[i]
+                run_sample(tng_src_dm, gid, group=group,
+                           out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                           grid_size=grid_size, fh=3, rng_seed=rng_seed, rot=None)
+                for theta, phi in angles:
+                    run_sample(tng_src_dm, gid, group=group,
+                               out_path=out_path, hdf5_name=hdf5_file, opt=opt,
+                               grid_size=grid_size, fh=3, rng_seed=rng_seed,
+                               rot=(theta, phi))
+            gc.collect()
+
+
+if __name__ == "__main__":
+    rng_seed = 42
+    np.random.seed(rng_seed)
+
+    # Options
+    opt = UtilOptions()
+    print("# Configs:")
+    _ = opt.print_options()
+
+    if opt.output is None:
+        hdf5_file = str(datetime.datetime.now().date()).replace('-', '') \
+            + f"_tng50-1_preproc.hdf5"
+    else:
+        hdf5_file = opt.output
+
+    # Loop over all samples in all snapshots
+    main([50, 78, 99], range(3334),
+         groups=["gas", "hi", "hi/21cm", "temp", "bfield", "star", "dm"],
+         sim_path='./simulations', hdf5_file=hdf5_file, opt=opt,
+         rng_seed=rng_seed,
+         grid_size=512)
+
+#+end_src
+
+
+*** Domains
+
+#+CAPTION: Dataset of over 30'000 x 6 galaxy maps
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domains.png]]
+
+
+*** Domain translation
+
+#+CAPTION: Use image domain translation models: observations (21cm) @@html:&#x2194;@@ physical properties
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domains_directions.png]]
+
+
+*** Units
+
+
+Dynamic range between \(10^{-6} - 10^{12}\): transformation (often used in high-energy physics)
+
+\begin{equation}
+  \hat{x} = \left(\frac{x}{c}\right)^{(\frac{1}{\gamma})}
+\end{equation}
+
+- $c \gtrsim \max(x)$
+- $\gamma \sim 10^{1} - 10^{2}$
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 500px :style padding-left: 70px; border-radius: 12px;
+[[./assets/images/skais/data_untransform.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 500px :style padding-right: 200px; border-radius: 12px;
+[[./assets/images/skais/data_transform.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+** ~skais~ for map-to-map transfer
+
+#+begin_src shell
+  skais
+  ├── LICENSE
+  ├── Makefile
+  ├── README.md
+  ├── README.org
+  ├── pyproject.toml
+  ├── requirements
+  ├── scripts
+  ├── setup.py
+  ├── skais
+      ├── __init__.py
+      ├── cast.py
+      ├── cosmology.py
+      ├── illustris
+      │   ├── __init__.py
+      │   ├── groupcat.py
+      │   ├── snapshots.py
+      │   └── util.py
+      ├── kernels.py
+      ├── nn
+      │   ├── __init__.py
+      │   ├── data
+      │   │   ├── __init__.py
+      │   │   ├── loader.py
+      │   │   ├── reader.py
+      │   │   ├── sampler.py
+      │   │   └── transforms.py
+      │   ├── losses.py
+      │   ├── metrics.py
+      │   ├── models
+      │   │   ├── __init__.py
+      │   │   ├── base.py
+      │   │   ├── patchgan.py
+      │   │   ├── pix2pix.py
+      │   │   └── unet.py
+      │   ├── optimizers.py
+      │   ├── options.py
+      │   └── utils
+      │       ├── __init__.py
+      │       ├── ray.py
+      │       └── wandb.py
+      ├── raytrace.c
+      ├── raytrace.pyx
+      ├── train.py
+      ├── tune.py
+      ├── utils
+      │   ├── __init__.py
+      │   └── colors.py
+      └── version.py
+  ├── skais.nn.conf.yml
+  └── tests
+#+end_src
+
+
+*** YAML config
+
+#+begin_src yaml
+# Run id / name
+defaults:
+  ### General
+  ###########
+  # Time when this file was initially created
+  time: 2023-04-03 17:08:45.714782
+  # Print more debugging information
+  # [-v|--verbose]
+  verbose: true
+  # Dry run the configuration
+  # [-n|--dry-run]
+  dry_run: false
+  # Name of this config
+  # [-i|--config PATH]
+  config: skais.nn.conf.yml
+  # Path to the dataset(s)
+  # [-d|--data_dir PATH]
+  data_dir: ./data
+  # Path to the directory where the checkpoints are saved
+  # [-c|--checkpoints_dir PATH]
+  checkpoints_dir: ./checkpoints
+  # Path to the results directory where plots and such are saved
+  # [-o|--results_dir PATH]
+  results_dir: ./results
+  # Save checkpoints and artifacts in their respective directories in a tree-style format
+  # to decrease number of files in a single folder.
+  # [--tree_structure]
+  tree_structure: false
+  # HDF5 dataset source file (if None, the lastest HDF5 file is used)
+  # [-f|--source|--file PATH]
+  source: null
+  # Output filename, e.g. of merged HDF5 files (see ./scripts)
+  # [--out|--output PATH]
+  output: null
+  # Data loading mode {hdf5, jpg, png, fits}  # TODO: so far only hdf5 implemented
+  # [--data_mode MODE]
+  data_mode: hdf5
+  # Casting data type of the arrays/tensors {float32, float64, ...}
+  # [--dtype DTYPE]
+  dtype: null
+  # GPUs: e.g. 0 or 0,1,2 or -1 for CPU
+  # [-g|--gpu_ids GPU_IDs]
+  gpu_ids: 0
+
+  ### Dataloader
+  ##############
+  # Load aligned/paired datasets
+  # [--aligned]
+  aligned: true
+  # Input batch size
+  # [--batch_size INT]
+  batch_size: 1
+  # If True, drops last batch in case batch_size doesn't fit into the dataset size
+  # [--drop_last_batch]
+  drop_last_batch: false
+  # If True, batch shuffling is disabled (reason for disabling could be performance)
+  # [--no_batch_shuffle]
+  no_batch_shuffle: false
+  # Number of separate threads for loading data; 0 for stability (data loading in the main proc)
+  # [--data_threads]
+  data_threads: 0
+  # Train, validation, and test dataset split ratios
+  # [--split SPLITS]
+  split: [0.7, 0.1, 0.2]
+  # HDF5 groups to read out (two groups for paired image training, e.g. ["gas", "dm"]
+  # [--file_groups GROUPS]
+  file_groups: null
+  # Size of the entire HDF5 chunk cache for each dataset.
+  # [--chunk_cache SIZE]
+  chunk_cache: 2GB
+  # Chunk size of the HDF5 chunk cache. Leave None/null for auto-tuning
+  # [--chunk_size SIZE]
+  chunk_size: null
+  # Don't load the entire dataset into RAM
+  # [--no_allcache]
+  no_allcache: true
+  # Preprocessing methods, select from {max_scale, minmax_scale, log_scale, hep_scale}
+  # [--preprocess METHODS]
+  preprocess: null
+  # Global minimum of the dataset (if None, determined automatically -> time-consuming)
+  # [--min_norm FLOATS]
+  min_norm: null
+  # Global maximum of the dataset (if None, determined automatically -> time-consuming)
+  # [--max_norm FLOATS]
+  max_norm: null
+  # Log base (default natural log), choose from 'e', 2, 10
+  # [--log_base BASES]
+  log_base: null
+  # inverse power for HEP scaler: (x/max_norm)**(1/hep_gamma)
+  # [--hep_gamma FLOATS]
+  hep_gamma: null
+  # Flip the images for data augmentation;  # TODO: NotYetImplemented
+  # [--flip] 
+  flip: false
+
+  ### Model
+  ##############
+  # If True, model from starting epoch index will be loaded and wandb resumes logging
+  # [-r|--reload]
+  reload: false
+  # Model to be loaded: {pix2pix, }
+  # [--model MODEL] 
+  model: pix2pix
+  # Generator architecture
+  # [--generator ARCH]
+  generator: unet
+  # Discriminator architecture (for GANs)
+  # [--discriminator ARCH]
+  discriminator: patchgan
+  # Number of input channels, e.g. 3 for RGB
+  # [--in_channels INT]
+  in_channels: 1
+  # Number of output channels, e.g. 3 for RGB
+  # [--out_channels INT]
+  out_channels: 1
+  # Filter/feature signature of the model
+  # [--filters INTS]
+  filters: [64, 128, 256, 512]
+  # Number of downsampling blocks of the model
+  # [--n_blocks INTS]
+  n_blocks: [1, 1, 1, 4]
+  # Kernel size of convolutions in model
+  # [--kernel_size INT]
+  kernel_size: 4
+  # Dropout rate for the generator model; if None, no dropouts are used.
+  # [--dropouts FLOAT]
+  dropouts: null
+  # Filter signature for the discriminator. If None, the generator's filter signature is used.
+  # [--filters_discriminator INTS]
+  filters_discriminator: null
+  # Number of downsampling blocks for the discriminator. If None, the generator's blocks are used.
+  # [--n_blocks_discriminator INTS]
+  n_blocks_discriminator: null
+  # Kernel size of convolutions in discriminator
+  # [--kernel_size_discriminator INT]
+  kernel_size_discriminator: null
+  # Network initialization method {normal|default, xavier, kaiming, fan_in, orthogonal}
+  # [--init_methods METHOD]
+  init_method: normal
+  # Gain for the initialization methods normal, xavier, and orthogonal
+  # [--init_gain FLOAT]
+  init_gain: 0.02
+  # If True, no batch normalization is performed in the generator/discriminator
+  # [--no_batch_norm]
+  no_batch_norm: False
+  # Loss terms, multiple choices possible: {ganloss, l1loss, l2loss}
+  # [--loss LOSSES]
+  loss: [ganloss, l1loss]
+  # regularization factor for L1 loss
+  # [--lambda_l1 FLOAT]
+  lambda_l1: 1.0
+  # GAN loss mode {vanilla|default|standard, lsgan, wgan|wganp|wgan-penalty|wgan_penalty}
+  # [--gan_mode METHOD]
+  gan_mode: vanilla
+  # Direction for paired image training {AtoB|BtoA} (alternatively reverse file_groups list)
+  # [--direction DIR]
+  direction: AtoB
+
+  ### Optimizer
+  ##############
+  # Optimizer for training (adam, sgd, adagrad, rmsprop, adamw)
+  # --optimizer_type METHOD
+  optimizer_type: adam
+  # Learning rate; can be list of values if model has multiple networks
+  # [--lr RATES]
+  lr: 0.0002
+  # First moment decay parameter for the Adam(w) optimizer
+  # [--beta1 FLOAT]
+  beta1: 0.5
+  # Second moment decay parameter for the Adam(w) optimizer
+  # [--beta2 FLOAT]
+  beta2: 0.999
+  # Momentum of the SGD optimizer
+  # [--momentum FLOAT]
+  momentum: 0
+  # Learning rate schedule (invariant, constant, linear, step, step_50, step_90, plateau, cosine)
+  # [--lr_schedule SCHEDULE]
+  lr_schedule: invariant
+  # Decay parameter (determines either the decay periodicity or milestone) in epochs
+  # [--lr_decay INT]
+  lr_decay: 50
+  # Decay factor; behaviour depends on exact scheduler
+  # [--gamma FLOAT]
+  gamma: null
+
+  ### Training
+  ############
+  # Training mode flag (if False, models are loaded without optimizers)
+  # [-t|--train]
+  train: true
+  # Starting index of training epochs (important to specify when loading intermediate checkpoints)
+  # [-s|--epoch_start INT]
+  epoch_start: 0
+  # Number of total training epochs
+  # [--n_epochs INT]
+  n_epochs: 300
+  # If True, ray.tune callbacks are used.
+  # [--use_ray]
+  use_ray: false
+  # Number of maximum epochs to train models in ray.tune sweeps [epochs].
+  # [--t_raytune INT]
+  t_raytune: 50
+  # If True, wandb logging is used during training
+  # [--use_wandb]
+  use_wandb: false
+  # Specify wandb project name
+  # [--wandb_project_name NAME]
+  wandb_project_name: skais_defaults
+  # wandb logging frequency in numbers of iterations
+  # [--t_wandb INT]
+  t_wandb: 1
+  # Log frequency in no. of batched iterations, i.e. total no. of iter. per epoch: len(dataset) / batch_size)
+  # [--t_log INT]
+  t_log: 100
+  # Checkpoint saving in number of epochs (*.latest.pth file use cached at the end of every epoch)
+  # [--t_checkpoints INT]
+  t_checkpoint: 5
+  # Output (e.g. image predicitions) frequency in numbers of epochs
+  # [--t_output INT]
+  t_output: 10
+  # Evaluation frequency during training in number of epochs
+  # [--t_eval INT]
+  t_eval: 1
+
+  ### Evaluation / Inference
+  ###############
+  # Run in evaluation mode (for train/test)
+  # [--eval]
+  eval: false
+  # Calculate metrics [MSE, Chi2, PSNR, SSIM]
+  # [--eval_metrics METRICS]
+  eval_metrics: []
+  # Number of sample images for manual post-hoc inspection
+  # [--eval_samples INT]
+  eval_samples: 0
+  # Run in test mode (for __main__)  # TODO: NotYetImplemented
+  # [--test]
+  test: false
+  # Number of test samples to run;  # TODO: NotYetImplemented
+  # [--num_test INT]
+  num_test: 1
+
+  ### Utility: Evaluation, Inference, Unittests, ImgH5Buffer
+  ###############
+  # Unittest flag  # TODO: NotYetImplemented... I think
+  # [-u|--unittest]
+  unittest: false
+  # Util mode flag (used in several scripts)
+  # [-a|--util]
+  util: false
+  # File extensions for Img2H5Buffer's automatic file search
+  # [--file_extensions EXT]
+  file_extensions: [hdf5]
+  # File signatures to look for in Img2H5Buffer's automatic file search
+  # [--fiile_signatures PATTERN]
+  file_signatures: null
+
+#+end_src
+
+
+*** pix2pix.py
+
+#+begin_src python
+"""
+SKAIs nn.models.pix2pix module
+
+@author: phdenzel
+"""
+import torch
+from skais.nn import init_module
+from skais.nn.models.base import BaseModel
+from skais.nn.options import Options
+
+
+__all__ = ['Pix2Pix',]
+
+
+class Pix2Pix(BaseModel):
+    """
+    Pix2Pix model based on https://arxiv.org/abs/1611.07004
+    """
+    def __init__(self, options: Options.atype(),
+                 generator: callable = None,
+                 discriminator: callable = None,
+                 loss_funcs: list[callable] = None):
+        super().__init__(options)
+        # patch option requirements
+        self.patch_options(model='pix2pix', loss=['ganloss', 'l1loss', 'l2loss'])
+        # define networks as [generator, discriminator]
+        if self.verbose:
+            print(f"# Initializing {self.__class__.__name__}")
+        generator = 'generator' if generator is None else generator
+        generator = init_module(generator, self.options, verbose=self.verbose)
+        self.networks.append(generator)
+        discriminator = 'discriminator' if discriminator is None else discriminator
+        filters = self.options.filters
+        if self.options.filters_discriminator is not None:
+            filters = self.options.filters_discriminator
+        n_blocks = self.options.n_blocks
+        if self.options.n_blocks is not None:
+            n_blocks = self.options.n_blocks_discriminator
+        kernel_size = self.options.kernel_size
+        if self.options.kernel_size_discriminator is not None:
+            kernel_size = self.options.kernel_size_discriminator
+        discriminator = init_module(discriminator, self.options,
+                                    in_channels=self.in_channels+self.out_channels,
+                                    filters=filters, n_blocks=n_blocks, kernel_size=kernel_size,
+                                    verbose=self.verbose)
+        self.networks.append(discriminator)
+        # loss functions
+        self.loss = {'G': {'L': 0, 'gan': 0, 'l1': 0, 'l2': 0},
+                     'D': {'L': 0, 'fake': 0, 'real': 0}}
+        if self.training:
+            loss_funcs = 'loss' if not loss_funcs else loss_funcs
+            loss_funcs = init_module(loss_funcs, options, verbose=self.verbose)
+            self.loss_funcs += loss_funcs
+        # add optimizers corresponding to networks
+        if self.training:
+            lrs = self.options.lr
+            if not isinstance(self.options.lr, list):
+                lrs = [self.options.lr]*len(self.networks)
+            for lr, network in zip(lrs, self.networks):
+                optimizer = init_module('Optimizer', options=self.options,
+                                        verbose=self.verbose, network=network, lr=lr)
+                self.optimizers.append(optimizer)
+        # initialize learning rate schedulers
+        if self.training:
+            for network, optimizer in zip(self.networks, self.optimizers):
+                scheduler = init_module(Pix2Pix.get_scheduler, options=self.options,
+                                        verbose=self.verbose, optimizer=optimizer)
+                self.schedulers.append(scheduler)
+        # run setup
+        self.init()
+
+    @property
+    def generator(self):
+        return self.networks[0]
+
+    @property
+    def discriminator(self):
+        return self.networks[1]
+
+    @property
+    def optimizer_generator(self):
+        return self.optimizers[0]
+
+    @property
+    def optimizer_discriminator(self):
+        return self.optimizers[1]
+
+    @property
+    def gan_loss(self):
+        return self.loss_funcs[0]
+
+    @property
+    def l1_loss(self):
+        return self.loss_funcs[1]
+
+    @property
+    def l2_loss(self):
+        """
+        Note: not used for backprop
+        """
+        return self.loss_funcs[2]
+
+    @property
+    def lambda_l1(self):
+        l_l1 = self.options.lambda_l1
+        if l_l1 is not None:
+            return l_l1
+        return 1
+
+    @property
+    def direction(self):
+        return self.options.direction
+
+    def log_loss(self, verbose: bool = False):
+        """
+        Format the model loss for logging/printing
+        """
+        loss = self.loss.copy()
+        if verbose:
+            loss_msg = (
+                f"Loss (generator) | {'':9} GAN / L1 {'':10} "
+                f"|  Loss (discriminator) | {'':11} 0 / 1 \n"
+                f"{loss['G']['L']:16.6f} | "
+                f"{loss['G']['gan']:10.6f} / {loss['G']['l1']:16.6f} |"
+                f"{loss['D']['L']:22.6f} | "
+                f"{loss['D']['fake']:13.6f} / {loss['D']['real']:13.6f}")
+            print(loss_msg)
+        return loss
+
+    def sample_images(self, n_samples: int = None):
+        """
+        Select (modelled) images for logging
+
+        Args:
+          n_samples (int): Number of samples to draw from the batch
+        """
+        batch_size = self.in_data.shape[0]
+        if n_samples is None:
+            return {
+                0: {"data": self.in_data, "metadata": self.in_metadata},
+                1: {"data": self.gt_data, "metadata": self.gt_metadata},
+                "pred": {"data": self.out_data, "metadata": self.out_metadata}}
+        n_samples = min(n_samples, len(self.in_data))
+        idx = torch.ones(batch_size).multinomial(n_samples, replacement=True)
+        return {
+            0: {"data": self.in_data[idx],
+                "metadata": {k: v[idx] if isinstance(v, torch.Tensor)
+                             else [v[i] for i in idx]
+                             for k, v in self.in_metadata.items()}},
+            1: {"data": self.gt_data[idx],
+                "metadata": {k: v[idx] if isinstance(v, torch.Tensor)
+                             else [v[i] for i in idx]
+                             for k, v in self.gt_metadata.items()}},
+            "pred": {"data": self.out_data[idx],
+                     "metadata": {k: v[idx] if isinstance(v, torch.Tensor)
+                                  else [v[i] for i in idx]
+                                  for k, v in self.out_metadata.items()}}}
+
+    def init(self):
+        # load network weights from checkpoints
+        use_ckpts = self.options.reload
+        epoch = self.options.epoch_start
+        for i, network in enumerate(self.networks):
+            f = self.checkpoints_dir.rglob(self.savename(i, epoch if epoch else None))
+            try:
+                fstr = str(next(f))
+            except StopIteration:
+                fstr = None
+            if use_ckpts and fstr:
+                if self.verbose:
+                    print(f"Found [checkpoint]: {fstr}")
+                self.load_networks(flags=[self.uid], epoch=epoch, verbose=self.verbose)
+            elif use_ckpts:  # but checkpoint file not found, print out warning and use latest
+                if self.verbose:
+                    print(f"Warning! Could not find [checkpoint]: {fstr}")
+                    print(f"Trying [checkpoint:latest] instead (make sure epoch is correctly set)...")
+                f = self.checkpoints_dir.rglob(self.savename(i))
+                try:
+                    fstr = str(next(f))
+                except StopIteration:
+                    fstr = None
+                if fstr:
+                    if self.verbose:
+                        print(f"Found [checkpoint]: {fstr}")
+                    self.load_networks(flags=[self.uid], verbose=self.verbose)
+            # or initialize network weights from scratch
+            else:
+                if self.verbose:
+                    print(f"Initializing [{network.__class__.__name__}]:")
+                init_module(Pix2Pix.init_weights, options=self.options,
+                            verbose=self.verbose, network=network)
+        # move to the corresponding device
+        self.to(device=self.device)
+        # initialize data attributes
+        self.load_data(None)
+
+    def load_data(self, batch: dict[torch.Tensor]):
+        """
+        Load data batch as input (in) and ground truth (gt) for the networks
+
+        Args:
+          batch (dict): batch containing data tensors with following convention
+                        {0: {'data': tensor, 'metadata': dict},
+                         1: {'data': tensor, 'metadata': dict},
+                         ... }
+        Sets:
+          (torch.Tensor): in_data, gt_data
+          (dict): in_metadata, gt_metadata
+        """
+        if batch is None:
+            self.in_data = torch.tensor([0])
+            self.gt_data = torch.tensor([0])
+            self.in_metadata = self.out_metadata = {}
+            self.gt_metadata = {}
+        else:
+            AtoB = 0 if self.direction == 'AtoB' else 1
+            self.in_data = batch[AtoB]['data'].to(self.device)
+            self.gt_data = batch[1-AtoB]['data'].to(self.device)
+            self.in_metadata = batch[AtoB]['metadata']
+            self.gt_metadata = batch[1-AtoB]['metadata']
+            self.out_metadata = batch[1-AtoB]['metadata'].copy()
+
+    def forward(self, x: torch.Tensor = None, **kwargs) -> torch.Tensor:
+        """
+        Forward step for all networks
+        """
+        x = x if x is not None else self.in_data
+        self.out_data = self.generator(x)
+        return self.out_data
+
+    def optimize(self):
+        """
+        Propagate forward, calculate losses, gradients, and update network weights
+        """
+        self.out_data = self.forward(self.in_data)
+        # backpropagation for discriminator
+        self.optimize_discriminator()
+        # backpropagation for generator
+        self.optimize_generator()
+
+    def optimize_generator(self):
+        # backpropagation for generator
+        self.requires_grad(False, self.discriminator)
+        self.optimizer_generator.zero_grad()
+        self.backward_generator()
+        self.optimizer_generator.step()
+
+    def optimize_discriminator(self):
+        # backpropagation for discriminator
+        self.requires_grad(True, self.discriminator)
+        self.optimizer_discriminator.zero_grad()
+        self.backward_discriminator()
+        self.optimizer_discriminator.step()
+
+    def backward_generator(self):
+        """
+        Backwards propagation for the generator network
+        (assumes a forward pass was made)
+        """
+        # PatchGAN loss
+        fake_io = torch.cat((self.in_data, self.out_data), 1)
+        pred_fake = self.discriminator(fake_io)
+        self.loss['G']['gan'] = loss_gan = self.gan_loss(pred_fake, True)
+        # L1 reconstruction loss
+        self.loss['G']['l1'] = loss_l1 = self.l1_loss(self.out_data, self.gt_data) * self.lambda_l1
+        # tally up and calculate gradients
+        self.loss['G']['L'] = loss_gan + loss_l1
+        self.loss['G']['L'].backward()
+        # just for book-keeping
+        with torch.no_grad():
+            self.loss['G']['l2'] = self.l2_loss(self.out_data, self.gt_data)
+
+    def backward_discriminator(self):
+        """
+        Backwards propagation for the discriminator network
+        (assumes a forward pass was made)
+        """
+        # Fake
+        fake_io = torch.cat((self.in_data, self.out_data), 1)
+        # stop backprop to the generator by detaching out_data
+        pred_fake = self.discriminator(fake_io.detach())
+        self.loss['D']['fake'] = loss_fake = self.gan_loss(pred_fake, False)
+        # Real
+        real_io = torch.cat((self.in_data, self.gt_data), 1)
+        pred_real = self.discriminator(real_io)
+        self.loss['D']['real'] = loss_real = self.gan_loss(pred_real, True)
+        # tally up and calculate gradients
+        self.loss['D']['L'] = loss = (loss_fake + loss_real) * 0.5
+        self.loss['D']['L'].backward()
+
+
+if __name__ == "__main__":
+    import sys
+    sys.path.append('../../../tests')
+    from tests import SequentialTestLoader
+    from tests.nn.models.pix2pix import Pix2PixModuleTest
+    loader = SequentialTestLoader()
+    loader.proto_load(Pix2PixModuleTest)
+    loader.run_suites()
+#+end_src
+
+
+*** Results
+
+Ground truth {{{NL}}}
+#+ATTR_HTML: :height 830px
+[[./assets/images/skais/dm_predictions.png]]
+{{{NL}}} Predictions from pix2pix
+
+
+*** Hyperparameter optimization
+
+- ~wandb~: basic, conditional parameter spaces don't work
+- ~ray[tune]~:
+  - parallel, distributed
+  - early-stopping and improved error handling
+  - conditional parameter spaces
+  - multiple algorithms (Bayesian + genetic)
+  - interfaces for HyperOpt, Optuna, BayesOpt, ...
+
+
+*** tune.py
+
+#+begin_src python
+  import ray
+  from ray import train
+  from ray import tune
+  from skais.train import trainable
+  from skais.nn.options import Options
+  from skais.nn.utils.ray import link_condition
+
+  options = Options()
+  all_params = options.sweep_params
+  all_samplers = options.sweep_samplers
+  all_priors = options.sweep_priors
+  space = {}
+  for key in all_params:
+      fn_str = all_samplers[key]
+      fn_args = all_priors[key]
+      args = {'param': key, 'fn_str': fn_str, 'fn_args': fn_args}
+      subspace = link_condition(**args)
+  space = {**space, **subspace}
+  tuner = tune.Tuner(
+      tune.with_resources(trainable, {"cpu": 1}),
+      param_space=space,
+      tune_config=tune.TuneConfig(num_samples=6,),
+      run_config=train.RunConfig(log_to_file=True, name="test_experiment",
+                                 storage_path=str(self.ray_dir.resolve())))
+  tuner.fit()
+#+end_src
+
+
+*** Room for improvement
+
+- luckily, ~skais~ is relatively modular
+- other models: diffusion
+- proposal for IVS collaboration: separate models repository!
+  
