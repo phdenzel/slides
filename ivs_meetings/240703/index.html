@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Intelligent Vision Systems</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/CAI_header.jpg" data-background-size="contain" data-background-position="block" data-background-opacity="0.4">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h1 style="text-shadow: 6px 6px 10px #000000;">Intelligent Vision Systems<h1>
+<h2 style="text-shadow: 6px 6px 10px #000000;">Group Meeting</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/07/03 </br> Winterthur</div>
+</section>
+<section>
+<section id="slide-org94ba235">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org94ba235">IVS Meeting Structure in 2024</h2>
+
+<div id="org0f18378" class="figure">
+<p><img src="./assets/images/ivs/ivs_agenda_240703.png" alt="ivs_agenda_240703.png" height="500px;" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Group meeting agenda (<a href="https://zhaw.sharepoint.com/:x:/r/sites/CAIStaff-IVSGroupSchilling/Freigegebene%20Dokumente/IVS%20Group%20(Schilling)/Group%20Meeting%20Schedule.xlsx">MS Teams CAI-IVS files</a>)</p>
+</div>
+
+<ul>
+<li><a href="https://teams.microsoft.com/l/message/19:4e17b18466d5468881ed4d0f053a7263@thread.tacv2/1719309833539?tenantId=5d1a9f9d-201f-4a10-b983-451cf65cbc1e&amp;groupId=55653c86-02a1-40b7-ac0f-27644570569b&amp;parentMessageId=1719309833539&amp;teamName=CAI%20Staff%20%26%20Students&amp;channelName=IVS%20Group%20(Schilling)&amp;createdTime=1719309833539&amp;ngc=true">Vote here</a> for new time slot! Wednesday afternoon?</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd2a5e44">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgd2a5e44">Important Dates</h2>
+<ul>
+<li>IEM Grillabend "zum Reitplatz" (RSVP per email): 4. September 2024</li>
+<li><a href="https://www.zhaw.ch/storage/hochschule/institute-zentren/ZHAWdigital/upload/Fellowship_Call_2025.pdf">DIZH Fellowship Call</a> deadline: 23. September 2024 (at 23:59)</li>
+<li><a href="https://www.plusx.ai/">AI+X Summit 2024</a>: 3.-4. September 2024</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0036973">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0036973">Proposals (submitted)</h2>
+<ul class="slide_85">
+<li><b>3DDMMI</b> – 3D Diffusion Models for Medical Imaging
+<ul>
+<li><i>SNF Health &amp; Wellbeing</i> (scik)</li>
+
+</ul></li>
+<li><b>DG3NERATE</b> - Deep generative 3D point cloud modeling for galaxy simulations
+<ul>
+<li><i>SNF Project call</i> (denp, scik, gava)</li>
+
+</ul></li>
+<li><b>clAImate</b> – AI-driven Climate Data Platform for Evidence-based Decision Making with regards to Net Zero 2040
+<ul>
+<li><i>DIZH Structure</i> (scik, ciel, reno, INE, UZH)</li>
+
+</ul></li>
+<li><b>AI-BRIDGE</b> - A Think-and-Do-Tank for Responsible Development and Societal Alignment of Artificial Intelligence Systems
+<ul>
+<li><i>DIZH Structure</i> (char, stdm, scik, IDP, UZH, PHZH, ZHdK)</li>
+
+</ul></li>
+<li><b>D+Cosmos</b> - Decoding the Universe (SKA+LISA data, AI, HPC)
+<ul>
+<li><i>NCCR</i>, pre-proposal submitted, full proposal, deadline 3.2.25, (gava, scik, denp)</li>
+
+</ul></li>
+<li><b>RadNeurOps</b> - Accelerated RT for SKAO (Generative Neural Operators for ODEs)
+<ul>
+<li><i>PASC</i>, (denp, gava, ETH, UniBasel, EPFL)</li>
+
+</ul></li>
+<li><b>GdyniAI</b> - Multi-modal acoustic scene detection for noise monitoring system in the sea port
+<ul>
+<li><i>NCBR Polish-Swiss programme</i> (denp, stdm, Polish collaborators: SeaData, Port of Gdynia, &#x2026;)</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6bfe3ce">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org6bfe3ce">Proposals (in work)</h2>
+<ul class="slide_95">
+<li><b>in writing</b>
+<ul>
+<li><b>Leg&amp;airy</b>: AI driven Orthosis fitting
+<ul>
+<li><i>Innosuisse</i> (scik, char), next round?</li>
+
+</ul></li>
+
+</ul></li>
+<li><b>in discussion</b>
+<ul>
+<li><b>Bystronic</b>, CV for pipe/tube ID/grabbing</li>
+<li><b>?</b> <i>SNF</i> (IMES rorr, USZ), MRIs of female pelvic floor (segmentation)</li>
+<li><b>Gravis Robotics</b> <i>Innosuisse</i> (char, scik, denp), Compliance-by-design people detection</li>
+<li><b>Aseptuva</b> <i>Innosuisse</i> (denp, char, IWI?), In-situ UV disinfection of catheters  <br> 
+AI-assisted (multi-modal) early detection of hospital-aquired infections</li>
+<li><i>FLARE</i> for SKACH: CAI+IWI for international software and MLOps development</li>
+<li><i>SNF</i> for MWA/SKACH: denp+gava (Australian MWA members), GenAI for super-res-ing in Fourier mode space</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfb1ff72">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgfb1ff72">Papers (accepted)</h2>
+<ul>
+<li>SDS2024 shot paper: <a href="https://digitalcollection.zhaw.ch/handle/11475/30443">MLOps as enabler of trustworthy AI</a></li>
+<li>SDS2024 long paper: <a href="https://doi.org/10.21256/zhaw-30439">Towards the certification of AI-based systems</a>
+<ul>
+<li>Best paper award (yay)!</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4a6f306">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org4a6f306">Students</h2>
+<ul style="float: left; margin-left: 100px;">
+<li><b>Nick Rascher</b></li>
+<li>BSc. Wirtschaftsinformatik ZHAW SML</li>
+<li>Project Manager at Zühlke Group</li>
+<li>NQ semester, starts HS24</li>
+<li>autonomous anonymization system  <br>  for League of Legends game footage</li>
+<li>talk to him about your projects!</li>
+
+</ul>
+
+
+<div id="orgb757495" class="figure">
+<p><img src="./assets/images/ivs/nick_rascher.png" alt="nick_rascher.png" height="700px" style="float: right; margin-right: 250px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org17d4b26">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org17d4b26">Hardware news</h2>
+<ul>
+<li>testing the new system: Texas</li>
+<li>H200 cluster on the horizon&#x2026;</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org23985eb">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org23985eb">Software news</h2>
+<ul>
+<li><code>chuchichaestli</code>
+<ul>
+<li>new U-Net implementation (memory issue gone)</li>
+<li>basic memory analysis utility</li>
+<li>GH workflows: testing, release, (version bump coming)</li>
+
+</ul></li>
+<li>InDI: optimization is not based on PSNR!
+<ul>
+<li>evaluation requires other metrics&#x2026;</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge93fde5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orge93fde5">NCBR Polish-Swiss programme</h2>
+
+<div id="orgdbd1e9e" class="figure">
+<p><img src="./assets/images/ivs/gdynia_map.png" alt="gdynia_map.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6fa24be">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org6fa24be">Port of Gdynia</h3>
+
+<div id="org7c1c1ea" class="figure">
+<p><img src="./assets/images/ivs/port_of_gdynia.jpg" alt="port_of_gdynia.jpg" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org53ebcee">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org53ebcee">SeaData</h3>
+
+<div id="org59fd641" class="figure">
+<p><img src="./assets/images/ivs/seadata_gdynia_smartport.png" alt="seadata_gdynia_smartport.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1d52679">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org1d52679">Aseptuva</h2>
+
+<div id="orgc6a1fce" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_1.png" alt="aseptuva_2406_1.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfef976e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgfef976e">Start-up</h3>
+
+<div id="orgd7e5b8a" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_2.png" alt="aseptuva_2406_2.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org6f08cdc">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org6f08cdc">Problem</h3>
+
+<div id="org540ab61" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_3.png" alt="aseptuva_2406_3.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1133412">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1133412">Solution</h3>
+
+<div id="org8045147" class="figure">
+<p><img src="./assets/images/ivs/aseptuva_2406_4.png" alt="aseptuva_2406_4.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org74fc5e6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org74fc5e6">Discussion time: Mamba architecture</h2>
+
+<div id="org5636c44" class="figure">
+<p><img src="./assets/images/mamba/paper_abstract.png" alt="paper_abstract.png" height="800px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf3fc386">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf3fc386">Why are they interesting?</h3>
+<ul>
+<li>Selective state-space models</li>
+<li>serious competitor to Transformers</li>
+<li>better scaling properties</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org73c2b88">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org73c2b88">Model comparison</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">&#xa0;</th>
+<th scope="col" class="org-left">RNN</th>
+<th scope="col" class="org-left">SSMs</th>
+<th scope="col" class="org-left">Transformers</th>
+<th scope="col" class="org-left">Mamba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">computation</td>
+<td class="org-left">O(L)</td>
+<td class="org-left">O(L)</td>
+<td class="org-left">O(L\(^2\))</td>
+<td class="org-left">O(L)</td>
+</tr>
+
+<tr>
+<td class="org-left">memory</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">O(L\(^2\))</td>
+<td class="org-left">O(L)</td>
+</tr>
+
+<tr>
+<td class="org-left">performance</td>
+<td class="org-left">ehh</td>
+<td class="org-left">meh</td>
+<td class="org-left">aah</td>
+<td class="org-left">uuh</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>Transformers are fast due to parallelism</li>
+<li>RNNs calculate recursively (slow)</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5011823">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5011823">(Linear) RNNs and LSTMs</h3>
+
+<div id="org55104e5" class="figure">
+<p><img src="assets/images/RNN.png" alt="RNN.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org25b96c1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org25b96c1">State space models</h3>
+
+<div id="org17185d4" class="figure">
+<p><img src="assets/images/SSM.png" alt="SSM.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7e98fce">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7e98fce">S4: Discretization</h3>
+
+<div id="org57df68b" class="figure">
+<p><img src="assets/images/S4.png" alt="S4.png" height="500px" style="border-radius: 12px;" />
+</p>
+</div>
+
+<ul>
+<li>4 matrices: \(\Delta\), \(A\), \(B\), \(C\)</li>
+<li>Discretization: \(\Delta\) \(\rightarrow\)  \(A'\),  \(B'\)
+<ul>
+<li>\(A'=exp(\Delta A)\)</li>
+<li>\(B' = (\Delta A)^{-1} (exp(\Delta A) - \mathbb{1}) (\Delta B) \)</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgad74593">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgad74593">S4: Hidden states</h3>
+
+<div id="org793f980" class="figure">
+<p><img src="assets/images/S4.png" alt="S4.png" height="500px" style="border-radius: 12px;" />
+</p>
+</div>
+
+<ul>
+<li>Hidden states: \(h_t = A'h_{t-1} + B'x_t\)</li>
+<li>Outputs: \(y_t = Ch_{t}\)</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgecd42dc">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgecd42dc">Discretization of ODEs</h3>
+<ul>
+<li>ODEs:  <br> 
+\(\dot{h} = Ah + Bx\)</li>
+<li>Hidden states:  <br> 
+\(h_t = A'h_{t-1} + B'x_t\)</li>
+<li>\(\Delta\) is the discretiztation operator, i.e. "step size"</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8c75bf7">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org8c75bf7">How do SSMs gain speed-up?</h3>
+<ul>
+<li>SSMs behave like linear RNNs (which are parallelizable)</li>
+<li>\(y = Ch_t = C (A'h_{t-1} + B'x_t) = C (A'(A'h_{t-2} + B'x_{t-1}) + B'x_t) = \quad ... \)</li>
+<li>Introduce \(K = (CB', CA'B',\, ..., CA'^{L-1}B')\) summarization of all matrices pre-computed
+<ul>
+<li>\(y = K * x\)</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb827858">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgb827858">How do SSMs improve performance?</h3>
+<ul>
+<li>Selective SSMs:
+<ul>
+<li>introduce <b>linear layers</b> to compute different \(\Delta_t, B_t, C_t\) from the input</li>
+
+</ul></li>
+
+</ul>
+
+
+
+<div id="org82f989e" class="figure">
+<p><img src="assets/images/selectiveS4.png" alt="selectiveS4.png" height="600px" style="border-radius: 12px;" />
+</p>
+</div>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section>
+
+<ul>
+<li>Selective SSMs:
+<ul>
+<li>introduce <b>linear layers</b> to compute different \(\Delta_t, B_t, C_t\) from the input</li>
+
+</ul></li>
+<li>But there's a problem: convolution doesn't work anymore, speed is gone!</li>
+<li><a href="https://arxiv.org/abs/2312.00752">Gu &amp; Dao et al. (2023)</a> propose an alternative:  <br> 
+<b>Parallel associative scans</b> (as in <i>all-prefix-sums</i>)
+<ul>
+<li>see <a href="https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda">GPU Gems 3</a> and <a href="https://github.com/PeaBrane/mamba-tiny">mamba-tiny</a> in pytorch</li>
+<li>runs sequentially in O(n log n) time</li>
+<li>runs parallel in O(log n) time</li>
+
+</ul></li>
+
+</ul>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section>
+
+
+<div id="org19292e7" class="figure">
+<p><img src="./assets/images/mamba/scans_comparison.png" alt="scans_comparison.png" height="800px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org38bd7c1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org38bd7c1">Mamba block</h3>
+
+<div id="org95879af" class="figure">
+<p><img src="assets/images/mamba.png" alt="mamba.png" height="900px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgfa11dda">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgfa11dda">Mamba variants</h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2401.04081">MoE-Mamba</a>: Mixture-of-Experts-Mamba</li>
+<li><a href="https://arxiv.org/abs/2401.13660">MambaByte</a>: Raw byte sequencing</li>
+<li><a href="https://arxiv.org/abs/2401.09417">ViM</a>: Vision Mamba</li>
+<li><a href="https://arxiv.org/abs/2405.14224">DiM</a>: Diffusion Mamba</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org8efa201">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org8efa201">Vision Mamba</h4>
+<ul>
+<li>image-patch tokenization: flatten &amp; linear projection</li>
+
+</ul>
+
+
+<div id="org3ea088a" class="figure">
+<p><img src="assets/images/vision_mamba.png" alt="vision_mamba.png" height="800px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0994d0a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0994d0a">References</h2>
+<ul>
+<li><a href="https://arxiv.org/abs/2312.00752">Mamba</a>: Mamba</li>
+<li><a href="https://arxiv.org/abs/2401.04081">MoE-Mamba</a>: Mixture-of-Experts-Mamba</li>
+<li><a href="https://arxiv.org/abs/2401.13660">MambaByte</a>: Raw byte sequencing</li>
+<li><a href="https://arxiv.org/abs/2401.09417">ViM</a>: Vision Mamba</li>
+<li><a href="https://arxiv.org/abs/2405.14224">DiM</a>: Diffusion Mamba</li>
+<li><a href="https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda">GPU Gems 3</a>: cf. parallel prefix-sums</li>
+<li><a href="https://github.com/PeaBrane/mamba-tiny">mamba-tiny</a>: cf. basic scan implementation</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/search/search.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealNotes, RevealHighlight, RevealSearch ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
