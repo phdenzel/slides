@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>SKACH weekly meeting</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/poster_skach_skao.png" data-background-size="contain" data-background-position="block" data-background-opacity="0.6">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<h3>SKACH weekly meeting<h3>
+<h3>GenAI architectures<h4>SKA research at <br> Zurich University of Applied Sciences (ZHAW)</h4><h5>Centre for Artificial Intelligence (CAI) <br> Institute for Business Information Technology (IWI)</h5></h3>
+<div style="padding-top: 50px">July 11, 2024</div>
+<h5 style="padding-top: 0px;"> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">Philipp Denzel</a>, <span> Frank-Peter Schilling, Elena Gavagnin </span> </h5>
+</section>
+<section>
+<section id="slide-org798e11f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org798e11f">Recap:  <br>  Generative models  <br>  for map-to-map translation</h2>
+<div class="outline-text-2" id="text-org798e11f">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgab55ffb">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgab55ffb">Dataset from IllustrisTNG</h3>
+<ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<li>projected IllustrisTNG galaxies</li>
+<li>6 domains:
+<ul>
+<li>dark-matter, stars, gas,  <br> HI, temperature, magnetic field</li>
+
+</ul></li>
+<li>&sim; 2'000 galaxies, (across 6 snapshots)</li>
+<li>&sim; 360'000 images</li>
+<li>each galaxy \(\ge\) 10'000 particles</li>
+<li>augmented: up to 5x randomly rotated</li>
+<li>scale: 2 dark-matter half-mass radii</li>
+
+</ul>
+
+
+<div id="org3a954f9" class="figure">
+<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf63f922" data-transition="none">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgf63f922">Dataset from IllustrisTNG</h3>
+<ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<li>projected IllustrisTNG galaxies</li>
+<li>6 domains:
+<ul>
+<li>dark-matter, stars, gas,  <br> HI, temperature, magnetic field</li>
+
+</ul></li>
+<li>&sim; 2'000 galaxies, (across 6 snapshots)</li>
+<li>&sim; 360'000 images</li>
+<li>each galaxy \(\ge\) 10'000 particles</li>
+<li>augmented: up to 5x randomly rotated</li>
+<li>scale: 2 dark-matter half-mass radii</li>
+
+</ul>
+
+
+<div id="orgb8a5fe9" class="figure">
+<p><img src="./assets/images/skais/domains_directions.png" alt="domains_directions.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org232d7d5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org232d7d5">Generative model paradigms</h3>
+<p>
+ <br> 
+Benchmark of generative models we're investigating and comparing:
+</p>
+<ul>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/1411.1784">cGANs</a></b>: see previous talks, e.g. <a href="https://phdenzel.github.io/assets/blog-assets/022-skach-spring-meeting/slides.html">spring meeting</a></li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2011.13456">(Score-based) diffusion models</a></b>: promising results, but really slow</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2303.11435">InDI</a></b> models: more efficient at inference?</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2405.14224">Diffusion Mamba</a></b>: the latest and greatest?</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org71c403b">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org71c403b">Adversarial training</h3>
+
+<div id="org8d93e0a" class="figure">
+<p><img src="./assets/images/pix2pix/pix2pix_schema.png" alt="pix2pix_schema.png" height="700px;" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>pix2pix scheme following <a href="https://arxiv.org/abs/1611.07004">Isola et al. (2016)</a></p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org436e92c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org436e92c">Diffusion process</h3>
+
+<div id="org4a1eded" class="figure">
+<p><img src="./assets/images/diffusion/skais_diffusion_schema.png" alt="skais_diffusion_schema.png" height="700px;" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Diffusion scheme following <a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a></p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd00e4e2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgd00e4e2">Inversion by Direct Iteration (InDI)</h3>
+
+<div id="org326eb0a" class="figure">
+<p><img src="./assets/images/indi/skais_indi_schema.png" alt="skais_indi_schema.png" height="800px;" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 3: </span>InDI's iteration scheme following <a href="https://arxiv.org/abs/2303.11435">Delbracio & Milanfar (2023)</a></p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5a43de4">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5a43de4">Main component: U-Net</h3>
+
+<div id="orge8d1b97" class="figure">
+<p><img src="assets/images/U-Net.png" alt="U-Net.png" height="600px" style="border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>U-Net following <a href="https://arxiv.org/abs/1505.04597">Ronneberger et al. (2015)</a></p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org5913e5a">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org5913e5a">Encoder/Decoder blocks</h3>
+<ul>
+<li><b>Normalize</b> inputs (across channels, batches, or groups)</li>
+<li>if downsampling:
+<ul>
+<li>decrease image width and height</li>
+<li>map to <b>feature</b> space</li>
+
+</ul></li>
+<li>if upsampling
+<ul>
+<li>increase image width and height</li>
+<li>unpack <b>features</b></li>
+
+</ul></li>
+<li><b>Activation</b>
+<ul>
+<li>i.e. non-linear mapping</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org2fa3ed2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org2fa3ed2">Classical blocks</h4>
+<ul>
+<li>Normalize input x (in groups across width, height, and depth)</li>
+<li>Convolutions extract spatial features
+<ul>
+<li>if upsampling: transposed</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="org96d5d39" class="figure">
+<p><img src="assets/images/classical_block.png" alt="classical_block.png" height="130px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org22abe9d">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org22abe9d">Residual blocks</h4>
+<ul>
+<li>Skip connections to lower/upper layers
+<ul>
+<li>better information passing to lower levels</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="orgec893cf" class="figure">
+<p><img src="assets/images/res_block.png" alt="res_block.png" height="200px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-org4b428ef">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="org4b428ef">Attention blocks</h4>
+<ul>
+<li>Attention for better feature selection
+<ul>
+<li>Positional embeddings</li>
+<li>at every skip connection</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="org4b3f5f2" class="figure">
+<p><img src="assets/images/attn_block.png" alt="attn_block.png" height="200px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section id="slide-orgc2bf562">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h4 id="orgc2bf562">Mamba Vision block</h4>
+<ul>
+<li>Mamba: Selective State-space models (<a href="https://arxiv.org/abs/2312.00752">Gu &amp; Dao et al. 2023</a>)  <br> 
+Hardware optimized operators: Convolutions &xrarr; <b>Parallel associative scans</b> (as in <i>all-prefix-sums</i>)
+<ul>
+<li>runs in O(n log n) time sequentially / in O(log n) time parallel</li>
+
+</ul></li>
+<li>image-patch tokenization: flatten &amp; linear projection</li>
+
+</ul>
+
+
+<div id="org2d2ab73" class="figure">
+<p><img src="assets/images/vision_mamba.png" alt="vision_mamba.png" height="300px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1368bbd">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org1368bbd">Theoretical comparison</h3>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">per layer</th>
+<th scope="col" class="org-left">RNN</th>
+<th scope="col" class="org-left">SSMs</th>
+<th scope="col" class="org-left">Conv</th>
+<th scope="col" class="org-left">Attn</th>
+<th scope="col" class="org-left">Mamba</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">computation</td>
+<td class="org-left">O(L)</td>
+<td class="org-left">O(L)</td>
+<td class="org-left">O(KL)</td>
+<td class="org-left">O(L<sup>2</sup>)</td>
+<td class="org-left">O(L)</td>
+</tr>
+
+<tr>
+<td class="org-left">memory</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">O(1)</td>
+<td class="org-left">O(K<sup>(3/2)</sup>)</td>
+<td class="org-left">O(L<sup>2</sup>)</td>
+<td class="org-left">O(L)</td>
+</tr>
+
+<tr>
+<td class="org-left">performance</td>
+<td class="org-left">-</td>
+<td class="org-left">~</td>
+<td class="org-left">+</td>
+<td class="org-left">+ + +</td>
+<td class="org-left">+ + (+)</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+where L is the number of pixels and K the convolutional kernel size.
+</p>
+
+<ul>
+<li>RNNs calculate recursively (slow)</li>
+<li>Convolutions often do the job&#x2026;</li>
+<li>Transformers are fast due to parallelism</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org140b3a8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org140b3a8">Preliminary U-Net training comparison</h3>
+<ul>
+<li>averages from randomized sweeps of 16 runs:
+<ul>
+<li>with batch size 12 (unless *extrapolated)</li>
+<li>with float32 precision</li>
+<li>training until convergence</li>
+
+</ul></li>
+
+</ul>
+<p>
+ <br> 
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">U-Net</th>
+<th scope="col" class="org-left">Vanilla</th>
+<th scope="col" class="org-left">Residual</th>
+<th scope="col" class="org-left">Attn *</th>
+<th scope="col" class="org-left">ViT *</th>
+<th scope="col" class="org-left">Mamba *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">parameters  [M]</td>
+<td class="org-left">31.7 &plusmn; 9.6</td>
+<td class="org-left">45.1 &plusmn; 11.4</td>
+<td class="org-left">53.2 &plusmn; 4.4</td>
+<td class="org-left">62.3 &plusmn; 19.5</td>
+<td class="org-left">43.6 &plusmn; 10.9</td>
+</tr>
+
+<tr>
+<td class="org-left">memory (fwd) [GB]</td>
+<td class="org-left">2.9 &plusmn; 0.9</td>
+<td class="org-left">4.4 &plusmn;  0.7</td>
+<td class="org-left">36.7 &plusmn; 16.1</td>
+<td class="org-left">48.9 &plusmn; 12.1</td>
+<td class="org-left">16.2 &plusmn; 6.4</td>
+</tr>
+
+<tr>
+<td class="org-left">avg. training [h]</td>
+<td class="org-left">16.3 &plusmn; 4.7</td>
+<td class="org-left">28.6 &plusmn; 2.3</td>
+<td class="org-left">~124</td>
+<td class="org-left">~163</td>
+<td class="org-left">~68</td>
+</tr>
+</tbody>
+</table>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org94b0b20">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org94b0b20">Does it make a difference in price?</h3>
+<ul>
+<li>using typical pricing for private use</li>
+<li>adjusting batch size to hardware VRAM</li>
+<li>prices for a single model:</li>
+
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Compute [CHF]</th>
+<th scope="col" class="org-right">Vanilla</th>
+<th scope="col" class="org-right">Residual</th>
+<th scope="col" class="org-right">Attn *</th>
+<th scope="col" class="org-right">ViT *</th>
+<th scope="col" class="org-right">Mamba *</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">H100 (80GB)</td>
+<td class="org-right">55.42</td>
+<td class="org-right">97.24</td>
+<td class="org-right">421.6</td>
+<td class="org-right">554.2</td>
+<td class="org-right">244.8</td>
+</tr>
+
+<tr>
+<td class="org-left">A100 (40GB)</td>
+<td class="org-right">33.09</td>
+<td class="org-right">58.06</td>
+<td class="org-right">251.72</td>
+<td class="org-right">330.89</td>
+<td class="org-right">146.16</td>
+</tr>
+
+<tr>
+<td class="org-left">V100 (16GB)</td>
+<td class="org-right">19.56</td>
+<td class="org-right">34.32</td>
+<td class="org-right">-</td>
+<td class="org-right">-</td>
+<td class="org-right">81.6</td>
+</tr>
+</tbody>
+</table>
+<p>
+*extrapolated
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org9dd95b5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org9dd95b5">References</h3>
+<ul>
+<li><a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a>: Diffusion models</li>
+<li><a href="https://arxiv.org/abs/2303.11435">Delbracio &amp; Milanfar (2023)</a>: InDI: Inversion by Direct Iteration</li>
+<li><a href="https://arxiv.org/abs/2312.00752">Mamba</a>: Selective state-space models</li>
+<li><a href="https://arxiv.org/abs/2401.04081">MoE-Mamba</a>: Mixture-of-Experts-Mamba</li>
+<li><a href="https://arxiv.org/abs/2401.13660">MambaByte</a>: Raw byte sequencing</li>
+<li><a href="https://arxiv.org/abs/2401.09417">ViM</a>: Vision Mamba</li>
+<li><a href="https://arxiv.org/abs/2405.14224">DiM</a>: Diffusion Mamba</li>
+<li><a href="https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda">GPU Gems 3</a>: cf. parallel prefix-sums</li>
+<li><a href="https://github.com/PeaBrane/mamba-tiny">mamba-tiny</a>: cf. basic scan implementation</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf2c4297">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf2c4297">Contact</h2>
+<p>
+Email:  <a href="mailto:denp@zhaw.ch">philipp.denzel@zhaw.ch</a>
+ <br>  <br> 
+</p>
+
+<p>
+<a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: true,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'fade',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealZoom ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
