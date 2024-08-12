@@ -283,398 +283,400 @@ to
 #+ATTR_HTML: :height 800px :style border-radius: 12px;
 [[./assets/images/mamba/paper_abstract.png]]
 
+Another time ;) ...
 
-** Why are they interesting?
 
-- Selective state-space models
-- serious competitor to Transformers
-- better scaling properties
+# ** Why are they interesting?
+
+# - Selective state-space models
+# - serious competitor to Transformers
+# - better scaling properties
 
   
-** Model comparison
-
-|             | RNN  | SSMs | Transformers | Mamba      |
-|-------------+------+------+--------------+------------|
-| computation | O(L) | O(L) | O(L$^2$)     | O(L)       |
-| memory      | O(1) | O(1) | O(L$^2$)     | O(L)       |
-| performance | ehh  | meh  | aah          | uuh        |
-
-- Transformers are fast due to parallelism
-- RNNs calculate recursively (slow)
-
-
-** (Linear) RNNs and LSTMs
-
-#+begin_src dot :file assets/images/RNN.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-   digraph G {
-       rankdir="LR";
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x0 [label="x(t-1)", fillcolor="#aaddd4"];
-       x1 [label="x(t)", fillcolor="#aaddd4"];
-       x2 [label="x(t+1)", fillcolor="#aaddd4"];
-       d0 [label="LRNN", fillcolor="#73c7b9"];
-       d1 [label="LRNN", fillcolor="#73c7b9"];
-       d2 [label="LRNN", fillcolor="#73c7b9"];
-       h0 [label="h(t-1)", fillcolor="#c77381"];
-       h1 [label="h(t)", fillcolor="#c77381"];
-       h2 [label="h(t+1)", fillcolor="#c77381"];
-
-       // Edges
-       x0 -> d0;
-       d0 -> h0;
-       x1 -> d1;
-       d1 -> h1;
-       x2 -> d2;
-       d2 -> h2;
-       h0 -> d1;
-       h1 -> d2;
-       x0 -> x1 -> x2;
-
-       { rank=same; x0 x1 x2 };
-       { rank=same; d0 d1 d2 };
-       { rank=same; h0 h1 h2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 900px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/RNN.png]]
-
-
-** State space models
-
-#+begin_src dot :file assets/images/SSM.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-   digraph G {
-       rankdir=LR;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x0 [label="x(t-1)", fillcolor="#aab4dd"];
-       x1 [label="x(t)", fillcolor="#aab4dd"];
-       x2 [label="x(t+1)", fillcolor="#aab4dd"];
-       d0 [label="SSM", fillcolor="#98a4d6"];
-       d1 [label="SSM", fillcolor="#98a4d6"];
-       d2 [label="SSM", fillcolor="#98a4d6"];
-       h0 [label="h(t-1)", fillcolor="#d698a4"];
-       h1 [label="h(t)", fillcolor="#d698a4"];
-       h2 [label="h(t+1)", fillcolor="#d698a4"];
-
-       // Edges
-       x0 -> d0 -> h0;
-       x1 -> d1 -> h1;
-       x2 -> d2 -> h2;
-       h0 -> d1;
-       h1 -> d2;
-       x0 -> x1 -> x2;
-
-       { rank=same; x0 x1 x2 };
-       { rank=same; d0 d1 d2 };
-       { rank=same; h0 h1 h2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 900px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/SSM.png]]
-
-
-** S4: Discretization
-
-#+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-  digraph G {
-       rankdir=LR;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x0 [label="x(t-1)", fillcolor="#aab4dd"];
-       x1 [label="x(t)", fillcolor="#aab4dd"];
-       x2 [label="x(t+1)", fillcolor="#aab4dd"];
-       d0 [label="SSM", fillcolor="#98a4d6"];
-       d1 [label="SSM", fillcolor="#98a4d6"];
-       d2 [label="SSM", fillcolor="#98a4d6"];
-       h0 [label="h(t-1)", fillcolor="#d698a4"];
-       h1 [label="h(t)", fillcolor="#d698a4"];
-       h2 [label="h(t+1)", fillcolor="#d698a4"];
-       y0 [label="y(t-1)", fillcolor="#98d6ab"];
-       y1 [label="y(t)", fillcolor="#98d6ab"];
-       y2 [label="y(t+1)", fillcolor="#98d6ab"];
-
-       // Edges
-       x0 -> d0 [label="B'"]
-       d0 -> h0;
-       h0 -> y0 [label="C"];
-       x1 -> d1 [label="B'"];
-       d1 -> h1;
-       h1 -> y1 [label="C"];
-       x2 -> d2 [label="B'"];
-       d2 -> h2;
-       h2 -> y2 [label="C"];
-       h0 -> d1 [label="A'"];
-       h1 -> d2 [label="A'"];
-       x0 -> x1 -> x2;
-
-       { rank=same; x0 x1 x2 };
-       { rank=same; d0 d1 d2 };
-       { rank=same; h0 h1 h2 };
-       { rank=same; y0 y1 y2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 500px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/SSM.png]]
-
-- 4 matrices: \(\Delta\), \(A\), \(B\), \(C\)
-- Discretization: \(\Delta\) \(\rightarrow\)  \(A'\),  \(B'\)
-  - \(A'=exp(\Delta A)\)
-  - \(B' = (\Delta A)^{-1} (exp(\Delta A) - \mathbb{1}) (\Delta B) \)
-
-
-** S4: Hidden states
-
-#+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-  digraph G {
-       rankdir=LR;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x0 [label="x(t-1)", fillcolor="#aab4dd"];
-       x1 [label="x(t)", fillcolor="#aab4dd"];
-       x2 [label="x(t+1)", fillcolor="#aab4dd"];
-       d0 [label="SSM", fillcolor="#98a4d6"];
-       d1 [label="SSM", fillcolor="#98a4d6"];
-       d2 [label="SSM", fillcolor="#98a4d6"];
-       h0 [label="h(t-1)", fillcolor="#d698a4"];
-       h1 [label="h(t)", fillcolor="#d698a4"];
-       h2 [label="h(t+1)", fillcolor="#d698a4"];
-       y0 [label="y(t-1)", fillcolor="#98d6ab"];
-       y1 [label="y(t)", fillcolor="#98d6ab"];
-       y2 [label="y(t+1)", fillcolor="#98d6ab"];
-
-       // Edges
-       x0 -> d0 [label="B'"]
-       d0 -> h0;
-       h0 -> y0 [label="C"];
-       x1 -> d1 [label="B'"];
-       d1 -> h1;
-       h1 -> y1 [label="C"];
-       x2 -> d2 [label="B'"];
-       d2 -> h2;
-       h2 -> y2 [label="C"];
-       h0 -> d1 [label="A'"];
-       h1 -> d2 [label="A'"];
-       x0 -> x1 -> x2;
-
-       { rank=same; x0 x1 x2 };
-       { rank=same; d0 d1 d2 };
-       { rank=same; h0 h1 h2 };
-       { rank=same; y0 y1 y2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 500px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/SSM.png]]
-
-- Hidden states: \(h_t = A'h_{t-1} + B'x_t\)
-- Outputs: \(y_t = Ch_{t}\)
-
-
-** Discretization of ODEs
-
-- ODEs: {{{NL}}}
-  \(\dot{h} = Ah + Bx\)
-- Hidden states: {{{NL}}}
-  \(h_t = A'h_{t-1} + B'x_t\)
-- \(\Delta\) is the discretiztation operator, i.e. "step size"
-
-
-** How do SSMs gain speed-up?
-
-- SSMs behave like linear RNNs (which are parallelizable)
-- \(y = Ch_t = C (A'h_{t-1} + B'x_t) = C (A'(A'h_{t-2} + B'x_{t-1}) + B'x_t) = \quad ... \)
-- Introduce \(K = (CB', CA'B',\, ..., CA'^{L-1}B')\) summarization of all matrices pre-computed
-  - \(y = K * x\)
-
-
-** How do SSMs improve performance?
-
-- Selective SSMs:
-  - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
-
-
-#+begin_src dot :file assets/images/selectiveS4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-  digraph G {
-       rankdir=LR;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x0 [label="x(t-1)", fillcolor="#aab4dd"];
-       x1 [label="x(t)", fillcolor="#aab4dd"];
-       x2 [label="x(t+1)", fillcolor="#aab4dd"];
-       d0 [label="SSM", fillcolor="#98a4d6"];
-       d1 [label="SSM", fillcolor="#98a4d6"];
-       d2 [label="SSM", fillcolor="#98a4d6"];
-       h0 [label="h(t-1)", fillcolor="#d698a4"];
-       h1 [label="h(t)", fillcolor="#d698a4"];
-       h2 [label="h(t+1)", fillcolor="#d698a4"];
-       y0 [label="y(t-1)", fillcolor="#98d6ab"];
-       y1 [label="y(t)", fillcolor="#98d6ab"];
-       y2 [label="y(t+1)", fillcolor="#98d6ab"];
-
-       // Edges
-       x0 -> d0 [label=<B'<SUB>1</SUB>>]
-       d0 -> h0;
-       h0 -> y0 [label=<C<SUB>1</SUB>>];
-       x1 -> d1 [label=<B'<SUB>2</SUB>>];
-       d1 -> h1;
-       h1 -> y1 [label=<C<SUB>2</SUB>>];
-       x2 -> d2 [label=<B'<SUB>3</SUB>>];
-       d2 -> h2;
-       h2 -> y2 [label=<C<SUB>3</SUB>>];
-       h0 -> d1 [label=<A<SUB>1</SUB>>];
-       h1 -> d2 [label=<A<SUB>2</SUB>>];
-       x0 -> x1 -> x2;
-
-       { rank=same; x0 x1 x2 };
-       { rank=same; d0 d1 d2 };
-       { rank=same; h0 h1 h2 };
-       { rank=same; y0 y1 y2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 600px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/selectiveS4.png]]
-
-#+REVEAL: split
-
-- Selective SSMs:
-  - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
-- But there's a problem: convolution doesn't work anymore, speed is gone!
-- [[https://arxiv.org/abs/2312.00752][Gu & Dao et al. (2023)]] propose an alternative: {{{NL}}}
-  *Parallel associative scans* (as in /all-prefix-sums/)
-  - see [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]] and [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]] in pytorch
-  - runs sequentially in O(n log n) time
-  - runs parallel in O(log n) time
-
-#+REVEAL: split
-
-#+ATTR_HTML: :height 800px :style border-radius: 12px;
-[[./assets/images/mamba/scans_comparison.png]]
-
-
-** Mamba block
-
-#+begin_src dot :file assets/images/mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-  digraph G {
-       rankdir=TB;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       x1 [label="x", fillcolor="#aab4dd"];
-       x2 [label=<&otimes;>, fillcolor="#aab4dd", shape="circle"];
-       L1 [label="Linear", fillcolor="#98d6ab"];
-       L2 [label="Linear", fillcolor="#98d6ab"];
-       L3 [label="Linear", fillcolor="#98d6ab"];
-       C [label="Conv", fillcolor="#98d6ab"];
-       S1 [label="σ", fillcolor="#d6ca98"];
-       S2 [label="σ", fillcolor="#d6ca98"];
-       D [label="A', B', C", fillcolor="#d698a4"];
-
-       // Edges
-       x1 -> L1, L2
-       L2 -> C -> S2 -> D -> x2
-       L1 -> S1 -> x2
-       x2 -> L3
-
-       { rank=same; L1 L2 };
-       { rank=same; S1 S2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 900px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/mamba.png]]
-
-
-** Mamba variants
-
-- [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
-- [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
-- [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
-- [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
-
-
-*** Vision Mamba
-
-- image-patch tokenization: flatten & linear projection
-
-#+begin_src dot :file assets/images/vision_mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
-  digraph G {
-       rankdir=TB;
-       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
-
-       // Nodes
-       p [label="patch", fillcolor="#aab4dd"];
-       N [label="norm", fillcolor="#98d6ab"];
-       x1 [label="x", fillcolor="#aab4dd"];
-       x2 [label="z", fillcolor="#aab4dd"];
-       F [label="activation", fillcolor="#d6ca98"];
-       C1 [label="Conv1D forward", fillcolor="#d6ca98"];
-       C2 [label="Conv1D backward", fillcolor="#d6ca98"];
-       L1 [label="Linear", fillcolor="#98d6ab"];
-       L2 [label="Linear", fillcolor="#98d6ab"];
-       L3 [label="Linear", fillcolor="#98d6ab"];
-
-       D1 [label="SSM forward", fillcolor="#d698a4"];
-       D2 [label="SSM backward", fillcolor="#d698a4"];
-       M1 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
-       M2 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
-       A1 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
-       A2 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
-
-       // Edges
-       p -> N -> L1, L2
-       L1 -> x1 -> C1, C2
-       C1 -> D1 -> M1 -> A1 -> L3 -> A2
-       C2 -> D2 -> M2 -> A1
-       L2 -> x2 -> F -> M1, M2
-       p -> A2
-
-       { rank=same; L1 L2 };
-       { rank=same; x1 x2 };
-       { rank=same; D1 D2 };
-
-  }
-
-#+end_src
-
-#+ATTR_HTML: :height 800px :style border-radius: 12px;
-#+RESULTS:
-[[file:assets/images/vision_mamba.png]]
-
-
-* References
-
-- [[https://arxiv.org/abs/2312.00752][Mamba]]: Mamba
-- [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
-- [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
-- [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
-- [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
-- [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]]: cf. parallel prefix-sums
-- [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]]: cf. basic scan implementation
+# ** Model comparison
+
+# |             | RNN  | SSMs | Transformers | Mamba      |
+# |-------------+------+------+--------------+------------|
+# | computation | O(L) | O(L) | O(L$^2$)     | O(L)       |
+# | memory      | O(1) | O(1) | O(L$^2$)     | O(L)       |
+# | performance | ehh  | meh  | aah          | uuh        |
+
+# - Transformers are fast due to parallelism
+# - RNNs calculate recursively (slow)
+
+
+# ** (Linear) RNNs and LSTMs
+
+# #+begin_src dot :file assets/images/RNN.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#    digraph G {
+#        rankdir="LR";
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x0 [label="x(t-1)", fillcolor="#aaddd4"];
+#        x1 [label="x(t)", fillcolor="#aaddd4"];
+#        x2 [label="x(t+1)", fillcolor="#aaddd4"];
+#        d0 [label="LRNN", fillcolor="#73c7b9"];
+#        d1 [label="LRNN", fillcolor="#73c7b9"];
+#        d2 [label="LRNN", fillcolor="#73c7b9"];
+#        h0 [label="h(t-1)", fillcolor="#c77381"];
+#        h1 [label="h(t)", fillcolor="#c77381"];
+#        h2 [label="h(t+1)", fillcolor="#c77381"];
+
+#        // Edges
+#        x0 -> d0;
+#        d0 -> h0;
+#        x1 -> d1;
+#        d1 -> h1;
+#        x2 -> d2;
+#        d2 -> h2;
+#        h0 -> d1;
+#        h1 -> d2;
+#        x0 -> x1 -> x2;
+
+#        { rank=same; x0 x1 x2 };
+#        { rank=same; d0 d1 d2 };
+#        { rank=same; h0 h1 h2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 900px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/RNN.png]]
+
+
+# ** State space models
+
+# #+begin_src dot :file assets/images/SSM.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#    digraph G {
+#        rankdir=LR;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x0 [label="x(t-1)", fillcolor="#aab4dd"];
+#        x1 [label="x(t)", fillcolor="#aab4dd"];
+#        x2 [label="x(t+1)", fillcolor="#aab4dd"];
+#        d0 [label="SSM", fillcolor="#98a4d6"];
+#        d1 [label="SSM", fillcolor="#98a4d6"];
+#        d2 [label="SSM", fillcolor="#98a4d6"];
+#        h0 [label="h(t-1)", fillcolor="#d698a4"];
+#        h1 [label="h(t)", fillcolor="#d698a4"];
+#        h2 [label="h(t+1)", fillcolor="#d698a4"];
+
+#        // Edges
+#        x0 -> d0 -> h0;
+#        x1 -> d1 -> h1;
+#        x2 -> d2 -> h2;
+#        h0 -> d1;
+#        h1 -> d2;
+#        x0 -> x1 -> x2;
+
+#        { rank=same; x0 x1 x2 };
+#        { rank=same; d0 d1 d2 };
+#        { rank=same; h0 h1 h2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 900px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/SSM.png]]
+
+
+# ** S4: Discretization
+
+# #+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#   digraph G {
+#        rankdir=LR;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x0 [label="x(t-1)", fillcolor="#aab4dd"];
+#        x1 [label="x(t)", fillcolor="#aab4dd"];
+#        x2 [label="x(t+1)", fillcolor="#aab4dd"];
+#        d0 [label="SSM", fillcolor="#98a4d6"];
+#        d1 [label="SSM", fillcolor="#98a4d6"];
+#        d2 [label="SSM", fillcolor="#98a4d6"];
+#        h0 [label="h(t-1)", fillcolor="#d698a4"];
+#        h1 [label="h(t)", fillcolor="#d698a4"];
+#        h2 [label="h(t+1)", fillcolor="#d698a4"];
+#        y0 [label="y(t-1)", fillcolor="#98d6ab"];
+#        y1 [label="y(t)", fillcolor="#98d6ab"];
+#        y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+#        // Edges
+#        x0 -> d0 [label="B'"]
+#        d0 -> h0;
+#        h0 -> y0 [label="C"];
+#        x1 -> d1 [label="B'"];
+#        d1 -> h1;
+#        h1 -> y1 [label="C"];
+#        x2 -> d2 [label="B'"];
+#        d2 -> h2;
+#        h2 -> y2 [label="C"];
+#        h0 -> d1 [label="A'"];
+#        h1 -> d2 [label="A'"];
+#        x0 -> x1 -> x2;
+
+#        { rank=same; x0 x1 x2 };
+#        { rank=same; d0 d1 d2 };
+#        { rank=same; h0 h1 h2 };
+#        { rank=same; y0 y1 y2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 500px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/SSM.png]]
+
+# - 4 matrices: \(\Delta\), \(A\), \(B\), \(C\)
+# - Discretization: \(\Delta\) \(\rightarrow\)  \(A'\),  \(B'\)
+#   - \(A'=exp(\Delta A)\)
+#   - \(B' = (\Delta A)^{-1} (exp(\Delta A) - \mathbb{1}) (\Delta B) \)
+
+
+# ** S4: Hidden states
+
+# #+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#   digraph G {
+#        rankdir=LR;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x0 [label="x(t-1)", fillcolor="#aab4dd"];
+#        x1 [label="x(t)", fillcolor="#aab4dd"];
+#        x2 [label="x(t+1)", fillcolor="#aab4dd"];
+#        d0 [label="SSM", fillcolor="#98a4d6"];
+#        d1 [label="SSM", fillcolor="#98a4d6"];
+#        d2 [label="SSM", fillcolor="#98a4d6"];
+#        h0 [label="h(t-1)", fillcolor="#d698a4"];
+#        h1 [label="h(t)", fillcolor="#d698a4"];
+#        h2 [label="h(t+1)", fillcolor="#d698a4"];
+#        y0 [label="y(t-1)", fillcolor="#98d6ab"];
+#        y1 [label="y(t)", fillcolor="#98d6ab"];
+#        y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+#        // Edges
+#        x0 -> d0 [label="B'"]
+#        d0 -> h0;
+#        h0 -> y0 [label="C"];
+#        x1 -> d1 [label="B'"];
+#        d1 -> h1;
+#        h1 -> y1 [label="C"];
+#        x2 -> d2 [label="B'"];
+#        d2 -> h2;
+#        h2 -> y2 [label="C"];
+#        h0 -> d1 [label="A'"];
+#        h1 -> d2 [label="A'"];
+#        x0 -> x1 -> x2;
+
+#        { rank=same; x0 x1 x2 };
+#        { rank=same; d0 d1 d2 };
+#        { rank=same; h0 h1 h2 };
+#        { rank=same; y0 y1 y2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 500px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/SSM.png]]
+
+# - Hidden states: \(h_t = A'h_{t-1} + B'x_t\)
+# - Outputs: \(y_t = Ch_{t}\)
+
+
+# ** Discretization of ODEs
+
+# - ODEs: {{{NL}}}
+#   \(\dot{h} = Ah + Bx\)
+# - Hidden states: {{{NL}}}
+#   \(h_t = A'h_{t-1} + B'x_t\)
+# - \(\Delta\) is the discretiztation operator, i.e. "step size"
+
+
+# ** How do SSMs gain speed-up?
+
+# - SSMs behave like linear RNNs (which are parallelizable)
+# - \(y = Ch_t = C (A'h_{t-1} + B'x_t) = C (A'(A'h_{t-2} + B'x_{t-1}) + B'x_t) = \quad ... \)
+# - Introduce \(K = (CB', CA'B',\, ..., CA'^{L-1}B')\) summarization of all matrices pre-computed
+#   - \(y = K * x\)
+
+
+# ** How do SSMs improve performance?
+
+# - Selective SSMs:
+#   - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
+
+
+# #+begin_src dot :file assets/images/selectiveS4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#   digraph G {
+#        rankdir=LR;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x0 [label="x(t-1)", fillcolor="#aab4dd"];
+#        x1 [label="x(t)", fillcolor="#aab4dd"];
+#        x2 [label="x(t+1)", fillcolor="#aab4dd"];
+#        d0 [label="SSM", fillcolor="#98a4d6"];
+#        d1 [label="SSM", fillcolor="#98a4d6"];
+#        d2 [label="SSM", fillcolor="#98a4d6"];
+#        h0 [label="h(t-1)", fillcolor="#d698a4"];
+#        h1 [label="h(t)", fillcolor="#d698a4"];
+#        h2 [label="h(t+1)", fillcolor="#d698a4"];
+#        y0 [label="y(t-1)", fillcolor="#98d6ab"];
+#        y1 [label="y(t)", fillcolor="#98d6ab"];
+#        y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+#        // Edges
+#        x0 -> d0 [label=<B'<SUB>1</SUB>>]
+#        d0 -> h0;
+#        h0 -> y0 [label=<C<SUB>1</SUB>>];
+#        x1 -> d1 [label=<B'<SUB>2</SUB>>];
+#        d1 -> h1;
+#        h1 -> y1 [label=<C<SUB>2</SUB>>];
+#        x2 -> d2 [label=<B'<SUB>3</SUB>>];
+#        d2 -> h2;
+#        h2 -> y2 [label=<C<SUB>3</SUB>>];
+#        h0 -> d1 [label=<A<SUB>1</SUB>>];
+#        h1 -> d2 [label=<A<SUB>2</SUB>>];
+#        x0 -> x1 -> x2;
+
+#        { rank=same; x0 x1 x2 };
+#        { rank=same; d0 d1 d2 };
+#        { rank=same; h0 h1 h2 };
+#        { rank=same; y0 y1 y2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 600px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/selectiveS4.png]]
+
+# #+REVEAL: split
+
+# - Selective SSMs:
+#   - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
+# - But there's a problem: convolution doesn't work anymore, speed is gone!
+# - [[https://arxiv.org/abs/2312.00752][Gu & Dao et al. (2023)]] propose an alternative: {{{NL}}}
+#   *Parallel associative scans* (as in /all-prefix-sums/)
+#   - see [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]] and [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]] in pytorch
+#   - runs sequentially in O(n log n) time
+#   - runs parallel in O(log n) time
+
+# #+REVEAL: split
+
+# #+ATTR_HTML: :height 800px :style border-radius: 12px;
+# [[./assets/images/mamba/scans_comparison.png]]
+
+
+# ** Mamba block
+
+# #+begin_src dot :file assets/images/mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#   digraph G {
+#        rankdir=TB;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        x1 [label="x", fillcolor="#aab4dd"];
+#        x2 [label=<&otimes;>, fillcolor="#aab4dd", shape="circle"];
+#        L1 [label="Linear", fillcolor="#98d6ab"];
+#        L2 [label="Linear", fillcolor="#98d6ab"];
+#        L3 [label="Linear", fillcolor="#98d6ab"];
+#        C [label="Conv", fillcolor="#98d6ab"];
+#        S1 [label="σ", fillcolor="#d6ca98"];
+#        S2 [label="σ", fillcolor="#d6ca98"];
+#        D [label="A', B', C", fillcolor="#d698a4"];
+
+#        // Edges
+#        x1 -> L1, L2
+#        L2 -> C -> S2 -> D -> x2
+#        L1 -> S1 -> x2
+#        x2 -> L3
+
+#        { rank=same; L1 L2 };
+#        { rank=same; S1 S2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 900px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/mamba.png]]
+
+
+# ** Mamba variants
+
+# - [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
+# - [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
+# - [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
+# - [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
+
+
+# *** Vision Mamba
+
+# - image-patch tokenization: flatten & linear projection
+
+# #+begin_src dot :file assets/images/vision_mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+#   digraph G {
+#        rankdir=TB;
+#        node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+#        // Nodes
+#        p [label="patch", fillcolor="#aab4dd"];
+#        N [label="norm", fillcolor="#98d6ab"];
+#        x1 [label="x", fillcolor="#aab4dd"];
+#        x2 [label="z", fillcolor="#aab4dd"];
+#        F [label="activation", fillcolor="#d6ca98"];
+#        C1 [label="Conv1D forward", fillcolor="#d6ca98"];
+#        C2 [label="Conv1D backward", fillcolor="#d6ca98"];
+#        L1 [label="Linear", fillcolor="#98d6ab"];
+#        L2 [label="Linear", fillcolor="#98d6ab"];
+#        L3 [label="Linear", fillcolor="#98d6ab"];
+
+#        D1 [label="SSM forward", fillcolor="#d698a4"];
+#        D2 [label="SSM backward", fillcolor="#d698a4"];
+#        M1 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
+#        M2 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
+#        A1 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
+#        A2 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
+
+#        // Edges
+#        p -> N -> L1, L2
+#        L1 -> x1 -> C1, C2
+#        C1 -> D1 -> M1 -> A1 -> L3 -> A2
+#        C2 -> D2 -> M2 -> A1
+#        L2 -> x2 -> F -> M1, M2
+#        p -> A2
+
+#        { rank=same; L1 L2 };
+#        { rank=same; x1 x2 };
+#        { rank=same; D1 D2 };
+
+#   }
+
+# #+end_src
+
+# #+ATTR_HTML: :height 800px :style border-radius: 12px;
+# #+RESULTS:
+# [[file:assets/images/vision_mamba.png]]
+
+
+# * References
+
+# - [[https://arxiv.org/abs/2312.00752][Mamba]]: Mamba
+# - [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
+# - [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
+# - [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
+# - [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
+# - [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]]: cf. parallel prefix-sums
+# - [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]]: cf. basic scan implementation
