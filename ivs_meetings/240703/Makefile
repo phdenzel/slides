@@ -13,7 +13,7 @@ export: emacs-compile
 
 .PHONY: emacs-compile
 emacs-compile:
-	@emacsclient --alternate-editor='' -e '(progn (find-file "index.org") (org-reveal-export-to-html))'
+	@emacsclient --alternate-editor='' -e '(progn (find-file "index.org") (org-re-reveal-export-to-html))'
 
 assets/movies:
 	@echo "Visit https://mega.nz/folder/NPoXRZqC#NPRDJ64WKJ6mycpy395x0g"

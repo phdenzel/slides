@@ -1,0 +1,555 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: SKACH weekly meeting
+#+SUBTITLE: GenAI architectures@@html:<h4>@@SKA research at{{{NL}}}Zurich University of Applied Sciences (ZHAW)@@html:</h4>@@@@html:<h5>@@Centre for Artificial Intelligence (CAI){{{NL}}}Institute for Business Information Technology (IWI)@@html:</h5>@@
+#+DATE: July 11, 2024
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+#+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+OPTIONS: reveal_single_file:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:t
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1664
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: fade
+# #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade
+# #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade none slide
+# #+REVEAL_EXPORT_NOTES_TO_PDF:nil
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+#+end_comment
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <h3>%t<h3>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+# #+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h5 style="padding-top: 0px;"> <img src="%q" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">%a</a>, <span> Frank-Peter Schilling, Elena Gavagnin </span> </h5>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* Recap: {{{NL}}} Generative models {{{NL}}} for map-to-map translation
+
+
+** Dataset from IllustrisTNG
+
+#+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
+- projected IllustrisTNG galaxies
+- 6 domains:
+  - dark-matter, stars, gas, {{{NL}}}HI, temperature, magnetic field
+- \sim 2'000 galaxies, (across 6 snapshots)
+- \sim 360'000 images
+- each galaxy \(\ge\) 10'000 particles
+- augmented: up to 5x randomly rotated
+- scale: 2 dark-matter half-mass radii
+# - \(\sim 8.5 \cdot 10^{4} \mathrm{M}_\odot\)
+
+#+ATTR_HTML: :height 600px :style float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;
+[[./assets/images/skais/domains.png]]
+
+
+** Dataset from IllustrisTNG
+:PROPERTIES:
+:reveal_extra_attr: data-transition="none"
+:END:
+
+#+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
+- projected IllustrisTNG galaxies
+- 6 domains:
+  - dark-matter, stars, gas, {{{NL}}}HI, temperature, magnetic field
+- \sim 2'000 galaxies, (across 6 snapshots)
+- \sim 360'000 images
+- each galaxy \(\ge\) 10'000 particles
+- augmented: up to 5x randomly rotated
+- scale: 2 dark-matter half-mass radii
+# - \(\sim 8.5 \cdot 10^{4} \mathrm{M}_\odot\)
+
+#+ATTR_HTML: :height 600px :style float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;
+[[./assets/images/skais/domains_directions.png]]
+
+
+** Generative model paradigms
+
+{{{NL}}}
+Benchmark of generative models we're investigating and comparing:
+#+ATTR_REVEAL: :frag (appear appear appear appear)
+- *[[https://arxiv.org/abs/1411.1784][cGANs]]*: see previous talks, e.g. [[https://phdenzel.github.io/assets/blog-assets/022-skach-spring-meeting/slides.html][spring meeting]]
+- *[[https://arxiv.org/abs/2011.13456][(Score-based) diffusion models]]*: promising results, but really slow
+- *[[https://arxiv.org/abs/2303.11435][InDI]]* models: more efficient at inference?
+- *[[https://arxiv.org/abs/2405.14224][Diffusion Mamba]]*: the latest and greatest?
+
+
+** Adversarial training
+
+#+ATTR_HTML: :height 700px; :style border-radius: 12px;
+#+CAPTION: pix2pix scheme following @@html:<a href="https://arxiv.org/abs/1611.07004">Isola et al. (2016)</a>@@
+[[./assets/images/pix2pix/pix2pix_schema.png]]
+
+
+** Diffusion process
+
+#+ATTR_HTML: :height 700px; :style border-radius: 12px;
+#+CAPTION: Diffusion scheme following @@html:<a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a>@@
+[[./assets/images/diffusion/skais_diffusion_schema.png]]
+
+
+** Inversion by Direct Iteration (InDI)
+
+#+ATTR_HTML: :height 800px; :style border-radius: 12px;
+#+CAPTION: InDI's iteration scheme following @@html:<a href="https://arxiv.org/abs/2303.11435">Delbracio & Milanfar (2023)</a>@@
+[[./assets/images/indi/skais_indi_schema.png]]
+
+
+** Main component: U-Net
+
+#+begin_src dot :file assets/images/U-Net.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+      color="#DEDEDE";
+      bgcolor="#0000ff00";
+      rankdir=TB;
+      node [shape=box, style="rounded,filled", fontname="Helvetica,Arial,sans-serif", color="#DEDEDE", fontcolor="#DEDEDE"];
+      edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+      
+      // Nodes
+      I [label="Input", fontcolor="#DEDEDE", fillcolor="#dedede99"]
+      
+      E11 [label="Downsample", fillcolor="#d698a499"]
+      E22 [label="Downsample", fillcolor="#d698a499"]
+      E33 [label="Downsample", fillcolor="#d698a499"]
+      E44 [label="Downsample", fillcolor="#d698a499"]
+      B [label="Bottleneck", fillcolor="#98a4d699"]
+      D44 [label="Upsample", fillcolor="#73c7b999"]
+      D33 [label="Upsample", fillcolor="#73c7b999"]
+      D22 [label="Upsample", fillcolor="#73c7b999"]
+      D11 [label="Upsample", fillcolor="#73c7b999"]
+      O [label="Output", fontcolor="#DEDEDE", fillcolor="#dedede22"]
+
+      // Edges
+      I -> E11
+      E11 -> E22
+      E22 -> E33
+      E33 -> E44
+      E44 -> B
+      B -> D44
+      D44 -> D33
+      D33 -> D22
+      D22 -> D11
+      D11 -> O
+
+      // Alignments
+      I1 [style=invis]
+      I2 [style=invis]
+      I3 [style=invis]
+      I4 [style=invis]
+      IO [style=invis]
+      O4 [style=invis]
+      O3 [style=invis]
+      O2 [style=invis]
+      O1 [style=invis]
+      I -> I1 -> I2 -> I3 -> I4 -> IO -> O4 -> O3 -> O2 -> O1 [style=invis]
+      I1 -> E11 [style=invis]
+      I2 -> E22 [style=invis]
+      I3 -> E33 [style=invis]
+      I4 -> E44 [style=invis]
+      IO -> B [style=invis]
+      O4 -> D44 [style=invis]
+      O3 -> D33 [style=invis]
+      O2 -> D22 [style=invis]
+      O1 -> D11 [style=invis]
+
+      // Skip connections
+      E11 -> D11 [label="skip connections", style=dashed, constraint=false]
+      E22 -> D22 [style=dashed, constraint=false]
+      E33 -> D33 [style=dashed, constraint=false]
+      E44 -> D44 [style=dashed, constraint=false]
+      { rank=same; I O I1 I2 I3 I4 IO O1 O2 O3 O4 };
+      { rank=same; E11 D11 };
+      { rank=same; E22 D22 };
+      { rank=same; E33 D33 };
+      { rank=same; E44 D44 };
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 600px :style border-radius: 12px;
+#+CAPTION: U-Net following @@html:<a href="https://arxiv.org/abs/1505.04597">Ronneberger et al. (2015)</a>@@
+#+RESULTS:
+[[file:assets/images/U-Net.png]]
+
+
+** Encoder/Decoder blocks
+
+- *Normalize* inputs (across channels, batches, or groups)
+- if downsampling:
+  - decrease image width and height
+  - map to *feature* space
+- if upsampling
+  - increase image width and height
+  - unpack *features*
+- *Activation*
+  - i.e. non-linear mapping
+
+
+*** Classical blocks
+
+- Normalize input x (in groups across width, height, and depth)
+- Convolutions extract spatial features
+  - if upsampling: transposed
+
+#+begin_src dot :file assets/images/classical_block.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       O [style=invis]
+       x [label="x", fillcolor="#aab4dd99"];
+       N [label="norm", fillcolor="#98d6ab99"];
+       C1 [label="Conv2D", fillcolor="#d698a499"];
+       R1 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       C2 [label="Conv2D", fillcolor="#d698a499"];
+       //R2 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       //C3 [label="Conv2D", fillcolor="#d698a499"];
+       A [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       
+
+       // Edges
+       x -> N -> C1 -> R1 -> C2 -> A -> O
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 130px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/classical_block.png]]
+
+
+*** Residual blocks
+
+- Skip connections to lower/upper layers
+  - better information passing to lower levels
+
+#+begin_src dot :file assets/images/res_block.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       O [style=invis]
+       x [label="x", fillcolor="#aab4dd99"];
+       N [label="norm", fillcolor="#98d6ab99"];
+       C1 [label="Conv2D", fillcolor="#d698a499"];
+       R1 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       C2 [label="Conv2D", fillcolor="#d698a499"];
+       R2 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       C3 [label="Conv2D", fillcolor="#d698a499"];
+       C4 [label="Conv2D", fillcolor="#d698a499"];
+       M [label=<&oplus;>, fillcolor="#d6ca9899", shape="circle"];
+       A [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       
+
+       // Edges
+       x -> N -> C1 -> R1 -> C2 -> R2 -> C3 -> M -> A -> O
+       x -> C4 -> M
+
+       { rank=same; C3 C4 }
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 200px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/res_block.png]]
+
+
+*** Attention blocks
+
+- Attention for better feature selection
+  - Positional embeddings
+  - at every skip connection
+
+#+begin_src dot :file assets/images/attn_block.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       O [style=invis]
+       S [label="skip conn.", fillcolor="#aab4dd99"];
+       Attn [label="Attn", fillcolor="#d698a499"];
+       x [label="x", fillcolor="#aab4dd99"];
+       N [label="norm", fillcolor="#98d6ab99"];
+       C1 [label="Conv2DT", fillcolor="#d698a499"];
+       R1 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       C2 [label="Conv2DT", fillcolor="#d698a499"];
+       R2 [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       C3 [label="Conv2DT", fillcolor="#d698a499"];
+       C4 [label="Conv2DT", fillcolor="#d698a499"];
+       M [label=<&oplus;>, fillcolor="#d6ca9899", shape="circle"];
+       A [label="ReLU", fillcolor="#d6ca9899", shape="circle"];
+       
+
+       // Edges
+       S -> Attn -> N
+       x -> Attn
+       x -> N -> C1 -> R1 -> C2 -> R2 -> C3 -> M -> A -> O
+       x -> C4 -> M
+
+       { rank=same; C3 C4 }
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 200px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/attn_block.png]]
+
+
+*** Mamba Vision block
+
+- Mamba: Selective State-space models ([[https://arxiv.org/abs/2312.00752][Gu & Dao et al. 2023]]) {{{NL}}}
+  Hardware optimized operators: Convolutions @@html:&xrarr;@@ *Parallel associative scans* (as in /all-prefix-sums/)
+  - runs in O(n log n) time sequentially / in O(log n) time parallel
+- image-patch tokenization: flatten & linear projection
+
+#+begin_src dot :file assets/images/vision_mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       O [style=invis]
+       p [label="patch(x)", fillcolor="#aab4dd99"];
+       N [label="norm", fillcolor="#98d6ab99"];
+       x1 [label="x", fillcolor="#aab4dd99"];
+       x2 [label="z", fillcolor="#aab4dd99"];
+       F [label=activation, fillcolor="#d6ca9899"];
+       C1 [label="Conv1D forward", fillcolor="#d6ca9899"];
+       C2 [label="Conv1D backward", fillcolor="#d6ca9899"];
+       L1 [label="Linear", fillcolor="#98d6ab99"];
+       L2 [label="Linear", fillcolor="#98d6ab99"];
+       L3 [label="Linear", fillcolor="#98d6ab99"];
+
+       D1 [label="SSM forward", fillcolor="#d698a499"];
+       D2 [label="SSM backward", fillcolor="#d698a499"];
+       M1 [label=<&otimes;>, fillcolor="#d6ca9899", shape="circle"];
+       M2 [label=<&otimes;>, fillcolor="#d6ca9899", shape="circle"];
+       A1 [label=<&oplus;>, fillcolor="#d6ca9899", shape="circle"];
+       A2 [label=<&oplus;>, fillcolor="#d6ca9899", shape="circle"];
+
+       // Edges
+       p -> N -> L1, L2
+       L1 -> x1 -> C1, C2
+       C1 -> D1 -> M1 -> A1 -> L3 -> A2
+       C2 -> D2 -> M2 -> A1
+       L2 -> x2 -> F -> M1, M2
+       p -> A2
+       A2 -> O
+
+       { rank=same; L1 L2 };
+       { rank=same; x1 x2 };
+       { rank=same; D1 D2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 300px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/vision_mamba.png]]
+
+
+** Theoretical comparison
+
+| per layer   | RNN  | SSMs | Conv       | Attn   | Mamba   |
+|-------------+------+------+------------+--------+---------|
+| computation | O(L) | O(L) | O(KL)      | O(L^2) | O(L)    |
+| memory      | O(1) | O(1) | O(K^(3/2)) | O(L^2) | O(L)    |
+| performance | -    | ~    | +          | + + +  | + + (+) |
+
+where L is the number of pixels and K the convolutional kernel size.
+
+- RNNs calculate recursively (slow)
+- Convolutions often do the job...
+- Transformers are fast due to parallelism
+
+
+** Preliminary U-Net training comparison
+
+- averages from randomized sweeps of 16 runs:
+  - with batch size 12 (unless *extrapolated)
+  - with float32 precision
+  - training until convergence
+{{{NL}}}
+
+| U-Net             | Vanilla      | Residual      | Attn *        | ViT *         | Mamba *       |
+|-------------------+--------------+---------------+---------------+---------------+---------------|
+| parameters  [M]   | 31.7 \pm 9.6 | 45.1 \pm 11.4 | 53.2 \pm 4.4  | 62.3 \pm 19.5 | 43.6 \pm 10.9 |
+| memory (fwd) [GB] | 2.9 \pm 0.9  | 4.4 \pm  0.7  | 36.7 \pm 16.1 | 48.9 \pm 12.1 | 16.2 \pm 6.4  |
+| avg. training [h] | 16.3 \pm 4.7 | 28.6 \pm 2.3  | ~124          | ~163          | ~68           |
+
+
+** Does it make a difference in price?
+
+- using typical pricing for private use
+- adjusting batch size to hardware VRAM
+- prices for a single model:
+
+| Compute [CHF] | Vanilla | Residual | Attn * |  ViT * | Mamba * |
+|---------------+---------+----------+--------+--------+---------|
+| H100 (80GB)   |   55.42 |    97.24 |  421.6 |  554.2 |   244.8 |
+| A100 (40GB)   |   33.09 |    58.06 | 251.72 | 330.89 |  146.16 |
+| V100 (16GB)   |   19.56 |    34.32 |      - |      - |    81.6 |
+*extrapolated
+
+** References
+
+- [[https://arxiv.org/abs/2011.13456][Song et al. (2021)]]: Diffusion models
+- [[https://arxiv.org/abs/2303.11435][Delbracio & Milanfar (2023)]]: InDI: Inversion by Direct Iteration
+- [[https://arxiv.org/abs/2312.00752][Mamba]]: Selective state-space models
+- [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
+- [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
+- [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
+- [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
+- [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]]: cf. parallel prefix-sums
+- [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]]: cf. basic scan implementation
+
+
+* Contact
+
+Email:  [[mailto:denp@zhaw.ch][philipp.denzel@zhaw.ch]]
+{{{NL}}}{{{NL}}}
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+

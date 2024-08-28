@@ -1,0 +1,637 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Intelligent Vision Systems
+#+SUBTITLE: Group Meeting
+#+DATE: 2024/07/30
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:nil
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math notes highlight search )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+# #+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
+#+REVEAL_TITLE_SLIDE: <h1 style="text-shadow: 6px 6px 10px #000000;">%t<h1>
+#+REVEAL_TITLE_SLIDE: <h2 style="text-shadow: 6px 6px 10px #000000;">%s</h2>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">%d </br> Winterthur</div>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/CAI_header.jpg
+
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.4
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* IVS Meeting Structure in HS24
+
+#+ATTR_HTML: :height 700px; :style border-radius: 12px;
+#+CAPTION: Group meeting agenda (@@html:<a href="https://zhaw.sharepoint.com/:x:/r/sites/CAIStaff-IVSGroupSchilling/Freigegebene%20Dokumente/IVS%20Group%20(Schilling)/Group%20Meeting%20Schedule.xlsx">MS Teams CAI-IVS files</a>@@)
+[[./assets/images/ivs/ivs_agenda_240730.png]]
+
+
+* Important Dates
+
+- IEM Grillabend "zum Reitplatz" (RSVP per email): 4. September 2024
+- [[https://www.zhaw.ch/storage/hochschule/institute-zentren/ZHAWdigital/upload/Fellowship_Call_2025.pdf][DIZH Fellowship Call]] deadline: 23. September 2024 (at 23:59)
+- [[https://www.plusx.ai/][AI+X Summit 2024]]: 3.-4. September 2024 (denp's GenAI track talk)
+
+
+* Proposals (submitted)
+
+#+ATTR_HTML: :class slide_85
+- *3DDMMI* – 3D Diffusion Models for Medical Imaging
+  - /SNF Health & Wellbeing/ (scik)
+- *DG3NERATE* - Deep generative 3D point cloud modeling for galaxy simulations
+  - /SNF Project call/ (denp, scik, gava)
+- *clAImate* – AI-driven Climate Data Platform for Evidence-based Decision Making with regards to Net Zero 2040
+  - /DIZH Structure/ (scik, ciel, reno, INE, UZH)
+- *AI-BRIDGE* - A Think-and-Do-Tank for Responsible Development and Societal Alignment of Artificial Intelligence Systems
+  - /DIZH Structure/ (char, stdm, scik, IDP, UZH, PHZH, ZHdK)
+- *D+Cosmos* - Decoding the Universe (SKA+LISA data, AI, HPC)
+  - /NCCR/, pre-proposal submitted, full proposal, deadline 3.2.25, (gava, scik, denp)
+- *RadNeurOps* - Accelerated RT for SKAO (Generative Neural Operators for ODEs)
+  - /PASC/, (denp, gava, ETH, UniBasel, EPFL)
+- *GdyniAI* - Multi-modal acoustic scene detection for noise monitoring system in the sea port
+  - /NCBR Polish-Swiss programme/ (denp, stdm, Polish collaborators: SeaData, Port of Gdynia, ...)
+
+
+* Proposals (in work)
+
+#+ATTR_HTML: :class slide_95
+- *in writing*
+  - *Leg&airy*: AI driven Orthosis fitting
+    - /Innosuisse/ (scik, char), next round?
+- *in discussion*
+  - *Bystronic*, CV for pipe/tube ID/grabbing
+  - *?* /SNF/ (IMES rorr, USZ), MRIs of female pelvic floor (segmentation)
+  - *Gravis Robotics* /Innosuisse/ (char, scik, denp), Compliance-by-design people detection
+  - *Aseptuva* /Innosuisse/ (denp, char, IWI?), In-situ UV disinfection of catheters {{{NL}}}
+    AI-assisted (multi-modal) early detection of hospital-aquired infections
+  - /FLARE/ for SKACH: CAI+IWI for international software and MLOps development
+  - /SNF/ for MWA/SKACH: denp+gava (Australian MWA members), GenAI for super-res-ing in Fourier mode space
+
+
+* Papers (in writing)
+
+- certAInty: AI Assessment Tooling paper (due August 5, 2024)
+  - for Symposium on Scaling AI Assessments (SAIA 2024), Cologne Sept 30 - Oct 01
+- SKACH:
+  1) Galactic Alchemy I: Deep Learning Map-to-Map Generation in Hydrodynamical Simulations
+  2) Galactic Alchemy II: TBD (Diffusion + InDI)
+  3) Galactic Alchemy III: TBD (ViT-UNet + Mamba)
+
+
+* Hardware news
+
+- August 2nd: DGX migration to the new cluster starting with DGX1
+  - down time?
+  - any must-dos after reboot?
+
+
+* Software news
+
+- ~chuchichaestli~
+  - GH workflows: merged before holidays
+    - problem: direct commits from ~github-actions[bot]~ don't work
+
+
+* Discussion time: denp
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/mamba/paper_abstract.png]]
+
+
+** Why are they interesting?
+
+- Selective state-space models
+- serious competitor to Transformers
+- better scaling properties
+
+  
+** Model comparison
+
+|             | RNN  | SSMs | Transformers | Mamba      |
+|-------------+------+------+--------------+------------|
+| computation | O(L) | O(L) | O(L^2)       | O(L)       |
+| memory      | O(1) | O(1) | O(L^2)       | O(L)       |
+| performance | ehh  | meh  | aah          | uuh        |
+
+- Transformers are fast due to parallelism
+- RNNs calculate recursively (slow)
+
+
+** (Linear) RNNs and LSTMs
+
+#+begin_src dot :file assets/images/RNN.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+   digraph G {
+       rankdir="LR";
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x0 [label="x(t-1)", fillcolor="#aaddd4"];
+       x1 [label="x(t)", fillcolor="#aaddd4"];
+       x2 [label="x(t+1)", fillcolor="#aaddd4"];
+       d0 [label="LRNN", fillcolor="#73c7b9"];
+       d1 [label="LRNN", fillcolor="#73c7b9"];
+       d2 [label="LRNN", fillcolor="#73c7b9"];
+       h0 [label="h(t-1)", fillcolor="#c77381"];
+       h1 [label="h(t)", fillcolor="#c77381"];
+       h2 [label="h(t+1)", fillcolor="#c77381"];
+
+       // Edges
+       x0 -> d0;
+       d0 -> h0;
+       x1 -> d1;
+       d1 -> h1;
+       x2 -> d2;
+       d2 -> h2;
+       h0 -> d1;
+       h1 -> d2;
+       x0 -> x1 -> x2;
+
+       { rank=same; x0 x1 x2 };
+       { rank=same; d0 d1 d2 };
+       { rank=same; h0 h1 h2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 900px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/RNN.png]]
+
+
+** State space models
+
+#+begin_src dot :file assets/images/SSM.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+   digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x0 [label="x(t-1)", fillcolor="#aab4dd"];
+       x1 [label="x(t)", fillcolor="#aab4dd"];
+       x2 [label="x(t+1)", fillcolor="#aab4dd"];
+       d0 [label="SSM", fillcolor="#98a4d6"];
+       d1 [label="SSM", fillcolor="#98a4d6"];
+       d2 [label="SSM", fillcolor="#98a4d6"];
+       h0 [label="h(t-1)", fillcolor="#d698a4"];
+       h1 [label="h(t)", fillcolor="#d698a4"];
+       h2 [label="h(t+1)", fillcolor="#d698a4"];
+
+       // Edges
+       x0 -> d0 -> h0;
+       x1 -> d1 -> h1;
+       x2 -> d2 -> h2;
+       h0 -> d1;
+       h1 -> d2;
+       x0 -> x1 -> x2;
+
+       { rank=same; x0 x1 x2 };
+       { rank=same; d0 d1 d2 };
+       { rank=same; h0 h1 h2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 900px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/SSM.png]]
+
+
+** S4: Discretization
+
+#+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x0 [label="x(t-1)", fillcolor="#aab4dd"];
+       x1 [label="x(t)", fillcolor="#aab4dd"];
+       x2 [label="x(t+1)", fillcolor="#aab4dd"];
+       d0 [label="SSM", fillcolor="#98a4d6"];
+       d1 [label="SSM", fillcolor="#98a4d6"];
+       d2 [label="SSM", fillcolor="#98a4d6"];
+       h0 [label="h(t-1)", fillcolor="#d698a4"];
+       h1 [label="h(t)", fillcolor="#d698a4"];
+       h2 [label="h(t+1)", fillcolor="#d698a4"];
+       y0 [label="y(t-1)", fillcolor="#98d6ab"];
+       y1 [label="y(t)", fillcolor="#98d6ab"];
+       y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+       // Edges
+       x0 -> d0 [label="B'"]
+       d0 -> h0;
+       h0 -> y0 [label="C"];
+       x1 -> d1 [label="B'"];
+       d1 -> h1;
+       h1 -> y1 [label="C"];
+       x2 -> d2 [label="B'"];
+       d2 -> h2;
+       h2 -> y2 [label="C"];
+       h0 -> d1 [label="A'"];
+       h1 -> d2 [label="A'"];
+       x0 -> x1 -> x2;
+
+       { rank=same; x0 x1 x2 };
+       { rank=same; d0 d1 d2 };
+       { rank=same; h0 h1 h2 };
+       { rank=same; y0 y1 y2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 500px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/SSM.png]]
+
+- 4 matrices: \(\Delta\), \(A\), \(B\), \(C\)
+- Discretization: \(\Delta\) \(\rightarrow\)  \(A'\),  \(B'\)
+  - \(A'=exp(\Delta A)\)
+  - \(B' = (\Delta A)^{-1} (exp(\Delta A) - \mathbb{1}) (\Delta B) \)
+
+
+** S4: Hidden states
+
+#+begin_src dot :file assets/images/S4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x0 [label="x(t-1)", fillcolor="#aab4dd"];
+       x1 [label="x(t)", fillcolor="#aab4dd"];
+       x2 [label="x(t+1)", fillcolor="#aab4dd"];
+       d0 [label="SSM", fillcolor="#98a4d6"];
+       d1 [label="SSM", fillcolor="#98a4d6"];
+       d2 [label="SSM", fillcolor="#98a4d6"];
+       h0 [label="h(t-1)", fillcolor="#d698a4"];
+       h1 [label="h(t)", fillcolor="#d698a4"];
+       h2 [label="h(t+1)", fillcolor="#d698a4"];
+       y0 [label="y(t-1)", fillcolor="#98d6ab"];
+       y1 [label="y(t)", fillcolor="#98d6ab"];
+       y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+       // Edges
+       x0 -> d0 [label="B'"]
+       d0 -> h0;
+       h0 -> y0 [label="C"];
+       x1 -> d1 [label="B'"];
+       d1 -> h1;
+       h1 -> y1 [label="C"];
+       x2 -> d2 [label="B'"];
+       d2 -> h2;
+       h2 -> y2 [label="C"];
+       h0 -> d1 [label="A'"];
+       h1 -> d2 [label="A'"];
+       x0 -> x1 -> x2;
+
+       { rank=same; x0 x1 x2 };
+       { rank=same; d0 d1 d2 };
+       { rank=same; h0 h1 h2 };
+       { rank=same; y0 y1 y2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 500px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/SSM.png]]
+
+- Hidden states: \(h_t = A'h_{t-1} + B'x_t\)
+- Outputs: \(y_t = Ch_{t}\)
+
+
+** Discretization of ODEs
+
+- ODEs: {{{NL}}}
+  \(\dot{h} = Ah + Bx\)
+- Hidden states: {{{NL}}}
+  \(h_t = A'h_{t-1} + B'x_t\)
+- \(\Delta\) is the discretiztation operator, i.e. "step size"
+
+
+** How do SSMs gain speed-up?
+
+- SSMs behave like linear RNNs (which are parallelizable)
+- \(y = Ch_t = C (A'h_{t-1} + B'x_t) = C (A'(A'h_{t-2} + B'x_{t-1}) + B'x_t) = \quad ... \)
+- Introduce \(K = (CB', CA'B',\, ..., CA'^{L-1}B')\) summarization of all matrices pre-computed
+  - \(y = K * x\)
+
+
+** How do SSMs improve performance?
+
+- Selective SSMs:
+  - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
+
+
+#+begin_src dot :file assets/images/selectiveS4.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=LR;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x0 [label="x(t-1)", fillcolor="#aab4dd"];
+       x1 [label="x(t)", fillcolor="#aab4dd"];
+       x2 [label="x(t+1)", fillcolor="#aab4dd"];
+       d0 [label="SSM", fillcolor="#98a4d6"];
+       d1 [label="SSM", fillcolor="#98a4d6"];
+       d2 [label="SSM", fillcolor="#98a4d6"];
+       h0 [label="h(t-1)", fillcolor="#d698a4"];
+       h1 [label="h(t)", fillcolor="#d698a4"];
+       h2 [label="h(t+1)", fillcolor="#d698a4"];
+       y0 [label="y(t-1)", fillcolor="#98d6ab"];
+       y1 [label="y(t)", fillcolor="#98d6ab"];
+       y2 [label="y(t+1)", fillcolor="#98d6ab"];
+
+       // Edges
+       x0 -> d0 [label=<B'<SUB>1</SUB>>]
+       d0 -> h0;
+       h0 -> y0 [label=<C<SUB>1</SUB>>];
+       x1 -> d1 [label=<B'<SUB>2</SUB>>];
+       d1 -> h1;
+       h1 -> y1 [label=<C<SUB>2</SUB>>];
+       x2 -> d2 [label=<B'<SUB>3</SUB>>];
+       d2 -> h2;
+       h2 -> y2 [label=<C<SUB>3</SUB>>];
+       h0 -> d1 [label=<A<SUB>1</SUB>>];
+       h1 -> d2 [label=<A<SUB>2</SUB>>];
+       x0 -> x1 -> x2;
+
+       { rank=same; x0 x1 x2 };
+       { rank=same; d0 d1 d2 };
+       { rank=same; h0 h1 h2 };
+       { rank=same; y0 y1 y2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 600px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/selectiveS4.png]]
+
+#+REVEAL: split
+
+- Selective SSMs:
+  - introduce *linear layers* to compute different \(\Delta_t, B_t, C_t\) from the input
+- But there's a problem: convolution doesn't work anymore, speed is gone!
+- [[https://arxiv.org/abs/2312.00752][Gu & Dao et al. (2023)]] propose an alternative: {{{NL}}}
+  *Parallel associative scans* (as in /all-prefix-sums/)
+  - see [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]] and [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]] in pytorch
+  - runs sequentially in O(n log n) time
+  - runs parallel in O(log n) time
+
+#+REVEAL: split
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/mamba/scans_comparison.png]]
+
+
+** Mamba block
+
+#+begin_src dot :file assets/images/mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=TB;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       x1 [label="x", fillcolor="#aab4dd"];
+       x2 [label=<&otimes;>, fillcolor="#aab4dd", shape="circle"];
+       L1 [label="Linear", fillcolor="#98d6ab"];
+       L2 [label="Linear", fillcolor="#98d6ab"];
+       L3 [label="Linear", fillcolor="#98d6ab"];
+       C [label="Conv", fillcolor="#98d6ab"];
+       S1 [label="σ", fillcolor="#d6ca98"];
+       S2 [label="σ", fillcolor="#d6ca98"];
+       D [label="A', B', C", fillcolor="#d698a4"];
+
+       // Edges
+       x1 -> L1, L2
+       L2 -> C -> S2 -> D -> x2
+       L1 -> S1 -> x2
+       x2 -> L3
+
+       { rank=same; L1 L2 };
+       { rank=same; S1 S2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 900px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/mamba.png]]
+
+
+** Mamba variants
+
+- [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
+- [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
+- [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
+- [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
+
+
+*** Vision Mamba
+
+- image-patch tokenization: flatten & linear projection
+
+#+begin_src dot :file assets/images/vision_mamba.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+  digraph G {
+       rankdir=TB;
+       bgcolor="#0000ff00";
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif"];
+       edge [color="#DEDEDE", fontname="Helvetica,Arial,sans-serif", fontcolor="#DEDEDE"];
+
+       // Nodes
+       p [label="patch", fillcolor="#aab4dd"];
+       N [label="norm", fillcolor="#98d6ab"];
+       x1 [label="x", fillcolor="#aab4dd"];
+       x2 [label="z", fillcolor="#aab4dd"];
+       F [label="activation", fillcolor="#d6ca98"];
+       C1 [label="Conv1D forward", fillcolor="#d6ca98"];
+       C2 [label="Conv1D backward", fillcolor="#d6ca98"];
+       L1 [label="Linear", fillcolor="#98d6ab"];
+       L2 [label="Linear", fillcolor="#98d6ab"];
+       L3 [label="Linear", fillcolor="#98d6ab"];
+
+       D1 [label="SSM forward", fillcolor="#d698a4"];
+       D2 [label="SSM backward", fillcolor="#d698a4"];
+       M1 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
+       M2 [label=<&otimes;>, fillcolor="#d6ca98", shape="circle"];
+       A1 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
+       A2 [label=<&oplus;>, fillcolor="#d6ca98", shape="circle"];
+
+       // Edges
+       p -> N -> L1, L2
+       L1 -> x1 -> C1, C2
+       C1 -> D1 -> M1 -> A1 -> L3 -> A2
+       C2 -> D2 -> M2 -> A1
+       L2 -> x2 -> F -> M1, M2
+       p -> A2
+
+       { rank=same; L1 L2 };
+       { rank=same; x1 x2 };
+       { rank=same; D1 D2 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/vision_mamba.png]]
+
+
+* References
+
+- [[https://arxiv.org/abs/2312.00752][Mamba]]: Mamba
+- [[https://arxiv.org/abs/2401.04081][MoE-Mamba]]: Mixture-of-Experts-Mamba
+- [[https://arxiv.org/abs/2401.13660][MambaByte]]: Raw byte sequencing
+- [[https://arxiv.org/abs/2401.09417][ViM]]: Vision Mamba
+- [[https://arxiv.org/abs/2405.14224][DiM]]: Diffusion Mamba
+- [[https://developer.nvidia.com/gpugems/gpugems3/part-vi-gpu-computing/chapter-39-parallel-prefix-sum-scan-cuda][GPU Gems 3]]: cf. parallel prefix-sums
+- [[https://github.com/PeaBrane/mamba-tiny][mamba-tiny]]: cf. basic scan implementation
