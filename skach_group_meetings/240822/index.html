@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>ZHAW SKACH</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/CAI_header.jpg" data-background-size="contain" data-background-position="block" data-background-opacity="0.4">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h1 style="text-shadow: 6px 6px 10px #000000;">ZHAW SKACH<h1>
+<h2 style="text-shadow: 6px 6px 10px #000000;">Group Meeting</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/08/22 </br> Winterthur</div>
+</section>
+<section>
+<section id="slide-org13217e2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org13217e2">Galactic Alchemy</h2>
+<ul>
+<li>Part I:
+<ul>
+<li>GANs vs Diffusion models</li>
+<li>conclusions so far:
+<ul>
+<li>main case: gas -&gt; dark matter</li>
+<li>attention is all you need</li>
+<li>diffusion models tend to give higher quality images, but also more hallucinations</li>
+<li>GANs (comparable?) quality, faster inference, harder to train, less hallucination</li>
+
+</ul></li>
+<li>TODO: "astro-analytics" + paper writing</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org54e674c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org54e674c">Diffusion model: Example 1</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org997fcf1" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch20/0_input.png" alt="0_input.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org369efb1" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch20/pred.png" alt="pred.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Output</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org12d9669" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch20/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org841a797">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org841a797">Diffusion model: Example 2</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="orgbc4c1b7" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch25/0_input.png" alt="0_input.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgb693036" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch25/pred.png" alt="pred.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Output</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgcd9cf21" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch25/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 6: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7a78391">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org7a78391">Diffusion model: Example 3</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org6684c49" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch30/0_input.png" alt="0_input.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 7: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgc1f4a52" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch30/pred.png" alt="pred.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 8: </span>Output</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orge81553a" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch30/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 9: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgdbe8e91">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgdbe8e91">Diffusion model: Comparison to Pix2Pix + Attention</h2>
+<p>
+Problem?
+</p>
+
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org016117a" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch35/gan.png" alt="gan.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 10: </span>GAN</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org66fec07" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch35/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 11: </span>Ground truth</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org507364e" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch35/ddpm.png" alt="ddpm.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 12: </span>DDPM</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0bd908b">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0bd908b">Diffusion model: Problems finding sampling steps</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="orgbbe005d" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40/0_input.png" alt="0_input.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 13: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org3475384" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40/pred.png" alt="pred.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 14: </span>Output</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org22996ae" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 15: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf96a120">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf96a120">Diffusion model: Sampling steps 400 vs 1200</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="orga734e17" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c400:1200;epoch45/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 16: </span>Ground truth</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgc55f100" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c400:1200;epoch45/pred_c400.png" alt="pred_c400.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 17: </span>Output (400)</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org61a1192" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c400:1200;epoch45/pred_c1200.png" alt="pred_c1200.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 18: </span>Output (1200)</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org13748c2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org13748c2">Diffusion model: Plausible Hallucinations?</h2>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org8007c50" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40_2/0_input2.png" alt="0_input2.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 19: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org9ba0d59" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40_2/pred.png" alt="pred.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 20: </span>Output</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgc509a86" class="figure">
+<p><img src="./assets/images/local/gas-&gt;dm;50;cosine;aaaa;8h32;c1200;epoch40_2/gt.png" alt="gt.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 21: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8043ac6">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org8043ac6">Cherry-picked?</h2>
+<p>
+Yes&#x2026; but!
+</p>
+
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orga0d1b79" class="figure">
+<p><img src="./assets/images/local/issues/bad_gt1.png" alt="bad_gt1.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 22: </span>Ground truth</p>
+</div>
+</div>
+<div class="gframe_2col">
+
+<div id="org070a75b" class="figure">
+<p><img src="./assets/images/local/issues/bad_pred1.png" alt="bad_pred1.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 23: </span>Output</p>
+</div>
+</div>
+</div>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section>
+
+<div class="gframe_row_col">
+<div class="gframe_2col">
+
+<div id="orgdf38c62" class="figure">
+<p><img src="./assets/images/local/issues/bad_gt2.png" alt="bad_gt2.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 24: </span>Ground truth</p>
+</div>
+</div>
+<div class="gframe_2col">
+
+<div id="org680aef3" class="figure">
+<p><img src="./assets/images/local/issues/bad_pred2.png" alt="bad_pred2.png" height="500px;" style="border-radius: 12px; background-color: #555555;" />
+</p>
+<p><span class="figure-number">Figure 25: </span>Output</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/search/search.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealNotes, RevealHighlight, RevealSearch ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
