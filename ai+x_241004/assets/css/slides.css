@@ -7,7 +7,7 @@
         /* linear-gradient(90deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%); */
         /* linear-gradient(90deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%); */
         linear-gradient(90deg, #651098 0%, #771D8F 20%, #992478 40%, #B71D60 60%, #B61C5F 80%, #D00B50 100%);
-    
+
     background-position: bottom left/* , top left */;
     background-size: 100% 20px/* , 100% 20px */;
     background-repeat: no-repeat/* , no-repeat */;
@@ -26,6 +26,15 @@
     top: 0;
     font-size: 28px;
     text-align: center;
+}
+
+.reveal section.hidden-title {
+    h1, h2, h3, h4 {
+        display: none;
+    };
+    .slide-header {
+        display: none;
+    }
 }
 
 .footer-item {
