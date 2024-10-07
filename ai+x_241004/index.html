@@ -9,9 +9,9 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
 
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<link rel="stylesheet" href="./assets/css/phdcolloq.css" id="theme"/>
 
 <link rel="stylesheet" href="./assets/css/slides.css"/>
 
@@ -38,9 +38,9 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#acb7c8"}, links: {
 <h5 style="padding-top: 0px; text-shadow: 6px 6px 10px #000000;"> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">Philipp Denzel</a>, <span>Benjamin Grewe</span> </h5>
 </section>
 <section>
-<section id="slide-org120df37">
+<section id="slide-org6c7d5f7">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org120df37">Slides on my website</h2>
+<h2 id="org6c7d5f7">Slides on my website</h2>
 <p>
 <a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
 </p>
@@ -56,45 +56,55 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#acb7c8"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-org37d5b62">
+<section id="slide-orgc638f95">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org37d5b62">Why am I here?</h2>
+<h2 id="orgc638f95">Who Am I? - Philipp Denzel</h2>
+<div style="font-size: 100%;">
+<ul style="float: left; padding-top: 100px; padding-left: 200px;">
+<li class="fragment appear">trained physicist, turned ML researcher</li>
+<li class="fragment appear">research scientist at the <a href="https://www.zhaw.ch/en/engineering/institutes-centres/cai/">Centre of Artificial Intelligence</a> at ZHAW
 <ul>
-<li>trained physicist, turned ML researcher</li>
-<li>research scientist at the Centre of Artificial Intelligence at ZHAW
-<ul>
-<li>generative DL models for radio astronomy (SKAO)</li>
-<li>technical certification of AI systems</li>
+<li>generative DL models for radio astronomy (<a href="https://skach.org/">Swiss</a> <a href="https://www.skao.int/en">SKAO</a>)</li>
+<li>technical certification of AI systems (<a href="https://www.zhaw.ch/de/forschung/forschungsdatenbank/projektdetail/projektid/5900/">certAInty</a>)</li>
 
 </ul></li>
-<li>like to tinker with computers and bleeding-edge technology</li>
+<li class="fragment appear">like to tinker with computers and bleeding-edge technology</li>
 
 </ul>
+</div>
+
+
+<div id="org30f207a" class="figure">
+<p><img src="./assets/images/DENP_4562.jpg" alt="DENP_4562.jpg" height="300px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" class="fragment (appear)" />
+</p>
+</div>
+
+<div id="org18ce2fc" class="figure">
+<p><img src="./assets/images/ska/SKAO-scheme.jpg" alt="SKAO-scheme.jpg" height="300px" style="float: right; padding-right: 100px; border-radius: 12px;" class="fragment (appear)" />
+</p>
+</div>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org0fadb78">
+<section id="slide-org1ba5ff3">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org0fadb78">Outlook</h2>
+<h2 id="org1ba5ff3">Outlook</h2>
 <ol>
-<li>Generative AI (GenAI) ?= General AI (AGI)</li>
-<li>Large Language Models (LLMs)</li>
-<li>Other modalities</li>
-<li>Multi-modal models
-<ul>
-<li>Deep fakes</li>
-
-</ul></li>
+<li><a href="#/slide-orgc92dfa8" class="forwardlink">The Magic of Generative AI (GenAI)</a></li>
+<li><a href="#/slide-orgf3f4dff" class="forwardlink">GenAI Tools</a></li>
+<li><a href="#/slide-org0e4c833" class="forwardlink">Image generation</a></li>
+<li><a href="#/slide-org4afcbee" class="forwardlink">Video generation</a></li>
+<li><a href="#/slide-org494fa62" class="forwardlink">GenAI ?= AGI</a></li>
 
 </ol>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org85580af">
+<section id="slide-orgc92dfa8">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org85580af">What is Generative AI?</h2>
+<h2 id="orgc92dfa8">What is Generative AI?</h2>
 <ul>
 <li>Quote Arthur C. Clarke's third adage:</li>
 
@@ -111,12 +121,90 @@ Any sufficiently advanced technology is indistinguishable from magic.
 <h2>What is Generative AI?</h2>
 
 <ul>
-<li>(re-)create original content
+<li>method to (re-)create original content</li>
+<li>an immensely useful tool!</li>
+
+</ul>
+<blockquote>
+<p>
+In fact, this presentation was almost exclusively created with GenAI tools<sup>*</sup>!
+</p>
+</blockquote>
+<div style="font-size: 60%;">
+<p>
+\(*\) through <a href="https://revealjs.com/">reveal.js</a> code generation prompting using
+</p>
 <ul>
-<li>text, code</li>
-<li>images, video</li>
-<li>audio</li>
-<li>synthetic data</li>
+<li>local tools: <a href="https://ollama.com/">ollama</a>/<a href="https://github.com/s-kostyaev/ellama">ellama</a>, <a href="https://aider.chat/">aider-chat</a>,  <a href="https://huggingface.co/black-forest-labs/FLUX.1-schnell">FLUX.1-schnell</a></li>
+<li>external tools: <a href="https://fastflux.ai/">fastflux</a>, <a href="https://elevenlabs.io/app/speech-synthesis/text-to-speech">elevenlabs</a>, <a href="https://app.heygen.com/login">heygen</a></li>
+
+</ul>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgf3f4dff">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgf3f4dff">LLMs at home with Ollama</h2>
+<ul style="float: left; padding-top: 200px; padding-left: 200px;">
+<li><a href="https://ollama.com/">Ollama</a> installs and runs open-source models</li>
+<li>on various hardware with
+<ul>
+<li><a href="https://huggingface.co/blog/merve/quantization">Quantization</a>: lower bit float representation</li>
+<li><a href="https://huggingface.co/docs/peft/main/en/conceptual_guides/lora">LoRA</a>: efficient method to update weights</li>
+
+</ul></li>
+
+</ul>
+
+<p height="800px" style="float: right; margin-top: 0px; padding-right: 80px; border-radius: 12px;">
+<img src="./assets/images/genai/ollama_241002.png" alt="ollama_241002.png" height="800px" style="float: right; margin-top: 0px; padding-right: 80px; border-radius: 12px;" /> <br> 
+<small>Screenshot on 24/10/02</small>
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orga76f2a2">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orga76f2a2">Context learning</h3>
+<p height="800px" style="float: right; margin-top: 0px; padding-right: 80px; border-radius: 12px;">
+<img src="./assets/images/genai/RAG_schema.png" alt="RAG_schema.png" height="800px" style="float: right; margin-top: 0px; padding-right: 80px; border-radius: 12px;" /> <br> 
+<small>Credit: <a href="https://www.ml6.eu/blogpost/leveraging-llms-on-your-domain-specific-knowledge-base">ML6</a></small>
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org002ca1c" data-background-size="90%" class="hidden-title" data-background-image="./assets/images/genai/GenAI_landscape.png">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org002ca1c">GenAI tools</h2>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgbc8c70c" data-background-size="90%" class="hidden-title" data-background-iframe="https://theresanaiforthat.com/" data-preload;>
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgbc8c70c">There's an AI for that</h2>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org0e4c833">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org0e4c833">Image generation</h2>
+<ul>
+<li><a href="https://huggingface.co/docs/diffusers/main/en/api/pipelines/stable_diffusion/overview">Stable Diffusion</a>
+<ul>
+<li>with <a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">AUTOMATIC1111 Web UI</a></li>
+
+</ul></li>
+<li>FLUX.1
+<ul>
+<li>open version available: <a href="https://github.com/black-forest-labs/flux">github.com/black-forest-labs/flux</a></li>
+<li>fast (under 2 seconds)</li>
+<li>efficient and accurate (details like fingers and text)</li>
 
 </ul></li>
 
@@ -125,26 +213,80 @@ Any sufficiently advanced technology is indistinguishable from magic.
 </section>
 </section>
 <section>
-<section id="slide-orgbfd7a7f">
+<section id="slide-orgc14d50e">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgbfd7a7f">GenAI use cases</h2>
+<h3 id="orgc14d50e">Stable Diffusion fails at writing and hands</h3>
+
+<div id="org163f713" class="figure">
+<p><img src="./assets/images/genai/sd_fail.png" alt="sd_fail.png" height="600px" style="border-radius: 12px;" />
+</p>
+</div>
+<ul style="font-size: 32px;">
+<li>Prompt: "Futuristic background including an astronaut and planets with "AI+X 2024" on a large banner"</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org287d963">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org287d963">FAST.1 is faster and more accurate</h3>
+
+<div id="org2d83ab5" class="figure">
+<p><img src="./assets/images/genai/fastflux_demo_ai+x.png" alt="fastflux_demo_ai+x.png" height="600px" style="border-radius: 12px;" />
+</p>
+</div>
+<ul style="font-size: 32px;">
+<li>Prompt: "Futuristic background including an astronaut and planets with "AI+X 2024" on a large banner"</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4afcbee">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org4afcbee">Audio generation</h2>
 <ul>
-<li>creative thinking?
+<li>Music generation: <a href="https://suno.com">Suno</a>, <a href="https://www.udio.com/">Udio</a>, <a href="https://brev.ai/app">brev.ai</a>, &#x2026;
 <ul>
-<li>art, literature, research, &#x2026;</li>
-<li><a href="https://www.canva.com/">Canva</a>, <a href="https://www.perplexity.ai/">Perplexity</a>, &#x2026;</li>
+<li>collapses to stereo-typical genres without detailed prompts</li>
+<li>with lyrics explicit content at times</li>
+<li><p>
+<i>"A background track fitting for a conference on Generative AI"</i>
+</p>
+<audio controls><source src="./assets/audio/genai/brevai_A_background_track_fitting_for_a_conference_on_Generative_AI.mp3" type="audio/mpeg"></audio></li>
 
 </ul></li>
-<li>emulation? simulation?
+
+</ul>
+
+<p height="300px" style="float: right; margin-top: -2vv0px; padding-right: 300px; border-radius: 12px;">
+<img src="./assets/images/genai/brevai_A_background_track_fitting_for_a_conference_on_Generative_AI.png" alt="brevai_A_background_track_fitting_for_a_conference_on_Generative_AI.png" height="300px" style="float: right; margin-top: -2vv0px; padding-right: 300px; border-radius: 12px;" /> <br> 
+<small>"Rise of the Machines" by brev.ai</small>
+</p>
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section>
+<h2>Audio generation</h2>
+
 <ul>
-<li>science, engineering, cyber security&#x2026;</li>
-<li><a href="https://www.zhaw.ch/de/forschung/forschungsdatenbank/projektdetail/projektid/5744/">ZHAW SKACH</a>, <a href="https://developer.nvidia.com/rtx/dlss">Nvidia DLSS</a>, <a href="https://www.mitigant.io/en">Mitigant</a>, &#x2026;</li>
+<li><p>
+Sound generation: <a href="https://github.com/facebookresearch/audiocraft">Meta's AudioCraft</a>
+</p>
+<audio controls><source src="./assets/audio/genai/11labs_audience_chatting_before_a_speech_by_a_scientist_until_an_authoritative_person_loudly_yells_silence_in_a_deep_voice.mp3" type="audio/mpeg"></audio>
+<ul>
+<li><i>"Audience chatting before a speech by a scientist <br> until an authoritative person loudly yells "silence" in a deep voice."</i></li>
 
 </ul></li>
-<li>mimicry?
+<li><p>
+Speech generation: <a href="https://elevenlabs.io/app/speech-synthesis/text-to-speech">ElevenLabs</a>
+</p>
+<audio controls><source src="./assets/audio/genai/11labs_Denzel_demo.mp3" type="audio/mpeg"></audio>
 <ul>
-<li>smart assistance</li>
-<li><a href="https://www.soniahealth.com/">Sonia AI therapist</a>, <a href="https://prisma-ai.com/lensa">Lensa AI</a>, &#x2026;</li>
+<li>Voice created through prompt: <i>"Move Philipp Denzel's register towards a male tenor, and make it slightly more nasal. The voice should speak relatively slowly, and pronounce words well."</i></li>
 
 </ul></li>
 
@@ -153,35 +295,81 @@ Any sufficiently advanced technology is indistinguishable from magic.
 </section>
 </section>
 <section>
-<section id="slide-org392a2e4">
+<section id="slide-org9a93e7d">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org392a2e4">GenAI ?= AGI</h2>
+<h2 id="org9a93e7d">Video generation with Sora</h2>
+<video height="830" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1;">
+<source src="./assets/movies/genai/SORA_aquarium_nyc.mp4" type="video/mp4" />
+</video>
+
+<ul style="font-size: 32px;">
+<li>Prompt: New York City submerged like Atlantis. Fish, whales, sea turtles and sharks swim through the streets of New York.</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7794eaa">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7794eaa">&#x2026; but sometimes has issues with physics</h3>
+<video height="830" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1;">
+<source src="./assets/movies/genai/SORA_chair_archaeology.mp4" type="video/mp4" />
+</video>
+
+<ul style="font-size: 32px;">
+<li>Prompt: New York City submerged like Atlantis. Fish, whales, sea turtles and sharks swim through the streets of New York.</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgcdb4eb3">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgcdb4eb3">Deep Fakes?</h3>
+<video height="830" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1;">
+<source src="./assets/movies/genai/Am_I_A_Real_Person.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org494fa62">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org494fa62">GenAI ?= AGI</h2>
 <ul>
-<li>main traits of AGI: reason, knowledge, common sense, plan, able to learn</li>
+<li>main traits of AGI: reason, knowledge, common sense, plan, efficient learning</li>
 <li>Use <a href="https://academic.oup.com/mind/article/LIX/236/433/986238">Turing test</a>:
 <ul>
-<li>an <i>interrogator</i> and two <i>witnesses</i></li>
-<li>one witness is a <i>machine</i>, the other is <i>human</i></li>
+<li>an <i>interrogator</i> (C) and two <i>witnesses</i></li>
+<li>one witness is a <i>machine</i> (A), the other is <i>human</i> (B)</li>
 <li>human witness helps the interrogator</li>
 <li>machine witness tries to confuse the interrogator</li>
 
 </ul></li>
 
 </ul>
+
+
+<p height="300px" style="float: right; margin-top: -100px; padding-right: 80px; border-radius: 12px;">
+<img src="./assets/images/genai/turing_test_diagram.webp" alt="turing_test_diagram.webp" height="300px" style="float: right; margin-top: -100px; padding-right: 80px; border-radius: 12px;" /> <br> 
+<small>Credit: Juan Alberto Sánchez Margallo/Wikimedia Commons</small>
+</p>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgb21daf4">
+<section id="slide-org3f836c0">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgb21daf4">Turing test on GPT-4 with children</h3>
-<ul>
-<li>performed early 2024 at UZH</li>
+<h3 id="org3f836c0">Turing test on GPT-4 with children</h3>
+<ul style="float: left; padding-top: 10px; padding-left: 100px;">
+<li>performed early 2024 at University of Zurich</li>
 <li>by colleagues at the Institute for Computational Science (Julian Adamek, Prasenjit Saha)</li>
 <li><i>Moderator</i>
 <ul>
 <li>prompts the LLM instructions in advance</li>
-<li>relais the questions between all participants</li>
+<li>relais the questions and answers</li>
 <li>rejects questions on recent news</li>
 
 </ul></li>
@@ -193,6 +381,11 @@ Any sufficiently advanced technology is indistinguishable from magic.
 </ul></li>
 
 </ul>
+<p height="450px" style="float: right; margin-top: -300px; padding-right: 80px; border-radius: 12px;">
+<img src="./assets/images/genai/turing_test_reimagined.webp" alt="turing_test_reimagined.webp" height="450px" style="float: right; margin-top: -300px; padding-right: 80px; border-radius: 12px;" /> <br> 
+<small>Turing test reimagined (AI-generated with FLUX.1-schnell)</small>
+</p>
+
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 <section>
@@ -200,786 +393,51 @@ Any sufficiently advanced technology is indistinguishable from magic.
 <ul>
 <li>Results:
 <ul>
-<li>children need only a single question to find the machine</li>
-<li>the adult a bit longer but still have high accuracy</li>
+<li>children need only a single question to identify the machine</li>
+<li>the adult a bit longer but still has high accuracy</li>
+<li>children say:</li>
 
 </ul></li>
-<li>humorous conclusion (by PhD student):</li>
 
 </ul>
 <blockquote>
 <p>
-"The AI apocalypse is not imminent then&#x2026;"
+"ChatGPT doesn't speak like a human, but is still a great tool to do homework&#x2026;"
+</p>
+</blockquote>
+<ul>
+<li>PhD student jokingly concludes:</li>
+
+</ul>
+<blockquote>
+<p>
+"The AI apocalypse is not (yet) imminent then&#x2026;"
 </p>
 </blockquote>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org4af75d4">
+<section id="slide-orgfeaceb3">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org4af75d4">LLMs</h2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</section>
-</section>
-<section>
-<section id="slide-orga22dbee">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orga22dbee">Outlook</h2>
+<h2 id="orgfeaceb3">Lessons Learned</h2>
 <ul>
-<li><a href="#/slide-orgccde1b1" class="forwardlink">Motivation</a></li>
-<li><a href="#/slide-org8a57a65" class="forwardlink">Multi-domain galaxy image dataset</a></li>
-<li><a href="#/slide-orge8d31db" class="forwardlink">Generative Deep Learning</a></li>
-<li><a href="#/slide-orgd1a2d1e" class="forwardlink">Results</a></li>
-<li><a href="#/slide-orgc90852f" class="forwardlink">Next steps</a></li>
+<li>current state of GenAI components enable many applications</li>
+<li>performance is amazing at times</li>
+<li>but inaccurate and limited in more complex tasks</li>
+<li><i>How can we move forward?</i></li>
 
 </ul>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgccde1b1">
+<section id="slide-orgdf56314">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgccde1b1">Motivation</h2>
+<h2 id="orgdf56314">References, Links, and Credits</h2>
 <ul>
-<li class="fragment appear">teaching machines to emulate physics is cool!
-<ul>
-<li>benefit for fields like gravitational lensing</li>
-
-</ul></li>
-<li class="fragment appear">SKA-MID (0.35 GHz - 15 GHz, lower redshifts):
-<ul>
-<li>between 0.04" - 0.70" resolution (with baseline ~ 150km)</li>
-<li>significant substructure in flux distributions</li>
-<li>enable new perspective on star-formation as well as AGN</li>
-
-</ul></li>
-
-</ul>
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section>
-
-
-<div id="org791fcfc" class="figure">
-<p><img src="./assets/images/ska/Cooganetal2023.jpg" alt="Cooganetal2023.jpg" height="850px" style="margin-top: 100px; border-radius: 12px;" />
-</p>
-<p><span class="figure-number">Figure 1: </span>simulation of ∼0.04 deg<sup>2</sup> region of GOODS-North by <a href="https://academic.oup.com/mnras/article/525/3/3413/7257566?login=true#415812679">Coogan et al. (2023)</a></p>
-</div>
-
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section>
-
-
-<div id="org2306a7d" class="figure">
-<p><img src="./assets/images/ska/Cooganetal2023_zoom.jpg" alt="Cooganetal2023_zoom.jpg" height="850px" style="margin-top: 100px; border-radius: 12px;" />
-</p>
-<p><span class="figure-number">Figure 2: </span>zoom of previous figure <a href="https://academic.oup.com/mnras/article/525/3/3413/7257566?login=true#415812679">Coogan et al. (2023)</a></p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgb4d46f5">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgb4d46f5">The old way of modelling galaxies</h3>
-
-<div id="org2c036da" class="figure">
-<p><img src="./assets/images/gl/real_gal-inv.png" alt="real_gal-inv.png" height="800px" style="margin-top: 100px; border-radius: 12px;" />
-</p>
-<p><span class="figure-number">Figure 3: </span>Mandelbaum et al. (2014)</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org4c28603">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org4c28603">What problems come with this</h3>
-<ul>
-<li>simple models work for simple galaxies, but we will often see:
-<ul>
-<li>no more blobs, no more Gaussian signals</li>
-
-</ul></li>
-<li>not physical models:
-<ul>
-<li>difficult to infer physical properties</li>
-
-</ul></li>
-<li>galaxy modelling has to evolve:
-<ul>
-<li>e.g., with data-driven methods</li>
-
-</ul></li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgc1fc528">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgc1fc528">More advanced models</h3>
-<ul height="800px" style="float: left; margin-top: 200px; margin-left: 200px; border-radius: 12px;">
-<li>complex, realistic models</li>
-<li>self-consistent dynamics</li>
-<li>physics: on a wide range of scales</li>
-<li>implicit models:
-<ul>
-<li>what if we want to fit them <br> to an observation?</li>
-
-</ul></li>
-
-</ul>
-
-
-
-<div id="orgedea5aa" class="figure">
-<p><img src="./assets/images/illustris/TNG300_compilation_with_radio_halos_2k.png" alt="TNG300_compilation_with_radio_halos_2k.png" height="700px" style="float: right; margin-top: 100px; margin-right: 100px; border-radius: 12px;" />
-</p>
-<p><span class="figure-number">Figure 4: </span>IllustrisTNG simulations</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org8a57a65">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org8a57a65">Multi-domain galaxy image dataset</h2>
-<p>
-Our goal:
-</p>
-<blockquote>
-<p>
-"Infuse deep learning map-to-map translation models <br> with the physical model from simulations."
-</p>
-</blockquote>
-
-<ul>
-<li>Question: can we infer unseen properties in observations?</li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgbe267a9">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgbe267a9">Dataset from IllustrisTNG</h3>
-<ul style="float: left; padding-top: 50px; padding-left: 200px;">
-<li>projected TNG50-1 galaxies</li>
-<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
-<ul>
-<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
-<li>Karabo mock upgrade coming soon</li>
-
-</ul></li>
-<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
-<li>each galaxy \(\ge\) 10'000 particles</li>
-<li>scale: 2 baryonic half-mass radii</li>
-
-</ul>
-
-
-<div id="orgfad3383" class="figure">
-<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org27b82c0" data-transition="none">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org27b82c0">Dataset from IllustrisTNG</h3>
-<ul style="float: left; padding-top: 50px; padding-left: 200px;">
-<li>projected TNG50-1 galaxies</li>
-<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
-<ul>
-<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
-<li>Karabo mock upgrade coming soon</li>
-
-</ul></li>
-<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
-<li>each galaxy \(\ge\) 10'000 particles</li>
-<li>scale: 2 baryonic half-mass radii</li>
-
-</ul>
-
-
-<div id="orgcc8ca79" class="figure">
-<p><img src="./assets/images/skais/domains_directions.png" alt="domains_directions.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orge8d31db">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orge8d31db">Generative Deep Learning</h2>
-<ul>
-<li><i>Image-to-image translation</i> solves the inverse problem:  <br> \( \color{#f48193}{y} = A\color{#81f4a9}{x} + b \)</li>
-<li>in Bayesian terms: \( p(\color{#81f4a9}{x}|\color{#f48193}{y}) \propto p(\color{#f48193}{y}|\color{#81f4a9}{x}) \,\, p(\color{#81f4a9}{x}) \)</li>
-<li>\( p(\color{#f48193}{y}|\color{#81f4a9}{x}) \) is the data likelihood including the physics</li>
-<li>\( p(\color{#81f4a9}{x}) \) is our prior knowledge on the solution.</li>
-<li>MAP solution: \( \hat{x} = \arg \max_{x} \log p(\color{#f48193}{y}|\color{#81f4a9}{x}) + \log p(\color{#81f4a9}{x}) \)</li>
-<li>explicitly sampling from the posterior distribution is difficult and expensive!</li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org4f511f5">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org4f511f5">Generative Deep Learning architectures</h3>
-<p>
- <br> 
-Benchmark of generative models we're investigating:
-</p>
-<ul>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/1411.1784">cGANs</a></b>: implicit data likelihood (cf. <a href="https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html">one of my previous talk</a>)</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (DDPMs)</a></b>:  <br> learns to collapse Gaussians into posterior</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2303.11435">Inversion by Direct Iteration (InDI)</a></b> models: similar to DDPMs,  <br> but more efficient at inference</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2011.13456">Score-based diffusion models (SDMs)</a></b>: promising results,  <br> score gives direct access to the posterior likelihoods</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2405.14224">Diffusion Mamba</a></b>: the latest and greatest?</li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgd1d9606">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgd1d9606">Generative Deep Learning architectures</h3>
-<p>
- <br> 
-</p>
-<ul>
-<li><b><a href="https://arxiv.org/abs/1411.1784">cGANs</a></b>: implicit data likelihood (cf. <a href="https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html">one of my previous talk</a>)</li>
-<li><b><a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (DDPMs)</a></b>:  <br> learns to collapse Gaussians into posterior</li>
-
-</ul>
-<ul style="color: grey;">
-<li><b>Inversion by Direct Iteration (InDI)</b> models: similar to DDPMs,  <br> but more efficient at inference</li>
-<li><b>Score-based diffusion models (SDMs)</b>: promising results,  <br> score gives direct access to the posterior likelihoods</li>
-<li><b>Diffusion Mamba</b>: the latest and greatest?</li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org97fcd65">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org97fcd65">cGANs</h3>
-
-<div id="org1a6a82c" class="figure">
-<p><img src="./assets/images/pix2pix/pix2pix_schema.png" alt="pix2pix_schema.png" height="600px;" />
-</p>
-<p><span class="figure-number">Figure 5: </span>pix2pix scheme</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgd53dde5">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgd53dde5">DDPM</h3>
-
-<div id="org45d7ff2" class="figure">
-<p><img src="./assets/images/indi/skais_indi_rnd_dm_no_formula.png" alt="skais_indi_rnd_dm_no_formula.png" height="500px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org3b1ae64">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org3b1ae64">Main component: U-Net</h3>
-
-<div id="org194d799" class="figure">
-<p><img src="assets/images/U-Net.png" alt="U-Net.png" height="600px" style="border-radius: 12px;" />
-</p>
-<p><span class="figure-number">Figure 6: </span>U-Net following <a href="https://arxiv.org/abs/1505.04597">Ronneberger et al. (2015)</a></p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org551d0f4">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org551d0f4">Essential changes to U-Net blocks</h3>
-<blockquote>
-<p>
-"<a href="https://arxiv.org/abs/1706.03762">Attention</a> is (almost) all you need!"
-</p>
-</blockquote>
-
-<ul>
-<li>for better feature selection</li>
-
-</ul>
-
-
-
-<div id="org2dfc753" class="figure">
-<p><img src="assets/images/attn_block.png" alt="attn_block.png" height="200px" style="border-radius: 12px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgd1a2d1e">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgd1a2d1e">Results</h2>
-<ul>
-<li>all evaluated on a hold-out set</li>
-<li>still somewhat preliminary&#x2026;</li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org40f3cd2">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org40f3cd2">Gas &xrarr; DM: Massive halo</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org4c3c008" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.02.in.01.png" alt="074baffb63a1.eval_batch.02.in.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 7: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org1e7ba3b" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.02.pred.01.png" alt="074baffb63a1.eval_batch.02.pred.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 8: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orge77970a" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.02.gt.01.png" alt="074baffb63a1.eval_batch.02.gt.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 9: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org8420db6">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org8420db6">Gas &xrarr; DM: Spiral galaxy</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="orgabec34d" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.in.00.png" alt="074baffb63a1.eval_batch.12.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 10: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org09c3353" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.pred.00.png" alt="074baffb63a1.eval_batch.12.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 11: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgf091fb8" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.gt.00.png" alt="074baffb63a1.eval_batch.12.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 12: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgdf53555">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgdf53555">Gas &xrarr; DM: Merger</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org564e44b" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.14.in.01.png" alt="074baffb63a1.eval_batch.14.in.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 13: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org1ec94a4" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.14.pred.01.png" alt="074baffb63a1.eval_batch.14.pred.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 14: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org7a959cf" class="figure">
-<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.14.gt.01.png" alt="074baffb63a1.eval_batch.14.gt.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 15: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section id="slide-org74a3047">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org74a3047">Profiles of DM column density</h4>
-<div class="gframe_row_col">
-<div class="gframe_2col">
-
-<div id="orgbee10f3" class="figure">
-<p><img src="./assets/images/skais/astrometrics/074baffb63a1_profiles_DM.png" alt="074baffb63a1_profiles_DM.png" height="800px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-</div>
-</div>
-<div class="gframe_2col">
-
-<div id="orgbc6c76e" class="figure">
-<p><img src="./assets/images/skais/astrometrics/074baffb63a1_cumulatives_DM.png" alt="074baffb63a1_cumulatives_DM.png" height="800px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section id="slide-orgab9ef2d">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="orgab9ef2d">Profile residuals</h4>
-
-<div id="org93a99fe" class="figure">
-<p><img src="./assets/images/skais/astrometrics/074baffb63a1_residuals_DM.png" alt="074baffb63a1_residuals_DM.png" height="900px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org062c3ce">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org062c3ce">Gas &xrarr; stars: High turbulence</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="orge6fea66" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.07.in.02.png" alt="f046843763c5.eval_batch.07.in.02.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 16: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org5678a1e" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.07.pred.02.png" alt="f046843763c5.eval_batch.07.pred.02.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 17: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgdc6f942" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.07.gt.02.png" alt="f046843763c5.eval_batch.07.gt.02.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 18: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org7fdcef0">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org7fdcef0">Gas &xrarr; stars: Mergers</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org3031809" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.24.in.01.png" alt="f046843763c5.eval_batch.24.in.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 19: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgf3da9e3" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.24.pred.01.png" alt="f046843763c5.eval_batch.24.pred.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 20: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org8bf2b88" class="figure">
-<p><img src="./assets/images/skais/gas2star/f046843763c5.eval_batch.24.gt.01.png" alt="f046843763c5.eval_batch.24.gt.01.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 21: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org6e73558">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org6e73558">Gas &xrarr; stars: Irregular shape</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org168c825" class="figure">
-<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" alt="diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 22: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orge054ba7" class="figure">
-<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" alt="diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 23: </span>Output (standard DDPM)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgd6bc522" class="figure">
-<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" alt="diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 24: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section id="slide-org6993f55">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org6993f55">"Abundance matching"</h4>
-<div class="gframe_row_col">
-<div class="gframe_2col">
-
-<div id="org03dc16b" class="figure">
-<p><img src="./assets/images/skais/astrometrics/abundance_matching_074baffb63a1.f046843763c5.png" alt="abundance_matching_074baffb63a1.f046843763c5.png" height="800px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-<p><span class="figure-number">Figure 25: </span>model using pix2pix+Attention</p>
-</div>
-</div>
-<div class="gframe_2col">
-
-<div id="org3561340" class="figure">
-<p><img src="./assets/images/skais/astrometrics/abundance_matching_074baffb63a1.f046843763c5_true.png" alt="abundance_matching_074baffb63a1.f046843763c5_true.png" height="800px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-<p><span class="figure-number">Figure 26: </span>data</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org3eb299b">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org3eb299b">Gas &xrarr; HI</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org3dc7be0" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.in.03.png" alt="e26dca2b6859.eval_batch.06.in.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 27: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgbe192ec" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.pred.03.png" alt="e26dca2b6859.eval_batch.06.pred.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 28: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgeb69efa" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.gt.03.png" alt="e26dca2b6859.eval_batch.06.gt.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 29: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org82d7619">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org82d7619">Gas &xrarr; HI: Massive halo</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="org0a05094" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.00.in.09.png" alt="e26dca2b6859.eval_batch.00.in.09.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 30: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org3e106dc" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.00.pred.09.png" alt="e26dca2b6859.eval_batch.00.pred.09.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 31: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="orgf254f7d" class="figure">
-<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.00.gt.09.png" alt="e26dca2b6859.eval_batch.00.gt.09.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 32: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-<section id="slide-org465e16f">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h4 id="org465e16f">Profile residuals</h4>
-
-<div id="org3560118" class="figure">
-<p><img src="./assets/images/skais/astrometrics/e26dca2b6859_residuals_HI.png" alt="e26dca2b6859_residuals_HI.png" height="900px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org3a89abf">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org3a89abf">Gas &xrarr; B-field:</h3>
-<div class="gframe_row_col">
-<div class="gframe_3col">
-
-<div id="orgc4981c6" class="figure">
-<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.in.00.png" alt="22186b9f64d6.eval_batch.24.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 33: </span>Input</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org8bdf54f" class="figure">
-<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.pred.00.png" alt="22186b9f64d6.eval_batch.24.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 34: </span>Output (pix2pix with Attention U-Net)</p>
-</div>
-</div>
-<div class="gframe_3col">
-
-<div id="org5e3ac1d" class="figure">
-<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.gt.00.png" alt="22186b9f64d6.eval_batch.24.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
-</p>
-<p><span class="figure-number">Figure 35: </span>Ground truth</p>
-</div>
-</div>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-orgc90852f">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgc90852f">Next steps</h2>
-<ul>
-<li class="fragment appear">paper in prep. (stay tuned)</li>
-<li class="fragment appear">test more architectures</li>
-<li class="fragment appear">improve observation mocks using Karabo</li>
-<li class="fragment appear">analogue with point clouds in 3D
-<ul>
-<li>problem: scaling to larger clouds</li>
-
-</ul></li>
-
-</ul>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org756b0aa">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org756b0aa">Contact</h2>
-<p>
-<a href="https://phdenzel.github.io/">https://phdenzel.github.io/</a>
-</p>
-
-<p>
-<a href="https://phdenzel.github.io/assets/blog-assets/023-swiss-ska-days-2024/slides.html">
-</p>
-<p height="400px" style="float: left; margin-left: 150px;">
-<img src="./assets/images/talk_qr.png" alt="talk_qr.png" height="400px" style="float: left; margin-left: 150px;" />
-</a>
-</p>
-
-
-<p>
- <br>  <br> 
-Email:  <a href="mailto:denp@zhaw.ch">philipp.denzel@zhaw.ch</a>
-</p>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org4c66532">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org4c66532">References</h2>
-<ul>
-<li>simulations: <a href="https://www.tng-project.org/">IllustrisTNG project</a></li>
-<li>SKA-MID simulation: <a href="https://academic.oup.com/mnras/article/525/3/3413/7257566?login=true#415812679">Coogan et al. (2023)</a></li>
-<li>21cm mocks: <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
-<li>cGAN: <a href="https://arxiv.org/abs/1611.07004">Isola et al. (2016)</a></li>
-<li>DDPM: <a href="https://arxiv.org/abs/2006.11239">Ho et al. (2020)</a></li>
-<li>InDI: <a href="https://arxiv.org/abs/2303.11435">Delbracio &amp; Milanfar (2023)</a></li>
-<li>SDM: <a href="https://arxiv.org/abs/2011.13456">Song et al. (2021)</a></li>
-<li>DiM: <a href="https://arxiv.org/abs/2405.14224">Teng et al. (2024)</a></li>
+<li>Website slides: <a href="https://phdenzel.github.io/assets/blog-assets/024-aix-2024/slides.html">phdenzel.github.io/assets/blog-assets/024-aix-2024/slides.html</a></li>
+<li>AI icons: taken from <a href="https://theresanaiforthat.com/">TAAFT</a></li>
 
 </ul>
 <div class="slide-footer"><div style="height:100px"></div></div>
@@ -988,10 +446,10 @@ Email:  <a href="mailto:denp@zhaw.ch">philipp.denzel@zhaw.ch</a>
 </div>
 </div>
 <div> Created by phdenzel. </div>
-<script src="file:///home/phdenzel/local/reveal.js/dist/reveal.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="file://./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -1004,7 +462,7 @@ center: true,
 slideNumber: 'c',
 rollingLinks: true,
 keyboard: true,
-mouseWheel: true,
+mouseWheel: false,
 fragmentInURL: false,
 hashOneBasedIndex: false,
 pdfSeparateFragments: true,
