@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Intelligent Vision Systems</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/CAI_header.jpg" data-background-size="contain" data-background-position="block" data-background-opacity="0.4">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h1 style="text-shadow: 6px 6px 10px #000000;">Intelligent Vision Systems<h1>
+<h2 style="text-shadow: 6px 6px 10px #000000;">Group Meeting</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/07/03 </br> Winterthur</div>
+</section>
+<section>
+<section id="slide-org3ca8015">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org3ca8015">SKAO Data Challenge 3 (SDC3)</h2>
+<div style="font-size: 80%;">
+<ul>
+<li>Epoch of Reionization, i.e. <i>when things started to shine</i></li>
+<li>the Universe transitions from neural to ionized state</li>
+<li>observational signal \(\delta T_b(\theta, z)\) (differential brightness)
+<ul>
+<li>depends on the redshift-evolution of the neutral hydrogen fraction \(\langle x_{\mathrm{HI}} \rangle \in \left[0, 1\right]\)</li>
+
+</ul></li>
+
+</ul>
+</div>
+
+
+<div id="org96b75ea" class="figure">
+<p><img src="./assets/images/sdc3b/reionization_history.png" alt="reionization_history.png" height="600px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org09fe14c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org09fe14c">SDC3 setup</h2>
+<div style="font-size: 80%;">
+<ul>
+<li>Input dataset: 3D <b>tomographic data</b> simulated with <b>two codes</b> (different approaches)</li>
+<li>Observational setups:
+<ul>
+<li>Realistic scenario: 21-cm LC + systematic noise + residual foreground &xrarr; PS</li>
+<li>Ideal scenario: 21-cm LC + systematic noise &xrarr; PS</li>
+
+</ul></li>
+
+</ul>
+</div>
+
+
+<div id="org308ef83" class="figure">
+<p><img src="./assets/images/sdc3b/sdc3b_schema.png" alt="sdc3b_schema.png" height="500px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org2220c9f">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org2220c9f">SEarCH team (Swiss-Swedish collaboration)</h2>
+
+<div id="orgca1c794" class="figure">
+<p><img src="./assets/images/sdc3b/search_logo.png" alt="search_logo.png" height="200px" style="border-radius: 12px;" />
+</p>
+</div>
+
+<div style="font-size: 90%;">
+<ul>
+<li>reverse engineered the previous challenge
+<ul>
+<li>simulation data available, challenge data not yet released</li>
+
+</ul></li>
+<li>Solution strategies:
+<ul>
+<li>MCMC &xrarr; already seems to work quite well</li>
+<li>Simulation-based inference (SBI) &xrarr; already works amazingly well</li>
+<li>Emulation &xrarr; too perfect?</li>
+<li>direct inference with NNs: MLP + KAN &xrarr; MLP work just as well as SBI; KAN TBD</li>
+
+</ul></li>
+
+</ul>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org2283ef8">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org2283ef8">Discussion time: Kolmogorov-Arnold Networks</h2>
+
+<div id="orgafc7ca3" class="figure">
+<p><img src="./assets/images/kan/paper_abstract.png" alt="paper_abstract.png" height="800px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org71dbff1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org71dbff1">Kolmogorov-Arnold representation</h2>
+<ul>
+<li>If \(f\) is a multivariate continuous function on a bounded domain,
+then it can be written as a finite composition of continuous
+functions of a single variable.</li>
+<li>More specifically, for a smooth \(f : \left[0, 1\right]^n \longrightarrow \mathbb{R}\)</li>
+
+</ul>
+
+<div>
+\begin{equation}
+f(x) = f(x_1, ..., x_n) = \sum_{q=1}^{2n+1} \Phi_q(\sum_{p=1}^{n} \phi_{q,p}(x_p))
+\end{equation}
+
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgd2288ec">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgd2288ec">Previous work</h3>
+<ul>
+<li>this has been studied before
+<ul>
+<li><a href="https://doi.org/10.1016/s0893-6080(01)00107-1">Sprecher &amp; Draghici (2002)</a></li>
+<li><a href="https://doi.org/10.1007/3-540-46084-5_77">Köppen (2002)</a></li>
+<li><a href="https://doi.org/10.48550/arXiv.2112.09963">Lai &amp; Shen (2021)</a></li>
+<li><a href="https://doi.org/10.4018/978-1-60960-551-3.ch002">Leni et al. (2011)</a></li>
+
+</ul></li>
+<li>most stuck with networks of depth 2 and width 2n+1</li>
+<li>this paper goes to arbitrary depth and width</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1ca5f97">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org1ca5f97">Kolmogorov-Arnold layers</h2>
+<ul>
+<li>Idea:
+<ul>
+<li>matrix \(\phi_{qp}\) are activation functions acting on the features \(x_q\)</li>
+<li>sum over rows</li>
+
+</ul></li>
+
+</ul>
+
+
+<div id="orgb3e6745" class="figure">
+<p><img src="assets/images/KAN_layer.png" alt="KAN_layer.png" height="500px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgce34835">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgce34835">Comparison to MLPs</h2>
+
+<div id="orgc079a57" class="figure">
+<p><img src="./assets/images/kan/kan_comparison.png" alt="kan_comparison.png" height="800px" style="border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org24a6a84">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org24a6a84">What is \(\phi\)?</h3>
+<ul>
+<li>in principle any bounded, differentiable function
+<ul>
+<li>polynomials &xrarr; explode for small changes in x</li>
+<li>authors instead propose: B-splines</li>
+
+</ul></li>
+<li>constructed by means of <i>Cox–de Boor recursion</i></li>
+
+</ul>
+<div>
+\begin{align}
+B_{i,0}(t) &= 1 \quad\mathrm{if}\quad t_i \leq t \lt t_{i+1} \quad \mathrm{and} \quad t_{i} < t_{i+1} \\
+B_{i,0}(t) &= 0 \quad\mathrm{otherwise}
+\end{align}
+
+</div>
+
+<div>
+\begin{equation}
+B_{i,p}(t) = \frac{t - t_i}{t_{p+1} - t_i} B_{i,p-1}(t) + \frac{t_{i+p+1} - t}{t_{i+p+1} - t_{i+1}} B_{i+1,p-1}(t)
+\end{equation}
+
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgaaf42d3">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgaaf42d3">Interpretability</h2>
+<ol style="float:left; padding-left:300px;">
+<li>Regularization</li>
+<li>Visualization</li>
+<li>Pruning</li>
+<li>Symbolification</li>
+
+</ol>
+
+
+<div id="org231c437" class="figure">
+<p><img src="./assets/images/kan/kan_explainability.png" alt="kan_explainability.png" height="700px" style="float:right; padding-right:300px; border-radius:12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org4d8bc1e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org4d8bc1e">Advantages</h2>
+<div style="font-size: 75%;">
+<ul>
+<li>Accuracy in low dimensions
+<ul>
+<li>parameter efficient at low dimensions</li>
+<li>grid extension</li>
+
+</ul></li>
+<li>Catastrophic (Un)Forgetting
+<ul>
+<li>KANs are good at continual learning</li>
+<li>due to local control in splines</li>
+
+</ul></li>
+<li>Expressivity
+<ul>
+<li>internal and external degrees of freedom</li>
+<li>more expressive than MLPs</li>
+
+</ul></li>
+<li>Symbolic Regression
+<ul>
+<li>KAN can be symbolic solvers and interpretable</li>
+<li>through sparsification and pruning</li>
+
+</ul></li>
+
+</ul>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org8ed7a22">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org8ed7a22">Disadvantages</h2>
+<div style="font-size: 100%;">
+<ul>
+<li>GPU-inefficient
+<ul>
+<li>due to non-batchability</li>
+
+</ul></li>
+<li>Scalability
+<ul>
+<li>untested at higher dimensions</li>
+
+</ul></li>
+<li>Untested in real-world scenarios</li>
+
+</ul>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/search/search.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealNotes, RevealHighlight, RevealSearch ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>

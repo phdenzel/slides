@@ -1,0 +1,342 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Intelligent Vision Systems
+#+SUBTITLE: Group Meeting
+#+DATE: 2024/07/03
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+# #+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:nil
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: slide
+#               fade
+# #+REVEAL_EXPORT_NOTES_TO_PDF:t
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/021-skach-winter-meeting/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math notes highlight search )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+# #+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+
+#+end_comment
+
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
+#+REVEAL_TITLE_SLIDE: <h1 style="text-shadow: 6px 6px 10px #000000;">%t<h1>
+#+REVEAL_TITLE_SLIDE: <h2 style="text-shadow: 6px 6px 10px #000000;">%s</h2>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">%d </br> Winterthur</div>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/CAI_header.jpg
+
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.4
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* SKAO Data Challenge 3 (SDC3)
+
+#+REVEAL_HTML: <div style="font-size: 80%;">
+- Epoch of Reionization, i.e. /when things started to shine/
+- the Universe transitions from neural to ionized state
+- observational signal $\delta T_b(\theta, z)$ (differential brightness)
+  - depends on the redshift-evolution of the neutral hydrogen fraction $\langle x_{\mathrm{HI}} \rangle \in \left[0, 1\right]$
+#+REVEAL_HTML: </div>
+    
+#+ATTR_HTML: :height 600px :style border-radius: 12px;
+[[./assets/images/sdc3b/reionization_history.png]]
+
+
+* SDC3 setup
+
+#+REVEAL_HTML: <div style="font-size: 80%;">
+- Input dataset: 3D *tomographic data* simulated with *two codes* (different approaches)
+- Observational setups:
+  - Realistic scenario: 21-cm LC + systematic noise + residual foreground @@html:&xrarr;@@ PS
+  - Ideal scenario: 21-cm LC + systematic noise @@html:&xrarr;@@ PS
+#+REVEAL_HTML: </div>
+
+#+ATTR_HTML: :height 500px :style border-radius: 12px;
+[[./assets/images/sdc3b/sdc3b_schema.png]]
+
+
+* SEarCH team (Swiss-Swedish collaboration)
+
+#+ATTR_HTML: :height 200px :style border-radius: 12px;
+[[./assets/images/sdc3b/search_logo.png]]
+
+#+REVEAL_HTML: <div style="font-size: 90%;">
+- reverse engineered the previous challenge
+  - simulation data available, challenge data not yet released
+- Solution strategies:
+  - MCMC @@html:&xrarr;@@ already seems to work quite well
+  - Simulation-based inference (SBI) @@html:&xrarr;@@ already works amazingly well
+  - Emulation @@html:&xrarr;@@ too perfect?
+  - direct inference with NNs: MLP + KAN @@html:&xrarr;@@ MLP work just as well as SBI; KAN TBD
+#+REVEAL_HTML: </div>
+
+
+* Discussion time: Kolmogorov-Arnold Networks
+# :PROPERTIES:
+# :REVEAL_EXTRA_ATTR: class="hidden-title" data-background-iframe="https://arxiv.org/abs/2404.19756" data-preload;
+# :reveal_background_size: 90%
+# :END:
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/kan/paper_abstract.png]]
+
+
+* Kolmogorov-Arnold representation
+
+- If $f$ is a multivariate continuous function on a bounded domain,
+  then it can be written as a finite composition of continuous
+  functions of a single variable.
+- More specifically, for a smooth $f : \left[0, 1\right]^n \longrightarrow \mathbb{R}$
+
+\begin{equation}
+f(x) = f(x_1, ..., x_n) = \sum_{q=1}^{2n+1} \Phi_q(\sum_{p=1}^{n} \phi_{q,p}(x_p))
+\end{equation}
+
+
+** Previous work
+
+- this has been studied before
+  - [[https://doi.org/10.1016/s0893-6080(01)00107-1][Sprecher & Draghici (2002)]]
+  - [[https://doi.org/10.1007/3-540-46084-5_77][Köppen (2002)]]
+  - [[https://doi.org/10.48550/arXiv.2112.09963][Lai & Shen (2021)]]
+  - [[https://doi.org/10.4018/978-1-60960-551-3.ch002][Leni et al. (2011)]]
+- most stuck with networks of depth 2 and width 2n+1
+- this paper goes to arbitrary depth and width
+
+
+* Kolmogorov-Arnold layers
+
+- Idea:
+  - matrix $\phi_{qp}$ are activation functions acting on the features $x_q$
+  - sum over rows
+
+#+begin_src dot :file assets/images/KAN_layer.png :cmdline -Kdot -Tpng -Gdpi=500 :exports results
+   digraph G {
+       rankdir="BT";
+       spllines=line;
+       node [shape=box, style="filled,rounded", fontname="Helvetica,Arial,sans-serif", fontcolor=black];
+
+       // Nodes
+       x0 [label=<x<sub>1</sub>>, fillcolor="#aab4dd"];
+       x1 [label=<x<sub>2</sub>>, fillcolor="#aab4dd"];
+       phi11 [label=<&phi;<sub>11</sub>>, fillcolor="#98a4d6"];
+       phi12 [label=<&phi;<sub>12</sub>>, fillcolor="#98a4d6"];
+       phi13 [label=<&phi;<sub>13</sub>>, fillcolor="#98a4d6"];
+       phi14 [label=<&phi;<sub>14</sub>>, fillcolor="#98a4d6"];
+       phi15 [label=<&phi;<sub>15</sub>>, fillcolor="#98a4d6"];
+       phi21 [label=<&phi;<sub>21</sub>>, fillcolor="#98a4d6"];
+       phi22 [label=<&phi;<sub>22</sub>>, fillcolor="#98a4d6"];
+       phi23 [label=<&phi;<sub>23</sub>>, fillcolor="#98a4d6"];
+       phi24 [label=<&phi;<sub>24</sub>>, fillcolor="#98a4d6"];
+       phi25 [label=<&phi;<sub>25</sub>>, fillcolor="#98a4d6"];
+       o1 [label=<o<sub>1</sub>>, fillcolor="#d698a4"];
+       o2 [label=<o<sub>2</sub>>, fillcolor="#d698a4"];
+       o3 [label=<o<sub>3</sub>>, fillcolor="#d698a4"];
+       o4 [label=<o<sub>4</sub>>, fillcolor="#d698a4"];
+       o5 [label=<o<sub>5</sub>>, fillcolor="#d698a4"];
+
+       // Edges
+       edge [arrowhead=none]
+       phi11 -> phi12 -> phi13 -> phi14 -> phi15 -> phi21 -> phi22 -> phi23 -> phi24 -> phi25 [style=invis]
+       o1 -> o2 -> o3 -> o4 -> o5 [style=invis]
+       x0 -> { phi11 phi12 phi13 phi14 phi15 }
+       x1 -> { phi21 phi22 phi23 phi24 phi25 }
+       { phi11 phi21 } -> o1
+       { phi12 phi22 } -> o2
+       { phi13 phi23 } -> o3
+       { phi14 phi24 } -> o4
+       { phi15 phi25 } -> o5
+       
+       { rank=same; x0 x1 };
+       { rank=same; phi11 phi12 phi13 phi14 phi15 phi21 phi22 phi23 phi24 phi25 };
+       { rank=same; o1 o2 o3 o4 o5 };
+
+  }
+
+#+end_src
+
+#+ATTR_HTML: :height 500px :style border-radius: 12px;
+#+RESULTS:
+[[file:assets/images/KAN_layer.png]]
+
+
+* Comparison to MLPs
+
+#+ATTR_HTML: :height 800px :style border-radius: 12px;
+[[./assets/images/kan/kan_comparison.png]]
+
+
+** What is $\phi$?
+
+- in principle any bounded, differentiable function
+  - polynomials @@html:&xrarr;@@ explode for small changes in x
+  - authors instead propose: B-splines
+- constructed by means of /Cox–de Boor recursion/
+\begin{align}
+B_{i,0}(t) &= 1 \quad\mathrm{if}\quad t_i \leq t \lt t_{i+1} \quad \mathrm{and} \quad t_{i} < t_{i+1} \\
+B_{i,0}(t) &= 0 \quad\mathrm{otherwise}
+\end{align}
+  
+\begin{equation}
+B_{i,p}(t) = \frac{t - t_i}{t_{p+1} - t_i} B_{i,p-1}(t) + \frac{t_{i+p+1} - t}{t_{i+p+1} - t_{i+1}} B_{i+1,p-1}(t)
+\end{equation}
+
+
+* Interpretability
+
+#+ATTR_HTML: :style float:left; padding-left:300px;
+1) Regularization
+2) Visualization
+3) Pruning
+4) Symbolification
+
+#+ATTR_HTML: :height 700px :style float:right; padding-right:300px; border-radius:12px;
+[[./assets/images/kan/kan_explainability.png]]
+
+
+* Advantages
+
+#+REVEAL_HTML: <div style="font-size: 75%;">
+- Accuracy in low dimensions
+  - parameter efficient at low dimensions
+  - grid extension
+- Catastrophic (Un)Forgetting
+  - KANs are good at continual learning
+  - due to local control in splines
+- Expressivity
+  - internal and external degrees of freedom
+  - more expressive than MLPs
+- Symbolic Regression
+  - KAN can be symbolic solvers and interpretable
+  - through sparsification and pruning
+#+REVEAL_HTML: </div>
+
+
+* Disadvantages
+
+#+REVEAL_HTML: <div style="font-size: 100%;">
+- GPU-inefficient
+  - due to non-batchability
+- Scalability
+  - untested at higher dimensions
+- Untested in real-world scenarios
+#+REVEAL_HTML: </div>
