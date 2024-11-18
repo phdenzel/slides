@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Lens prior matching with latent models</title>
+<meta name="author" content="Philipp Denzel"/>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+
+<link rel="stylesheet" href="./assets/css/slides.css"/>
+
+<link rel="stylesheet" href="./assets/css/header.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
+<meta name="description" content="">
+<script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide" data-background="./assets/images/CAI_header.jpg" data-background-size="contain" data-background-position="block" data-background-opacity="0.4">
+<div id="tsparticles"></div>
+<script>
+tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {distance: 150, enable: true}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.01, max: 1.0}}}})
+.then(container => {console.log("callback - tsparticles config loaded");})
+.catch(error => {console.error(error);});
+</script>
+<div style="padding-top: 200px"></div>
+<h1 style="text-shadow: 6px 6px 10px #000000;">Lens prior matching with latent models<h1>
+<h2 style="text-shadow: 6px 6px 10px #000000;">Astrophysical thinking</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/21/11 </br> UZH</div>
+</section>
+<section>
+<section id="slide-org28a57d3">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org28a57d3">Generative deep-learning for galaxies</h2>
+<div class="outline-text-2" id="text-org28a57d3">
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org728fe69">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org728fe69">Dataset from IllustrisTNG</h3>
+<ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<li>projected TNG50-1 galaxies</li>
+<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
+<ul>
+<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
+<li>Karabo mock upgrade coming soon</li>
+
+</ul></li>
+<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
+<li>each galaxy \(\ge\) 10'000 particles</li>
+<li>scale: 2 baryonic half-mass radii</li>
+
+</ul>
+
+
+<div id="orgc7bed86" class="figure">
+<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgda12655" data-transition="none">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgda12655">Dataset from IllustrisTNG</h3>
+<ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<li>projected TNG50-1 galaxies</li>
+<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
+<ul>
+<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
+<li>Karabo mock upgrade coming soon</li>
+
+</ul></li>
+<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
+<li>each galaxy \(\ge\) 10'000 particles</li>
+<li>scale: 2 baryonic half-mass radii</li>
+
+</ul>
+
+
+<div id="orgc38590b" class="figure">
+<p><img src="./assets/images/skais/domains_directions.png" alt="domains_directions.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org10de065">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org10de065">Gas &xrarr; DM</h3>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org4533fbd" class="figure">
+<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.in.00.png" alt="074baffb63a1.eval_batch.12.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 1: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org3e353bd" class="figure">
+<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.pred.00.png" alt="074baffb63a1.eval_batch.12.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 2: </span>Output (pix2pix with Attention U-Net)</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org11237be" class="figure">
+<p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.gt.00.png" alt="074baffb63a1.eval_batch.12.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 3: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc67eb59">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgc67eb59">Gas &xrarr; stars</h3>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="orga92ca2b" class="figure">
+<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" alt="diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 4: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="orgfba6983" class="figure">
+<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" alt="diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 5: </span>Output (standard DDPM)</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org876eaf4" class="figure">
+<p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" alt="diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 6: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgea3e541">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="orgea3e541">Gas &xrarr; HI</h3>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="org3dea03c" class="figure">
+<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.in.03.png" alt="e26dca2b6859.eval_batch.06.in.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 7: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org772b370" class="figure">
+<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.pred.03.png" alt="e26dca2b6859.eval_batch.06.pred.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 8: </span>Output (pix2pix with Attention U-Net)</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org400119d" class="figure">
+<p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.gt.03.png" alt="e26dca2b6859.eval_batch.06.gt.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 9: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org66779af">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org66779af">Gas &xrarr; B-field</h3>
+<div class="gframe_row_col">
+<div class="gframe_3col">
+
+<div id="orgd3ff9e1" class="figure">
+<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.in.00.png" alt="22186b9f64d6.eval_batch.24.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 10: </span>Input</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org41bedf1" class="figure">
+<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.pred.00.png" alt="22186b9f64d6.eval_batch.24.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 11: </span>Output (pix2pix with Attention U-Net)</p>
+</div>
+</div>
+<div class="gframe_3col">
+
+<div id="org2734f10" class="figure">
+<p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.gt.00.png" alt="22186b9f64d6.eval_batch.24.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
+</p>
+<p><span class="figure-number">Figure 12: </span>Ground truth</p>
+</div>
+</div>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge2408e3">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orge2408e3">Inverse problems</h2>
+<ul>
+<li>Gravitational lensing:  <br> \(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)</li>
+<li><i>Denoising and image-to-image translation</i> tasks solve:  <br> \(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org73fb5e1">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org73fb5e1">Bayesian statistics</h3>
+<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<source src="./assets/movies/vae/bayesian_concepts.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org7008f75">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org7008f75">Back to the inverse problem</h3>
+<ul>
+<li>Gravitational lensing:  <br> \(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)</li>
+<li><i>Denoising and image-to-image translation</i> tasks solve:  <br> \(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)</li>
+<li>in Bayesian terms: \( p(\color{#81f4a9}{x}|\color{#f48193}{y}) \propto p(\color{#f48193}{y}|\color{#81f4a9}{x}) \,\, p(\color{#81f4a9}{x}) \)</li>
+<li>\( p(\color{#f48193}{y}|\color{#81f4a9}{x}) \) the data likelihood contains the (lensing) physics</li>
+<li>\( p(\color{#81f4a9}{x}) \) is our prior knowledge (e.g. about galaxies and their shape).
+<ul>
+<li>MAP solution: \( \hat{x} = \arg \max_{x} \log p(\color{#f48193}{y}|\color{#81f4a9}{x}) + \log p(\color{#81f4a9}{x}) \)</li>
+<li>explicitly sampling from the posterior distribution is difficult and expensive!</li>
+<li>but we can match the prior \( p(x) \rightarrow p_\theta(x) \)</li>
+
+</ul></li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org78d6659">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org78d6659">Generative Deep Learning architectures</h2>
+<p>
+ <br> 
+Generative models we're looking into:
+</p>
+<ul>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/1312.6114v11">VAEs</a></b>:  <br> constructs a latent space</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (DDPMs)</a></b>:  <br> learns to collapse Gaussians into posteriors</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2112.10752">Latent diffusion</a></b>:  <br> diffusion, but in latent space</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orge054bef">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orge054bef">Variational Autoencoding</h2>
+<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<source src="./assets/movies/vae/vae_intro.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgb066ee5">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgb066ee5"><del>Variational</del> Autoencoding</h2>
+<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<source src="./assets/movies/vae/vae_concepts.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org3b5309c">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org3b5309c">Variational Bayes</h2>
+<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<source src="./assets/movies/vae/data_concepts.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org1925587">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org1925587">Objective</h2>
+<p>
+ <br> 
+\( \mathcal{L}(x) =  \log p_\theta(x|z) - D_{KL}(q_\phi(z|x) | p_\theta(z)) \)
+</p>
+
+<ul>
+<li>data consistency: reconstruction loss \( \log p_\theta(x|z) \)</li>
+<li>latent space regularization: \( D_{KL}(q_\phi(z|x) | p_\theta(z)) \)</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org86d2d90">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org86d2d90">Regularization of the latent space</h2>
+<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<source src="./assets/movies/vae/vae_latent.mp4" type="video/mp4" />
+</video>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org2b9b204">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h3 id="org2b9b204">Problem: Blurry images</h3>
+<ul>
+<li>Poor quality of generated samples
+<ul>
+<li>Regression toward the mean</li>
+
+</ul></li>
+<li>Solution: Diffusion (in latent space)</li>
+
+</ul>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org824c26e">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org824c26e">Diffusion</h2>
+
+<div id="orgdbb74f7" class="figure">
+<p><img src="./assets/images/indi/skais_indi_rnd_dm_no_formula.png" alt="skais_indi_rnd_dm_no_formula.png" height="500px;" />
+</p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-org64d8943">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="org64d8943">Latent diffusion</h2>
+
+<div id="orge553b58" class="figure">
+<p><img src="./assets/images/diffusion/latent_diffusion.png" alt="latent_diffusion.png" height="750px" style="margin-top: 100px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 13: </span>Latent diffusion by  <a href="https://arxiv.org/pdf/2112.10752">Rombach et al. (2022)</a></p>
+</div>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+</div>
+</div>
+<div> Created by phdenzel. </div>
+<script src="file:///home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/search/search.js"></script>
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+controls: true,
+progress: true,
+history: false,
+center: true,
+slideNumber: 'c',
+rollingLinks: true,
+keyboard: true,
+mouseWheel: false,
+fragmentInURL: false,
+hashOneBasedIndex: false,
+pdfSeparateFragments: true,
+overview: true,
+width: 1920,
+height: 1080,
+margin: 0.05,
+minScale: 0.20,
+maxScale: 4.50,
+
+transition: 'slide',
+transitionSpeed: 'default',
+controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
+
+// Plugins with reveal.js 4.x
+plugins: [ RevealMarkdown, RevealMath, RevealNotes, RevealHighlight, RevealSearch ],
+
+// Optional libraries used to extend reveal.js
+dependencies: [
+]
+
+});
+</script>
+</body>
+</html>
