@@ -9,14 +9,16 @@
 <style type="text/css">
 .underline { text-decoration: underline; }
 </style>
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/reveal.css"/>
 
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
 
 <link rel="stylesheet" href="./assets/css/slides.css"/>
 
 <link rel="stylesheet" href="./assets/css/header.css"/>
-<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
+
+<link rel="stylesheet" href="./assets/css/footer.css"/>
+<link rel="stylesheet" href="file:///Users/phdenzel/local/reveal.js/plugin/highlight/zenburn.css"/>
 <meta name="description" content="">
 <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
 </head>
@@ -32,63 +34,78 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </script>
 <div style="padding-top: 200px"></div>
 <h1 style="text-shadow: 6px 6px 10px #000000;">Lens prior matching with latent models<h1>
-<h2 style="text-shadow: 6px 6px 10px #000000;">Astrophysical thinking</h2>
-<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/21/11 </br> UZH</div>
+<h2 style="text-shadow: 6px 6px 10px #000000;">SKACH weekly meeting</h2>
+<div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">2024/21/11, ZHAW </br> </div>
+<h5 style="padding-top: 0px; text-shadow: 6px 6px 10px #000000;"> <img src="./assets/images/contact_qr.png" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">Philipp Denzel</a>, <span> Yann Billeter, Frank-Peter Schilling, Elena Gavagnin </span> </h5>
 </section>
 <section>
-<section id="slide-org28a57d3">
+<section id="slide-orgce7f808" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org28a57d3">Generative deep-learning for galaxies</h2>
-<div class="outline-text-2" id="text-org28a57d3">
-</div>
-</section>
-</section>
-<section>
-<section id="slide-org728fe69">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org728fe69">Dataset from IllustrisTNG</h3>
-<ul style="float: left; padding-top: 50px; padding-left: 200px;">
-<li>projected TNG50-1 galaxies</li>
-<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
-<ul>
-<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
-<li>Karabo mock upgrade coming soon</li>
+<h2 id="orgce7f808">Generative deep learning for galaxies</h2>
+<form><ul>
+<li>Our mission:
+<form><ul>
+<li>AI sampler of plausible &amp; physical galaxies</li>
 
-</ul></li>
-<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
-<li>each galaxy \(\ge\) 10'000 particles</li>
-<li>scale: 2 baryonic half-mass radii</li>
+</ul></form></li>
+<li>Checklist:
+<form><ul>
+<li class="on"><input type='checkbox' checked='checked' /> Map-to-map translation model</li>
+<li class="off"><input type='checkbox' /> (random or guided) generator</li>
+<li class="off"><input type='checkbox' /> application: strong lensing, &#x2026;</li>
 
-</ul>
+</ul></form></li>
 
-
-<div id="orgc7bed86" class="figure">
-<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
-</p>
-</div>
+</ul></form>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgda12655" data-transition="none">
+<section id="slide-org91bb99b" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgda12655">Dataset from IllustrisTNG</h3>
-<ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<h3 id="org91bb99b">Map-to-map translation</h3>
+<form><ul style="float: left; padding-top: 50px; padding-left: 200px;">
 <li>projected TNG50-1 galaxies</li>
-<li>6 domains: dark-matter, stars, gas,  <br> HI, temperature, magnetic field
-<ul>
+<li>6 domains: dark-matter, stars, gas, <br> HI, temperature, magnetic field
+<form><ul>
 <li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
 <li>Karabo mock upgrade coming soon</li>
 
-</ul></li>
+</ul></form></li>
 <li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
 <li>each galaxy \(\ge\) 10'000 particles</li>
 <li>scale: 2 baryonic half-mass radii</li>
 
-</ul>
+</ul></form>
 
 
-<div id="orgc38590b" class="figure">
+<div id="org2a1a6ba" class="figure">
+<p><img src="./assets/images/skais/domains.png" alt="domains.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
+</p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section data-background-transition="nil">
+<h3>Map-to-map translation</h3>
+
+<form><ul style="float: left; padding-top: 50px; padding-left: 200px;">
+<li>projected TNG50-1 galaxies</li>
+<li>6 domains: dark-matter, stars, gas, <br> HI, temperature, magnetic field
+<form><ul>
+<li>21cm mocks following <br> <a href="https://arxiv.org/abs/1804.09180">Villaescusa-Navarro et al. (2018)</a></li>
+<li>Karabo mock upgrade coming soon</li>
+
+</ul></form></li>
+<li>&sim; 2'000 galaxies, 6 snapshots, <br> 5 rotations in 3D, &sim; 360'000 images</li>
+<li>each galaxy \(\ge\) 10'000 particles</li>
+<li>scale: 2 baryonic half-mass radii</li>
+
+</ul></form>
+
+
+<div id="org57d54bd" class="figure">
 <p><img src="./assets/images/skais/domains_directions.png" alt="domains_directions.png" height="600px" style="float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;" />
 </p>
 </div>
@@ -96,13 +113,13 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-org10de065">
+<section id="slide-orge6331bb" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org10de065">Gas &xrarr; DM</h3>
+<h3 id="orge6331bb">Gas &xrarr; DM</h3>
 <div class="gframe_row_col">
 <div class="gframe_3col">
 
-<div id="org4533fbd" class="figure">
+<div id="org2f17d10" class="figure">
 <p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.in.00.png" alt="074baffb63a1.eval_batch.12.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 1: </span>Input</p>
@@ -110,7 +127,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org3e353bd" class="figure">
+<div id="orgb8e5804" class="figure">
 <p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.pred.00.png" alt="074baffb63a1.eval_batch.12.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 2: </span>Output (pix2pix with Attention U-Net)</p>
@@ -118,7 +135,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org11237be" class="figure">
+<div id="orgaea8494" class="figure">
 <p><img src="./assets/images/skais/gas2dm/074baffb63a1.eval_batch.12.gt.00.png" alt="074baffb63a1.eval_batch.12.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 3: </span>Ground truth</p>
@@ -129,13 +146,13 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-orgc67eb59">
+<section id="slide-orgeaab483" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgc67eb59">Gas &xrarr; stars</h3>
+<h3 id="orgeaab483">Gas &xrarr; stars</h3>
 <div class="gframe_row_col">
 <div class="gframe_3col">
 
-<div id="orga92ca2b" class="figure">
+<div id="orge58c41a" class="figure">
 <p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" alt="diffusion_gas-&gt;dm_in_65681_a70c486921e405c6c534.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 4: </span>Input</p>
@@ -143,7 +160,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="orgfba6983" class="figure">
+<div id="org1440bd7" class="figure">
 <p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" alt="diffusion_gas-&gt;dm_pred_65681_5536c4565178d4c470a5.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 5: </span>Output (standard DDPM)</p>
@@ -151,7 +168,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org876eaf4" class="figure">
+<div id="org7eabc3f" class="figure">
 <p><img src="./assets/images/skais/gas2star/diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" alt="diffusion_gas-&gt;dm_gt_65681_f72b986fed1618e14a84.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 6: </span>Ground truth</p>
@@ -162,13 +179,13 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-orgea3e541">
+<section id="slide-orgba0b0ab" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="orgea3e541">Gas &xrarr; HI</h3>
+<h3 id="orgba0b0ab">Gas &xrarr; HI</h3>
 <div class="gframe_row_col">
 <div class="gframe_3col">
 
-<div id="org3dea03c" class="figure">
+<div id="org02c3032" class="figure">
 <p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.in.03.png" alt="e26dca2b6859.eval_batch.06.in.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 7: </span>Input</p>
@@ -176,7 +193,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org772b370" class="figure">
+<div id="orgccc4bb5" class="figure">
 <p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.pred.03.png" alt="e26dca2b6859.eval_batch.06.pred.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 8: </span>Output (pix2pix with Attention U-Net)</p>
@@ -184,7 +201,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org400119d" class="figure">
+<div id="org43bbb03" class="figure">
 <p><img src="./assets/images/skais/gas2hi/e26dca2b6859.eval_batch.06.gt.03.png" alt="e26dca2b6859.eval_batch.06.gt.03.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 9: </span>Ground truth</p>
@@ -195,13 +212,13 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-org66779af">
+<section id="slide-orgc330853" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org66779af">Gas &xrarr; B-field</h3>
+<h3 id="orgc330853">Gas &xrarr; B-field</h3>
 <div class="gframe_row_col">
 <div class="gframe_3col">
 
-<div id="orgd3ff9e1" class="figure">
+<div id="orge123ab7" class="figure">
 <p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.in.00.png" alt="22186b9f64d6.eval_batch.24.in.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 10: </span>Input</p>
@@ -209,7 +226,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org41bedf1" class="figure">
+<div id="orgf885ae0" class="figure">
 <p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.pred.00.png" alt="22186b9f64d6.eval_batch.24.pred.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 11: </span>Output (pix2pix with Attention U-Net)</p>
@@ -217,7 +234,7 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </div>
 <div class="gframe_3col">
 
-<div id="org2734f10" class="figure">
+<div id="org77faa3f" class="figure">
 <p><img src="./assets/images/skais/gas2bfield/22186b9f64d6.eval_batch.24.gt.00.png" alt="22186b9f64d6.eval_batch.24.gt.00.png" height="600px" style="border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px; background-color: #999999;" />
 </p>
 <p><span class="figure-number">Figure 12: </span>Ground truth</p>
@@ -228,159 +245,194 @@ tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, links: {
 </section>
 </section>
 <section>
-<section id="slide-orge2408e3">
+<section id="slide-orgc208e59" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orge2408e3">Inverse problems</h2>
-<ul>
-<li>Gravitational lensing:  <br> \(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)</li>
-<li><i>Denoising and image-to-image translation</i> tasks solve:  <br> \(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)</li>
+<h2 id="orgc208e59">Application: Strong gravitational lensing</h2>
 
-</ul>
+<div id="org6e84195" class="figure">
+<p><img src="./assets/images/gl/zigzag_screenshot.png" alt="zigzag_screenshot.png" height="750px" style="margin-top: 10px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 13: </span><a href="https://arxiv.org/abs/2411.04177">J1721+8842: The first Einstein zig-zag lens</a></p>
+</div>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org73fb5e1">
+<section id="slide-org93f938b" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org73fb5e1">Bayesian statistics</h3>
-<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
-<source src="./assets/movies/vae/bayesian_concepts.mp4" type="video/mp4" />
-</video>
+<h3 id="org93f938b">Zig-zag lens</h3>
+
+<div id="orgfb284ae" class="figure">
+<p><img src="./assets/images/gl/zigzag_lens.png" alt="zigzag_lens.png" height="750px" style="margin-top: 10px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 14: </span><a href="https://arxiv.org/abs/2411.04177">Dux et al. (2024)</a></p>
+</div>
+
+
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+<section data-background-transition="nil">
+<h3>Zig-zag lens</h3>
+
+
+<div id="org4ad1ff4" class="figure">
+<p><img src="./assets/images/gl/zigzag_trace.png" alt="zigzag_trace.png" height="750px" style="margin-top: 10px; border-radius: 12px;" />
+</p>
+<p><span class="figure-number">Figure 15: </span><a href="https://arxiv.org/abs/2411.04177">Dux et al. (2024)</a></p>
+</div>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org7008f75">
+<section id="slide-org82d0c65" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org7008f75">Back to the inverse problem</h3>
-<ul>
-<li>Gravitational lensing:  <br> \(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)</li>
-<li><i>Denoising and image-to-image translation</i> tasks solve:  <br> \(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)</li>
+<h3 id="org82d0c65">Zig-zag lens model</h3>
+<form><ul>
+<li>best two-plane model so far&#x2026;
+<form><ul>
+<li>near lens as power-Law elliptical mass distribution (PEMD)</li>
+<li>far lens as singular isothermal sphere (SIS)</li>
+
+</ul></form></li>
+<li><i>disclaimer: personal opinion</i>
+<form><ul>
+<li>almost all models lack physical basis</li>
+
+</ul></form></li>
+
+</ul></form>
+<p>
+<br> 
+&xrarr; started collaboration with UZH for a physical lens model
+</p>
+<div class="slide-footer"><div style="height:100px"></div></div>
+</section>
+</section>
+<section>
+<section id="slide-orgc3a305b" data-background-transition="nil">
+<div class="slide-header"><div style="height:100px"></div></div>
+<h2 id="orgc3a305b">Inverse problems</h2>
+<form><ul>
+<li>Gravitational lensing: <br> \(\quad\quad\quad \color{#f48193}{\beta} = \color{#81f4a9}{\theta} - \alpha \)
+<br> \(\quad\quad\quad \color{#f48193}{y} = L(\color{#81f4a9}{x}) + n \)</li>
 <li>in Bayesian terms: \( p(\color{#81f4a9}{x}|\color{#f48193}{y}) \propto p(\color{#f48193}{y}|\color{#81f4a9}{x}) \,\, p(\color{#81f4a9}{x}) \)</li>
 <li>\( p(\color{#f48193}{y}|\color{#81f4a9}{x}) \) the data likelihood contains the (lensing) physics</li>
 <li>\( p(\color{#81f4a9}{x}) \) is our prior knowledge (e.g. about galaxies and their shape).
-<ul>
+<form><ul>
 <li>MAP solution: \( \hat{x} = \arg \max_{x} \log p(\color{#f48193}{y}|\color{#81f4a9}{x}) + \log p(\color{#81f4a9}{x}) \)</li>
 <li>explicitly sampling from the posterior distribution is difficult and expensive!</li>
 <li>but we can match the prior \( p(x) \rightarrow p_\theta(x) \)</li>
 
-</ul></li>
+</ul></form></li>
 
-</ul>
+</ul></form>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org78d6659">
+<section id="slide-org4cc700b" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org78d6659">Generative Deep Learning architectures</h2>
+<h2 id="org4cc700b">Generative Deep Learning architectures</h2>
 <p>
- <br> 
+<br> 
 Generative models we're looking into:
 </p>
-<ul>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/1312.6114v11">VAEs</a></b>:  <br> constructs a latent space</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (DDPMs)</a></b>:  <br> learns to collapse Gaussians into posteriors</li>
-<li class="fragment appear"><b><a href="https://arxiv.org/abs/2112.10752">Latent diffusion</a></b>:  <br> diffusion, but in latent space</li>
+<form><ul>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/1312.6114v11">VAEs</a></b>: <br> constructs a latent space</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2006.11239">Denoising Diffusion Probabilistic Models (DDPMs)</a></b>: <br> learns to collapse Gaussians into posteriors</li>
+<li class="fragment appear"><b><a href="https://arxiv.org/abs/2112.10752">Latent diffusion</a></b>: <br> diffusion, but in latent space</li>
 
-</ul>
+</ul></form>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orge054bef">
+<section id="slide-org82f206c" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orge054bef">Variational Autoencoding</h2>
-<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<h2 id="org82f206c">Variational Autoencoding</h2>
+<video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 <source src="./assets/movies/vae/vae_intro.mp4" type="video/mp4" />
 </video>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-orgb066ee5">
+<section id="slide-org2b3835b" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="orgb066ee5"><del>Variational</del> Autoencoding</h2>
-<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<h2 id="org2b3835b"><del>Variational</del> Autoencoding</h2>
+<video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 <source src="./assets/movies/vae/vae_concepts.mp4" type="video/mp4" />
 </video>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org3b5309c">
+<section id="slide-orgb4ef638" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org3b5309c">Variational Bayes</h2>
-<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<h2 id="orgb4ef638">Variational Bayes</h2>
+<video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 <source src="./assets/movies/vae/data_concepts.mp4" type="video/mp4" />
 </video>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org1925587">
+<section id="slide-org48fe50e" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org1925587">Objective</h2>
+<h2 id="org48fe50e">Objective</h2>
 <p>
- <br> 
+<br> 
 \( \mathcal{L}(x) =  \log p_\theta(x|z) - D_{KL}(q_\phi(z|x) | p_\theta(z)) \)
 </p>
 
-<ul>
+<form><ul>
 <li>data consistency: reconstruction loss \( \log p_\theta(x|z) \)</li>
 <li>latent space regularization: \( D_{KL}(q_\phi(z|x) | p_\theta(z)) \)</li>
 
-</ul>
+</ul></form>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org86d2d90">
+<section id="slide-orgaede465" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org86d2d90">Regularization of the latent space</h2>
-<video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+<h2 id="orgaede465">Regularization of the latent space</h2>
+<video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 <source src="./assets/movies/vae/vae_latent.mp4" type="video/mp4" />
 </video>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org2b9b204">
+<section id="slide-orgd90a503" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h3 id="org2b9b204">Problem: Blurry images</h3>
-<ul>
+<h3 id="orgd90a503">Problem: Blurry images</h3>
+<form><ul>
 <li>Poor quality of generated samples
-<ul>
+<form><ul>
 <li>Regression toward the mean</li>
 
-</ul></li>
-<li>Solution: Diffusion (in latent space)</li>
+</ul></form></li>
+<li>Improvements:
+<form><ul>
+<li>Vector quantization</li>
+<li>Diffusion (in latent space)</li>
 
-</ul>
+</ul></form></li>
+
+</ul></form>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
 </section>
 <section>
-<section id="slide-org824c26e">
+<section id="slide-orgf3d8baf" data-background-transition="nil">
 <div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org824c26e">Diffusion</h2>
+<h2 id="orgf3d8baf">Latent diffusion</h2>
 
-<div id="orgdbb74f7" class="figure">
-<p><img src="./assets/images/indi/skais_indi_rnd_dm_no_formula.png" alt="skais_indi_rnd_dm_no_formula.png" height="500px;" />
-</p>
-</div>
-<div class="slide-footer"><div style="height:100px"></div></div>
-</section>
-</section>
-<section>
-<section id="slide-org64d8943">
-<div class="slide-header"><div style="height:100px"></div></div>
-<h2 id="org64d8943">Latent diffusion</h2>
-
-<div id="orge553b58" class="figure">
+<div id="org961cc34" class="figure">
 <p><img src="./assets/images/diffusion/latent_diffusion.png" alt="latent_diffusion.png" height="750px" style="margin-top: 100px; border-radius: 12px;" />
 </p>
-<p><span class="figure-number">Figure 13: </span>Latent diffusion by  <a href="https://arxiv.org/pdf/2112.10752">Rombach et al. (2022)</a></p>
+<p><span class="figure-number">Figure 16: </span>Latent diffusion by  <a href="https://arxiv.org/pdf/2112.10752">Rombach et al. (2022)</a></p>
 </div>
 <div class="slide-footer"><div style="height:100px"></div></div>
 </section>
@@ -388,12 +440,12 @@ Generative models we're looking into:
 </div>
 </div>
 <div> Created by phdenzel. </div>
-<script src="file:///home/phdenzel/local/reveal.js/dist/reveal.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
-<script src="file:///home/phdenzel/local/reveal.js/plugin/search/search.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/notes/notes.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/highlight/highlight.js"></script>
+<script src="file:///Users/phdenzel/local/reveal.js/plugin/search/search.js"></script>
 <script>
 // Full list of configuration options available here:
 // https://github.com/hakimel/reveal.js#configuration
@@ -417,7 +469,7 @@ margin: 0.05,
 minScale: 0.20,
 maxScale: 4.50,
 
-transition: 'slide',
+transition: 'nil',
 transitionSpeed: 'default',
 controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false,
 

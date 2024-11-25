@@ -1,6 +1,6 @@
 #+AUTHOR: Philipp Denzel
 #+TITLE: Lens prior matching with latent models
-#+SUBTITLE: Astrophysical thinking
+#+SUBTITLE: SKACH weekly meeting
 #+DATE: 2024/21/11
 
 # #+OPTIONS: author:nil
@@ -33,7 +33,9 @@
 #+REVEAL_MAX_SCALE: 4.5
 #+REVEAL_MARGIN: 0.05
 # #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
-#+REVEAL_TRANS: slide
+#+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: nil
+#+REVEAL_TRANS: nil
+#               slide
 #               fade
 # #+REVEAL_EXPORT_NOTES_TO_PDF:t
 #+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
@@ -56,6 +58,7 @@
 # --- JAVASCRIPT
 #+REVEAL_PLUGINS: ( markdown math notes highlight search )
 # #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+# #+REVEAL_ADD_PLUGIN: chalkboard RevealChalkboard plugin/chalkboard/plugin.js
 
 
 # --- THEMING
@@ -65,7 +68,7 @@
 # --- CSS
 #+REVEAL_EXTRA_CSS: ./assets/css/slides.css
 #+REVEAL_EXTRA_CSS: ./assets/css/header.css
-# #+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
 #+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
 #+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
 #+REVEAL_HLEVEL: 2
@@ -139,7 +142,8 @@ to
 #+REVEAL_TITLE_SLIDE: <div style="padding-top: 200px"></div>
 #+REVEAL_TITLE_SLIDE: <h1 style="text-shadow: 6px 6px 10px #000000;">%t<h1>
 #+REVEAL_TITLE_SLIDE: <h2 style="text-shadow: 6px 6px 10px #000000;">%s</h2>
-#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">%d </br> UZH</div>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px; text-shadow: 6px 6px 10px #000000;">%d, ZHAW </br> </div>
+#+REVEAL_TITLE_SLIDE: <h5 style="padding-top: 0px; text-shadow: 6px 6px 10px #000000;"> <img src="%q" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">%a</a>, <span> Yann Billeter, Frank-Peter Schilling, Elena Gavagnin </span> </h5>
 #+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/CAI_header.jpg
 
 
@@ -148,9 +152,21 @@ to
 #+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
 
 
-* Generative deep-learning for galaxies
+* Generative deep learning for galaxies
 
-** Dataset from IllustrisTNG
+#+begin_src emacs-lisp :exports none :results none
+  (setq org-html-checkbox-type 'html)
+#+end_src
+
+- Our mission:
+  - AI sampler of plausible & physical galaxies
+- Checklist:
+  - [X] Map-to-map translation model
+  - [ ] (random or guided) generator
+  - [ ] application: strong lensing, ...
+
+
+** Map-to-map translation
 
 #+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
 - projected TNG50-1 galaxies
@@ -166,10 +182,7 @@ to
 [[./assets/images/skais/domains.png]]
 
 
-** Dataset from IllustrisTNG
-:PROPERTIES:
-:reveal_extra_attr: data-transition="none"
-:END:
+#+REVEAL: split:t
 
 #+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
 - projected TNG50-1 galaxies
@@ -269,23 +282,55 @@ to
 #+REVEAL_HTML: </div>
 
 
+* Application: Strong gravitational lensing
+
+#+ATTR_HTML: :height 750px :style margin-top: 10px; border-radius: 12px;
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2411.04177">J1721+8842: The first Einstein zig-zag lens</a>@@
+[[./assets/images/gl/zigzag_screenshot.png]]
+
+
+** Zig-zag lens
+
+#+ATTR_HTML: :height 750px :style margin-top: 10px; border-radius: 12px;
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2411.04177">Dux et al. (2024)</a>@@
+[[./assets/images/gl/zigzag_lens.png]]
+
+
+#+REVEAL: split:t
+
+#+ATTR_HTML: :height 750px :style margin-top: 10px; border-radius: 12px;
+#+CAPTION: @@html:<a href="https://arxiv.org/abs/2411.04177">Dux et al. (2024)</a>@@
+[[./assets/images/gl/zigzag_trace.png]]
+
+
+** Zig-zag lens model
+
+- best two-plane model so far...
+  - near lens as power-Law elliptical mass distribution (PEMD)
+  - far lens as singular isothermal sphere (SIS)
+- /disclaimer: personal opinion/
+  - almost all models lack physical basis
+{{{NL}}}
+@@html:&xrarr;@@ started collaboration with UZH for a physical lens model
+
+
 * Inverse problems
 
-- Gravitational lensing: {{{NL}}}\(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)
-- /Denoising and image-to-image translation/ tasks solve: {{{NL}}}\(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)
+# - Gravitational lensing: {{{NL}}}\(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)
+# - /Denoising and image-to-image translation/ tasks solve: {{{NL}}}\(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)
 
 
-** Bayesian statistics
+# ** Bayesian statistics
 
-#+REVEAL_HTML: <video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
-#+REVEAL_HTML:   <source src="./assets/movies/vae/bayesian_concepts.mp4" type="video/mp4" />
-#+REVEAL_HTML: </video>
+# #+REVEAL_HTML: <video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+# #+REVEAL_HTML:   <source src="./assets/movies/vae/bayesian_concepts.mp4" type="video/mp4" />
+# #+REVEAL_HTML: </video>
 
 
-** Back to the inverse problem
+# ** Back to the inverse problem
 
-- Gravitational lensing: {{{NL}}}\(\quad\quad\quad \color{#f48193}{\beta} = \theta - \color{#81f4a9}{\alpha} \)
-- /Denoising and image-to-image translation/ tasks solve: {{{NL}}}\(\quad\quad\quad \color{#f48193}{y} = A\color{#81f4a9}{x} + n \)
+- Gravitational lensing: {{{NL}}}\(\quad\quad\quad \color{#f48193}{\beta} = \color{#81f4a9}{\theta} - \alpha \)
+  {{{NL}}}\(\quad\quad\quad \color{#f48193}{y} = L(\color{#81f4a9}{x}) + n \)
 - in Bayesian terms: \( p(\color{#81f4a9}{x}|\color{#f48193}{y}) \propto p(\color{#f48193}{y}|\color{#81f4a9}{x}) \,\, p(\color{#81f4a9}{x}) \)
 - \( p(\color{#f48193}{y}|\color{#81f4a9}{x}) \) the data likelihood contains the (lensing) physics
 - \( p(\color{#81f4a9}{x}) \) is our prior knowledge (e.g. about galaxies and their shape).
@@ -306,21 +351,21 @@ Generative models we're looking into:
 
 * Variational Autoencoding
 
-#+REVEAL_HTML: <video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+#+REVEAL_HTML: <video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 #+REVEAL_HTML:   <source src="./assets/movies/vae/vae_intro.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
 
 * +Variational+ Autoencoding
 
-#+REVEAL_HTML: <video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+#+REVEAL_HTML: <video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 #+REVEAL_HTML:   <source src="./assets/movies/vae/vae_concepts.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
 
 * Variational Bayes
 
-#+REVEAL_HTML: <video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+#+REVEAL_HTML: <video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 #+REVEAL_HTML:   <source src="./assets/movies/vae/data_concepts.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
@@ -336,7 +381,7 @@ Generative models we're looking into:
 
 * Regularization of the latent space
 
-#+REVEAL_HTML: <video height="950" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 0.7;">
+#+REVEAL_HTML: <video height="900" style="border-radius: 12px;" data-autoplay controls onloadstart="this.playbackRate = 1.0;">
 #+REVEAL_HTML:   <source src="./assets/movies/vae/vae_latent.mp4" type="video/mp4" />
 #+REVEAL_HTML: </video>
 
@@ -345,13 +390,9 @@ Generative models we're looking into:
 
 - Poor quality of generated samples
   - Regression toward the mean
-- Solution: Diffusion (in latent space)
-
-
-* Diffusion
-
-#+ATTR_HTML: :height 500px;
-[[./assets/images/indi/skais_indi_rnd_dm_no_formula.png]]
+- Improvements:
+  - Vector quantization
+  - Diffusion (in latent space)
 
 
 * Latent diffusion
