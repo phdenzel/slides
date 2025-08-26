@@ -240,7 +240,7 @@ So, approx. 2.29M node hours @ 0.5kW $\rightarrow$ *1+ GWh* (570'000 kg CO_{2}e)
 
 ** (A)I can do better
 
-Our model suite run on a mix of Nvidia V100/A100/H100/H200 GPUs
+Our model suite ran on a mix of Nvidia V100/A100/H100/H200 GPUs
 
 - GAN-based models required *140.25 kWh* for training (70 kg CO_{2}e)
   - inference: ~1 kWh for inference
@@ -331,7 +331,7 @@ Our model suite run on a mix of Nvidia V100/A100/H100/H200 GPUs
 ** Perceptual metrics
 
 - Fréchet Inception Distance: $$ \|\mu_r - \mu_g\|^2 + \text{Tr}\left(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2}\right) $$
-  - where $\mu$ and $\Sigma$ are mean and standard deviation of neural-network extracted features (InceptionV3)
+  - where $\mu$ and $\Sigma$ are mean and standard deviation {{{NL}}}of features extracted from neural networks (InceptionV3)
 - or LPIPS (Learned Perceptual Image Patch Similarity)
 
 
