@@ -1,0 +1,451 @@
+#+AUTHOR: Philipp Denzel
+#+TITLE: Connecting galaxy theory and observables using generative deep learning
+#+SUBTITLE: @@html:<h4>@@SKA research at{{{NL}}}Zurich University of Applied Sciences (ZHAW)@@html:</h4>@@@@html:<h5>@@Centre for Artificial Intelligence (CAI){{{NL}}}Institute for Business Information Technology (IWI)@@html:</h5>@@
+#+DATE: Aug 27, 2025
+
+# #+OPTIONS: author:nil
+# #+OPTIONS: email:nil
+# #+OPTIONS: \n:t
+#+OPTIONS: date:nil
+#+OPTIONS: num:nil
+#+OPTIONS: toc:nil
+#+OPTIONS: timestamp:nil
+#+OPTIONS: reveal_single_file:nil
+#+PROPERTY: eval no
+
+
+# --- Configuration - more infos @ https://gitlab.com/oer/org-re-reveal/
+#                                @ https://revealjs.com/config/
+# --- General behaviour
+#+OPTIONS: reveal_center:t
+#+OPTIONS: reveal_progress:t
+#+OPTIONS: reveal_history:nil
+#+OPTIONS: reveal_slide_number:c
+#+OPTIONS: reveal_slide_toc_footer:t
+#+OPTIONS: reveal_control:t
+#+OPTIONS: reveal_keyboard:t
+#+OPTIONS: reveal_mousewheel:t
+#+OPTIONS: reveal_mobile_app:t
+#+OPTIONS: reveal_rolling_links:t
+#+OPTIONS: reveal_overview:t
+#+OPTIONS: reveal_width:2560 reveal_height:1440
+#+OPTIONS: reveal_width:1920 reveal_height:1080
+#+REVEAL_MIN_SCALE: 0.2
+#+REVEAL_MAX_SCALE: 4.5
+#+REVEAL_MARGIN: 0.05
+# #+REVEAL_VIEWPORT: width=device-width, initial-scale=1.0, maximum-scale=4.0, user-scalable=yes
+#+REVEAL_TRANS: fade
+# #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade
+# #+REVEAL_DEFAULT_SLIDE_BACKGROUND_TRANSITION: fade none slide
+# #+REVEAL_EXPORT_NOTES_TO_PDF:nil
+#+REVEAL_EXTRA_OPTIONS: controlsLayout: 'bottom-right', controlsBackArrows: 'faded', navigationMode: 'linear', previewLinks: false
+# controlsLayout: 'edges', controlsBackArrows: 'hidden', navigationMode: 'default', view: 'scroll', scrollProgress: 'auto',
+
+
+# --- PERSONAL
+# Contact QR code (refer to it with %q)
+#+REVEAL_TALK_QR_CODE: ./assets/images/contact_qr.png
+# Slide URL (refer to it with %u)
+#+REVEAL_TALK_URL: https://phdenzel.github.io/assets/blog-assets/026-swiss-ska-days-2025/slides.html
+
+
+# --- HTML
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="">
+#+REVEAL_HEAD_PREAMBLE: <script src="./assets/js/tsparticles.slim.bundle.min.js"></script>
+#+REVEAL_POSTAMBLE: <div> Created by phdenzel. </div>
+
+
+# --- JAVASCRIPT
+#+REVEAL_PLUGINS: ( markdown math zoom )
+# #+REVEAL_EXTRA_SCRIPT_SRC: ./assets/js/reveal_some_extra_src.js
+
+
+# --- THEMING
+#+REVEAL_THEME: phdcolloq
+
+
+# --- CSS
+#+REVEAL_EXTRA_CSS: ./assets/css/slides.css
+#+REVEAL_EXTRA_CSS: ./assets/css/header.css
+#+REVEAL_EXTRA_CSS: ./assets/css/footer.css
+#+REVEAL_SLIDE_HEADER: <div style="height:100px"></div>
+#+REVEAL_SLIDE_FOOTER: <div style="height:100px"></div>
+#+REVEAL_HLEVEL: 2
+
+
+# --- Macros
+# ---     example: {{{color(red,This is a sample sentence in red text color.)}}}
+#+MACRO: NL @@latex:\\@@ @@html:<br>@@ @@ascii:|@@
+#+MACRO: quote @@html:<q cite="$2">$1</q>@@ @@latex:``$1''@@
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: h1 @@html:<h1>$1</h1>@@
+#+MACRO: h2 @@html:<h2>$1</h2>@@
+#+MACRO: h3 @@html:<h3>$1</h3>@@
+#+MACRO: h4 @@html:<h4>$1</h4>@@
+
+
+#+begin_comment
+For export to a jekyll blog (phdenzel.github.io) do
+
+1) generate directory structure in assets/blog-assets/post-xyz/
+├── slides.html
+├── assets
+│   ├── css
+│   │   ├── reveal.css
+│   │   ├── print
+│   │   └── theme
+│   │       ├── phdcolloq.css
+│   │       └── fonts
+│   │           ├── league-gothic
+│   │           └── source-sans-pro
+│   ├── images
+│   ├── js
+│   │   ├── reveal.js
+│   │   ├── markdown
+│   │   ├── math
+│   │   ├── notes
+│   │   └── zoom
+│   └── movies
+└── css
+    └── _style.sass
+
+2)  change the linked css and javascript files to local copies
+
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/reveal.css"/>
+<link rel="stylesheet" href="file:///home/phdenzel/local/reveal.js/dist/theme/phdcolloq.css" id="theme"/>
+<script src="/home/phdenzel/local/reveal.js/dist/reveal.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/math/math.js"></script>
+<script src="file:///home/phdenzel/local/reveal.js/plugin/zoom/zoom.js"></script>
+
+to
+
+<link rel="stylesheet" href="./assets/css/reveal.css"/>
+<link rel="stylesheet" href="./assets/css/theme/phdcolloq.css" id="theme"/>
+
+<script src="./assets/js/reveal.js"></script>
+<script src="./assets/js/markdown.js"></script>
+<script src="./assets/js/math.js"></script>
+<script src="./assets/js/zoom.js"></script>
+#+end_comment
+
+
+# ------------------------------------------------------------------------------
+#+REVEAL_TITLE_SLIDE: <div id="tsparticles"></div>
+#+REVEAL_TITLE_SLIDE: <script>
+#+REVEAL_TITLE_SLIDE:     tsParticles.load("tsparticles", {particles: {color: {value: "#ffffff"}, move: {enable: true, speed: 0.4, straight: false}, number: {density: {enable: true}, value: 500}, size: {random: true, value: 3}, opacity: {animation: {enable: true}, value: {min: 0.2, max: 1}}}})
+#+REVEAL_TITLE_SLIDE:                .then(container => {console.log("callback - tsparticles config loaded");})
+#+REVEAL_TITLE_SLIDE:                .catch(error => {console.error(error);});
+#+REVEAL_TITLE_SLIDE: </script>
+#+REVEAL_TITLE_SLIDE: <h3>%t<h3>
+#+REVEAL_TITLE_SLIDE: <h3>%s</h3>
+#+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">%d</div>
+# #+REVEAL_TITLE_SLIDE: <div style="padding-top: 50px">by</div>
+#+REVEAL_TITLE_SLIDE: <h5 style="padding-top: 0px;"> <img src="%q" alt="contact_qr.png" height="150px" align="center" style="padding-left: 50px; padding-right: 10px;"> <a href="mailto:phdenzel@gmail.com">%a</a>, <span>Yann Billeter, Frank-Peter Schilling, Elena Gavagnin </span> </h5>
+#+REVEAL_TITLE_SLIDE_BACKGROUND: ./assets/images/poster_skach_skao.png
+
+#+REVEAL_TITLE_SLIDE_BACKGROUND_SIZE: contain
+#+REVEAL_TITLE_SLIDE_BACKGROUND_OPACITY: 0.6
+#+REVEAL_TITLE_SLIDE_BACKGROUND_POSITION: block
+
+
+* COMMENT Slides on my website
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+@@html:<a href="https://phdenzel.github.io/assets/blog-assets/026-swiss-ska-days-2025/slides.html">@@
+#+ATTR_HTML: :height 400px :style float: center; border-radius: 12px;
+[[./assets/images/talk_qr.png]]
+@@html:</a>@@
+
+
+* Generative AI "shortcomings"
+
+#+REVEAL_HTML: <iframe width="1080" height="800" src="https://www.youtube.com/embed/3JheBy9gvEg?si=05aO6q0Syds1xaBm" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+@@html:<a href="https://openai.com/index/sora/">Sora</a>@@ demo @@html:<a href="https://vimeo.com/913353540/a396c2810c">video</a>@@
+
+
+* Central Question
+
+- How do we measure physical plausibility?
+- What are plausible galaxies?
+
+
+** Generative AI for galaxy (component) emulation
+
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/skais/domain_translation_scheme.png]]
+
+
+* Outlook
+
+- [[How to build galaxies][Galaxies 101]]
+- [[Generative Deep Learning Models][Generative Deep Learning Models]]
+- [[Measuring plausibility?][Measuring plausibility?]]
+
+
+* How to build galaxies
+
+You start with 1% of this:
+
+#+REVEAL_HTML:<iframe width="1080" height="800" width src="https://www.youtube.com/embed/PH54cp2ggFk?si=gxMCa_tvghLvd8Vu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; autoplay; modestbranding; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+see @@html:<a href="http://www.astro.yale.edu/vdbosch/cmb_Osher.pdf">lecture</a>@@ by Van den Bosch
+
+
+** The Cosmic Microwave Background
+#+CAPTION: 2006, Credit: @@html:<a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/cosmo/cmb2D_1e0.png]] 
+
+
+** CMB anisotropies
+#+CAPTION: 2006, Credit: @@html:<a href="https://irsa.ipac.caltech.edu/data/Planck/release_3/all-sky-maps/">ESA/Planck</a>@@
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/cosmo/cmb2D_5e-4.png]]
+
+
+** Dark matter takes over
+#+CAPTION: KIPAC/Stanford; Credit: O. Hahn and T. Abel (2016)
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/simulations/dark_web.png]]
+
+
+** Ingredients for galaxies
+#+CAPTION: recipe for galaxies as imagined by GPT5
+#+ATTR_HTML: :height 830px :style border-radius: 12px;
+[[./assets/images/genai/recipe_galaxy.jpg]]
+
+
+** Simulations as an expression of theory
+#+ATTR_HTML: :height 800px :style float: left; margin-top: 200px; margin-left: 200px; border-radius: 12px;
+- complex, realistic models
+- self-consistent dynamics
+- physics: on a wide range of scales
+- implicit models:
+  - what if we want to sample more {{{NL}}}of those galaxy models?
+
+#+ATTR_HTML: :height 700px :style float: right; margin-top: 100px; margin-right: 100px; border-radius: 12px;
+#+CAPTION: IllustrisTNG simulations
+[[./assets/images/illustris/TNG300_compilation_with_radio_halos_2k.png]]
+
+
+** The cost of IllustrisTNG
+Stated usage from [[https://arxiv.org/abs/1707.03395][Nelson et al (2017)]]:
+- CPU core time: 55 Mh
+- on Hazel Hen (Cray XC40: typically 0.5kW per 24 core node)
+
+So, approx. 2.29M node hours @ 0.5kW $\rightarrow$ *1+ GWh* (570'000 kg CO_{2}e)
+
+
+** (A)I can do better
+
+Our model suite run on a mix of Nvidia V100/A100/H100/H200 GPUs
+
+- GAN-based models required *140.25 kWh* for training (70 kg CO_{2}e)
+  - inference: ~1 kWh for inference
+- diffusion-based models required *520.25 kWh* for training (260 kg CO_{2}e)
+  - inference: double the amount
+
+
+* Multi-domain galaxy image dataset
+
+#+ATTR_HTML: :style float: left; padding-top: 50px; padding-left: 200px;
+- projected Illustris TNG50-1 galaxies
+- 7 domains: dark-matter, stars, gas, {{{NL}}}HI, temperature, magnetic field, 21cm
+  - 21cm mocks following{{{NL}}}[[https://arxiv.org/abs/1804.09180][Villaescusa-Navarro et al. (2018)]]
+  - Karabo mock upgrade in progress
+- \sim 2'000+ galaxies, 6 snapshots,{{{NL}}}5 rotations in 3D, \sim 504'000 images
+- each galaxy \(\ge\) 10'000 particles
+- scale: 2 baryonic half-mass radii
+# - \(\sim 8.5 \cdot 10^{4} \mathrm{M}_\odot\)
+
+#+ATTR_HTML: :height 600px :style float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;
+[[./assets/images/skais/domains_directions.png]]
+
+
+* Generative Deep Learning Models
+
+- conditional GANs (generative adversarial networks)
+- diffusion-based models
+- combination of both
+
+
+** conditional GANs
+
+#+ATTR_HTML: :height 600px;
+[[./assets/images/pix2pix/pix2pix_schema.png]]
+
+
+** DDPM
+
+#+ATTR_HTML: :height 600px;
+[[./assets/images/diffusion/skais_diffusion_schema.png]]
+
+
+** Sampling from the models
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ DM
+[[./assets/images/skais/panels/GasDM.inference_batch.0027.png]]
+
+#+REVEAL:split
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ Stars
+[[./assets/images/skais/panels/GasStar.inference_batch.0023.png]]
+
+#+REVEAL:split
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ HI
+[[./assets/images/skais/panels/GasHI.inference_batch.0023.png]]
+
+#+REVEAL:split
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ mock 21cm brightness temperature
+[[./assets/images/skais/panels/Gas21cm.inference_batch.0023.png]]
+
+#+REVEAL:split
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ temperature
+[[./assets/images/skais/panels/GasTemp.inference_batch.0027.png]]
+
+#+REVEAL:split
+
+(input, simulation, AI generated)
+#+CAPTION: Gas @@html:&xrarr;@@ magnetic field strength
+[[./assets/images/skais/panels/GasBF.inference_batch.0029.png]]
+
+
+* Measuring plausibility?
+
+- Pixel-level CV metrics do not work well for this:
+  - MSE (mean squared error): $$ \text{MSE}\left(x, \hat{x}\right) = \frac{1}{N} \sum_{i=1}^{N} \left(x_i - \hat{x}_i\right)^2 $$
+  - PSNR (peak signal noise ratio): $$ \text{PSNR}\left(x, \hat{x}\right) = 10 \cdot \log_{10} \left( \frac{\text{c}^2}{\text{MSE}\left(x, \hat{x}\right)} \right) $$
+  - SSIM (structural similarity index measure): $$ \text{SSIM}\left(x, \hat{x}\right) = \frac{\left(2\mu_x\mu_{\hat{x}} + k_1\right)\left(2\sigma_{x\hat{x}} + k_2\right)}{\left(\mu_x^2 + \mu_{\hat{x}}^2 + k_1\right)\left(\sigma_x^2 + \sigma_{\hat{x}}^2 + k_2\right)} $$
+
+
+** Perceptual metrics
+
+- Fréchet Inception Distance: $$ \|\mu_r - \mu_g\|^2 + \text{Tr}\left(\Sigma_r + \Sigma_g - 2(\Sigma_r \Sigma_g)^{1/2}\right) $$
+  - where $\mu$ and $\Sigma$ are mean and standard deviation of neural-network extracted features (InceptionV3)
+- or LPIPS (Learned Perceptual Image Patch Similarity)
+
+
+** Astronomical/astrophysical metrics
+
+- structural astronomical CAS parameters by [[https://arxiv.org/abs/astro-ph/0303065][Conselice (2003)]]
+  - Concentration: Means of spatial distributions within fixed radii
+  - Asymmetry: compare original and 180-degree-rotated image
+  - Smoothness/Clumpiness: compare original and Gaussian-blurred image
+- Centre of mass drift
+- Radially averaged profiles
+- Integrated quantities
+- Power spectra
+
+
+*** Asymmetry deviation (simulations vs AI-generated)
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 770px :style border-radius: 10px; margin: 0px 70px 0px 70px; padding: 20px; font-size: 26px; background-color: #DDDDDD;
+#+CAPTION: Mean asymmetry deviation of the evaluation set (mock 21cm brightness temperature)
+[[./assets/images/skais/astrometrics/Gas21cm_asymmetry.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 770px :style border-radius: 10px; margin: 0px 70px 0px 70px; padding: 20px; font-size: 26px; background-color: #DDDDDD;
+#+CAPTION: Mean asymmetry deviation of the evaluation set (stellar mass)
+[[./assets/images/skais/astrometrics/GasStar_asymmetry.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+*** Clumpiness deviation (simulations vs AI-generated)
+
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 770px :style border-radius: 10px; margin: 0px 70px 0px 70px; padding: 20px; font-size: 26px; background-color: #DDDDDD;
+#+CAPTION: Mean clumpiness deviation of the evaluation set (Gas @@html:&xrarr;@@ DM)
+[[./assets/images/skais/astrometrics/GasDM_40_clumpiness.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_2col">
+#+ATTR_HTML: :height 770px :style border-radius: 10px; margin: 0px 70px 0px 70px; padding: 20px; font-size: 26px; background-color: #DDDDDD;
+#+CAPTION: Mean clumpiness deviation of the evaluation set (DM @@html:&xrarr;@@ Gas)
+[[./assets/images/skais/astrometrics/DMGas_30_clumpiness.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+*** Statistics of integrated quantities
+
+#+REVEAL_HTML: <div class="gframe_rows" style="background-color: #DDDDDD; color: #222222; border-radius: 20px;">
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_3col">
+HI{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 10px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/skais/astrometrics/GasHI_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+DM{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 10px; margin: 0px 70px 0px 80px; font-size: 26px;
+[[./assets/images/skais/astrometrics/GasDM_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+Star{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/skais/astrometrics/GasStar_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_row_col">
+#+REVEAL_HTML: <div class="gframe_3col">
+21cm{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 10px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/skais/astrometrics/Gas21cm_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+Temperature{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 10px; margin: 0px 70px 0px 70px; font-size: 26px;
+[[./assets/images/skais/astrometrics/GasTemp_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: <div class="gframe_3col">
+B-Field{{{NL}}}
+#+ATTR_HTML: :height 400px :style border-radius: 12px; margin: 0px 0px 0px 0px; font-size: 26px;
+[[./assets/images/skais/astrometrics/GasBF_map_total.png]]
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+#+REVEAL_HTML: </div>
+
+
+* Conclusion & Findings
+
+- Pixel-based metrics work to a degree
+- Perceptual metrics (such as FID) correlate much more with astrophysics
+- Updated and tuned GAN architecture matches performance of diffusion models
+
+
+* Contact
+
+# Link @ https://phdenzel.github.io/...
+https://phdenzel.github.io/
+
+@@html:<a href="https://phdenzel.github.io/assets/blog-assets/026-swiss-ska-days-2025/slides.html">@@
+#+ATTR_HTML: :height 400px :style float: left; margin-left: 150px; 
+[[./assets/images/talk_qr.png]]
+@@html:</a>@@
+
+
+{{{NL}}}{{{NL}}}
+Email:  [[mailto:denp@zhaw.ch][philipp.denzel@zhaw.ch]]
+
+
+* References
+
+- simulations: [[https://www.tng-project.org/][IllustrisTNG project]]
+- 21cm mocks: [[https://arxiv.org/abs/1804.09180][Villaescusa-Navarro et al. (2018)]]
+- GitHub repository: [[https://github.com/CAIIVS/chuchichaestli][https://github.com/CAIIVS/chuchichaestli]]
+- PyTorch astronomy metrics: [[https://github.com/phdenzel/skais-mapper][https://github.com/phdenzel/skais-mapper]]
+- cGAN: [[https://arxiv.org/abs/1611.07004][Isola et al. (2016)]]
+- DDPM: [[https://arxiv.org/abs/2006.11239][Ho et al. (2020)]]
