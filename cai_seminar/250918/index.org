@@ -167,11 +167,11 @@ to
   - SKACH & *Square Kilometer Array* observatory
   - *generative modelling* of plausible radio skies
   - my interests:
-    - /generative deep learning/, /probabilistic models/, {{{NL}}} /simulation-based inference/
+    - /generative deep learning/, {{{NL}}} /probabilistic models/, {{{NL}}} /simulation-based inference/
     - /galactic evolution/, /dark matter/, {{{NL}}} /gravitational lensing/...
-#+ATTR_HTML: :height 600px :style position: absolute; right: 1%; margin: 50px 5px 5px 5px; border-radius: 12px;
-#+CAPTION: SKACH team at the *Swiss SKA Days* hosted by ZHAW (27-29 Aug 2025)
-[[./assets/images/zhaw_ska_team.jpeg]]
+#+ATTR_HTML: :height 600px :style position: absolute; right: 5%; margin: 50px 5px 5px 5px; border-radius: 12px;
+#+CAPTION: SKACH team at the *Swiss SKA Days* hosted by ZHAW (25-27 Aug 2025)
+[[./assets/images/zhaw_skach_team_25.jpg]]
 
 
 ** SKACH after 4 years
@@ -273,8 +273,8 @@ Our model suite ran on a mix of Nvidia V100/A100/H100/H200 GPUs
 - projected Illustris TNG50-1 galaxies
 - 7 domains: dark-matter, stars, gas, {{{NL}}}HI, temperature, magnetic field, 21cm
   - SKA simulations following{{{NL}}}[[https://arxiv.org/abs/1804.09180][Villaescusa-Navarro et al. (2018)]]
-- \sim 2'000+ galaxies, 6 snapshots,{{{NL}}}5 rotations in 3D, \sim 504'000 images
-- each galaxy avg. \sim 100'000 particles
+- \sim 3'000+ galaxies, 6 snapshots,{{{NL}}}4 rotations in 3D, \sim 504'000 images
+- each galaxy avg. \sim 100'000+ particles
 # - \(\sim 8.5 \cdot 10^{4} \mathrm{M}_\odot\)
 
 #+ATTR_HTML: :height 600px :style float: right; margin-top: 100px; padding-right: 100px; border-radius: 12px;
